@@ -20,6 +20,10 @@ foreach($qry->fetch_array() as $k => $val){
                 <input type="text" class="form-control" name="course"  value="<?php echo isset($course) ? $course :'' ?>" required>
             </div>
             <div class="form-group">
+                <label for="" class="control-label">Department</label>
+                <input type="text" class="form-control" name="department"  value="<?php echo isset($department) ? $department :'' ?>" required>
+            </div>
+            <div class="form-group">
                 <label for="" class="control-label">Level</label>
                 <input type="text" class="form-control" name="level"  value="<?php echo isset($level) ? $level :'' ?>" required>
             </div>
