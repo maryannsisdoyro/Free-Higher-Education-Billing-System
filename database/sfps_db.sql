@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2024 at 04:53 AM
+-- Generation Time: Jul 04, 2024 at 07:07 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -95,6 +95,14 @@ CREATE TABLE `payments` (
   `date_created` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`id`, `ef_id`, `amount`, `remarks`, `date_created`) VALUES
+(4, 3, 1000, 'sdsd', '2024-06-28 13:07:34'),
+(5, 4, 1000, 'sdsds', '2024-07-04 12:55:46');
+
 -- --------------------------------------------------------
 
 --
@@ -103,25 +111,18 @@ CREATE TABLE `payments` (
 
 CREATE TABLE `student` (
   `id` int(30) NOT NULL,
+  `sequence_no` varchar(255) NOT NULL,
   `id_no` varchar(100) NOT NULL,
   `name` text NOT NULL,
   `fname` text NOT NULL,
   `lname` text NOT NULL,
   `mname` text DEFAULT NULL,
+  `gender` text NOT NULL,
   `contact` varchar(100) NOT NULL,
   `address` text NOT NULL,
   `email` varchar(200) NOT NULL,
   `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `student`
---
-
-INSERT INTO `student` (`id`, `id_no`, `name`, `fname`, `lname`, `mname`, `contact`, `address`, `email`, `date_created`) VALUES
-(1, '06232014', 'John Smith', '', '', '', '+18456-5455-55', 'Sample Address', 'jsmith@sample.com', '2020-10-31 11:24:42'),
-(2, '1415', 'George Wilson', '', '', '', '+18456-5455-55', 'Sample Address', 'gwilson@sample.com', '2020-10-31 11:29:38'),
-(3, '32313', 'fsff sdfsfs sfsdfs', 'fsff', 'sfsdfs', 'sdfsfs', '09094511207', 'dsfdsfs', 'bawiga@gmail.com', '2024-06-28 13:02:46');
 
 -- --------------------------------------------------------
 
@@ -144,8 +145,7 @@ CREATE TABLE `student_ef_list` (
 
 INSERT INTO `student_ef_list` (`id`, `student_id`, `ef_no`, `course_id`, `total_fee`, `date_created`) VALUES
 (1, 2, '2020-654278', 1, 4500, '2020-10-31 12:04:18'),
-(2, 1, '2020-65427823', 1, 4500, '2020-10-31 13:12:13'),
-(3, 3, '23232', 2, 1597.02, '2024-06-28 13:07:21');
+(2, 1, '2020-65427823', 1, 4500, '2020-10-31 13:12:13');
 
 -- --------------------------------------------------------
 
@@ -167,7 +167,7 @@ CREATE TABLE `system_settings` (
 --
 
 INSERT INTO `system_settings` (`id`, `name`, `email`, `contact`, `cover_img`, `about_content`) VALUES
-(1, 'School Fees Payment System', '', '', '', '');
+(1, 'Free Higher Education Billing System', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -256,19 +256,19 @@ ALTER TABLE `fees`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `student_ef_list`
 --
 ALTER TABLE `student_ef_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `system_settings`

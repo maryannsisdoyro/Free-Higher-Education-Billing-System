@@ -1,6 +1,30 @@
 <?php
 include 'db_connect.php';
-$fees = $conn->query("SELECT ef.*,s.name as sname, s.lname, s.mname, s.fname, s.email, s.contact,s.id_no,concat(c.course,' - ',c.level) as `class`, c.course, c.level, c.laboratory, c.computer, c.academic, c.academic_nstp FROM student_ef_list ef inner join student s on s.id = ef.student_id inner join courses c on c.id = ef.course_id  where ef.id = {$_GET['ef_id']}");
+$fees = $conn->query("SELECT 
+	ef.*,
+	s.name as sname, 
+	s.lname, 
+	s.mname, 
+	s.fname, 
+	s.email, 
+	s.gender,
+	s.contact,
+	s.id_no,
+	s.sequence_no,
+	concat(c.course,' - ',c.level) as `class`, 
+	c.course, c.level, 
+	c.laboratory, 
+	c.computer, 
+	c.academic, 
+	c.academic_nstp 
+	FROM 
+		student_ef_list ef 
+	inner join 
+		student s on s.id = ef.student_id 
+	inner join 
+		courses c on c.id = ef.course_id  
+	where 
+		ef.id = {$_GET['ef_id']}");
 foreach ($fees->fetch_array() as $k => $v) {
 	$$k = $v;
 }
@@ -79,10 +103,11 @@ while ($row = $payments->fetch_array()) {
 						<thead>
 							<th style="min-width: 200px !important;">Sequence Number</th>
 							<th style="min-width: 200px !important;">Student Number</th>
-							<th style="min-width: 200px !important;">Learner's Reference Number</th>
+							<!-- <th style="min-width: 200px !important;">Learner's Reference Number</th> -->
 							<th style="min-width: 200px !important;">Last Name</th>
 							<th style="min-width: 200px !important;">Given's Name</th>
 							<th style="min-width: 200px !important;">Middle Name</th>
+							<th>Gender</th>
 							<th style="min-width: 200px !important;">Degree Program</th>
 							<th>Year Level</th>
 							<th style="min-width: 200px !important;">E-mail Address</th>
@@ -108,12 +133,13 @@ while ($row = $payments->fetch_array()) {
 						</thead>
 
 						<tr>
-							<td><?= '00' . $student_id ?></td>
+							<td><?= $sequence_no ?></td>
 							<td><?= $ef_no ?></td>
-							<td></td>
+							<!-- <td></td> -->
 							<td><?= ucfirst($lname) ?></td>
 							<td><?= ucfirst($fname) ?></td>
 							<td><?= ucfirst($mname) ?></td>
+							<td><?= $gender ?></td>
 							<td><?= $course ?></td>
 							<td><?= $level ?></td>
 							<td><?= $email ?></td>

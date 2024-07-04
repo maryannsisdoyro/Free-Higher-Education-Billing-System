@@ -37,6 +37,7 @@
 							<thead>
 								<tr>
 									<th class="text-center">#</th>
+									<th>Sequence No.</th>
 									<th class="">ID No.</th>
 									<th class="">Name</th>
 									<th class="">Information</th>
@@ -51,6 +52,9 @@
 								?>
 								<tr>
 									<td class="text-center"><?php echo $i++ ?></td>
+									<td>
+										<p> <b><?php echo $row['sequence_no'] ?></b></p>
+									</td>
 									<td>
 										<p> <b><?php echo $row['id_no'] ?></b></p>
 									</td>
@@ -88,7 +92,7 @@
 	}
 	img{
 		max-width:100px;
-		max-height: :150px;
+		max-height: 150px;
 	}
 </style>
 <script>
