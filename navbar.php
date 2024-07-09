@@ -8,7 +8,7 @@
 	}
 </style>
 
-<nav id="sidebar" class='mx-lt-5 bg-dark' >
+<nav id="sidebar" class='mx-lt-5 bg-dark dont-print' >
 		
 		<div class="sidebar-list">
 				<a href="index.php?page=home" class="nav-item nav-home"><span class='icon-field'><i class="fa fa-tachometer-alt "></i></span> Dashboard</a>
@@ -17,6 +17,7 @@
 				<div class="mx-2 text-white">Master List</div>
 				<a href="index.php?page=courses" class="nav-item nav-courses"><span class='icon-field'><i class="fa fa-scroll "></i></span> Courses & Fees</a>
 				<a href="index.php?page=students" class="nav-item nav-students"><span class='icon-field'><i class="fa fa-users "></i></span> Students</a>
+				<a href="index.php?page=enrolled" class="nav-item nav-enrolled"><span class='icon-field'><i class="fa fa-file "></i></span> Enrollment</a>
 				<div class="mx-2 text-white">Report</div>
 				<a href="index.php?page=payments_report" class="nav-item nav-payments_report"><span class='icon-field'><i class="fa fa-th-list"></i></span> Payments Report</a>
 				<div class="mx-2 text-white">Systems</div>

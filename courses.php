@@ -64,6 +64,7 @@
 									<td class="text-center">
 										<button class="btn btn-sm btn-outline-primary edit_course" type="button" data-id="<?php echo $row['id'] ?>" >Edit</button>
 										<button class="btn btn-sm btn-outline-danger delete_course" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
+										<button class="btn btn-sm btn-outline-dark view_students_fees" type="button" data-id="<?php echo $row['id'] ?>">Print Students</button>
 									</td>
 								</tr>
 								<?php endwhile; ?>
@@ -101,10 +102,13 @@
 
 	$('.edit_course').click(function(){
 		uni_modal("Manage Course and Fees Entry","manage_course.php?id="+$(this).attr('data-id'),'large')
-		
 	})
 	$('.delete_course').click(function(){
 		_conf("Are you sure to delete this course?","delete_course",[$(this).attr('data-id')])
+	})
+
+	$('.view_students_fees').click(function(){
+		location.href = "view_students_fees.php?id="+$(this).attr('data-id')
 	})
 	
 	function delete_course($id){
