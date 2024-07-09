@@ -176,6 +176,9 @@ $conn->close();
             uni_modal("New Enroll ", "enrollment.php", "mid-large")
 
         })
+        $(document).ready(function(){
+		$('table').dataTable()
+	})
     </script>
 </body>
 
