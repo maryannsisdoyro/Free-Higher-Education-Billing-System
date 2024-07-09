@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2024 at 07:07 AM
+-- Generation Time: Jul 09, 2024 at 05:46 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -95,14 +95,6 @@ CREATE TABLE `payments` (
   `date_created` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `payments`
---
-
-INSERT INTO `payments` (`id`, `ef_id`, `amount`, `remarks`, `date_created`) VALUES
-(4, 3, 1000, 'sdsd', '2024-06-28 13:07:34'),
-(5, 4, 1000, 'sdsds', '2024-07-04 12:55:46');
-
 -- --------------------------------------------------------
 
 --
@@ -139,13 +131,36 @@ CREATE TABLE `student_ef_list` (
   `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `student_ef_list`
+-- Table structure for table `student_enroll`
 --
 
-INSERT INTO `student_ef_list` (`id`, `student_id`, `ef_no`, `course_id`, `total_fee`, `date_created`) VALUES
-(1, 2, '2020-654278', 1, 4500, '2020-10-31 12:04:18'),
-(2, 1, '2020-65427823', 1, 4500, '2020-10-31 13:12:13');
+CREATE TABLE `student_enroll` (
+  `application_no` int(11) NOT NULL,
+  `last_name` text NOT NULL,
+  `first_name` text NOT NULL,
+  `middle_name` text NOT NULL,
+  `home_address` text NOT NULL,
+  `present_address` text NOT NULL,
+  `contact` varchar(11) NOT NULL,
+  `sex` text NOT NULL,
+  `date_of_birth` text NOT NULL,
+  `email` text NOT NULL,
+  `place_of_birth` text NOT NULL,
+  `civil_status` text NOT NULL,
+  `elementary` text NOT NULL,
+  `elementary_year_graduated` text NOT NULL,
+  `high_school` text NOT NULL,
+  `high_school_year_graduated` text NOT NULL,
+  `shs` text NOT NULL,
+  `shs_year_graduated` text NOT NULL,
+  `track_and_strand` text NOT NULL,
+  `complete_name` text NOT NULL,
+  `date_signed` text NOT NULL,
+  `course_to_be_enrolled` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -225,6 +240,12 @@ ALTER TABLE `student_ef_list`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `student_enroll`
+--
+ALTER TABLE `student_enroll`
+  ADD PRIMARY KEY (`application_no`);
+
+--
 -- Indexes for table `system_settings`
 --
 ALTER TABLE `system_settings`
@@ -256,19 +277,25 @@ ALTER TABLE `fees`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `student_ef_list`
 --
 ALTER TABLE `student_ef_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `student_enroll`
+--
+ALTER TABLE `student_enroll`
+  MODIFY `application_no` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `system_settings`
