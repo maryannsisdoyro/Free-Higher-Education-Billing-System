@@ -29,16 +29,14 @@ header("location:index.php?page=home");
 </head>
 <style>
 	body{
-		width: 100%;
-	    height: calc(100%);
-	    position: fixed;
-	    top:0;
-	    left: 0
-	    /*background: #007bff;*/
+		background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url('./assets/bg-img.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
 	}
 	main#main{
 		width:100%;
-		height: calc(100%);
+		height: 100vh;
 		display: flex;
 	}
 
@@ -47,11 +45,11 @@ header("location:index.php?page=home");
 <body class="bg-dark">
 
 
-  <main id="main" >
+  <main class="container" id="main" >
   	
   		<div class="align-self-center w-100">
 		<h4 class="text-white text-center"><b><?php echo $_SESSION['system']['name'] ?></b></h4>
-  		<div id="login-center" class="bg-dark row justify-content-center">
+  		<div id="login-center" class="row justify-content-center">
   			<div class="card col-md-4">
   				<div class="card-body">
   					<form id="login-form" >
