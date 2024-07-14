@@ -9,13 +9,14 @@
 }
 </style>
 
-<nav class="navbar navbar-light fixed-top bg-primary dont-print" style="padding:0">
+<nav class="navbar navbar-light sticky-top bg-primary dont-print" style="padding:0">
   <div class="container-fluid mt-2 mb-2">
   	<div class="col-lg-12">
   		<div class="col-md-1 float-left" style="display: flex;">
   		
   		</div>
       <div class="col-md-4 float-left text-white">
+        <img src="./assets/logo.png" alt="image" style="width: 50px;">
         <large><b><?php echo isset($_SESSION['system']['name']) ? $_SESSION['system']['name'] : '' ?></b></large>
       </div>
 	  	<div class="float-right">

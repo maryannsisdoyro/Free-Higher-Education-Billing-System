@@ -1,3 +1,35 @@
+<?php 
+  if (str_contains($_SERVER['REQUEST_URI'], "page=enrolled")) {
+    include 'db_connect.php';
+    $sql = "SELECT application_no, last_name, first_name, middle_name, home_address, present_address, contact, sex, date_of_birth, email, place_of_birth, civil_status, elementary, elementary_year_graduated, high_school, high_school_year_graduated, shs, shs_year_graduated, track_and_strand, complete_name, date_signed, course_to_be_enrolled FROM student_enroll";
+    $result = $conn->query($sql);
+    
+    function array_to_csv_download($array, $filename = "export.csv", $delimiter = ",")
+    {
+        header('Content-Type: application/csv');
+        header('Content-Disposition: attachment; filename="' . $filename . '";');
+    
+        $f = fopen('php://output', 'w');
+    
+        fputcsv($f, array_keys($array[0]), $delimiter);
+    
+        foreach ($array as $row) {
+            fputcsv($f, $row, $delimiter);
+        }
+    
+        fclose($f);
+        exit();
+    }
+    
+    if (isset($_GET['export']) && $_GET['export'] == 'csv') {
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        array_to_csv_download($data, 'student_list.csv');
+    }
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 	

@@ -115,7 +115,7 @@
 	})
 	
 	$('.view_payment').click(function(){
-		uni_modal("Payment Details","view_payment.php?ef_id="+$(this).attr('data-id')+"&pid=0","mid-large")
+		uni_modal("Student Certificate of Registration","view_payment.php?ef_id="+$(this).attr('data-id')+"&pid=0","large")
 		
 	})
 	$('#new_fees').click(function(){

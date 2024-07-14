@@ -10,6 +10,7 @@ $fees = $conn->query("SELECT
 	s.gender,
 	s.contact,
 	s.id_no,
+	s.address,
 	s.sequence_no,
 	concat(c.course,' - ',c.level) as `class`, 
 	c.course, c.level, 
@@ -36,22 +37,17 @@ while ($row = $payments->fetch_array()) {
 ?>
 
 <style>
-	.flex {
+	/* .flex {
 		display: inline-flex;
 		width: 100%;
-	}
-
-	.w-50 {
-		width: 50%;
-	}
-
-	.text-center {
+	} */
+	/* .text-center {
 		text-align: center;
 	}
 
 	.text-right {
 		text-align: right;
-	}
+	} */
 
 	table.wborder {
 		width: 100%;
@@ -63,111 +59,158 @@ while ($row = $payments->fetch_array()) {
 		border: 1px solid;
 	}
 
-	p {
+	/* p {
 		margin: unset;
-	}
+	} */
 
-	tr td{
+	tr td {
 		text-align: right;
 	}
+
+	/*
 
 	@media print {
     table, thead, th, tr, td {
         border: 1px solid #000 !important;
         border-collapse: collapse !important;
 		text-align: right;
-    }
-}
+    } */
 
+	.content {
+		width: 100% !important;
+		text-align: center;
+	}
+
+	table {
+		width: 100%;
+		border: 1px solid #000;
+	}
+
+	table tr,
+	table tr td {
+		border-collapse: collapse;
+		border: 1px solid #000;
+		padding: 5px;
+	}
+
+	table tr td {
+		text-align: left;
+	}
+
+
+	/* } */
 </style>
 <div class="container-fluid">
+	<div class="content">
 
-	<div class="table-responsive">
-		<table class="wborder" style="border: 1px solid #000; border-collapse: collapse;">
-			<tr>
-				<td colspan="29" class="text-center">
-					<p class="mt-3">Republic of the Philippines</p>
-					<p><i>Madridejos Community College</i></p>
-					<p><i>Bunakan, Madridejos, Cebu</i></p>
+		<div style="display: flex; justify-content: center;">
+			<div>
+				<img src="./assets/logo.png" alt="" style="margin: auto 0; width: 100px !important;">
+			</div>
+			<div>
+				<p style="margin-bottom: 0;">Republic of the Philippines</p>
+				<p style="margin-bottom: 0;">Province of Cebu</p>
+				<p style="margin-bottom: 0;">Municipality of Madridejos</p>
+				<h5 style="margin-bottom: 0;">Madridejos Community College</h5>
+				<p>Crossing Bunakan, Madridejos, Cebu</p>
+			</div>
+		</div>
 
-					<h6 class="my-4"><b>FREE HIGHER EDUCATION BILLING DETAILS</b></h6>
+		<div>
+			<table>
+				<tr>
+					<td colspan="2">Name :</td>
+					<td colspan="4"><?= strtoupper($sname) ?></td>
+					<td colspan="2">ID Number: </td>
+					<td colspan="3"><?= $id_no ?></td>
+				</tr>
+				<tr>
+					<td colspan="2">Course :</td>
+					<td><?= $course ?></td>
+					<td colspan="2">Major :</td>
+					<td colspan="3">N/A</td>
+					<td colspan="1">Section :</td>
+					<td colspan="3">N/A</td>
+				</tr>
+				<tr>
+					<td colspan="2">Curriculum Year :</td>
+					<td colspan="3"><?= date('Y') ?> - <?= date('Y', strtotime('+1year')) ?></td>
+					<td colspan="3">Religious Affiliation: N/A</td>
+					<td colspan="2">Contact Number:</td>
+					<td colspan="2"><?= $contact ?></td>
+				</tr>
+				<tr>
+					<td colspan="2">Home Address:</td>
+					<td colspan="5"><?= $address ?></td>
+					<td colspan="2">Civil Status:</td>
+					<td colspan="3">N/A</td>
+				</tr>
+				<tr>
+					<td colspan="2">Date of Birth:</td>
+					<td colspan="5"> N/A</td>
+					<td colspan="2">Palce of Birth:</td>
+					<td colspan="3">N/A</td>
+				</tr>
+				<tr>
+					<td colspan="2">Elementary Course Completed:</td>
+					<td colspan="5"> N/A</td>
+					<td colspan="2">S .Y.:</td>
+					<td colspan="3">N/A</td>
+				</tr>
+				<tr>
+					<td colspan="2">High School Course Completed:</td>
+					<td colspan="5"> N/A</td>
+					<td colspan="2">S .Y.:</td>
+					<td colspan="3">N/A</td>
+				</tr>
+				<tr>
+					<td colspan="2">Last School Attended:</td>
+					<td colspan="5"> N/A</td>
+					<td colspan="2">S .Y.:</td>
+					<td colspan="3">N/A</td>
+				</tr>
+			</table>
+		</div>
 
-				</td>
-			</tr>
-			<tr>
-				<td width="50%">
-					<p><b>TUITION AND OTHER SCHOOL FEES(Based on Section 7, Rule II of the RA 10931)</b></p>
-					<hr>
-					<table class="table table-bordered" width="100%">
-						
-						<thead>
-							<th style="min-width: 200px !important;">Sequence Number</th>
-							<th style="min-width: 200px !important;">Student Number</th>
-							<!-- <th style="min-width: 200px !important;">Learner's Reference Number</th> -->
-							<th style="min-width: 200px !important;">Last Name</th>
-							<th style="min-width: 200px !important;">Given's Name</th>
-							<th style="min-width: 200px !important;">Middle Name</th>
-							<th>Gender</th>
-							<th style="min-width: 200px !important;">Degree Program</th>
-							<th>Year Level</th>
-							<th style="min-width: 200px !important;">E-mail Address</th>
-							<th style="min-width: 200px !important;">Phone Number</th>
-							<th style="min-width: 200px !important;">Laboratory Units/subject</th>
-							<th style="min-width: 200px !important;">Computer Lab Units/subject</th>
-							<th style="min-width: 200px !important;">Academic Units Enrolled(credit and non-credit courses)</th>
-							<th style="min-width: 200px !important;">Academic Units of NSTP Enrolled(credit and non-credit courses)</th>
-							<?php
-							$cfees = $conn->query("SELECT * FROM fees where course_id = $course_id");
-							$ftotal = 0;
-							while ($row = $cfees->fetch_assoc()) {
-								$ftotal += $row['amount'];
-							?>
+		<div style="margin-top: 20px;">
+			<table>
+				<thead>
+					<th colspan="11" style="text-align: center;">Assessment</th>
+				</thead>
+				<tr>
+					<td colspan="5"></td>
+					<td colspan="2">Units Enrolled</td>
+					<td colspan="2">Rate per Unit</td>
+					<td colspan="3">Total</td>
+				</tr>
+				<?php
+				$cfees = $conn->query("SELECT * FROM fees where course_id = $course_id");
+				$ftotal = 0;
+				while ($row = $cfees->fetch_assoc()) {
+					$ftotal += $row['amount'];
+				?>
 
-								<th style="min-width: 200px !important;"><b><?php echo $row['description'] ?></b></th>
-								
 
-							<?php
-							}
-							?>
-							<th>Total</th>
-						</thead>
+				<tr>
+					<td colspan="2"><?= $row['description'] ?></td>
+					<td colspan="5" style="text-align: center;"></td>
+					<td colspan="2" style="text-align: center;"><?= $row['amount'] != 0 ? $row['amount'] : '-' ?></td>
+					<td colspan="3" style="text-align: center;"><?= $row['amount'] ?></td>
+				</tr>
 
-						<tr>
-							<td><?= $sequence_no ?></td>
-							<td><?= $ef_no ?></td>
-							<!-- <td></td> -->
-							<td><?= ucfirst($lname) ?></td>
-							<td><?= ucfirst($fname) ?></td>
-							<td><?= ucfirst($mname) ?></td>
-							<td><?= $gender ?></td>
-							<td><?= $course ?></td>
-							<td><?= $level ?></td>
-							<td><?= $email ?></td>
-							<td><?= $contact ?></td>
-							<td><?= $laboratory ?></td>
-							<td><?= $computer ?></td>
-							<td><?= $academic ?></td>
-							<td><?= $academic_nstp ?></td>
-							<?php
-							$cfees = $conn->query("SELECT * FROM fees where course_id = $course_id");
-							$ftotal = 0;
-							while ($row = $cfees->fetch_assoc()) {
-								$ftotal += $row['amount'];
-							?>
+				<?php
+				}
+				?>
+				<tr>
+					<td colspan="2">Grand Total</td>
+					<td colspan="5" style="text-align: center;"></td>
+					<td colspan="2" style="text-align: center;"></td>
+					<td colspan="3" class="text-right"><b><?php echo number_format($ftotal, 2) ?></b></td>
+				</tr>
+				
+				
+			</table>
+		</div>
 
-								
-								<td class='text-right'><b><?php echo number_format($row['amount'], 2) ?></b></td>
-
-							<?php
-							}
-							?>
-							<th class="text-right"><b><?php echo number_format($ftotal, 2) ?></b></th>
-						</tr>
-						
-					</table>
-				</td>
-			
-			</tr>
-		</table>
 	</div>
 </div>

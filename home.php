@@ -36,18 +36,129 @@
 	}
 </style>
 
-<div class="containe-fluid">
-	<div class="row mt-3 ml-3 mr-3">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body">
-                    <?php echo "Welcome back ". $_SESSION['login_name']."!"  ?>
-                    <hr>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+
+    <div class="container-fluid py-3">
+        <div class="row" style="gap: 20px 0;">
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="border-bottom"><i class="fa fa-code"></i> : 
+                        <?php 
+                            $get_bsit = $conn->query("SELECT * FROM student_enroll WHERE course_to_be_enrolled = 'Bachelor of Science in Information Technology'");
+                            echo $get_bsit->num_rows;
+                        ?>
+                        </h1>
+                        <div style="text-align: center;">
+                        <h5 class="mb-0">BSIT</h5>
+                        </div>
+                    </div>
                 </div>
-            </div>      			
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="border-bottom"><i class="fa fa-chart-bar"></i> : 
+                        <?php 
+                            $get_bsba = $conn->query("SELECT * FROM student_enroll WHERE course_to_be_enrolled = 'Bachelor of Science in Business Administration'");
+                            echo $get_bsba->num_rows;
+                        ?>
+                    </h1>
+                        <div style="text-align: center;">
+                        <h5 class="mb-0">BSBA</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="border-bottom"><i class="fa fa-utensils"></i> : 
+                        <?php 
+                            $get_bshm = $conn->query("SELECT * FROM student_enroll WHERE course_to_be_enrolled = 'Bachelor of Science in Hotel Management'");
+                            echo $get_bshm->num_rows;
+                        ?>
+                    </h1>
+                        <div style="text-align: center;">
+                        <h5 class="mb-0">BSHM</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="border-bottom"><i class="fa fa-chalkboard"></i> : 
+                        <?php 
+                            $get_bsed = $conn->query("SELECT * FROM student_enroll WHERE course_to_be_enrolled = 'Bachelor of Secondary Education'");
+                            echo $get_bsed->num_rows;
+                        ?>
+                    </h1>
+                        <div style="text-align: center;">
+                        <h5 class="mb-0">BSED</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="border-bottom"><i class="fa fa-book"></i> : 
+                        <?php 
+                            $get_beed = $conn->query("SELECT * FROM student_enroll WHERE course_to_be_enrolled = 'Bachelor of Elementary Education'");
+                            echo $get_beed->num_rows;
+                        ?>
+                    </h1>
+                        <div style="text-align: center;">
+                        <h5 class="mb-0">BEED</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <canvas id="chart">
+
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-</div>
+
+    <script>
+        var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
+var yValues = [<?php echo $get_bsit->num_rows ?>, <?php echo $get_bsba->num_rows ?>, <?php echo $get_bshm->num_rows ?>, <?php echo $get_bsed->num_rows ?>, <?php echo $get_beed->num_rows ?>];
+var barColors = ["#436dfd", "#436dfd", "#436dfd", "#436dfd", "#436dfd"];
+
+new Chart("chart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Total Enrolled Students"
+    }
+  }
+});
+    </script>
 <script>
 	$('#manage-records').submit(function(e){
         e.preventDefault()

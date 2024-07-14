@@ -1624,7 +1624,7 @@ nav#sidebar {
     left: 0;
     width: 200px;
     font-size: 12px;
-    top: 2.5em;
+    top: 4em;
 }
 a.nav-item {
     position: relative;
@@ -1643,8 +1643,8 @@ a.nav-item:hover, .nav-item.active {
 main#view-panel{
   margin-left: 200px; 
   width:calc(100% - 200px);
-  margin-top: 2.8em;
-  padding: .5em
+  margin-top: 0 !important;
+  padding: .5em;
 }
 .toast{
   display: none;

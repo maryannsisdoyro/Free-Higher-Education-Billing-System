@@ -1,5 +1,5 @@
 <?php include 'db_connect.php' ?>
-<div class="container">
+<div class="container-fluid">
         <div class="form-container">
             <h2>COLLEGE APPLICATION FORM <br>2024-2025</h2>
             <form id="enrollment-form" action="enroll.php" method="post">
@@ -31,7 +31,7 @@
                 
                 <div class="form-group">
                     <label for="contact">Contact Number:</label>
-                    <input type="number" class="form-control" id="contact" name="contact" pattern="[0-9]{11}" title="Please enter a valid 11-digit contact number" required>
+                    <input type="tel" class="form-control" id="contact" name="contact" minlength="11" maxlength="11" pattern="[0-9]{11}" title="Please enter a valid 11-digit contact number" required>
                 </div>
                 
                 <div class="form-group">
