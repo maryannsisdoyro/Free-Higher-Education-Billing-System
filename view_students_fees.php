@@ -211,6 +211,7 @@
                                             <?php
                                             if ($students->num_rows > 0) {
                                                 foreach ($students as $row) {
+                                                    echo $row['ef_no'];
                                             ?>
                                                     <tr>
                                                         <td><?= $row['sequence_no'] ?></td>
