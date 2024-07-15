@@ -38,7 +38,7 @@
 								<tr>
 									<th class="text-center">#</th>
 									<th class="">ID No.</th>
-									<th class="">EF No.</th>
+									<!---<th class="">EF No.</th>--->
 									<th class="">Name</th>
 									<th class="">Department</th>
 									<th class="">Payable Fee</th>
@@ -61,9 +61,9 @@
 									<td>
 										<p> <b><?php echo $row['id_no'] ?></b></p>
 									</td>
-									<td>
-										<p> <b><?php echo $row['ef_no'] ?></b></p>
-									</td>
+									<!---<td>
+										<p> <b><?php #echo $row['ef_no'] ?></b></p>
+									</td>-->
 									<td>
 										<p> <b><?php echo ucwords($row['sname']) ?></b></p>
 									</td>
