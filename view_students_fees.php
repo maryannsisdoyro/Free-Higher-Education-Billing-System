@@ -148,6 +148,7 @@
         student s ON l.student_id = s.id
     WHERE 
         c.id = '$id'
+    ORDER BY s.lname ASC
     ");
     ?>
 
