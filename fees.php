@@ -59,7 +59,7 @@
 								<tr>
 									<td class="text-center"><?php echo $i++ ?></td>
 									<td>
-										<p> <b><?php echo $row['id_no'] ?></b></p>
+										<p> <b><?php echo $row['ef_no'] ?></b></p>
 									</td>
 									<!---<td>
 										<p> <b><?php #echo $row['ef_no'] ?></b></p>
