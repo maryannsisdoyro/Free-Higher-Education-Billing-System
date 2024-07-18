@@ -48,7 +48,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom" ><i class="fa fa-code" ></i> : 
                         <?php 
-                            $get_bsit = $conn->query("SELECT * FROM students WHERE course_to_be_enrolled = 'Bachelor of Science in Information Technology'");
+                            $get_bsit = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSIT'");
                             echo $get_bsit->num_rows;
                         ?>
                         </h1>
@@ -64,7 +64,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom"><i class="fa fa-chart-bar"></i> : 
                         <?php 
-                            $get_bsba = $conn->query("SELECT * FROM students WHERE course_to_be_enrolled = 'Bachelor of Science in Business Administration'");
+                            $get_bsba = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSBA'");
                             echo $get_bsba->num_rows;
                         ?>
                     </h1>
@@ -80,7 +80,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom"><i class="fa fa-utensils"></i> : 
                         <?php 
-                            $get_bshm = $conn->query("SELECT * FROM students WHERE course_to_be_enrolled = 'Bachelor of Science in Hotel Management'");
+                            $get_bshm = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSHM'");
                             echo $get_bshm->num_rows;
                         ?>
                     </h1>
@@ -96,7 +96,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom"><i class="fa fa-chalkboard"></i> : 
                         <?php 
-                            $get_bsed = $conn->query("SELECT * FROM students WHERE course_to_be_enrolled = 'Bachelor of Secondary Education'");
+                            $get_bsed = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSED'");
                             echo $get_bsed->num_rows;
                         ?>
                     </h1>
@@ -112,7 +112,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom"><i class="fa fa-book"></i> : 
                         <?php 
-                            $get_beed = $conn->query("SELECT * FROM students WHERE course_to_be_enrolled = 'Bachelor of Elementary Education'");
+                            $get_beed = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BEED'");
                             echo $get_beed->num_rows;
                         ?>
                     </h1>
