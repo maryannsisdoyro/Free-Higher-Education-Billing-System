@@ -46,15 +46,9 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
-<<<<<<< HEAD
                         <h1 class="border-bottom" ><i class="fa fa-code" ></i> : 
                         <?php 
                             $get_bsit = $conn->query("SELECT * FROM students WHERE course_to_be_enrolled = 'Bachelor of Science in Information Technology'");
-=======
-                        <h1 class="border-bottom"><i class="fa fa-code"></i> : 
-                        <?php 
-                            $get_bsit = $conn->query("SELECT * FROM student_enroll WHERE course_to_be_enrolled = 'Bachelor of Science in Information Technology'");
->>>>>>> origin/main
                             echo $get_bsit->num_rows;
                         ?>
                         </h1>
@@ -70,11 +64,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom"><i class="fa fa-chart-bar"></i> : 
                         <?php 
-<<<<<<< HEAD
                             $get_bsba = $conn->query("SELECT * FROM students WHERE course_to_be_enrolled = 'Bachelor of Science in Business Administration'");
-=======
-                            $get_bsba = $conn->query("SELECT * FROM student_enroll WHERE course_to_be_enrolled = 'Bachelor of Science in Business Administration'");
->>>>>>> origin/main
                             echo $get_bsba->num_rows;
                         ?>
                     </h1>
@@ -90,11 +80,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom"><i class="fa fa-utensils"></i> : 
                         <?php 
-<<<<<<< HEAD
                             $get_bshm = $conn->query("SELECT * FROM students WHERE course_to_be_enrolled = 'Bachelor of Science in Hotel Management'");
-=======
-                            $get_bshm = $conn->query("SELECT * FROM student_enroll WHERE course_to_be_enrolled = 'Bachelor of Science in Hotel Management'");
->>>>>>> origin/main
                             echo $get_bshm->num_rows;
                         ?>
                     </h1>
@@ -110,11 +96,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom"><i class="fa fa-chalkboard"></i> : 
                         <?php 
-<<<<<<< HEAD
                             $get_bsed = $conn->query("SELECT * FROM students WHERE course_to_be_enrolled = 'Bachelor of Secondary Education'");
-=======
-                            $get_bsed = $conn->query("SELECT * FROM student_enroll WHERE course_to_be_enrolled = 'Bachelor of Secondary Education'");
->>>>>>> origin/main
                             echo $get_bsed->num_rows;
                         ?>
                     </h1>
@@ -130,11 +112,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom"><i class="fa fa-book"></i> : 
                         <?php 
-<<<<<<< HEAD
                             $get_beed = $conn->query("SELECT * FROM students WHERE course_to_be_enrolled = 'Bachelor of Elementary Education'");
-=======
-                            $get_beed = $conn->query("SELECT * FROM student_enroll WHERE course_to_be_enrolled = 'Bachelor of Elementary Education'");
->>>>>>> origin/main
                             echo $get_beed->num_rows;
                         ?>
                     </h1>
@@ -161,11 +139,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     <script>
         var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
 var yValues = [<?php echo $get_bsit->num_rows ?>, <?php echo $get_bsba->num_rows ?>, <?php echo $get_bshm->num_rows ?>, <?php echo $get_bsed->num_rows ?>, <?php echo $get_beed->num_rows ?>];
-<<<<<<< HEAD
 var barColors = ["#dc3545", "#dc3545", "#dc3545", "#dc3545", "#dc3545"];
-=======
-var barColors = ["#436dfd", "#436dfd", "#436dfd", "#436dfd", "#436dfd"];
->>>>>>> origin/main
 
 new Chart("chart", {
   type: "bar",

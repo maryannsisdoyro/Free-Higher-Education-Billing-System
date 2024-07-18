@@ -28,19 +28,11 @@
 				<div class="card">
 					<div class="card-header">
 						<b>List of Student fees </b>
-<<<<<<< HEAD
 						<span class="float:right"><a class="btn btn-danger btn-block btn-sm col-sm-2 float-right" href="javascript:void(0)" id="new_fees">
 					<i class="fa fa-plus"></i> New 
 				</a></span>
 					</div>
 					<div class="card-body table-responsive">
-=======
-						<span class="float:right"><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="javascript:void(0)" id="new_fees">
-					<i class="fa fa-plus"></i> New 
-				</a></span>
-					</div>
-					<div class="card-body">
->>>>>>> origin/main
 						<table class="table table-condensed table-bordered table-hover">
 							<thead>
 								<tr>
@@ -48,11 +40,7 @@
 									<th class="">ID No.</th>
 									<!---<th class="">EF No.</th>--->
 									<th class="">Name</th>
-<<<<<<< HEAD
 									<th class="">Course</th>
-=======
-									<th class="">Department</th>
->>>>>>> origin/main
 									<th class="">Payable Fee</th>
 									<th class="">Paid</th>
 									<th class="">Balance</th>
@@ -62,11 +50,7 @@
 							<tbody>
 								<?php 
 								$i = 1;
-<<<<<<< HEAD
 								$fees = $conn->query("SELECT ef.*,s.name as sname,s.id_no, c.department, c.course FROM student_ef_list ef inner join student s on s.id = ef.student_id INNER JOIN courses c ON c.id = ef.course_id  order by s.name asc ");
-=======
-								$fees = $conn->query("SELECT ef.*,s.name as sname,s.id_no, c.department FROM student_ef_list ef inner join student s on s.id = ef.student_id INNER JOIN courses c ON c.id = ef.course_id  order by s.name asc ");
->>>>>>> origin/main
 								while($row=$fees->fetch_assoc()):
 									$paid = $conn->query("SELECT sum(amount) as paid FROM payments where ef_id=".$row['id']);
 									$paid = $paid->num_rows > 0 ? $paid->fetch_array()['paid']:'';
@@ -84,11 +68,7 @@
 										<p> <b><?php echo ucwords($row['sname']) ?></b></p>
 									</td>
 									<td>
-<<<<<<< HEAD
 										<p> <b><?php echo $row['course'] ?></b></p>
-=======
-										<p> <b><?php echo $row['department'] ?></b></p>
->>>>>>> origin/main
 									</td>
 									<td class="text-right">
 										<p> <b><?php echo number_format($row['total_fee'],2) ?></b></p>
@@ -99,11 +79,7 @@
 									<td class="text-right">
 										<p> <b><?php echo number_format($balance,2) ?></b></p>
 									</td>
-<<<<<<< HEAD
 									<td class="text-center" style="width: 200px !important;">
-=======
-									<td class="text-center">
->>>>>>> origin/main
 										<button class="btn btn-sm btn-outline-primary view_payment" type="button" data-id="<?php echo $row['id'] ?>">View</button>
 										<button class="btn btn-sm btn-outline-primary edit_fees" type="button" data-id="<?php echo $row['id'] ?>" >Edit</button>
 										<button class="btn btn-sm btn-outline-danger delete_fees" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
