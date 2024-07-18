@@ -142,11 +142,7 @@
                     </select>
                 </div>
                 
-<<<<<<< HEAD
                 <!-- <button type="submit" class="btn btn-submit">Submit</button> -->
-=======
-                <button type="submit" class="btn btn-submit">Submit</button>
->>>>>>> origin/main
             </form>
         </div>
     </div>

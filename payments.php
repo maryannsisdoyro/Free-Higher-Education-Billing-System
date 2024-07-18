@@ -11,19 +11,11 @@
 				<div class="card">
 					<div class="card-header">
 						<b>List of Payments </b>
-<<<<<<< HEAD
 						<span class="float:right"><a class="btn btn-danger btn-block btn-sm col-sm-2 float-right" href="javascript:void(0)" id="new_payment">
 					<i class="fa fa-plus"></i> New 
 				</a></span>
 					</div>
 					<div class="card-body table-responsive">
-=======
-						<span class="float:right"><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="javascript:void(0)" id="new_payment">
-					<i class="fa fa-plus"></i> New 
-				</a></span>
-					</div>
-					<div class="card-body">
->>>>>>> origin/main
 						<table class="table table-condensed table-bordered table-hover">
 							<thead>
 								<tr>

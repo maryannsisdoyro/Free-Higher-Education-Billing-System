@@ -120,11 +120,7 @@ if ($insert_stmt->execute()) {
                             icon: "success"
                         }).then((result) => {
                             if (result.isConfirmed) {
-<<<<<<< HEAD
                                 window.location.href = "index.php?page=enrolled";
-=======
-                                window.location.href = "enrolled.php";
->>>>>>> origin/main
                             }
                         });
                     };
