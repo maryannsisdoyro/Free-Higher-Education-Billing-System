@@ -12,9 +12,15 @@
             <div class="card-body">
             <h2 class="my-4">COLLEGE APPLICATION REFERENCE 2024-2025</h2>
         <div class="my-4">
+<<<<<<< HEAD
             <a href="?page=enrolled&export=csv" class="btn btn-outline-danger">Export to CSV</a>
             <a href="javascript:void(0);" onclick="printTable()" class="btn btn-danger ml-2">Print</a> <!-- JavaScript print -->
             <span class="float:right"><a class="btn btn-danger btn-block btn-sm col-sm-2 float-right" href="javascript:void(0)" id="new_enroll">
+=======
+            <a href="?page=enrolled&export=csv" class="btn btn-success">Export to CSV</a>
+            <a href="javascript:void(0);" onclick="printTable()" class="btn btn-primary ml-2">Print</a> <!-- JavaScript print -->
+            <span class="float:right"><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="javascript:void(0)" id="new_enroll">
+>>>>>>> origin/main
                     <i class="fa fa-plus"></i> New
                 </a></span>
         </div>

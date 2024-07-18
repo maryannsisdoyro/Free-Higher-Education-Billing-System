@@ -28,18 +28,31 @@
 				<div class="card">
 					<div class="card-header">
 						<b>List of Courses and Fees</b>
+<<<<<<< HEAD
 						<span class="float:right"><a class="btn btn-danger btn-block btn-sm col-sm-2 float-right" href="javascript:void(0)" id="new_course">
+=======
+						<span class="float:right"><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="javascript:void(0)" id="new_course">
+>>>>>>> origin/main
 					<i class="fa fa-plus"></i> New Entry
 				</a></span>
 					
 					</div>
+<<<<<<< HEAD
 					<div class="card-body table-responsive">
+=======
+					<div class="card-body">
+>>>>>>> origin/main
 						<table class="table table-condensed table-bordered table-hover">
 							<thead>
 								<tr>
 									<th class="text-center">#</th>
+<<<<<<< HEAD
 									<th class="">Course</th>
 									<th class="">Level</th>
+=======
+									<th class="">Course/Level</th>
+									<th class="">Description</th>
+>>>>>>> origin/main
 									<th class="">Total Fee</th>
 									<th class="text-center">Action</th>
 								</tr>
@@ -53,10 +66,17 @@
 								<tr>
 									<td class="text-center"><?php echo $i++ ?></td>
 									<td>
+<<<<<<< HEAD
 										<p> <b><?php echo $row['course'] ?></b></p>
 									</td>
 									<td class="">
 										 <p><small><i><b><?php echo $row['level'] ?></i></small></p>
+=======
+										<p> <b><?php echo $row['course'] . " - " . $row['level'] ?></b></p>
+									</td>
+									<td class="">
+										 <p><small><i><b><?php echo $row['description'] ?></i></small></p>
+>>>>>>> origin/main
 									</td>
 									<td class="text-right">
 										<p> <b><?php echo number_format($row['total_amount'],2) ?></b></p>

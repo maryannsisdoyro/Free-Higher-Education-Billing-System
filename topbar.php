@@ -9,6 +9,7 @@
 }
 </style>
 
+<<<<<<< HEAD
 <nav class="navbar navbar-light sticky-top bg-danger dont-print" style="padding:0">
   <div class="container-fluid mt-2 mb-2">
   	<div class="col-lg-12">
@@ -16,11 +17,24 @@
   		
   		</div> -->
       <div class=" float-left text-white">
+=======
+<nav class="navbar navbar-light sticky-top bg-primary dont-print" style="padding:0">
+  <div class="container-fluid mt-2 mb-2">
+  	<div class="col-lg-12">
+  		<div class="col-md-1 float-left" style="display: flex;">
+  		
+  		</div>
+      <div class="col-md-4 float-left text-white">
+>>>>>>> origin/main
         <img src="./assets/logo.png" alt="image" style="width: 50px;">
         <large><b><?php echo isset($_SESSION['system']['name']) ? $_SESSION['system']['name'] : '' ?></b></large>
       </div>
 	  	<div class="float-right">
+<<<<<<< HEAD
         <div class=" dropdown" style="margin: auto 0 !important;">
+=======
+        <div class=" dropdown mr-4">
+>>>>>>> origin/main
             <a href="#" class="text-white dropdown-toggle"  id="account_settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['login_name'] ?> </a>
               <div class="dropdown-menu" aria-labelledby="account_settings" style="left: -2.5em;">
                 <a class="dropdown-item" href="javascript:void(0)" id="manage_my_account"><i class="fa fa-cog"></i> Manage Account</a>

@@ -19,18 +19,32 @@ foreach($qry->fetch_array() as $k => $val){
                 <label for="" class="control-label">Course</label>
                 <input type="text" class="form-control" name="course"  value="<?php echo isset($course) ? $course :'' ?>" required>
             </div>
+<<<<<<< HEAD
             <!-- <div class="form-group">
                 <label for="" class="control-label">Department</label>
                 <input type="text" class="form-control" name="department"  value="<?php echo isset($department) ? $department :'' ?>" required>
             </div> -->
+=======
+            <div class="form-group">
+                <label for="" class="control-label">Department</label>
+                <input type="text" class="form-control" name="department"  value="<?php echo isset($department) ? $department :'' ?>" required>
+            </div>
+>>>>>>> origin/main
             <div class="form-group">
                 <label for="" class="control-label">Level</label>
                 <input type="text" class="form-control" name="level"  value="<?php echo isset($level) ? $level :'' ?>" required>
             </div>
+<<<<<<< HEAD
             <!-- <div class="form-group">
                 <label for="" class="control-label">Description</label>
                 <textarea name="description" id="" cols="30" rows="4" class="form-control" required=""><?php echo isset($description) ? $description :'' ?></textarea>
             </div> -->
+=======
+            <div class="form-group">
+                <label for="" class="control-label">Description</label>
+                <textarea name="description" id="" cols="30" rows="4" class="form-control" required=""><?php echo isset($description) ? $description :'' ?></textarea>
+            </div>
+>>>>>>> origin/main
             <div class="form-group">
                 <label for="" class="control-label">Laboratory Units/subject</label>
                 <input type="text" class="form-control" name="laboratory"  value="<?php echo isset($laboratory) ? $laboratory : 0 ?>" required>
@@ -62,7 +76,11 @@ foreach($qry->fetch_array() as $k => $val){
                 </div>
                  <div class="form-group pt-1">
                     <label for="" class="control-label">&nbsp;</label>
+<<<<<<< HEAD
                     <button class="btn btn-danger btn-sm" type="button" id="add_fee">Add to List</button>
+=======
+                    <button class="btn btn-primary btn-sm" type="button" id="add_fee">Add to List</button>
+>>>>>>> origin/main
                 </div>
             </div>
             <hr>

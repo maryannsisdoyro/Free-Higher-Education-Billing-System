@@ -1,7 +1,11 @@
 <?php include 'db_connect.php' ?>
 <div class="container-fluid">
         <div class="form-container">
+<<<<<<< HEAD
             <h5>COLLEGE APPLICATION FORM</h5>
+=======
+            <h2>COLLEGE APPLICATION FORM <br>2024-2025</h2>
+>>>>>>> origin/main
             <form id="enrollment-form" action="enroll.php" method="post">
                 
                 <div class="form-group">
@@ -138,7 +142,11 @@
                     </select>
                 </div>
                 
+<<<<<<< HEAD
                 <!-- <button type="submit" class="btn btn-submit">Submit</button> -->
+=======
+                <button type="submit" class="btn btn-submit">Submit</button>
+>>>>>>> origin/main
             </form>
         </div>
     </div>
