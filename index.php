@@ -134,11 +134,7 @@
       <div class="modal-body">
       </div>
       <div class="modal-footer">
-<<<<<<< HEAD
         <button type="button" class="btn btn-danger" id='submit' onclick="$('#uni_modal form').submit()">Save</button>
-=======
-        <button type="button" class="btn btn-primary" id='submit' onclick="$('#uni_modal form').submit()">Save</button>
->>>>>>> origin/main
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
       </div>
       </div>
