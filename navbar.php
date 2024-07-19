@@ -17,7 +17,7 @@
 				<div class="mx-2 text-white">Master List</div>
 				<a href="index.php?page=courses" class="nav-item nav-courses"><span class='icon-field mr-2'><i class="fa fa-scroll "></i></span> Courses & Fees</a>
 				<a href="index.php?page=students" class="nav-item nav-students"><span class='icon-field mr-2'><i class="fa fa-users "></i></span> Students</a>
-				<a href="enrol/students.php" class="nav-item nav-enrolled"><span class='icon-field mr-2 '><i class="fa fa-file "></i></span> Enrollment</a>
+				<a href="enrol/college-applications.php" class="nav-item nav-enrolled"><span class='icon-field mr-2 '><i class="fa fa-file "></i></span> Enrollment</a>
 				<div class="mx-2 text-white">Report</div>
 				<a href="index.php?page=payments_report" class="nav-item nav-payments_report"><span class='icon-field mr-2'><i class="fa fa-th-list"></i></span> Payments Report</a>
 				<div class="mx-2 text-white">Systems</div>

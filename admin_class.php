@@ -64,18 +64,19 @@ Class Action {
 		if(!empty($password))
 		$data .= ", password = '".md5($password)."' ";
 		$data .= ", type = '$type' ";
-		if($type == 1)
-			$establishment_id = 0;
-		$data .= ", establishment_id = '$establishment_id' ";
-		$chk = $this->db->query("Select * from users where username = '$username' and id !='$id' ")->num_rows;
-		if($chk > 0){
-			return 2;
-			exit;
-		}
+		// if($type == 1)
+		$chk = $this->db->query("Select * from users where username = '$username'")->num_rows;
+		// if($chk > 0){
+		// 	return 2;
+		// 	exit;
+		// }
 		if(empty($id)){
 			$save = $this->db->query("INSERT INTO users set ".$data);
 		}else{
+			if ($chk > 0) {
+				$id = $_SESSION['login_id'];
 			$save = $this->db->query("UPDATE users set ".$data." where id = ".$id);
+			}
 		}
 		if($save){
 			return 1;
@@ -119,43 +120,47 @@ Class Action {
 		}
 	}
 	function update_account(){
+		
 		extract($_POST);
-		$data = " name = '".$firstname.' '.$lastname."' ";
-		$data .= ", username = '$email' ";
+		$data = " name = '$name' ";
+		$data .= ", username = '$username' ";
 		if(!empty($password))
 		$data .= ", password = '".md5($password)."' ";
-		$chk = $this->db->query("SELECT * FROM users where username = '$email' and id != '{$_SESSION['login_id']}' ")->num_rows;
-		if($chk > 0){
-			return 2;
-			exit;
-		}
+		// $chk = $this->db->query("SELECT * FROM users where username = '$email' and id != '{$_SESSION['login_id']}' ")->num_rows;
+		// if($chk > 0){
+		// 	return 2;
+		// 	exit;
+		// }
 			$save = $this->db->query("UPDATE users set $data where id = '{$_SESSION['login_id']}' ");
 		if($save){
 			$data = '';
-			foreach($_POST as $k => $v){
-				if($k =='password')
-					continue;
-				if(empty($data) && !is_numeric($k) )
-					$data = " $k = '$v' ";
-				else
-					$data .= ", $k = '$v' ";
-			}
-			if($_FILES['img']['tmp_name'] != ''){
-							$fname = strtotime(date('y-m-d H:i')).'_'.$_FILES['img']['name'];
-							$move = move_uploaded_file($_FILES['img']['tmp_name'],'assets/uploads/'. $fname);
-							$data .= ", avatar = '$fname' ";
+			return 1;
+			// foreach($_POST as $k => $v){
+			// 	if($k =='password')
+			// 		continue;
+			// 	if(empty($data) && !is_numeric($k) )
+			// 		$data = " $k = '$v' ";
+			// 	else
+			// 		$data .= ", $k = '$v' ";
+			// }
+			// if($_FILES['img']['tmp_name'] != ''){
+			// 				$fname = strtotime(date('y-m-d H:i')).'_'.$_FILES['img']['name'];
+			// 				$move = move_uploaded_file($_FILES['img']['tmp_name'],'assets/uploads/'. $fname);
+			// 				$data .= ", avatar = '$fname' ";
 
-			}
-			$save_alumni = $this->db->query("UPDATE alumnus_bio set $data where id = '{$_SESSION['bio']['id']}' ");
-			if($data){
-				foreach ($_SESSION as $key => $value) {
-					unset($_SESSION[$key]);
-				}
-				$login = $this->login2();
-				if($login)
-				return 1;
-			}
+			// }
+			// $save_alumni = $this->db->query("UPDATE alumnus_bio set $data where id = '{$_SESSION['bio']['id']}' ");
+			// if($data){
+			// 	foreach ($_SESSION as $key => $value) {
+			// 		unset($_SESSION[$key]);
+			// 	}
+			// 	$login = $this->login2();
+			// 	if($login)
+			// 	return 1;
+			// }
 		}
+
+		return json_encode($_POST);
 	}
 
 	function save_settings(){

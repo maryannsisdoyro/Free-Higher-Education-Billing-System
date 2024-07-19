@@ -67,10 +67,13 @@ $conn->close();
 <body>
 
     <div class="container">
-        <a href="../index.php?page=home" class="btn btn-secondary"> Back</a>
-        <a href="index.php" class="btn btn-danger"> Add New +</a>
+        <a href="../index.php?page=home" class="btn btn-secondary"> Home</a>
+        
 
-        <h2 class="my-4">COLLEGE APPLICATION FORM 2024-2025</h2>
+        <div class="d-flex align-items-center justify-content-between">
+        <h2 class="my-4">College of Application Form</h2>
+        <a href="index.php" class="btn btn-danger"> Add New +</a>
+        </div>
         <div class="my-4">
             <button type="button" class="btn btn-info" onclick="RestartoPrint()">0</button>
             <button type="button" class="btn btn-danger" onclick="RestartoUnprint()">1</button>
@@ -78,7 +81,7 @@ $conn->close();
             <a href="javascript:void(0);" onclick="printTable()" class="btn btn-primary">Print</a> 
             <button class="btn btn-primary" type="button" onclick="location.href='subject.php'">Subject</button>
             <button class="btn btn-primary" type="button" onclick="location.href='recordenroll.php'">Enrollment</button>
-            <button class="btn btn-primary" type="button" onclick="location.href='college-applications.php'">College of application Form </button>
+            <button class="btn btn-secondary" type="button" onclick="location.href='settings.php'">Settings</button>
         </div>
         <div class="table-responsive">
            <table id="example1" class="table table-bordered table-striped">

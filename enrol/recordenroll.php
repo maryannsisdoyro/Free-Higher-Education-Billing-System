@@ -1,7 +1,7 @@
 <?php
 include 'db.php';
 
-$sql = "SELECT `id`,`application_no`,`stu_id`, `stu_name`, `stu_sta`, `course`, `major`, `section`, `curr`, `reli`, `con_no`, `home_ad`, `civil`, `d_birth`, `p_birth`, `ele`, `ele_year`, `high`, `high_year`, `last_sc`, `last_year`, `tot_units`, `un_enrol`, `rate_per`, `total`, `lib`, `com`, `lab1`, `lab2`, `lab3`, `sch_id`, `ath`, `adm`, `dev`, `guid`, `hand`, `entr`, `reg_fe`, `med_den`, `cul`, `t_misfe`, `g_tot`, `image` FROM `enroll2024` ";
+$sql = "SELECT `id`,`application_no`,`stu_id`, `year_level`, `stu_name`, `stu_sta`, `course`, `major`, `section`, `curr`, `reli`, `con_no`, `home_ad`, `civil`, `d_birth`, `p_birth`, `ele`, `ele_year`, `high`, `high_year`, `last_sc`, `last_year`, `tot_units`, `un_enrol`, `rate_per`, `total`, `lib`, `com`, `lab1`, `lab2`, `lab3`, `sch_id`, `ath`, `adm`, `dev`, `guid`, `hand`, `entr`, `reg_fe`, `med_den`, `cul`, `t_misfe`, `g_tot`, `image` FROM `enroll2024` ";
 
 $result = $conn->query($sql);
 
@@ -70,7 +70,7 @@ $conn->close();
         <h2 class="my-4">Enrollment List 2024-2025</h2>
         <div class="my-4">
              <!-- <a href="?export=csv" class="btn btn-success">Export to CSV</a> -->
-            <a href="students.php" class="btn btn-primary">Cancel</a>
+            <a href="college-applications.php" class="btn btn-primary">Back</a>
         </div>
         <div class="table-responsive">
            <table id="example1" class="table table-bordered table-striped">
@@ -78,13 +78,14 @@ $conn->close();
       
         <tr>
             <th>Select</th>
-            <th>App_No</th>
+            <th>Application No.</th>
             <th>Student_ID</th>
             <th>Student Name</th>
             <th>Status</th>
             <th>Course</th>
             <th>Major</th>
             <th>Year</th>
+            <th>Section</th>
             <th>Curriculum Year</th>
             <th>Religious</th>
             <th>Contact No.</th>
@@ -128,6 +129,7 @@ $conn->close();
         <?php
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
+                $year = $row["year_level"] ?? '0';
                 echo "<tr>
                         <td class='text-center'><input type='checkbox' class='row_checkbox' name='selected_application[]' value='".$row["id"]."'></td> <!-- Checkbox -->
                         <td>".$row["application_no"]."</td>
@@ -136,6 +138,7 @@ $conn->close();
                         <td>".$row["stu_sta"]."</td>
                         <td>".$row["course"]."</td>
                         <td>".$row["major"]."</td>
+                        <td>".$year."</td>
                         <td>".$row["section"]."</td>
                         <td>".$row["curr"]."</td>
                         <td>".$row["reli"]."</td>
@@ -268,10 +271,11 @@ $conn->close();
 
 
 <script>
+    // "buttons": ["copy", "excel"]
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": true, "autoWidth": false,
-      "buttons": ["copy", "excel"]
+      
 
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({

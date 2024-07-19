@@ -78,7 +78,7 @@
                 
                 <div class="form-group">
                     <label for="contact">Contact Number:</label>
-                    <input type="number" class="form-control" id="contact" name="contact" pattern="[0-9]{11}" title="Please enter a valid 11-digit contact number" required>
+                    <input type="tel" class="form-control" id="contact" name="contact" pattern="[0-9]{11}" minlength="11" maxlength="11" title="Please enter a valid 11-digit contact number" required>
                 </div>
                 
                 <div class="form-group">
