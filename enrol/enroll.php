@@ -3,18 +3,18 @@
 <script src="sweetalerts/sweetalert2@11.js"></script>
 
 <?php
+require __DIR__ . '../../db_connect.php';
+// $servername = "localhost";
+// $username = "root";
+// $password = "";
+// $dbname = "enrollment_system"; 
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "enrollment_system"; 
+// // Create connection
+// $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// if ($conn->connect_error) {
+//     die("Connection failed: " . $conn->connect_error);
+// }
 
 function sanitize_input($data) {
    
