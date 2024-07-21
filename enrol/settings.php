@@ -1,9 +1,11 @@
-<?php 
-    require './db.php';
-    $academic_query = $conn->query("SELECT * FROM academic");
+<?php
+require './db.php';
+session_start();
+$academic_query = $conn->query("SELECT * FROM academic");
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,133 +19,232 @@
             background-color: #f8f9fa;
             padding: 20px;
         }
+
         .container {
             max-width: 100%;
             overflow-x: auto;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
         }
+
         th {
             background-color: #f2f2f2;
         }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
     </style>
 </head>
+
 <body>
 
 
-<div class="container">
-    <h2>Settings</h2>
-    <a href="college-applications.php" class="btn btn-secondary">Back</a>
-    <a href="add-new-academics.php" class="btn btn-primary my-3">Add New +</a>
+    <div class="container">
+        <h2>Settings</h2>
+        <!-- <a href="college-applications.php" class="btn btn-secondary">Back</a> -->
+        <a href="add-new-academics.php" class="btn btn-primary my-3">Add New +</a>
 
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped" id="example1">
-            <thead>
-                <th>Academics</th>
-                <th>Semester</th>
-                <th>Action</th>
-            </thead>
-            <tbody>
+       <div class="row">
+        <div class="col-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped" id="example1">
+                <thead>
+                    <th>Academics</th>
+                    <th>Semester</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
 
-                <?php 
-                    foreach($academic_query as $academic){
-                        ?>
+                    <?php
+                    foreach ($academic_query as $academic) {
+                    ?>
                         <tr>
                             <td><?= $academic['year'] ?></td>
                             <td><?= $academic['semester'] ?></td>
                             <td style="width: 100px;">
-                               <?php 
+
+                                <?php
                                 if ($academic['status'] == 1) {
-                                    ?>
-                                    <a href="#" onclick="showMessage('Are you sure you want to turn off this academic?', 'question','?off&id=<?= $academic['id'] ?>')" class="btn btn-danger w-100">Off</a>
-                                    <?php
-                                }else{
-                                    ?>
-                                    <a href="#" onclick="showMessage('Are you sure you want to turn on this academic?', 'question','?on&id=<?= $academic['id'] ?>')" class="btn btn-primary w-100">On</a>
-                                    <?php
+                                ?>
+                                    <a href="#" onclick="showMessage('Are you sure you want to turn off this academic?', 'question','?off&id=<?= $academic['id'] ?>')">
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </a>
+                                <?php
+                                } else {
+                                ?>
+                                    <a href="#" onclick="showMessage('Are you sure you want to turn on this academic?', 'question','?on&id=<?= $academic['id'] ?>')">
+                                        <label class="switch">
+                                            <input type="checkbox">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </a>
+                                <?php
                                 }
-                               ?>
+                                ?>
                             </td>
                         </tr>
-                        <?php 
+                    <?php
                     }
-                ?>
+                    ?>
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
+        </div>
+
+        <div class="col-lg-6 mt-5">
+        <div>
+            <h5>Change Password</h5>
+            <form method="post">
+                <label for="">New Password</label>
+                <input type="text" name="new" class="form-control my-2">
+                <label for="">Confirm Password</label>
+                <input type="text" name="confirm" class="form-control my-2">
+                <button type="submit" name="change" class="btn btn-primary mt-3">Submit</button>
+            </form>
+        </div>
+        </div>
+
+       </div>
+
     </div>
+    
 
-</div>
+    <script src="plugins2/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins2/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="plugins2/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins2/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins2/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins2/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins2/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins2/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins2/jszip/jszip.min.js"></script>
+    <script src="plugins2/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins2/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins2/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins2/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins2/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <script>
+        function showMessage(x, y, z) {
+            Swal.fire({
+                title: `<strong> ${x} </strong>`,
+                icon: y,
+                showCloseButton: true,
+                showCancelButton: true,
+                focusConfirm: false,
+                confirmButtonText: `Yes`,
+                confirmButtonColor: "#0d6efd",
+                cancelButtonText: `No`,
+                iconColor: '#0d6efd',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = z
+                }
+            });
+        }
+    </script>
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": false,
+                /*  "buttons": ["copy", "excel", "pdf"]*/
 
-<script src="plugins2/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="plugins2/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables  & Plugins -->
-<script src="plugins2/datatables/jquery.dataTables.min.js"></script>
-<script src="plugins2/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="plugins2/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="plugins2/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="plugins2/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="plugins2/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="plugins2/jszip/jszip.min.js"></script>
-<script src="plugins2/pdfmake/pdfmake.min.js"></script>
-<script src="plugins2/pdfmake/vfs_fonts.js"></script>
-<script src="plugins2/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="plugins2/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="plugins2/datatables-buttons/js/buttons.colVis.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
-<script>
-    function showMessage(x, y, z) {
-        Swal.fire({
-            title: `<strong> ${x} </strong>`,
-            icon: y,
-            showCloseButton: true,
-            showCancelButton: true,
-            focusConfirm: false,
-            confirmButtonText: `Yes`,
-            confirmButtonColor: "#0d6efd",
-            cancelButtonText: `No`,
-            iconColor: '#0d6efd',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location = z
-            }
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
         });
-    }
-</script>
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": true, "autoWidth": false,
-    /*  "buttons": ["copy", "excel", "pdf"]*/
+    </script>
 
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
-
-<?php 
- if (isset($_GET['off'])) {
-    $id = $_GET['id'];
-    $status = 2;
-    $stmt = $conn->prepare("UPDATE academic SET status = ? WHERE id = ?");
-    $stmt->bind_param("ii", $status,$id);
+    <?php
+    if (isset($_GET['off'])) {
+        $id = $_GET['id'];
+        $status = 2;
+        $stmt = $conn->prepare("UPDATE academic SET status = ? WHERE id = ?");
+        $stmt->bind_param("ii", $status, $id);
         if ($stmt->execute()) {
             echo "<script>
             window.onload = function() {
@@ -159,15 +260,13 @@
             };
           </script>";
         }
-    
+    }
 
-}
-
-if (isset($_GET['on'])) {
-    $id = $_GET['id'];
-    $status = 1;
-    $stmt = $conn->prepare("UPDATE academic SET status = ? WHERE id = ?");
-    $stmt->bind_param("ii", $status,$id);
+    if (isset($_GET['on'])) {
+        $id = $_GET['id'];
+        $status = 1;
+        $stmt = $conn->prepare("UPDATE academic SET status = ? WHERE id = ?");
+        $stmt->bind_param("ii", $status, $id);
         if ($stmt->execute()) {
             echo "<script>
             window.onload = function() {
@@ -183,9 +282,59 @@ if (isset($_GET['on'])) {
             };
           </script>";
         }
-    
+    }
 
-}
-?>
+    if (isset($_POST['change'])) {
+        $new = $_POST['new'];
+        $confirm = $_POST['confirm'];
+
+        if (strlen($new) < 8) {
+            echo "<script>
+            window.onload = function() {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Password must not be less than 8 characters !!',
+                    icon: 'error'
+                });
+            };
+          </script>";
+        }else if ($new != $confirm) {
+            echo "<script>
+            window.onload = function() {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Password don\'t match!!',
+                    icon: 'error'
+                });
+            };
+          </script>";
+        }else{
+            $hashed = md5($new);
+            $userId = $_SESSION['login_id'];
+
+            $stmt = $conn->prepare("UPDATE users SET password = ? WHERE id = ?");
+            $stmt->bind_param('si', $hashed, $userId);
+
+            if ($stmt->execute()) {
+                echo "<script>
+                window.onload = function() {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Password changed successfully!!',
+                        icon: 'success'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'settings.php';
+                        }
+                    });
+                };
+              </script>";
+            }
+
+        }
+
+    }
+    ?>
 </body>
-</html> 
+
+</html>

@@ -139,10 +139,10 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     <script>
         var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
 var yValues = [<?php echo $get_bsit->num_rows ?>, <?php echo $get_bsba->num_rows ?>, <?php echo $get_bshm->num_rows ?>, <?php echo $get_bsed->num_rows ?>, <?php echo $get_beed->num_rows ?>];
-var barColors = ["#dc3545", "#dc3545", "#dc3545", "#dc3545", "#dc3545"];
+var barColors = ["#dc3545"];
 
 new Chart("chart", {
-  type: "bar",
+  type: "line",
   data: {
     labels: xValues,
     datasets: [{

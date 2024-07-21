@@ -17,7 +17,8 @@
 				<div class="mx-2 text-white">Master List</div>
 				<a href="index.php?page=courses" class="nav-item nav-courses"><span class='icon-field mr-2'><i class="fa fa-scroll "></i></span> Courses & Fees</a>
 				<a href="index.php?page=students" class="nav-item nav-students"><span class='icon-field mr-2'><i class="fa fa-users "></i></span> Students</a>
-				<a href="enrol/college-applications.php" class="nav-item nav-enrolled"><span class='icon-field mr-2 '><i class="fa fa-file "></i></span> Enrollment</a>
+				<a href="enrol/recordenroll.php" class="nav-item nav-enrolled"><span class='icon-field mr-2 '><i class="fa fa-file "></i></span> Enrollment</a>
+				<a href="enrol/college-applications.php" class="nav-item nav-enrolled"><span class='icon-field mr-2 '><i class="fa fa-inbox "></i></span> College of Application</a>
 				<div class="mx-2 text-white">Report</div>
 				<a href="index.php?page=payments_report" class="nav-item nav-payments_report"><span class='icon-field mr-2'><i class="fa fa-th-list"></i></span> Payments Report</a>
 				<div class="mx-2 text-white">Systems</div>
@@ -25,6 +26,7 @@
 				<a href="index.php?page=users" class="nav-item nav-users"><span class='icon-field mr-2'><i class="fa fa-users "></i></span> Users</a>
 				<!-- <a href="index.php?page=site_settings" class="nav-item nav-site_settings"><span class='icon-field'><i class="fa fa-cogs"></i></span> System Settings</a> -->
 			<?php endif; ?>
+			<a href="./enrol/settings.php" class="nav-item nav-payments_report"><span class='icon-field mr-2'><i class="fa fa-wrench"></i></span> Settings</a>
 		</div>
 
 </nav>
