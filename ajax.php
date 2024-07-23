@@ -1,4 +1,5 @@
 <?php
+
 ob_start();
 $action = $_GET['action'];
 include 'admin_class.php';
