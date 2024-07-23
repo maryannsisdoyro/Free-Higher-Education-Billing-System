@@ -108,9 +108,17 @@ $academic_query = $conn->query("SELECT * FROM academic");
 
 
     <div class="container">
-        <h2>Settings</h2>
+    <?php 
+        $get_academic = $conn->query("SELECT * FROM academic WHERE status = 1 ORDER BY id DESC");
+        $res_academic = $get_academic->fetch_array();
+    ?>
+
+        <h3>Academic School Year  <?= $res_academic['year'] ?>  |  <?= $res_academic['semester'] ?> Semester</h3>
+        
+        <p class="my-3">Add New</p>
         <!-- <a href="college-applications.php" class="btn btn-secondary">Back</a> -->
-        <a href="add-new-academics.php" class="btn btn-primary my-3">Add New +</a>
+        <h5>Create New Year & Semester</h5>
+        <a href="add-new-academics.php" class="btn btn-primary my-3">Create</a>
 
        <div class="row">
         <div class="col-12">

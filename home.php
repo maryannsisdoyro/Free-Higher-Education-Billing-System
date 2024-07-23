@@ -46,7 +46,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <h1 class="border-bottom pb-3" ><img src="assets/icons/BSIT.png" alt="icon" style="width: 50px; filter: drop-shadow(5px 5px 2px rgba(0,0,0,0.5));"> : 
+                        <h1 class="border-bottom pb-3" ><img src="assets/icons/BSIT.png" alt="icon" style="width: 50px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
                             $get_bsit = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSIT'");
                             echo $get_bsit->num_rows;
@@ -62,7 +62,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <h1 class="border-bottom pb-3"><img src="assets/icons/BSBA.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px rgba(0,0,0,0.5));"> : 
+                        <h1 class="border-bottom pb-3"><img src="assets/icons/BSBA.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
                             $get_bsba = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSBA'");
                             echo $get_bsba->num_rows;
@@ -78,7 +78,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <h1 class="border-bottom pb-3"><img src="assets/icons/BSHM.png" alt="icon" style="width: 50px; filter: drop-shadow(5px 5px 2px rgba(0,0,0,0.5));"> : 
+                        <h1 class="border-bottom pb-3"><img src="assets/icons/BSHM.png" alt="icon" style="width: 50px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
                             $get_bshm = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSHM'");
                             echo $get_bshm->num_rows;
@@ -94,7 +94,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <h1 class="border-bottom pb-3"><img src="assets/icons/BSED.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px rgba(0,0,0,0.5));"> : 
+                        <h1 class="border-bottom pb-3"><img src="assets/icons/BSED.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
                             $get_bsed = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSED'");
                             echo $get_bsed->num_rows;
@@ -110,7 +110,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <h1 class="border-bottom pb-3"><img src="assets/icons/BEED.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px rgba(0,0,0,0.5));"> : 
+                        <h1 class="border-bottom pb-3"><img src="assets/icons/BEED.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
                             $get_beed = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BEED'");
                             echo $get_beed->num_rows;
@@ -136,6 +136,10 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
         </div>
     </div>
 
+    <?php 
+        $get_academic = $conn->query("SELECT * FROM academic WHERE status = 1 ORDER BY id DESC");
+        $res_academic = $get_academic->fetch_array();
+    ?>
     <script>
         var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
 var yValues = [<?php echo $get_bsit->num_rows ?>, <?php echo $get_bsba->num_rows ?>, <?php echo $get_bshm->num_rows ?>, <?php echo $get_bsed->num_rows ?>, <?php echo $get_beed->num_rows ?>];
@@ -154,7 +158,7 @@ new Chart("chart", {
     legend: {display: false},
     title: {
       display: true,
-      text: "Total Enrolled Students"
+      text: "Academic School Year  <?= $res_academic['year'] ?>  |  <?= $res_academic['semester'] ?> Semester"
     }
   }
 });

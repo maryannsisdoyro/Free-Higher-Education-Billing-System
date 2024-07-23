@@ -38,10 +38,10 @@ include 'db.php';
     <div class="container">
 
         <h2 class="my-4">Enrollment List 2024-2025</h2>
-        <div class="my-4">
+        <div class="my-4 ">
              <!-- <a href="?export=csv" class="btn btn-success">Export to CSV</a> -->
             <!-- <a href="college-applications.php" class="btn btn-primary">Back</a> -->
-            <form method="get" class="d-flex align-items-center" style="gap: 10px;">
+            <form method="get" class="d-flex align-items-center ms-auto" style="gap: 10px; width: 500px;">
                 <input type="search" class="form-control my-2" name="search" placeholder="Student ID">
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
