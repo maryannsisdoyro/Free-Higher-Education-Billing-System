@@ -72,6 +72,7 @@ $row = mysqli_fetch_assoc($query);
 $numb = mysqli_num_rows($query);
 // Check if record exists
 if ($row) {
+   
     // Retrieve data from the fetched row
     $application_no  = $row["application_no"];
     //    $last_name  = $row["last_name"];
@@ -95,8 +96,10 @@ if ($row) {
     $shs_year_graduated  = $row["last_year"];
     $track_and_strand  = "";
     $complete_name  = $row["stu_name"];
+    
     $date_signed  = date('Y-m-d', strtotime($row["date_signed"]));
     $course_to_be_enrolled  = $all_course[$row["course"]];
+   
 }
 
 
@@ -142,10 +145,10 @@ if ($row) {
             <video id="videoElement" autoplay class="hidden"></video>
             <canvas id="canvas" class="hidden"></canvas>
             <br>
-            <button class="btn btn-warning" id="startButton">Take Photo</button>
-            <button class="btn btn-danger hidden" id="captureButton">Capture</button>
+            <!-- <button class="btn btn-warning" id="startButton">Take Photo</button>
+            <button class="btn btn-danger hidden" id="captureButton">Capture</button> -->
             <button type="button" class="btn btn-primary" onclick="window.print()">Print</button>
-            <a href="./recordenroll.php" class="btn btn-secondary">Back</a>
+            <a href="./college-applications.php" class="btn btn-secondary">Back</a>
 
 
         </div>
@@ -841,7 +844,7 @@ if ($row) {
 
         <div class="center-images">
             <img src="logo.jpg" alt="MCC Logo" style="height: 210px; width: 690px;">
-            <img id="preview" src="default.jpg" alt="Preview Image">
+            <img id="preview" src="<?= $row['image'] != null || $row['image'] != '' ? './upload/' . $row['image'] : 'default.jpg' ?>" alt="Preview Image">
         </div>
         <br>
 

@@ -134,12 +134,12 @@ if ($row) {
         <div class="callout border-primary mt-5">
             <fieldset>
                 <legend>Filter</legend>
-                 <form id="Subjectform" action="saveenroll.php" method="post">
+                 <form id="Subjectform" action="saveenroll.php" method="post" enctype="multipart/form-data">
                     <div class="row align-items-end">
                          <div class="form-group col-md-5">
                             <label for="courseenrolled" class="control-label">Program Enrolled</label>
                          <select class="custom-select form-control-sm rounded-0" name="courseenrolled" id="courseenrolled" onselect="filterResults()"oninput="updateFilters()" onchange="updateCourseAndMajor()" required>
-                          <option value="">Select Course to be Enrolled</option>
+                          <!-- <option value="">Select Course to be Enrolled</option> -->
                           <option value="Bachelor of Elementary Education">Bachelor of Elementary Education</option>
                          <option value="Bachelor of Secondary Education">Bachelor of Secondary Education</option>
                          <option value="Bachelor of Science in Information Technology">Bachelor of Science in Information Technology</option>
@@ -153,7 +153,7 @@ if ($row) {
                          <div class="form-group col-md-3">
                              <label for="Religious" class="control-label">Religious</label>
                              <select class="custom-select form-control-sm rounded-0" name="religiousInput" id="religiousInput" required>
-                                <option value="">Select</option>
+                                <!-- <option value="">Select</option> -->
                                 <option value="Roman Catholic">Roman Catholic</option>
                                 <option value="Iglesia Ni Cristo">Iglesia Ni Cristo</option>
                                 <option value="Seventh-day Adventist">Seventh-day Adventist</option>
@@ -168,7 +168,7 @@ if ($row) {
                          <div class="form-group col-md-3">
                             <label for="semester" class="control-label">Semester</label>
                             <select class="custom-select form-control-sm rounded-0" name="semester" id="semester"oninput="updateFilters()" oninput="filterResults()" required>
-                                <option value="">Select Semester</option>
+                                <!-- <option value="">Select Semester</option> -->
                                 <option value="1st">1st</option>
                                 <option value="2nd">2nd</option>
                                 <option value="Summer">Summer</option>
@@ -185,17 +185,22 @@ if ($row) {
                         </div>
                          <div class="form-group col-md-3">
                             <label for="Section" class="control-label">Section</label>
-                             <!--  <select class="custom-select form-control-sm rounded-0" name="Section" id="Section" oninput="updateSection()" required>
-                               <option value="">Select Section</option>
-                           </select> -->
-                            <input type="text" class="form-control" name="Section" id="Section">
+                            <select name="section" class="form-control " required>
+                                <!-- <option value="" selected disabled>Select Section</option> -->
+                                <option value="North">North</option>
+                                <option value="North East">North East</option>
+                                <option value="East">East</option>
+                                <option value="West">West</option>
+                                <option value="South">South</option>
+                                <option value="South East">South East</option>
+                            </select>
                         </div>
 
                       
                           <div class="form-group col-md-3">
                             <label for="Tuition Fees" class="control-label">Tuition Fees</label>
-                            <select class="custom-select form-control-sm rounded-0" name="TuitionFees" id="TuitionFees" required>
-                                <option value="">Select</option>
+                            <select class="custom-select form-control-sm rounded-0" name="course" id="TuitionFees" required>
+                                <!-- <option value="" disabled selected>Select</option> -->
                                 <option value="BEED">BEED</option>
                                 <option value="BSED">BSED</option>
                                 <option value="BSIT-STEM">BSIT-STEM</option>
@@ -216,7 +221,7 @@ if ($row) {
                         <input type="hidden" class="form-control" name="stu_name" id="stu_name" value="<?php echo strtoupper($complete_name); ?>" readonly>
                         <input type="hidden" class="form-control" name="stu_id" id="stu_id" value="<?php echo $formatted_studentid; ?>" readonly>
                          <input type="hidden" class="form-control" name="stu_sta" id="stu_sta" value="<?php echo $stu_sta; ?>" readonly>
-                          <input type="hidden" class="form-control" name="course" id="course" readonly>
+                          <!-- <input type="hidden" class="form-control" name="course" id="course" readonly> -->
                           <input type="hidden" class="form-control" name="majorOutput1" id="majorOutput1" readonly>
                           <input type="hidden" class="form-control" name="selectedSection1" id="selectedSection1" value="<?php echo $section_year; ?>" readonly>
                           <input type="hidden" class="form-control" name="curr" id="curr" value="<?php echo $curr; ?>" readonly>
@@ -226,6 +231,7 @@ if ($row) {
                           <input type="hidden" class="form-control" name="civil" id="civil" value="<?php echo strtoupper($civil_status); ?>" readonly>
                            <input type="hidden" class="form-control" name="d_birth" id="d_birth" value="<?php echo strtoupper($date_of_birth) ; ?>" readonly>
                            <input type="hidden" class="form-control" name="p_birth" id="p_birth" value="<?php echo strtoupper($place_of_birth) ; ?>" readonly>
+                           <input type="hidden" class="form-control" name="email" id="email" value="<?php echo $email ; ?>" readonly>
                            <?php
                            // Assuming $high_school_year_graduated contains the year as a string or null
                            $academic_year = '';
@@ -293,6 +299,7 @@ if ($row) {
                           <input type="hidden" class="form-control" name="cul" id="cul" value="<?php echo $cul; ?>" readonly>
                           <input type="hidden" class="form-control" name="t_misfe" id="t_misfe" value="<?php echo $t_misfe; ?>" readonly>
                           <input type="hidden" class="form-control" name="g_tot" id="g_tot" value="<?php echo $g_tot; ?>" readonly>
+                          <input type="file" id="fileInput" name="fileInput" class="hidden" />
                     </div>
                        
                 <!-- <button class="btn btn-primary" type="submit" id="submit"><i class="fa fa-print"></i> Save</button> -->
@@ -1692,45 +1699,61 @@ document.getElementById('print').addEventListener('click', function() {
     }
 </script>
 
- <script>
-    const startButton = document.getElementById('startButton');
-    const captureButton = document.getElementById('captureButton');
-    const video = document.getElementById('videoElement');
-    const canvas = document.getElementById('canvas');
-    const preview = document.getElementById('preview');
+<script>
+        const startButton = document.getElementById('startButton');
+        const captureButton = document.getElementById('captureButton');
+        const video = document.getElementById('videoElement');
+        const canvas = document.getElementById('canvas');
+        const preview = document.getElementById('preview');
+        const fileInput = document.getElementById('fileInput');
 
-    startButton.addEventListener('click', () => {
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
-                video.srcObject = stream;
-                video.classList.remove('hidden');
-                captureButton.classList.remove('hidden');
-                startButton.classList.add('hidden');
+        startButton.addEventListener('click', () => {
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+                    video.srcObject = stream;
+                    video.classList.remove('hidden');
+                    captureButton.classList.remove('hidden');
+                    startButton.classList.add('hidden');
 
-                // Reset canvas and preview
-                canvas.classList.add('hidden');
-                preview.classList.remove('hidden');
-                preview.src = 'default.jpg'; // Reset preview image
-            });
-        }
-    });
+                    // Reset canvas and preview
+                    canvas.classList.add('hidden');
+                    preview.classList.remove('hidden');
+                    preview.src = 'default.jpg'; // Reset preview image
+                });
+            }
+        });
 
-    captureButton.addEventListener('click', () => {
-        const context = canvas.getContext('2d');
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        const dataUrl = canvas.toDataURL('image/png');
-        preview.src = dataUrl;
-        video.classList.add('hidden');
-        captureButton.classList.add('hidden');
-        startButton.classList.remove('hidden');
-        canvas.classList.remove('hidden');
+        captureButton.addEventListener('click', () => {
+            const context = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const dataUrl = canvas.toDataURL('image/png');
+            preview.src = dataUrl;
+            video.classList.add('hidden');
+            captureButton.classList.add('hidden');
+            startButton.classList.remove('hidden');
+            canvas.classList.remove('hidden');
 
-        // Stop the video stream
-        video.srcObject.getTracks().forEach(track => track.stop());
-    });
-</script>
+            // Stop the video stream
+            video.srcObject.getTracks().forEach(track => track.stop());
+
+            // Convert data URL to Blob
+            fetch(dataUrl)
+                .then(res => res.blob())
+                .then(blob => {
+                    // Create a file object
+                    const file = new File([blob], `<?php echo date('mdGis'); ?>.png`, { type: 'image/png' });
+
+                    // Create a DataTransfer object
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+
+                    // Assign the file to the file input
+                    fileInput.files = dataTransfer.files;
+                });
+        });
+    </script>
 
 </body>
 </html>

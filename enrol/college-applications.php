@@ -78,7 +78,8 @@ $conn->close();
             <a href="?export=csv" class="btn btn-success">Export to CSV</a>
             <a href="javascript:void(0);" onclick="printTable()" class="btn btn-primary">Print</a> 
             <button class="btn btn-primary" type="button" onclick="location.href='subject.php'">Subject</button>
-            <!-- <button class="btn btn-primary" type="button" onclick="location.href='recordenroll.php'">Enrollment</button>
+            <button class="btn btn-primary" type="button" onclick="location.href='students.php'">Students</button>
+            <!--
             <button class="btn btn-primary" type="button" onclick="location.href='college-applications.php'">College of application Form </button> -->
         </div>
         <div class="table-responsive">
@@ -140,7 +141,7 @@ $conn->close();
             while($row = $result->fetch_assoc()) {
                 $year = $row["year_level"] ?? '0';
                 echo "<tr>
-                        <td class='text-center'><input type='checkbox' class='row_checkbox' name='selected_application[]' value='".$row["stu_id"]."'></td> <!-- Checkbox -->
+                        <td class='text-center'><input type='checkbox' class='row_checkbox' name='selected_application[]' value='".$row["id"]."'></td> <!-- Checkbox -->
                         <td>".$row["application_no"]."</td>
                         <td>".$row["stu_id"]."</td>
                         <td>".$row["stu_name"]."</td>
