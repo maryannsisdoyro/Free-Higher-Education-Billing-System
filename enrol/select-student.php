@@ -142,11 +142,22 @@ if ($row) {
                             <label for="courseenrolled" class="control-label">Program Enrolled</label>
                             <select class="custom-select form-control-sm rounded-0" name="courseenrolled" id="courseenrolled" onselect="filterResults()" oninput="updateFilters()" onchange="updateCourseAndMajor()" required>
                                 <!-- <option value="">Select Course to be Enrolled</option> -->
-                                <option value="BEED">Bachelor of Elementary Education</option>
+                                <!-- <option value="BEED">Bachelor of Elementary Education</option>
                                 <option value="BSED">Bachelor of Secondary Education</option>
                                 <option value="BSIT">Bachelor of Science in Information Technology</option>
                                 <option value="BSHM">Bachelor of Science in Hotel Management</option>
-                                <option value="BSBA">Bachelor of Science in Business Administration</option>
+                                <option value="BSBA">Bachelor of Science in Business Administration</option> -->
+                                <?php
+                                $get_course = $conn->query("SELECT * FROM courses");
+                                // $fetch_course = $get_course->fetch_assoc();
+
+                                // $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
+                                // $ftotal = 0;
+                                while ($row = $get_course->fetch_assoc()) {
+                                    // $ftotal += $row['amount'];
+                                ?>
+                                    <option value="<?= $row['department'] ?>"><?= $row['course'] ?></option>
+                                <?php } ?>
                             </select>
 
 
@@ -203,14 +214,25 @@ if ($row) {
                             <label for="Tuition Fees" class="control-label">Tuition Fees</label>
                             <select class="custom-select form-control-sm rounded-0" name="TuitionFees" id="TuitionFees" required>
                                 <!-- <option value="" disabled selected>Select</option> -->
-                                <option value="BEED">BEED</option>
+                                <!-- <option value="BEED">BEED</option>
                                 <option value="BSED">BSED</option>
                                 <option value="BSIT-STEM">BSIT-STEM</option>
                                 <option value="BSIT-NONE">BSIT-NONE</option>
                                 <option value="BSHM-ABM">BSHM-ABM</option>
                                 <option value="BSHM-NONE">BSHM-NONE</option>
                                 <option value="BSBA-ABM">BSBA-ABM</option>
-                                <option value="BSBA-NONE">BSBA-NONE</option>
+                                <option value="BSBA-NONE">BSBA-NONE</option> -->
+                                <?php
+                                $get_course = $conn->query("SELECT * FROM courses");
+                                // $fetch_course = $get_course->fetch_assoc();
+
+                                // $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
+                                // $ftotal = 0;
+                                while ($row = $get_course->fetch_assoc()) {
+                                    // $ftotal += $row['amount'];
+                                ?>
+                                    <option value="<?= $row['total_amount'] ?>" data="<?= $row['department'] ?>"><?= $row['department'] ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-3">
@@ -1509,127 +1531,7 @@ if ($row) {
 </html>
 
 
-<table class="table table-bordered table-hover" style="font-size: small;">
-    <thead>
-        <tr>
-            <th colspan="7">
-                <center>
-                    <h4 style="font-size: 15px;"><strong>ASSESSMENT</strong></h4>
-                </center>
-            </th>
-        </tr>
-    </thead>
-    <tbody id="feeDetails">
-        <tr>
-            <td colspan="4" class="no-border"></td>
-            <td class="no-border" style="text-align: center;">Units Enrolled</td>
-            <td class="no-border" style="text-align: center;">Rate per Unit</td>
-            <td style="text-align: center;">Total</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border"><strong>Tuition Fee Due for the Semester</strong></td>
-            <td class="no-border" style="text-align: center;"><?php echo number_format($totalUnits); ?></td>
-            <td style="text-align: right;">229.17</td>
-            <td style="text-align: right;">229.17</td>
-        </tr>
-        <tr style="text-align: center;">
-            <td colspan="4" class="no-border"><strong>Miscellaneous Fees Applicable:</strong></td>
-            <td class="no-border"></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Library Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">150.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Computer Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">0.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Laboratory Fees</td>
-            <td style="text-align: center;">0.00</td>
-            <td style="text-align: right;">150.00</td>
-            <td style="text-align: right;">0.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">School ID Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">0.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Athletic Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">150.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Admission Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">0.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Development Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">250.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Guidance Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">100.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Handbook Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">0.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Entrance Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">200.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Registration Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">300.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Medical and Dental Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">300.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Cultural Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">200.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="total"><strong>Total Miscellaneous Fees</strong></td>
-            <td></td>
-            <td></td>
-            <td class="total" style="text-align: right;">1,650.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="grand-total"><strong>Grand Total</strong></td>
-            <td></td>
-            <td></td>
-            <td class="grand-total" style="text-align: right;">7,608.42</td>
-        </tr>
-    </tbody>
-</table>
+<?php require 'get-fees.php' ?>
 <img src="n2.jpg" alt="MCC Logo" style="height: 90px; width: 800px;">
 
 </div>
@@ -1793,71 +1695,101 @@ if ($row) {
     let courseenrolled = document.getElementById("courseenrolled")
     courseenrolled.onchange = () => {
         const courseVal = courseenrolled.value;
-        let BSIT = document.getElementById("BSIT");
-        let BSED = document.getElementById("BSED");
-        let BEED = document.getElementById("BEED");
-        let BSBA = document.getElementById("BSBA");
-        let BSHM = document.getElementById("BSHM");
+        let BSITS = document.querySelectorAll(".BSIT");
+        let BSEDS = document.querySelectorAll(".BSED");
+        let BEEDS = document.querySelectorAll(".BEED");
+        let BSBAS = document.querySelectorAll(".BSBA");
+        let BSHMS = document.querySelectorAll(".BSHM");
 
         if (courseVal == 'BSIT') {
-            if (BSIT.classList.contains("d-none")) {
-                BSIT.classList.remove("d-none")
-            } else {
-                BSIT.classList.remove("d-none")
-            }
+            BSITS.forEach(BSIT => {
+                if (BSIT.classList.contains("d-none")) {
+                    BSIT.classList.remove("d-none")
+                } else {
+                    BSIT.classList.remove("d-none")
+                }
+            })
 
-            BSBA.classList.add("d-none")
-            BSED.classList.add("d-none")
-            BEED.classList.add("d-none")
-            BSHM.classList.add("d-none")
+            BEEDS.forEach(BEED => { BEED.classList.add("d-none") });
+            BSHMS.forEach(BSHM => { BSHM.classList.add("d-none") });
+            BSBAS.forEach(BSBA => { BSBA.classList.add("d-none") });
+            BSEDS.forEach(BSED => { BSED.classList.add("d-none") });
+
+            // BSBA.classList.add("d-none")
+            // BSED.classList.add("d-none")
+            // BEED.classList.add("d-none")
+            // BSHM.classList.add("d-none")
 
         } else if (courseVal == 'BSBA') {
-            if (BSBA.classList.contains("d-none")) {
-                BSBA.classList.remove("d-none")
-            } else {
-                BSBA.classList.remove("d-none")
-            }
+            BSBAS.forEach(BSBA => {
+                if (BSBA.classList.contains("d-none")) {
+                    BSBA.classList.remove("d-none")
+                } else {
+                    BSBA.classList.remove("d-none")
+                }
+            })
 
-            BSIT.classList.add("d-none")
-            BSED.classList.add("d-none")
-            BEED.classList.add("d-none")
-            BSHM.classList.add("d-none")
+            // BSIT.classList.add("d-none")
+            // BSED.classList.add("d-none")
+            // BEED.classList.add("d-none")
+            // BSHM.classList.add("d-none")
 
-        }else if (courseVal == 'BEED') {
-            if (BEED.classList.contains("d-none")) {
-                BEED.classList.remove("d-none")
-            } else {
-                BEED.classList.remove("d-none")
-            }
+            BEEDS.forEach(BEED => { BEED.classList.add("d-none") });
+            BSHMS.forEach(BSHM => { BSHM.classList.add("d-none") });
+            BSITS.forEach(BSIT => { BSIT.classList.add("d-none") });
+            BSEDS.forEach(BSED => { BSED.classList.add("d-none") });
 
-            BSIT.classList.add("d-none")
-            BSED.classList.add("d-none")
-            BSBA.classList.add("d-none")
-            BSHM.classList.add("d-none")
 
-        }else if (courseVal == 'BSED') {
-            if (BSED.classList.contains("d-none")) {
-                BSED.classList.remove("d-none")
-            } else {
-                BSED.classList.remove("d-none")
-            }
+        } else if (courseVal == 'BEED') {
+            BEEDS.forEach(BEED => {
+                if (BEED.classList.contains("d-none")) {
+                    BEED.classList.remove("d-none")
+                } else {
+                    BEED.classList.remove("d-none")
+                }
+            })
 
-            BSIT.classList.add("d-none")
-            BSBA.classList.add("d-none")
-            BEED.classList.add("d-none")
-            BSHM.classList.add("d-none")
+            // BSIT.classList.add("d-none")
+            // BSED.classList.add("d-none")
+            // BSBA.classList.add("d-none")
+            // BSHM.classList.add("d-none")
+            BSBAS.forEach(BSBA => { BSBA.classList.add("d-none") });
+            BSHMS.forEach(BSHM => { BSHM.classList.add("d-none") });
+            BSITS.forEach(BSIT => { BSIT.classList.add("d-none") });
+            BSEDS.forEach(BSED => { BSED.classList.add("d-none") });
 
-        }else if (courseVal == 'BSHM') {
-            if (BSHM.classList.contains("d-none")) {
-                BSHM.classList.remove("d-none")
-            } else {
-                BSHM.classList.remove("d-none")
-            }
+        } else if (courseVal == 'BSED') {
+            BSEDS.forEach(BSED => {
+                if (BSED.classList.contains("d-none")) {
+                    BSED.classList.remove("d-none")
+                } else {
+                    BSED.classList.remove("d-none")
+                }
+            })
 
-            BSIT.classList.add("d-none")
-            BSBA.classList.add("d-none")
-            BEED.classList.add("d-none")
-            BSED.classList.add("d-none")
+            BSBAS.forEach(BSBA => { BSBA.classList.add("d-none") });
+            BSHMS.forEach(BSHM => { BSHM.classList.add("d-none") });
+            BSITS.forEach(BSIT => { BSIT.classList.add("d-none") });
+            BEEDS.forEach(BEED => { BEED.classList.add("d-none") });
+
+        } else if (courseVal == 'BSHM') {
+            BSHMS.forEach(BSHM => {
+                if (BSHM.classList.contains("d-none")) {
+                    BSHM.classList.remove("d-none")
+                } else {
+                    BSHM.classList.remove("d-none")
+                }
+            })
+
+            // BSIT.classList.add("d-none")
+            // BSBA.classList.add("d-none")
+            // BEED.classList.add("d-none")
+            // BSED.classList.add("d-none")
+
+            BSBAS.forEach(BSBA => { BSBA.classList.add("d-none") });
+            BEED.forEach(BEED => { BEED.classList.add("d-none") });
+            BSITS.forEach(BSIT => { BSIT.classList.add("d-none") });
+            BSEDS.forEach(BSED => { BSED.classList.add("d-none") });
 
         }
 

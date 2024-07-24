@@ -1386,7 +1386,7 @@ if ($row) {
 </html>
 
 
-<table class="table table-bordered table-hover" style="font-size: small;">
+<!-- <table class="table table-bordered table-hover" style="font-size: small;">
     <thead>
         <tr>
             <th colspan="7">
@@ -1506,7 +1506,50 @@ if ($row) {
             <td class="grand-total" style="text-align: right;">7,608.42</td>
         </tr>
     </tbody>
-</table>
+</table> -->
+<div style="margin-top: 20px;" class="">
+			<table>
+				<thead>
+					<th colspan="11" style="text-align: center;">Assessment</th>
+				</thead>
+				<tr>
+					<td colspan="5"></td>
+					<td colspan="2">Units Enrolled</td>
+					<td colspan="2">Rate per Unit</td>
+					<td colspan="3">Total</td>
+				</tr>
+				<?php
+                
+				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."'");
+				$fetch_course = $get_course->fetch_assoc();
+
+				$cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
+				$ftotal = 0;
+				while ($row = $cfees->fetch_assoc()) {
+					$ftotal += $row['amount'];
+				?>
+
+
+				<tr>
+					<td colspan="2"><?= $row['description'] ?></td>
+					<td colspan="5" style="text-align: center;"></td>
+					<td colspan="2" style="text-align: center;"><?= $row['amount'] != 0 ? $row['amount'] : '-' ?></td>
+					<td colspan="3" style="text-align: center;"><?= $row['amount'] ?></td>
+				</tr>
+
+				<?php
+				}
+				?>
+				<tr>
+					<td colspan="2">Grand Total</td>
+					<td colspan="5" style="text-align: center;"></td>
+					<td colspan="2" style="text-align: center;"></td>
+					<td colspan="3" class="text-right"><b><?php echo number_format($ftotal, 2) ?></b></td>
+				</tr>
+				
+				
+			</table>
+</div>
 <img src="n2.jpg" alt="MCC Logo" style="height: 90px; width: 800px;">
 
 </div>

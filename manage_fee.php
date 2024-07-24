@@ -13,17 +13,26 @@ if(isset($_GET['id'])){
 		<input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
 		 <div class="form-group">
             <label for="" class="control-label">ID No.</label>
-            <input type="text" class="form-control" name="ef_no"  value="<?php echo isset($ef_no) ? $ef_no :'' ?>" required>
+            <!-- <input type="text" class="form-control" name="ef_no"  value="<?php echo isset($ef_no) ? $ef_no :'' ?>" required> -->
+			<select name="ef_no" id="ef_no" class="custom-select input-sm select2">
+				<option value=""></option>
+				<?php
+					$student = $conn->query("SELECT * FROM enroll2024 ORDER BY stu_name ASC ");
+					while($row= $student->fetch_assoc()):
+				?>
+				<option value="<?php echo $row['stu_id'] ?>" <?php echo isset($student_id) && $student_id == $row['id'] ? 'selected' : '' ?>><?php echo $row['stu_id'] ?></option>
+				<?php endwhile; ?>
+			</select>
         </div>
 		<div class="form-group">
 			<label for="" class="control-label">Student</label>
 			<select name="student_id" id="student_id" class="custom-select input-sm select2">
 				<option value=""></option>
 				<?php
-					$student = $conn->query("SELECT * FROM student order by name asc ");
+					$student = $conn->query("SELECT * FROM enroll2024 ORDER BY stu_name ASC ");
 					while($row= $student->fetch_assoc()):
 				?>
-				<option value="<?php echo $row['id'] ?>" <?php echo isset($student_id) && $student_id == $row['id'] ? 'selected' : '' ?>><?php echo ucwords($row['name']).' | '. $row['id_no'] ?></option>
+				<option value="<?php echo $row['id'] ?>" <?php echo isset($student_id) && $student_id == $row['id'] ? 'selected' : '' ?>><?php echo ucwords($row['stu_name']).' | '. $row['stu_id'] ?></option>
 				<?php endwhile; ?>
 			</select>
 		</div>

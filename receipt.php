@@ -1,31 +1,9 @@
 <?php
 include 'db_connect.php';
 $fees = $conn->query("SELECT 
-	ef.*,
-	s.name as sname, 
-	s.lname, 
-	s.mname, 
-	s.fname, 
-	s.email, 
-	s.gender,
-	s.contact,
-	s.id_no,
-	s.address,
-	s.sequence_no,
-	concat(c.course,' - ',c.level) as `class`, 
-	c.course, c.level, 
-	c.laboratory, 
-	c.computer, 
-	c.academic, 
-	c.academic_nstp 
-	FROM 
-		student_ef_list ef 
-	inner join 
-		student s on s.id = ef.student_id 
-	inner join 
-		courses c on c.id = ef.course_id  
+	* FROM enroll2024
 	where 
-		ef.id = {$_GET['ef_id']}");
+		id = {$_GET['ef_id']}");
 foreach ($fees->fetch_array() as $k => $v) {
 	$$k = $v;
 }
@@ -49,13 +27,13 @@ while ($row = $payments->fetch_array()) {
 		text-align: right;
 	} */
 
-	table.wborder {
+	table {
 		width: 100%;
 		border-collapse: collapse;
-	}
+	} 
 
-	table.wborder>tbody>tr,
-	table.wborder>tbody>tr>td {
+	table .content> tbody>tr,
+	table tbody > tr > td {
 		border: 1px solid;
 	}
 
@@ -120,9 +98,9 @@ while ($row = $payments->fetch_array()) {
 			<table>
 				<tr>
 					<td colspan="2">Name :</td>
-					<td colspan="4"><?= strtoupper($sname) ?></td>
+					<td colspan="4"><?= strtoupper($stu_name) ?></td>
 					<td colspan="2">ID Number: </td>
-					<td colspan="3"><?= $id_no ?></td>
+					<td colspan="3"><?= $stu_id ?></td>
 				</tr>
 				<tr>
 					<td colspan="2">Course :</td>
@@ -134,83 +112,75 @@ while ($row = $payments->fetch_array()) {
 				</tr>
 				<tr>
 					<td colspan="2">Curriculum Year :</td>
-					<td colspan="3"><?= date('Y') ?> - <?= date('Y', strtotime('+1year')) ?></td>
-					<td colspan="3">Religious Affiliation: N/A</td>
+					<td colspan="3"><?= $academic ?></td>
+					<td colspan="3">Religious Affiliation: <?= $reli ?></td>
 					<td colspan="2">Contact Number:</td>
-					<td colspan="2"><?= $contact ?></td>
+					<td colspan="2"><?= $con_no ?></td>
 				</tr>
 				<tr>
 					<td colspan="2">Home Address:</td>
-					<td colspan="5"><?= $address ?></td>
+					<td colspan="5"><?= $home_ad ?></td>
 					<td colspan="2">Civil Status:</td>
-					<td colspan="3">N/A</td>
+					<td colspan="3"><?= $civil ?></td>
 				</tr>
 				<tr>
 					<td colspan="2">Date of Birth:</td>
-					<td colspan="5"> N/A</td>
+					<td colspan="5"> <?= $d_birth ?></td>
 					<td colspan="2">Palce of Birth:</td>
-					<td colspan="3">N/A</td>
+					<td colspan="3"><?= $p_birth ?></td>
 				</tr>
 				<tr>
 					<td colspan="2">Elementary Course Completed:</td>
-					<td colspan="5"> N/A</td>
+					<td colspan="5"> <?= $ele ?></td>
 					<td colspan="2">S .Y.:</td>
-					<td colspan="3">N/A</td>
+					<td colspan="3"><?= $ele_year ?></td>
 				</tr>
 				<tr>
 					<td colspan="2">High School Course Completed:</td>
-					<td colspan="5"> N/A</td>
+					<td colspan="5"> <?= $high ?></td>
 					<td colspan="2">S .Y.:</td>
-					<td colspan="3">N/A</td>
+					<td colspan="3"><?= $high_year ?></td>
 				</tr>
 				<tr>
 					<td colspan="2">Last School Attended:</td>
-					<td colspan="5"> N/A</td>
+					<td colspan="5"> <?= $last_sc ?></td>
 					<td colspan="2">S .Y.:</td>
-					<td colspan="3">N/A</td>
+					<td colspan="3"><?= $last_year ?></td>
 				</tr>
 			</table>
 		</div>
 
 		<div style="margin-top: 20px;">
-			<table>
-				<thead>
-					<th colspan="11" style="text-align: center;">Assessment</th>
-				</thead>
-				<tr>
-					<td colspan="5"></td>
-					<td colspan="2">Units Enrolled</td>
-					<td colspan="2">Rate per Unit</td>
-					<td colspan="3">Total</td>
-				</tr>
-				<?php
-				$cfees = $conn->query("SELECT * FROM fees where course_id = $course_id");
-				$ftotal = 0;
-				while ($row = $cfees->fetch_assoc()) {
-					$ftotal += $row['amount'];
+		<?php
+				// $get_course = $conn->query("SELECT * FROM courses WHERE department = '$course'");
+				// $fetch_course = $get_course->fetch_assoc();
+
+				// $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
+				// $ftotal = 0;
+
+				$get_latest = $conn->query("SELECT * FROM payments WHERE ef_id = '". $id ."' ORDER BY id DESC");
+				$latest_payment = $get_latest->fetch_assoc();
+
+				$get_total = $conn->query("SELECT SUM(amount) AS TOTAL FROM payments WHERE ef_id = $id");
+				$total_payment = $get_total->fetch_assoc();
+				$total = $g_tot - $total_payment['TOTAL'];
+				// while ($row = $cfees->fetch_assoc()) {
+				// 	$ftotal += $row['amount'];
 				?>
-
-
-				<tr>
-					<td colspan="2"><?= $row['description'] ?></td>
-					<td colspan="5" style="text-align: center;"></td>
-					<td colspan="2" style="text-align: center;"><?= $row['amount'] != 0 ? $row['amount'] : '-' ?></td>
-					<td colspan="3" style="text-align: center;"><?= $row['amount'] ?></td>
-				</tr>
-
-				<?php
-				}
-				?>
-				<tr>
-					<td colspan="2">Grand Total</td>
-					<td colspan="5" style="text-align: center;"></td>
-					<td colspan="2" style="text-align: center;"></td>
-					<td colspan="3" class="text-right"><b><?php echo number_format($ftotal, 2) ?></b></td>
-				</tr>
-				
-				
-			</table>
+			<!-- <h5 style="text-align: left;">Payment</h5> -->
+			<div style="text-align: left;">
+			<p>Remarks: </p>
+			<p><?= $latest_payment['remarks'] ?></p>
+			<p>Date: <?= date('M d,Y', strtotime($latest_payment['date_created'])) ?></p>
+			</div>
+			<div style="text-align: right;">
+			<h4>Amount: <?= number_format($latest_payment['amount'],2) ?></h4>
+			<h3>Total Fees: <?= number_format($g_tot, 2) ?></h3>
+			<h2>Balance: <?= $total != 0 ? number_format($total,2) : 'Paid' ?></h2>
+			</div>
+			
 		</div>
 
 	</div>
 </div>
+

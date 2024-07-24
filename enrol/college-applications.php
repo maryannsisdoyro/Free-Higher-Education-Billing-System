@@ -78,7 +78,7 @@ $conn->close();
             <a href="?export=csv" class="btn btn-success">Export to CSV</a>
             <a href="javascript:void(0);" onclick="printTable()" class="btn btn-primary">Print</a> 
             <button class="btn btn-primary" type="button" onclick="location.href='subject.php'">Subject</button>
-            <button class="btn btn-primary" type="button" onclick="location.href='students.php'">Students</button>
+            <!-- <button class="btn btn-primary" type="button" onclick="location.href='students.php'">Students</button> -->
             <!--
             <button class="btn btn-primary" type="button" onclick="location.href='college-applications.php'">College of application Form </button> -->
         </div>

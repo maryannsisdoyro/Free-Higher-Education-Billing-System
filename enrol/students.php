@@ -67,10 +67,10 @@ $conn->close();
 <body>
 
     <div class="container">
-        <a href="college-applications.php" class="btn btn-secondary"> Back</a>
+        <!-- <a href="" class="btn btn-secondary"> Back</a> -->
         <!-- <a href="index.php" class="btn btn-danger"> Add New +</a> -->
 
-        <h2 class="my-4">COLLEGE APPLICATION FORM 2024-2025</h2>
+        <h2 class="my-4">COLLEGE APPLICATION FORM 2024-2025 | Students</h2>
        
         <div class="table-responsive">
            <table id="example1" class="table table-bordered table-striped">

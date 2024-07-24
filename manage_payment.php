@@ -7,6 +7,15 @@ if(isset($_GET['id'])){
 	}
 }
 ?>
+
+<style>
+  @media print {
+    @page {
+      size: portrait !important;
+    }
+  }
+</style>
+
 <div class="container-fluid">
 	<form id="manage-payment">
 		<div id="msg"></div>
@@ -16,14 +25,26 @@ if(isset($_GET['id'])){
 			<select name="ef_id" id="ef_id" class="custom-select input-sm select2">
 				<option value=""></option>
 				<?php
-					$fees = $conn->query("SELECT ef.*,s.name as sname,s.id_no FROM student_ef_list ef inner join student s on s.id = ef.student_id order by s.name asc ");
+					$fees = $conn->query("SELECT * FROM enroll2024");
 					while($row= $fees->fetch_assoc()):
-						$paid = $conn->query("SELECT sum(amount) as paid FROM payments where ef_id=".$row['id'].(isset($id) ? " and id!=$id " : ''));
-						$paid = $paid->num_rows > 0 ? $paid->fetch_array()['paid']:'';
-						$balance = $row['total_fee'] - $paid;
-				?>
-				<option value="<?php echo $row['id'] ?>" data-balance="<?php echo $balance ?>" <?php echo isset($ef_id) && $ef_id == $row['id'] ? 'selected' : '' ?>><?php echo  $row['ef_no'].' | '.ucwords($row['sname']) ?></option>
-				<?php endwhile; ?>
+						$get_latest = $conn->query("SELECT * FROM payments WHERE ef_id = '". $row['id'] ."' ORDER BY id DESC");
+						$latest_payment = $get_latest->fetch_assoc();
+		
+						$get_total = $conn->query("SELECT SUM(amount) AS TOTAL FROM payments WHERE ef_id = '". $row['id'] ."'");
+						$total_payment = $get_total->fetch_assoc();
+						$total = $row['g_tot'] - $total_payment['TOTAL'];
+
+
+
+						// $paid = $conn->query("SELECT sum(amount) as paid FROM payments where ef_id=".$row['id'].(isset($id) ? " and id!=$id " : ''));
+						// $paid = $paid->num_rows > 0 ? $paid->fetch_array()['paid']:'';
+						// $balance = $row['total_fee'] - $paid;
+						if ($total != 0) {
+							?>
+							<option value="<?php echo $row['id'] ?>" data-balance="<?php echo $total ?>" <?php echo isset($ef_id) && $ef_id == $row['stu_id'] ? 'selected' : '' ?>><?php echo  $row['stu_id'].' | '.ucwords($row['stu_name']) ?></option>
+							<?php
+						}
+				endwhile; ?>
 			</select>
 		</div>
 		 <div class="form-group">
@@ -32,10 +53,10 @@ if(isset($_GET['id'])){
         </div>
         <div class="form-group">
             <label for="" class="control-label">Amount</label>
-            <input type="text" class="form-control text-right" name="amount"  value="<?php echo isset($amount) ? number_format($amount) :0 ?>" required>
+            <input type="number" class="form-control text-right" name="amount" id="amount" value="<?php echo isset($amount) ? number_format($amount) :0 ?>" required>
         </div>
         <div class="form-group">
-            <label for="" class="control-label">Remakrs</label>
+            <label for="" class="control-label">Remarks</label>
             <textarea name="remarks" id="" cols="30" rows="3" class="form-control" required=""><?php echo isset($remarks) ? $remarks :'' ?></textarea>
         </div>
 	</form>
@@ -48,6 +69,7 @@ if(isset($_GET['id'])){
 	$('#ef_id').change(function(){
 		var amount= $('#ef_id option[value="'+$(this).val()+'"]').attr('data-balance')
 		$('#balance').val(parseFloat(amount).toLocaleString('en-US',{style:'decimal',maximumFractionDigits:2,minimumFractionDigits:2}))
+		$("#amount").attr("max", Math.abs(Math.round(amount)))
 	})
 	$('#manage-payment').submit(function(e){
 		e.preventDefault()
@@ -65,7 +87,7 @@ if(isset($_GET['id'])){
 				if(resp.status == 1){
 					alert_toast("Data successfully saved.",'success')
 						setTimeout(function(){
-							var nw = window.open('receipt.php?ef_id='+resp.ef_id+'&pid='+resp.pid,"_blank","width=900,height=600")
+							var nw = window.open('receipt.php?ef_id='+resp.ef_id+'&pid='+resp.pid,"_blank","width=1000,height=900")
 							setTimeout(function(){
 								nw.print()
 								setTimeout(function(){

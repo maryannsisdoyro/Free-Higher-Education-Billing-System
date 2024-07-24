@@ -28,9 +28,9 @@
 				<div class="card">
 					<div class="card-header">
 						<b>List of Student fees </b>
-						<span class="float:right"><a class="btn btn-danger btn-block btn-sm col-sm-2 float-right" href="javascript:void(0)" id="new_fees">
+						<!-- <span class="float:right"><a class="btn btn-danger btn-block btn-sm col-sm-2 float-right" href="javascript:void(0)" id="new_fees">
 					<i class="fa fa-plus"></i> New 
-				</a></span>
+				</a></span> -->
 					</div>
 					<div class="card-body table-responsive">
 						<table class="table table-condensed table-bordered table-hover">
@@ -44,34 +44,34 @@
 									<th class="">Payable Fee</th>
 									<th class="">Paid</th>
 									<th class="">Balance</th>
-									<th class="text-center">Action</th>
+									<!-- <th class="text-center">Action</th> -->
 								</tr>
 							</thead>
 							<tbody>
 								<?php 
 								$i = 1;
-								$fees = $conn->query("SELECT ef.*,s.name as sname,s.id_no, c.department, c.course FROM student_ef_list ef inner join student s on s.id = ef.student_id INNER JOIN courses c ON c.id = ef.course_id  order by s.name asc ");
+								$fees = $conn->query("SELECT * FROM enroll2024");
 								while($row=$fees->fetch_assoc()):
 									$paid = $conn->query("SELECT sum(amount) as paid FROM payments where ef_id=".$row['id']);
 									$paid = $paid->num_rows > 0 ? $paid->fetch_array()['paid']:'';
-									$balance = $row['total_fee'] - $paid;
+									$balance = $row['g_tot'] - $paid;
 								?>
 								<tr>
 									<td class="text-center"><?php echo $i++ ?></td>
 									<td>
-										<p> <b><?php echo $row['ef_no'] ?></b></p>
+										<p> <b><?php echo $row['stu_id'] ?></b></p>
 									</td>
 									<!---<td>
 										<p> <b><?php #echo $row['ef_no'] ?></b></p>
 									</td>-->
 									<td>
-										<p> <b><?php echo ucwords($row['sname']) ?></b></p>
+										<p> <b><?php echo ucwords($row['stu_name']) ?></b></p>
 									</td>
 									<td>
 										<p> <b><?php echo $row['course'] ?></b></p>
 									</td>
 									<td class="text-right">
-										<p> <b><?php echo number_format($row['total_fee'],2) ?></b></p>
+										<p> <b><?php echo number_format($row['g_tot'],2) ?></b></p>
 									</td>
 									<td class="text-right">
 										<p> <b><?php echo number_format($paid,2) ?></b></p>
@@ -79,11 +79,11 @@
 									<td class="text-right">
 										<p> <b><?php echo number_format($balance,2) ?></b></p>
 									</td>
-									<td class="text-center" style="width: 200px !important;">
+									<!-- <td class="text-center" style="width: 200px !important;">
 										<button class="btn btn-sm btn-outline-primary view_payment" type="button" data-id="<?php echo $row['id'] ?>">View</button>
 										<button class="btn btn-sm btn-outline-primary edit_fees" type="button" data-id="<?php echo $row['id'] ?>" >Edit</button>
 										<button class="btn btn-sm btn-outline-danger delete_fees" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
-									</td>
+									</td> -->
 								</tr>
 								<?php endwhile; ?>
 							</tbody>

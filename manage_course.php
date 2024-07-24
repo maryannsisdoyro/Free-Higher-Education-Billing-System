@@ -17,7 +17,14 @@ foreach($qry->fetch_array() as $k => $val){
             <div id="msg" class="form-group"></div>
             <div class="form-group">
                 <label for="" class="control-label">Course</label>
-                <input type="text" class="form-control" name="course"  value="<?php echo isset($course) ? $course :'' ?>" required>
+                <select class="custom-select form-control-sm rounded-0" name="course" required>
+                                <!-- <option value="">Select Course to be Enrolled</option> -->
+                                <option value="BEED">Bachelor of Elementary Education</option>
+                                <option value="BSED">Bachelor of Secondary Education</option>
+                                <option value="BSIT">Bachelor of Science in Information Technology</option>
+                                <option value="BSHM">Bachelor of Science in Hotel Management</option>
+                                <option value="BSBA">Bachelor of Science in Business Administration</option>
+                            </select>
             </div>
             <!-- <div class="form-group">
                 <label for="" class="control-label">Department</label>

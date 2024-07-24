@@ -197,6 +197,25 @@ Class Action {
 	function save_course(){
 		extract($_POST);
 		$data = "";
+
+		$courses = [
+			 'BSIT' => 'Bachelor of Science in Information Technology',
+			 'BSBA' => 'Bachelor of Science in Business Administration',
+			 'BSHM' => 'Bachelor of Science in Hotel Management',
+			 'BSED' => 'Bachelor of Secondary Education',
+			 'BEED' => 'Bachelor of Elementary Education'
+		];
+
+		$new_course = $courses[$_POST['course']];
+		$key = $_POST['course'];
+		$level = $_POST['level'];
+		$laboratory = $_POST['laboratory'];
+		$computer = $_POST['computer'];
+		$academic = $_POST['academic'];
+		$academic_nstp = $_POST['academic_nstp'];
+		$total_amount = $_POST['total_amount'];
+
+
 		foreach($_POST as $k => $v){
 			if(!in_array($k, array('id','fid','type','amount')) && !is_numeric($k)){
 				if(empty($data)){
@@ -212,7 +231,12 @@ Class Action {
 			exit;
 		}
 		if(empty($id)){
-			$save = $this->db->query("INSERT INTO courses set $data");
+			$save = $this->db->query("INSERT INTO courses set course = '$new_course', department='$key', level = '$level',
+			laboratory = $laboratory,
+			computer = $computer,
+			academic = $academic,
+			academic_nstp = $academic_nstp,
+			total_amount = $total_amount");
 			if($save){
 				$id = $this->db->insert_id;
 				foreach($fid as $k =>$v){
@@ -225,7 +249,12 @@ Class Action {
 						return 1;
 			}
 		}else{
-			$save = $this->db->query("UPDATE courses set $data where id = $id");
+			$save = $this->db->query("UPDATE courses set course='$new_course', department='$key', level = '$level',
+			laboratory = $laboratory,
+			computer = $computer,
+			academic = $academic,
+			academic_nstp = $academic_nstp,
+			total_amount = $total_amount where id = $id");
 			if($save){
 
 				$id = $this->db->real_escape_string($_POST['id']);

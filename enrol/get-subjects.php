@@ -1,4 +1,4 @@
-<div id="BSIT" class="d-none">
+<div class="BSIT d-none">
 <table id="example2" class="table table-bordered table-hover" style="font-size: small;">
         <thead>
             <tr>
@@ -46,7 +46,7 @@
 </table>
 </div>
 
-<div id="BSBA"  class="d-none">
+<div class="BSBA d-none">
 <table id="example2" class="table table-bordered table-hover" style="font-size: small;">
         <thead>
             <tr>
@@ -94,7 +94,7 @@
 </table>
 </div>
 
-<div id="BEED" >
+<div class="BEED" >
 <table id="example2" class="table table-bordered table-hover" style="font-size: small;">
         <thead>
             <tr>
@@ -142,7 +142,7 @@
 </table>
 </div>
 
-<div id="BSED"  class="d-none">
+<div class="BSED d-none">
 <table id="example2" class="table table-bordered table-hover" style="font-size: small;">
         <thead>
             <tr>
@@ -190,7 +190,7 @@
 </table>
 </div>
 
-<div id="BSHM"  class="d-none">
+<div class="BSHM d-none">
 <table id="example2" class="table table-bordered table-hover" style="font-size: small;">
         <thead>
             <tr>
