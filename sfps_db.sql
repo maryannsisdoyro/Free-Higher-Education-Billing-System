@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2024 at 09:32 PM
+-- Generation Time: Jul 24, 2024 at 04:17 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,14 +33,6 @@ CREATE TABLE `academic` (
   `semester` text DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `academic`
---
-
-INSERT INTO `academic` (`id`, `year`, `semester`, `status`) VALUES
-(2, '2020-2021', '1st', 2),
-(3, '2021-2022', '1st', 1);
 
 -- --------------------------------------------------------
 
@@ -121,10 +113,9 @@ CREATE TABLE `enroll2024` (
   `cul` varchar(50) DEFAULT NULL,
   `t_misfe` varchar(50) DEFAULT NULL,
   `g_tot` varchar(100) DEFAULT NULL,
-  `image` varchar(100) DEFAULT NULL,
+  `image` text DEFAULT NULL,
   `date_signed` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `year_level` text DEFAULT NULL,
-  `stud_section` text NOT NULL
+  `year_level` text NOT NULL DEFAULT '\'1st\''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
@@ -481,7 +472,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `academic`
 --
 ALTER TABLE `academic`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `courses`
