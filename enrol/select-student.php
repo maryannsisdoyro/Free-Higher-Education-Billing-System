@@ -1650,7 +1650,7 @@ document.getElementById('print').addEventListener('click', function() {
             e.preventDefault();
             location.href = 'student-student.php?' + $(this).serialize();
         });
-  
+
         $('#print').click(function() {
             start_loader();
             var _p = $('#outprint').clone();
@@ -1698,6 +1698,7 @@ document.getElementById('print').addEventListener('click', function() {
         doc.head.appendChild(style);
     }
 </script>
+
 
 <script>
         const startButton = document.getElementById('startButton');

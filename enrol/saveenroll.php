@@ -82,30 +82,30 @@ if (mysqli_num_rows($check_result) > 0) {
     // Insert new record into the database
    
 
-    $insert_result = mysqli_query($conn, $insert_query);
+    // $insert_result = mysqli_query($conn, $insert_query);
 
-    if ($insert_result) {
-        // If insertion is successful, return JSON response with success message
-        $response = array(
-            'success' => true,
-            'message' => 'Enrollment Data Successfully Created !!'
-        );
+    // if ($insert_result) {
+    //     // If insertion is successful, return JSON response with success message
+    //     $response = array(
+    //         'success' => true,
+    //         'message' => 'Enrollment Data Successfully Created !!'
+    //     );
 
-        if ($_FILES['fileInput']['error'] > 0) {
+    //     if ($_FILES['fileInput']['error'] > 0) {
 
-        }else{
-            move_uploaded_file($tmp_name, $folder);
-        }
+    //     }else{
+    //         move_uploaded_file($tmp_name, $folder);
+    //     }
 
-        echo json_encode($response);
-    } else {
-        // If insertion fails, return JSON response with error message
-        $response = array(
-            'success' => false,
-            'message' => 'Error occurred while creating the enrollment records.'
-        );
-        echo json_encode($response);
-    }
+    //     echo json_encode($response);
+    // } else {
+    //     // If insertion fails, return JSON response with error message
+    //     $response = array(
+    //         'success' => false,
+    //         'message' => 'Error occurred while creating the enrollment records.'
+    //     );
+    //     echo json_encode($response);
+    // }
 }
 
 ?>
