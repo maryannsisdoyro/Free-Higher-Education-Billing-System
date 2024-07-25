@@ -86,6 +86,11 @@ include 'db.php';
                         </div> -->
 
                             <div class="col-12">
+                            <?php
+                                                $get_academic = $conn->query("SELECT * FROM academic WHERE status = 1");
+                                                $academic = $get_academic->fetch_assoc();
+
+                                                ?>
                                 <table class="table">
                                     <thead>
                                         <th>ID #</th>
@@ -122,27 +127,21 @@ include 'db.php';
                                             </select>
                                         </td>
                                         <td>
-                                            <select name="semester" class="form-select" required>
+                                            <!-- <select name="semester" class="form-select" required>
                                                 <option value="" selected disabled>Select Semester</option>
                                                 <option value="1st">1st Semester</option>
                                                 <option value="2nd">2nd Semester</option>
                                                 <option value="Summer">Summer Semester</option>
-                                            </select>
+                                            </select> -->
+                                            <?= $academic['semester'] ?> Semester
+                                            <input type="hidden" name="semester" value="<?= $academic['semester'] ?>"> 
                                         </td>
                                         <td >
                                            
-                                        <?php
-                                                $get_academic = $conn->query("SELECT * FROM academic WHERE status = 1");
-                                                if ($get_academic->num_rows > 0) {
-                                                    $academic = $get_academic->fetch_assoc();
-                                                
-                                                ?>
-                                                         <?= $academic['year'] ?> | <?= $academic['semester'] ?>
+                                       
+                                            <?= $academic['year'] ?> | <?= $academic['semester'] ?>
                                             <input type="hidden" name="academic" value="<?= $academic['id'] ?>"> 
-                                                <?php
-                                                    
-                                                }
-                                                ?>
+                                               
                                               
                                         </td>
                                         <td>
