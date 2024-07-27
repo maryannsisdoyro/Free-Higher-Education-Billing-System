@@ -86,6 +86,11 @@ include 'db.php';
                         </div> -->
 
                             <div class="col-12">
+                            <?php
+                                                $get_academic = $conn->query("SELECT * FROM academic WHERE status = 1");
+                                                $academic = $get_academic->fetch_assoc();
+
+                                                ?>
                                 <table class="table">
                                     <thead>
                                         <th>ID #</th>
@@ -99,7 +104,7 @@ include 'db.php';
                                     </thead>
                                     <tbody>
                                         <td><?= $row['stu_id'] ?></td>
-                                        <td class="d-flex "><?= $row['stu_name'] ?></td>
+                                        <td ><?= $row['stu_name'] ?></td>
                                         <td><?= $row['email'] ?></td>
                                         <td>
                                             <select name="year_level" class="form-select" required>
@@ -122,27 +127,22 @@ include 'db.php';
                                             </select>
                                         </td>
                                         <td>
-                                            <select name="semester" class="form-select" required>
+                                            <!-- <select name="semester" class="form-select" required>
                                                 <option value="" selected disabled>Select Semester</option>
                                                 <option value="1st">1st Semester</option>
                                                 <option value="2nd">2nd Semester</option>
                                                 <option value="Summer">Summer Semester</option>
-                                            </select>
+                                            </select> -->
+                                            <?= $academic['semester'] ?> Semester
+                                            <input type="hidden" name="semester" value="<?= $academic['semester'] ?>"> 
                                         </td>
-                                        <td>
-                                            <select name="academic" class="form-select" required>
-                                                <option value="" selected disabled>Select Academic</option>
-                                                <?php
-                                                $get_academic = $conn->query("SELECT * FROM academic WHERE status = 1");
-                                                if ($get_academic->num_rows > 0) {
-                                                    foreach ($get_academic as $academic) {
-                                                ?>
-                                                        <option value="<?= $academic['id'] ?>"><?= $academic['year'] ?> | <?= $academic['semester'] ?></option>
-                                                <?php
-                                                    }
-                                                }
-                                                ?>
-                                            </select>
+                                        <td >
+                                           
+                                       
+                                            <?= $academic['year'] ?> | <?= $academic['semester'] ?>
+                                            <input type="hidden" name="academic" value="<?= $academic['id'] ?>"> 
+                                               
+                                              
                                         </td>
                                         <td>
                                         <button type="submit" name="submit" class="btn btn-primary px-5">Enroll</button>

@@ -113,7 +113,7 @@ $academic_query = $conn->query("SELECT * FROM academic");
         $res_academic = $get_academic->fetch_array();
     ?>
 
-        <h3>Academic School Year  <?= $res_academic['year'] ?>  |  <?= $res_academic['semester'] ?> Semester</h3>
+        <h3>Academic School Year  <?= $res_academic['year'] ?? '0000-0000' ?>  |  <?= $res_academic['semester'] ?? '0' ?> Semester</h3>
         
         <p class="my-3">Add New</p>
         <!-- <a href="college-applications.php" class="btn btn-secondary">Back</a> -->

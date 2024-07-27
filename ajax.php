@@ -89,5 +89,17 @@ if($action == "delete_payment"){
 	if($delete)
 		echo $delete;
 }
+if($action == "forgotPassword"){
+	$forgot = $crud->forgotPassword();
+	if($forgot)
+		echo $forgot;
+}
+
+if($action == "resetPassword"){
+	$forgot = $crud->resetPassword();
+	if($forgot)
+		echo $forgot;
+}
+
 ob_end_flush();
 ?>

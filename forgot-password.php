@@ -54,20 +54,16 @@ header("location:index.php?page=home");
   		<div id="login-center" class="row justify-content-center">
   			<div class="card col-md-4">
   				<div class="card-body">
-  					<form id="login-form" >
+  					<form id="forgot-pass" >
+                      <h5>Forgot password</h5>
 						
   						<div class="form-group">
-  							<label for="username" class="control-label">Username</label>
-  							<input type="text" id="username" name="username" class="form-control">
+  							<label for="email" class="control-label">Email Account</label>
+  							<input type="email" id="email" name="email" class="form-control">
   						</div>
-						  <label for="password" class="control-label">Password</label>
-  							<div style="position: relative;">
-                                <input type="password" id="password" name="password" class="form-control my-2">
-                             <i class="bx bx-show fs-4" style="cursor: pointer; position: absolute; top: 0; right: 0; margin: 12px 10px 0 0; font-size: 15px;" id="show-pass1"></i>
-                            </div>
   						<div class="d-flex justify-content-between">
-						<a href="forgot-password.php">Forgot Password</a>
-						  <button class="btn-sm btn-block btn-wave col-md-4 btn-danger">Login</button>
+						    <a href="login.php">Cancel</a>
+						  <button class="btn-sm btn-block btn-wave col-md-4 btn-danger">Submit</button>
 						</div>
   					</form>
   				</div>
@@ -81,43 +77,30 @@ header("location:index.php?page=home");
 
 </body>
 <script>
-	$('#login-form').submit(function(e){
+	$('#forgot-pass').submit(function(e){
 		e.preventDefault()
-		$('#login-form button[type="button"]').attr('disabled',true).html('Logging in...');
+		$('#forgot-pass button[type="button"]').attr('disabled',true).html('Logging in...');
 		if($(this).find('.alert-danger').length > 0 )
 			$(this).find('.alert-danger').remove();
 		$.ajax({
-			url:'ajax.php?action=login',
+			url:'ajax.php?action=forgotPassword',
 			method:'POST',
 			data:$(this).serialize(),
 			error:err=>{
 				console.log(err)
-		$('#login-form button[type="button"]').removeAttr('disabled').html('Login');
+		$('#forgot-pass button[type="button"]').removeAttr('disabled').html('Login');
 
 			},
 			success:function(resp){
 				if(resp == 1){
-					location.href ='index.php?page=home';
+					location.href ='reset-password.php';
 				}else{
-					$('#login-form').prepend('<div class="alert alert-danger">Username or password is incorrect.</div>')
-					$('#login-form button[type="button"]').removeAttr('disabled').html('Login');
+                    // console.log(resp);
+					$('#forgot-pass').prepend('<div class="alert alert-danger">Account doesn\'t exist</div>')
+					$('#forgot-pass button[type="button"]').removeAttr('disabled').html('Login');
 				}
 			}
 		})
 	})
 </script>	
-
-<script>
-     let showPass1 = document.getElementById('show-pass1');
-    showPass1.onclick = () => {
-        let passwordInp = document.forms['login-form']['password'];
-        if (passwordInp.getAttribute('type') == 'password') {
-            showPass1.classList.replace('bx-show', 'bx-low-vision')
-            passwordInp.setAttribute('type', 'text')
-        } else {
-            showPass1.classList.replace('bx-low-vision', 'bx-show')
-            passwordInp.setAttribute('type', 'password')
-        }
-    }
-</script>
 </html>

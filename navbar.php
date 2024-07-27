@@ -26,7 +26,7 @@
 				<a href="index.php?page=users" class="nav-item nav-users"><span class='icon-field mr-2'><i class="fa fa-users "></i></span> Users</a>
 				<!-- <a href="index.php?page=site_settings" class="nav-item nav-site_settings"><span class='icon-field'><i class="fa fa-cogs"></i></span> System Settings</a> -->
 			<?php endif; ?>
-			<a href="./enrol/settings.php" class="nav-item nav-payments_report"><span class='icon-field mr-2'><i class="fa fa-wrench"></i></span> Settings</a>
+			<a href="./enrol/settings.php" class="nav-item nav-settings"><span class='icon-field mr-2'><i class="fa fa-wrench"></i></span> Settings</a>
 		</div>
 
 </nav>

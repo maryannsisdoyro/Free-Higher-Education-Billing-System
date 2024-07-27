@@ -2,6 +2,13 @@
 
 session_start();
 ini_set('display_errors', 1);
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
+require "./phpmailer/src/Exception.php";
+require "./phpmailer/src/PHPMailer.php";
+require "./phpmailer/src/SMTP.php";
 Class Action {
 	private $db;
 
@@ -390,6 +397,74 @@ Class Action {
 		if($delete){
 			return 1;
 		}
+	}
+
+	function forgotPassword(){
+		extract($_POST);
+		$email = $_POST['email'];
+		$check = $this->db->query("SELECT * FROM users WHERE email = '$email'");
+		if ($check->num_rows > 0) {
+			$verification = uniqid();
+
+			$update = $this->db->query("UPDATE users SET verification = '$verification'");
+			if ($update) {
+				$mail = new PHPMailer(true);
+				$mail->SMTPDebug = 0;
+				$mail->isSMTP();
+				$mail->Host = 'smtp.gmail.com';
+				$mail->SMTPAuth = true;
+				$mail->Username = 'sisdoyromaryannlawan20@gmail.com';
+				$mail->Password = 'ggeurvotkedugblo';
+				$mail->Port = 587;
+
+				$mail->SMTPOptions = array(
+					'ssl' => array(
+						'verify_peer' => false,
+						'verify_peer_name' => false,
+						'allow_self_signed' => true
+					)
+				);
+
+				$mail->setFrom('mccfhebilling@gmail.com', 'MCC Free Higher Education');
+
+				$mail->addAddress($email);
+				$mail->Subject = "Reset Password Verification Code";
+				$mail->Body = "This is your verification code: " . $verification;
+
+				$mail->send();
+			}
+
+			return 1;
+		}else{
+			return 2;
+		}
+
+	}
+
+	function resetPassword(){
+		extract($_POST);
+		$verification = $_POST['verification'];
+		$new = $_POST['new'];
+		$confirm = $_POST['confirm'];
+
+		if ($new !== $confirm) {
+			return 2;
+		}else{
+			$check = $this->db->query("SELECT * FROM users WHERE verification = '$verification'");
+			if ($check->num_rows > 0) {
+				$hashed = md5($new);
+
+				$update = $this->db->query("UPDATE users SET password = '$hashed' WHERE verification = '$verification'");
+
+				if ($update) {
+					return 1;
+				}
+
+			}else{
+				return 3;
+			}
+		}
+
 	}
 
 	

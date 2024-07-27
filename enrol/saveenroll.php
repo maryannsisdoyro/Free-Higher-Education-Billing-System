@@ -8,7 +8,15 @@ function sanitize_input($data) {
     return $data;
 }
 
+$get_academic = $conn->query("SELECT * FROM academic WHERE status = 1 ORDER BY id DESC");
+    $res_academic = $get_academic->fetch_array();
+    $curr = $res_academic['year'];
+    $semester = $res_academic['semester'];
+
 // Assuming POST variables are properly sanitized
+$fname = sanitize_input($_POST['fname']);
+$mname = sanitize_input($_POST['mname']);
+$lname = sanitize_input($_POST['lname']);
 $application_no = sanitize_input($_POST['application_no']);
 $stu_name = sanitize_input($_POST['stu_name']);
 $stu_id = sanitize_input($_POST['stu_id']);
@@ -16,7 +24,7 @@ $stu_sta = sanitize_input($_POST['stu_sta']);
 $course = sanitize_input($_POST['courseenrolled']);
 $majorOutput1 = sanitize_input($_POST['majorOutput1']);
 $selectedSection1 = sanitize_input($_POST['selectedSection1']);
-$curr = sanitize_input($_POST['curr']);
+// $curr = sanitize_input($_POST['curr']);
 $religiousOutput1 = sanitize_input($_POST['religiousOutput1']);
 $con_no = sanitize_input($_POST['con_no']);
 $home_ad = sanitize_input($_POST['home_ad']);
@@ -52,6 +60,7 @@ $t_misfe = sanitize_input($_POST['t_misfe']);
 $g_tot = sanitize_input($_POST['TuitionFees']);
 $section = sanitize_input($_POST['section']);
 $email = sanitize_input($_POST['email']);
+$gender = sanitize_input($_POST['gender']);
 $year_level = '1st';
 
 // Check if the record already exists
@@ -68,15 +77,15 @@ if (mysqli_num_rows($check_result) > 0) {
 } else {
 
     if ($_FILES['fileInput']['error'] > 0) {
-        $insert_query = "INSERT INTO enroll2024 (application_no,stu_id, stu_name, stu_sta, course, major, year_level, curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot, section,email)
-        VALUES ('$application_no','$stu_id', '$stu_name', '$stu_sta', '$course', '$majorOutput1', '$year_level', '$curr', '$religiousOutput1', '$con_no', '$home_ad', '$civil', '$d_birth', '$p_birth', '$ele', '$ele_year', '$high', '$high_year', '$last_sc', '$last_year', '$tot_units', '$un_enrol', '$rate_per', '$total', '$lib', '$com', '$lab1', '$lab2', '$lab3', '$sch_id', '$ath', '$adm', '$dev', '$guid', '$hand', '$entr', '$reg_fe', '$med_den', '$cul', '$t_misfe', '$g_tot', '$section', '$email')";
+        $insert_query = "INSERT INTO enroll2024 (application_no,stu_id, stu_name, stu_sta, course, major, year_level, curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot, section,email,fname,mname,lname,gender,semester)
+        VALUES ('$application_no','$stu_id', '$stu_name', '$stu_sta', '$course', '$majorOutput1', '$year_level', '$curr', '$religiousOutput1', '$con_no', '$home_ad', '$civil', '$d_birth', '$p_birth', '$ele', '$ele_year', '$high', '$high_year', '$last_sc', '$last_year', '$tot_units', '$un_enrol', '$rate_per', '$total', '$lib', '$com', '$lab1', '$lab2', '$lab3', '$sch_id', '$ath', '$adm', '$dev', '$guid', '$hand', '$entr', '$reg_fe', '$med_den', '$cul', '$t_misfe', '$g_tot', '$section', '$email', '$fname', '$mname', '$lname', '$gender', '$semester')";
     }else{
         $filename = $_FILES['fileInput']['name'];
         $tmp_name = $_FILES['fileInput']['tmp_name'];
         $folder = "./upload/" . $filename;
 
-        $insert_query = "INSERT INTO enroll2024 (application_no,stu_id, stu_name, stu_sta, course, major, year_level, curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot,image, section, email)
-        VALUES ('$application_no','$stu_id', '$stu_name', '$stu_sta', '$course', '$majorOutput1', '$year_level', '$curr', '$religiousOutput1', '$con_no', '$home_ad', '$civil', '$d_birth', '$p_birth', '$ele', '$ele_year', '$high', '$high_year', '$last_sc', '$last_year', '$tot_units', '$un_enrol', '$rate_per', '$total', '$lib', '$com', '$lab1', '$lab2', '$lab3', '$sch_id', '$ath', '$adm', '$dev', '$guid', '$hand', '$entr', '$reg_fe', '$med_den', '$cul', '$t_misfe', '$g_tot', '$filename', '$section', '$email')";
+        $insert_query = "INSERT INTO enroll2024 (application_no,stu_id, stu_name, stu_sta, course, major, year_level, curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot,image, section, email,fname,mname,lname,gender,semester)
+        VALUES ('$application_no','$stu_id', '$stu_name', '$stu_sta', '$course', '$majorOutput1', '$year_level', '$curr', '$religiousOutput1', '$con_no', '$home_ad', '$civil', '$d_birth', '$p_birth', '$ele', '$ele_year', '$high', '$high_year', '$last_sc', '$last_year', '$tot_units', '$un_enrol', '$rate_per', '$total', '$lib', '$com', '$lab1', '$lab2', '$lab3', '$sch_id', '$ath', '$adm', '$dev', '$guid', '$hand', '$entr', '$reg_fe', '$med_den', '$cul', '$t_misfe', '$g_tot', '$filename', '$section', '$email','$fname', '$mname', '$lname', '$gender', '$semester')";
     }
 
     // Insert new record into the database

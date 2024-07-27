@@ -1,8 +1,124 @@
-<?php
-    include 'db_connect.php';
-    $month = isset($_GET['month']) ? date('m', strtotime($_GET['month'])) : date('m');
-    $year = isset($_GET['month']) ? date('Y', strtotime($_GET['month'])) : date('Y');
+<!DOCTYPE html>
+<html lang="en">
 
+<?php session_start(); ?>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title><?php echo isset($_SESSION['system']['name']) ? $_SESSION['system']['name'] : '' ?></title>
+
+    <?php
+    if (!isset($_SESSION['login_id']))
+        header('location:login.php');
+    include('./header.php');
+    // include('./auth.php'); 
+    ?>
+    <style>
+        body {
+            background: #80808045;
+        }
+
+        .modal-dialog.large {
+            width: 80% !important;
+            max-width: unset;
+        }
+
+        .modal-dialog.mid-large {
+            width: 50% !important;
+            max-width: unset;
+        }
+
+        #viewer_modal .btn-close {
+            position: absolute;
+            z-index: 999999;
+            background: unset;
+            color: white;
+            border: unset;
+            font-size: 27px;
+            top: 0;
+        }
+
+        #viewer_modal .modal-dialog {
+            width: 80%;
+            max-width: unset;
+            height: calc(90%);
+            max-height: unset;
+        }
+
+        #viewer_modal .modal-content {
+            background: black;
+            border: unset;
+            height: calc(100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #viewer_modal img,
+        #viewer_modal video {
+            max-height: calc(100%);
+            max-width: calc(100%);
+        }
+
+        input[type=checkbox] {
+            -ms-transform: scale(1.3);
+            -moz-transform: scale(1.3);
+            -webkit-transform: scale(1.3);
+            -o-transform: scale(1.3);
+            transform: scale(1.3);
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        @media print {
+            * {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            #controls,
+            .footer,
+            .footerarea {
+                display: none;
+            }
+
+            html,
+            body {
+                height: 100%;
+                overflow: hidden;
+                background: #FFF;
+                font-size: 9.5pt;
+            }
+
+            .dont-print {
+                display: none !important;
+            }
+
+            .card {
+                box-shadow: none !important;
+                border: none !important;
+            }
+
+            .card-body {
+                transform: scale(0.7);
+                /* Adjust this value to fit your content */
+                transform-origin: top left;
+            }
+
+            table {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <?php
+    include('db_connect.php');
+    $month = $_GET['month'];
+    $year = $_GET['year'];
     $i = 1;
     $data = [];
                       $total = 0;
@@ -53,28 +169,25 @@
                         'BSED' => 'Bachelor of Secondary Education',
                         'BEED' => 'Bachelor of Elementary Education'
                    ];
-?>
-<style>
-    table th{
-     text-align: center !important;
-     vertical-align: middle !important;
-    }
+    ?>
 
-</style>
-<div class="container-fluid">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card_body">
-            <div class="row justify-content-center pt-4">
-                <label for="" class="mt-2">Month</label>
-                <div class="col-sm-3">
-                    <input type="month" name="month" id="month" value="<?php echo $month ?>" class="form-control">
-                </div>
+    <div class="container-fluid">
+        <div class="col-lg-12">
+            <div class="row mb-4 mt-4">
+                <div class="col-md-12"></div>
             </div>
-            <hr>
-            <div class="col-md-12">
-            <div class="table-responsive" id="student-table">
-            <table class="wborder">
+            <div class="row">
+                <!-- FORM Panel -->
+
+                <!-- Table Panel -->
+                <div class="col-md-12">
+                    <div class="card print">
+                        <div class="card-header dont-print d-flex justify-content-between">
+                            <a href="index.php?page=payments_report" class="btn btn-secondary"><i class="fa fa-arrow-left"></i></a>
+
+                        </div>
+                        <div class="card-body table-responsive" id="student-table">
+                            <table class="wborder">
                                 <tr>
                                     <td colspan="29" class="text-center">
                                         <p class="mt-3">Republic of the Philippines</p>
@@ -173,52 +286,34 @@
                                 </tr>
                             </table>
                         </div>
-                <hr>
-                <div class="col-md-12 mb-4">
-                    <center>
-                        <a href="print-payment.php?month=<?= $month ?>&year=<?= $year ?>" class="btn btn-success btn-sm col-sm-3" type="button" ><i class="fa fa-print"></i> Print</a>
-                    </center>
+
+                        <div class="card-footer">
+                            <button type="button" onclick="printTable()" class="btn btn-primary"><i class="fa fa-print"></i> Print</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <!-- Table Panel -->
             </div>
         </div>
     </div>
-</div>
-<noscript>
-	<style>
-		table#report-list{
-			width:100%;
-			border-collapse:collapse
-		}
-		table#report-list td,table#report-list th{
-			border:1px solid
-		}
-        p{
-            margin:unset;
+
+    <script>
+        function printTable() {
+            var table = document.getElementById("student-table");
+            var newWin = window.open('', 'Print-Window');
+            newWin.document.open();
+            newWin.document.write('<html><head><title>Print</title><style>');
+            newWin.document.write('table { width: 100%; border-collapse: collapse; }');
+            newWin.document.write('th, td { border: 1px solid black; padding: 8px; text-align: left; }');
+            newWin.document.write('tr td { text-align: center; }');
+            newWin.document.write('</style></head><body>');
+            newWin.document.write(table.outerHTML);
+            newWin.document.write('</body></html>');
+            newWin.document.close();
+            newWin.print();
+
         }
-		.text-center{
-			text-align:center
-		}
-        .text-right{
-            text-align:right
-        }
-	</style>
-</noscript>
-<script>
-$('#month').change(function(){
-    location.replace('index.php?page=payments_report&month='+$(this).val())
-})
-$('#print').click(function(){
-		var _c = $('#report-list').clone();
-		var ns = $('noscript').clone();
-            ns.append(_c)
-		var nw = window.open('','_blank','width=900,height=600')
-		nw.document.write('<p class="text-center"><b>Payment Report as of <?php echo date("F, Y",strtotime($month)) ?></b></p>')
-		nw.document.write(ns.html())
-		nw.document.close()
-		nw.print()
-		setTimeout(() => {
-			nw.close()
-		}, 500);
-	})
-</script>
+    </script>
+</body>
+
+</html>

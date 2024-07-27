@@ -179,12 +179,15 @@ if ($row) {
 
                         </div>
                         <div class="form-group col-md-3">
+                            <?php 
+                                 $get_academic = $conn->query("SELECT * FROM academic WHERE status = 1 ORDER BY id DESC");
+                                 $res_academic = $get_academic->fetch_array();
+                            ?>
                             <label for="semester" class="control-label">Semester</label>
-                            <select class="custom-select form-control-sm rounded-0" name="semester" id="semester" oninput="updateFilters()" oninput="filterResults()" required>
+                            <select class="custom-select form-control-sm rounded-0" name="semester" id="semester" oninput="updateFilters()" oninput="filterResults()" readonly autocomplete="off" >
                                 <!-- <option value="">Select Semester</option> -->
-                                <option value="1st">1st</option>
-                                <option value="2nd">2nd</option>
-                                <option value="Summer">Summer</option>
+                                <option value="<?= $res_academic['semester'] ?>"><?= $res_academic['semester'] ?></option>
+                               
                             </select>
                         </div>
 
@@ -198,15 +201,7 @@ if ($row) {
                         </div>
                         <div class="form-group col-md-3">
                             <label for="Section" class="control-label">Section</label>
-                            <select name="section" class="form-control " required>
-                                <!-- <option value="" selected disabled>Select Section</option> -->
-                                <option value="North">North</option>
-                                <option value="North East">North East</option>
-                                <option value="East">East</option>
-                                <option value="West">West</option>
-                                <option value="South">South</option>
-                                <option value="South East">South East</option>
-                            </select>
+                            <?php require 'get-sections.php'; ?>
                         </div>
 
 
@@ -322,13 +317,17 @@ if ($row) {
                         <input type="hidden" class="form-control" name="med_den" id="med_den" value="<?php echo $med_den; ?>" readonly>
                         <input type="hidden" class="form-control" name="cul" id="cul" value="<?php echo $cul; ?>" readonly>
                         <input type="hidden" class="form-control" name="t_misfe" id="t_misfe" value="<?php echo $t_misfe; ?>" readonly>
+                        <input type="hidden" class="form-control" name="fname" id="fname" value="<?php echo $first_name; ?>" readonly>
+                        <input type="hidden" class="form-control" name="mname" id="mname" value="<?php echo $middle_name; ?>" readonly>
+                        <input type="hidden" class="form-control" name="lname" id="lname" value="<?php echo $last_name; ?>" readonly>
+                        <input type="hidden" class="form-control" name="gender" id="gender" value="<?php echo $sex; ?>" readonly>
                         <input type="hidden" class="form-control" name="g_tot" id="g_tot" value="<?php echo $g_tot; ?>" readonly>
                         <input type="file" id="fileInput" name="fileInput" class="hidden" />
                     </div>
 
                     <!-- <button class="btn btn-primary" type="submit" id="submit"><i class="fa fa-print"></i> Save</button> -->
                     <button class="btn btn-success" type="button" id="print"><i class="fa fa-print"></i> Print</button>
-                    <a href="college-applications.php" class="btn btn-secondary">Cancel</a>
+                    <a href="students.php" class="btn btn-secondary">Cancel</a>
 
 
                 </form>
