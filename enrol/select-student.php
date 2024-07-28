@@ -1700,7 +1700,7 @@ if ($row) {
         let BSBAS = document.querySelectorAll(".BSBA");
         let BSHMS = document.querySelectorAll(".BSHM");
 
-        if (courseVal == 'BSIT') {
+        if (courseVal == 'BSIT' || courseVal == 'BSIT-NONE' || courseVal == 'BSIT-STEM') {
             BSITS.forEach(BSIT => {
                 if (BSIT.classList.contains("d-none")) {
                     BSIT.classList.remove("d-none")
@@ -1719,7 +1719,7 @@ if ($row) {
             // BEED.classList.add("d-none")
             // BSHM.classList.add("d-none")
 
-        } else if (courseVal == 'BSBA') {
+        } else if (courseVal == 'BSBA' || courseVal == 'BSBA-NONE' || courseVal == 'BSBA-ABM') {
             BSBAS.forEach(BSBA => {
                 if (BSBA.classList.contains("d-none")) {
                     BSBA.classList.remove("d-none")
@@ -1771,7 +1771,7 @@ if ($row) {
             BSITS.forEach(BSIT => { BSIT.classList.add("d-none") });
             BEEDS.forEach(BEED => { BEED.classList.add("d-none") });
 
-        } else if (courseVal == 'BSHM') {
+        } else if (courseVal == 'BSHM' || courseVal == 'BSHM-NONE') {
             BSHMS.forEach(BSHM => {
                 if (BSHM.classList.contains("d-none")) {
                     BSHM.classList.remove("d-none")

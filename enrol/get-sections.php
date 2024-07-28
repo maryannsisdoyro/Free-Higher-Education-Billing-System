@@ -29,3 +29,11 @@
     <option value="C">C</option>
     <option value="D">D</option>
 </select>
+
+<select name="section" class="form-control BSHM d-none" required>
+    <!-- <option value="" selected disabled>Select Section</option> -->
+    <option value="A">A</option>
+    <option value="B">B</option>
+    <option value="C">C</option>
+    <option value="D">D</option>
+</select>
