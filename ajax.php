@@ -101,5 +101,17 @@ if($action == "resetPassword"){
 		echo $forgot;
 }
 
+if($action == "import_csv_enrollment"){
+	$import = $crud->importCsvEnrollment();
+	if($import)
+		echo $import;
+}
+
+// if($action == "new_enroll"){
+// 	$new = $crud->newEnroll();
+// 	if($new)
+// 		echo $new;
+// }
+
 ob_end_flush();
 ?>

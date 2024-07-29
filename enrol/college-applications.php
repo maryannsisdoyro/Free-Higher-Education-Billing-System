@@ -68,7 +68,7 @@ $conn->close();
     <div class="container">
 
         <div class="d-flex align-items-center justify-content-between">
-        <h2 >College of Application Form</h2>
+        <h2 >Enrollment Database</h2>
         <a href="index.php" class="btn btn-danger"> Add New +</a>
         </div>
         

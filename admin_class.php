@@ -467,5 +467,241 @@ Class Action {
 
 	}
 
+	function importCsvEnrollment(){
+		// Define the MIME types of the CSV files.
+		$csvMimes = array(
+			'text/x-comma-separated-values', 'text/comma-separated-values', 
+			'application/octet-stream', 'application/vnd.ms-excel', 
+			'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 
+			'application/excel', 'application/vnd.msexcel'
+		); 
+	
+		if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'], $csvMimes)){ 
+	
+			if(is_uploaded_file($_FILES['file']['tmp_name'])){ 
+				
+				$csvFile = fopen($_FILES['file']['tmp_name'], 'r');
+				
+				fgetcsv($csvFile);
+				$i = 0;
+
+				while(($line = fgetcsv($csvFile)) !== FALSE){ 
+					
+					$line_arr = !empty($line) ? array_filter($line) : ''; 
+					if(!empty($line_arr)){ 
+						$application_no = trim($line_arr[1]);
+						$stu_id = trim($line_arr[2]);
+						$year_level = trim($line_arr[3]);
+						$stu_name = trim($line_arr[4]);
+						$stu_sta = trim($line_arr[5]);
+						$course = trim($line_arr[6]);
+						$major = trim($line_arr[7]);
+						$section = trim($line_arr[8]);
+						$curr = trim($line_arr[9]);
+						$reli = trim($line_arr[10]);
+						$con_no = trim($line_arr[11]);
+						$home_ad = trim($line_arr[12]);
+						$civil = trim($line_arr[13]);
+						$d_birth = trim($line_arr[14]);
+						$p_birth = trim($line_arr[15]);
+						$ele = trim($line_arr[16]);
+						$ele_year = trim($line_arr[17]);
+						$high = trim($line_arr[18]);
+						$high_year = trim($line_arr[19]);
+						$last_sc = trim($line_arr[20]);
+						$last_year = trim($line_arr[21]);
+						$tot_units = trim($line_arr[22]);
+						$un_enrol = trim($line_arr[23]);
+						$rate_per = trim($line_arr[24]);
+						$total = trim($line_arr[25]);
+						$lib = trim($line_arr[26]);
+						$com = trim($line_arr[27]);
+						$lab1 = trim($line_arr[28]);
+						$lab2 = trim($line_arr[29]);
+						$lab3 = trim($line_arr[30]);
+						$sch_id = trim($line_arr[31]);
+						$ath = trim($line_arr[32]);
+						$adm = trim($line_arr[33]);
+						$dev = trim($line_arr[34]);
+						$guid = trim($line_arr[35]);
+						$hand = trim($line_arr[36]);
+						$entr = trim($line_arr[37]);
+						$reg_fe = trim($line_arr[38]);
+						$med_den = trim($line_arr[39]);
+						$cul = trim($line_arr[40]);
+						$t_misfe = trim($line_arr[41]);
+						$g_tot = trim($line_arr[42]);
+						$image = trim($line_arr[43]);
+						
+
+						$check = $this->db->query("SELECT * FROM enroll2024 WHERE stu_id = '$stu_id'");
+
+						if ($check->num_rows > 0) {
+							$stmt = $this->db->query("UPDATE enroll2024 SET 
+								application_no = '$application_no',
+								stu_id = '$stu_id',
+								year_level = '$year_level',
+								stu_name = '$stu_name',
+								stu_sta = '$stu_sta',
+								course = '$course',
+								major = '$major',
+								section = '$section',
+								curr = '$curr',
+								reli = '$reli',
+								con_no = '$con_no',
+								home_ad = '$home_ad',
+								civil = '$civil',
+								d_birth = '$d_birth',
+								p_birth = '$p_birth',
+								ele = '$ele',
+								ele_year = '$ele_year',
+								high = '$high',
+								high_year = '$high_year',
+								last_sc = '$last_sc',
+								last_year = '$last_year',
+								tot_units = '$tot_units',
+								un_enrol = '$un_enrol',
+								rate_per = '$rate_per',
+								total = '$total',
+								lib = '$lib',
+								com = '$com',
+								lab1 = '$lab1',
+								lab2 = '$lab2',
+								lab3 = '$lab3',
+								sch_id = '$sch_id',
+								ath = '$ath',
+								adm = '$adm',
+								dev = '$dev',
+								guid = '$guid',
+								hand = '$hand',
+								entr = '$entr',
+								reg_fe = '$reg_fe',
+								med_den = '$med_den',
+								cul = '$cul',
+								t_misfe = '$t_misfe',
+								g_tot = '$g_tot',
+								image = '$image'
+							 WHERE stu_id = '$stu_id'");
+						}else{
+							$stmt = $this->db->query("INSERT INTO enroll2024
+							(
+								application_no,
+								stu_id,
+								year_level,
+								stu_name,
+								stu_sta,
+								course,
+								major,
+								section,
+								curr,
+								reli,
+								con_no,
+								home_ad,
+								civil,
+								d_birth,
+								p_birth,
+								ele,
+								ele_year,
+								high,
+								high_year,
+								last_sc,
+								last_year,
+								tot_units,
+								un_enrol,
+								rate_per,
+								total,
+								lib,
+								com,
+								lab1,
+								lab2,
+								lab3,
+								sch_id,
+								ath,
+								adm,
+								dev,
+								guid,
+								hand,
+								entr,
+								reg_fe,
+								med_den,
+								cul,
+								t_misfe,
+								g_tot,
+								image
+							) 
+							VALUES
+							(
+								'$application_no',
+								'$stu_id',
+								'$year_level',
+								'$stu_name',
+								'$stu_sta',
+								'$course',
+								'$major',
+								'$section',
+								'$curr',
+								'$reli',
+								'$con_no',
+								'$home_ad',
+								'$civil',
+								'$d_birth',
+								'$p_birth',
+								'$ele',
+								'$ele_year',
+								'$high',
+								'$high_year',
+								'$last_sc',
+								'$last_year',
+								'$tot_units',
+								'$un_enrol',
+								'$rate_per',
+								'$total',
+								'$lib',
+								'$com',
+								'$lab1',
+								'$lab2',
+								'$lab3',
+								'$sch_id',
+								'$ath',
+								'$adm',
+								'$dev',
+								'$guid',
+								'$hand',
+								'$entr',
+								'$reg_fe',
+								'$med_den',
+								'$cul',
+								'$t_misfe',
+								'$g_tot',
+								'$image'
+							)");
+						}
+
+						if ($stmt) {
+							$i++;
+						}
+
+					} 
+
+					
+				}
+	
+			
+				fclose($csvFile);
+
+				if ($stmt) {
+					return json_encode(['status' => 1]);
+				}
+	
+				
+			} else {
+				return json_encode(['status' => 0, 'message' => 'File upload failed.']);
+			}
+		} else {
+			return json_encode(['status' => 0, 'message' => 'Invalid file type.']);
+		}
+	}
+
+	
 	
 }

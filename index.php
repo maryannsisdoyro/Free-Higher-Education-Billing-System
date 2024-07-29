@@ -1,11 +1,11 @@
 <?php 
-  if (str_contains($_SERVER['REQUEST_URI'], "page=enrolled")) {
+  if (str_contains($_SERVER['REQUEST_URI'], "page=college-application")) {
     include 'db_connect.php';
-    $sql = "SELECT application_no, last_name, first_name, middle_name, home_address, present_address, contact, sex, date_of_birth, email, place_of_birth, civil_status, elementary, elementary_year_graduated, high_school, high_school_year_graduated, shs, shs_year_graduated, track_and_strand, complete_name, date_signed, course_to_be_enrolled FROM student_enroll";
+    $sql = "SELECT `id`,`application_no`,`stu_id`, `year_level`, `stu_name`, `stu_sta`, `course`, `major`, `section`, `curr`, `reli`, `con_no`, `home_ad`, `civil`, `d_birth`, `p_birth`, `ele`, `ele_year`, `high`, `high_year`, `last_sc`, `last_year`, `tot_units`, `un_enrol`, `rate_per`, `total`, `lib`, `com`, `lab1`, `lab2`, `lab3`, `sch_id`, `ath`, `adm`, `dev`, `guid`, `hand`, `entr`, `reg_fe`, `med_den`, `cul`, `t_misfe`, `g_tot`, `image` FROM `enroll2024` ";
+
     $result = $conn->query($sql);
     
-    function array_to_csv_download($array, $filename = "export.csv", $delimiter = ",")
-    {
+    function array_to_csv_download($array, $filename = "export.csv", $delimiter = ",") {
         header('Content-Type: application/csv');
         header('Content-Disposition: attachment; filename="' . $filename . '";');
     
@@ -13,10 +13,10 @@
     
         fputcsv($f, array_keys($array[0]), $delimiter);
     
+        
         foreach ($array as $row) {
             fputcsv($f, $row, $delimiter);
         }
-    
         fclose($f);
         exit();
     }
@@ -28,7 +28,11 @@
         }
         array_to_csv_download($data, 'student_list.csv');
     }
+    
+    $conn->close();
   }
+
+  
 ?>
 <!DOCTYPE html>
 <html lang="en">
