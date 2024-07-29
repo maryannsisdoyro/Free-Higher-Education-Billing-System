@@ -108,6 +108,7 @@
   	<?php include $page.'.php' ?>
   	
 
+    <?php include 'footer.php' ?>
   </main>
 
   <div id="preloader"></div>

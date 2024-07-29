@@ -70,6 +70,8 @@ header("location:index.php?page=home");
   			</div>
   		</div>
   		</div>
+
+		  <?php include 'footer.php' ?>
   </main>
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>

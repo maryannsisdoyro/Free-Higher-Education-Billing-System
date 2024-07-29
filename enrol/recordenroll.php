@@ -105,6 +105,8 @@ include 'db.php';
 
         </div>
 
+        <?php include '../footer.php' ?>
+
     </main>
     <link href="sweetalerts/sweetalert2.min.css" rel="stylesheet">
     <script src="sweetalerts/sweetalert2@11.js"></script>

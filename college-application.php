@@ -15,7 +15,7 @@
             <button type="button" class="btn btn-danger" onclick="RestartoUnprint()">1</button>
             <a href="index.php?page=college-application&export=csv" class="btn btn-success">Export to CSV</a>
             <a href="javascript:void(0);" onclick="printTable()" class="btn btn-primary">Print</a> 
-            <button class="btn btn-primary" type="button" onclick="location.href='index.php?page=subject'">Subject</button>
+            <button class="btn btn-primary" type="button" onclick="location.href='enrol/home.php?page=subjects'">Subject</button>
             <!-- <button class="btn btn-primary" type="button" onclick="location.href='students.php'">Students</button> -->
             <!--
             <button class="btn btn-primary" type="button" onclick="location.href='college-applications.php'">College of application Form </button> -->
@@ -132,6 +132,8 @@
 </table>
 
         </div>
+
+        
         
     </div>
 

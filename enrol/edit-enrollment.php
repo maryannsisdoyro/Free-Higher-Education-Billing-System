@@ -42,7 +42,7 @@ $sections = [
     <style>
         body {
             background-color: #e0f7fa;
-            padding: 20px;
+            /* padding: 20px; */
         }
 
         .form-container {
