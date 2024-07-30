@@ -859,7 +859,7 @@ if ($row) {
                         </td>
 
                         <td colspan="5" style="text-align: right;"><strong>ID Number:</strong></td>
-                        <td colspan="5"><u><?php echo $formatted_studentid; ?></u></td>
+                        <td colspan="5"><u><?php echo $row['stu_id']; ?></u></td>
                     </tr>
                     <tr>
                         <td colspan="2"><strong>Course:</strong></td>

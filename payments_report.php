@@ -124,9 +124,9 @@
                                                 <th>Total TOSF</th>
                                             </thead>
                                             <?php
-                                            if ($payments->num_rows > 0) {
+                                            if (count($data) > 0) {
                                                 $count = 1;
-                                                foreach ($payments as $row) {
+                                                foreach ($data as $row) {
                                                    
                                             ?>
                                                     <tr>
@@ -149,14 +149,14 @@
                                                         <td><?= $row['academic_nstp'] ?></td>
                                                         <?php
                                                      
-                                                        // $cfees2 = $conn->query("SELECT * FROM fees where course_id = '". $row['course_id'] ."' ");
-                                                        // $ftotal = 0;
-                                                        //     while ($row2 = $cfees2->fetch_assoc()) {
-                                                        //         $ftotal += $row2['amount'];
-                                                        //         ?>
-                                                        <!-- //             <td class='text-right'><b><?php # echo number_format($row2['amount'] ?? 0, 2) ?></b></td> -->
-                                                                 <?php
-                                                        //     }
+                                                        $cfees2 = $conn->query("SELECT * FROM fees where course_id = '". $row['course_id'] ."'");
+                                                        $ftotal = 0;
+                                                            while ($row2 = $cfees2->fetch_assoc()) {
+                                                                $ftotal += $row2['amount'];
+                                                                ?>
+                                                                    <td class='text-right'><b><?php echo number_format($row2['amount'] ?? 0, 2) ?></b></td>
+                                                                <?php
+                                                            }
                                                         ?>
                                                       
                                                       
