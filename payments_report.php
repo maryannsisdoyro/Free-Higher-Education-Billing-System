@@ -28,11 +28,10 @@
                       c.total_amount    
                       FROM 
                         payments p 
-                        INNER JOIN 
-                        courses c ON e.course = c.department
                       INNER JOIN 
                         enroll2024 e ON p.ef_id = e.id 
-                   
+                    RIGHT JOIN 
+                        courses c ON e.course = c.department
                     WHERE MONTH(p.date_created) = '$month' AND YEAR(p.date_created) = '$year' ORDER BY e.lname ASC ");
 
                     echo $payments->num_rows;
@@ -127,7 +126,7 @@
                                                 <th>Total TOSF</th>
                                             </thead>
                                             <?php
-                                            // echo count($data);
+                                            echo count($data);
                                             if (count($data) > 0) {
                                                 $count = 1;
                                                 foreach ($data as $row) {
