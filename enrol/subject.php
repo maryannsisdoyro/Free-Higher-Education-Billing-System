@@ -215,7 +215,7 @@ $conn->close();
                     window.location.href = "home.php?page=edit-subject&id=" + application_no;
                 } else if (result.isDenied) {
                     // Redirect to the edit page
-                    window.location.href = "delete-subject.php?id=" + application_no;
+                    window.location.href = "deleteSub.php?id=" + application_no;
                 }
             });
         });
