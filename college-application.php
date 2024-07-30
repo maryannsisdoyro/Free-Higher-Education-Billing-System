@@ -79,7 +79,7 @@
             while($row = $result->fetch_assoc()) {
                 $year = $row["year_level"] ?? '0';
                 echo "<tr>
-                        <td class='text-center'><input type='checkbox' class='row_checkbox' name='selected_application[]' value='".$row["id"]."'></td> <!-- Checkbox -->
+                        <td class='text-center'><input type='checkbox' class='row_checkbox' name='selected_application[]' value='".$row["id"]."' data='".$row["stu_id"]."'></td> <!-- Checkbox -->
                         <td>".$row["application_no"]."</td>
                         <td>".$row["stu_id"]."</td>
                         <td>".$row["stu_name"]."</td>
@@ -136,6 +136,12 @@
         
         
     </div>
+    <link href="sweetalerts/sweetalert2.min.css" rel="stylesheet">
+    <script src="sweetalerts/sweetalert2@11.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-1BmE4k2HxZbAUot0H8VW4+nH6HiQoTCtVhjx2Ks11P+3pFb6PI8qzWJ5KqL5vmHH" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+EW0PA/Nk5O2AWK3xFPrDh4Ta1gYhT3Y2vo" crossorigin="anonymous"></script> -->
 
     <script>
           function printTable() {
@@ -159,3 +165,46 @@
 		$('table').dataTable()
 	})
     </script>
+
+<script>
+    $(document).ready(function() {
+        $(".row_checkbox").on("click", function() {
+            var application_no = $(this).val();
+            var stu_id = $(this).attr('data'); // Get the value of the checkbox, which is the application number
+
+            // Display confirmation dialog
+            Swal.fire({
+                title: 'STUDENTS ENROLLMENT',
+                text: 'Records Information',
+                icon: 'info',
+                showCancelButton: true,
+                // showDenyButton: true, // Add showDenyButton option to show the "Edit" button
+                // confirmButtonText: 'Enroll',
+                // denyButtonText: 'Delete', // Text for the "Edit" button
+                cancelButtonText: 'Cancel',
+                confirmButtonText: 'Print',
+                didRender: function() {
+                            // Create custom "Select" button
+                            const selectButton = Swal.getConfirmButton().cloneNode();
+                            selectButton.style.backgroundColor = 'green'; 
+                            selectButton.innerText = 'COR';
+                            selectButton.classList.add('swal2-confirm', 'swal2-styled');
+                            selectButton.addEventListener('click', function() {
+                                Swal.close();
+                                // Handle the select button click
+                                console.log("Select button clicked");
+                                window.location.href = "enrol/student-cor.php?application_no=" + application_no;
+                            });
+                            Swal.getActions().prepend(selectButton);
+                        }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var printWindow = window.open("enrol/print-college-enrol.php?application_no=" + application_no, "_blank");
+                } else if (result.isDenied) {
+                    // Redirect to the edit page
+                    window.location.href = "delete-subject.php?id=" + application_no;
+                }
+            });
+        });
+    });
+</script>

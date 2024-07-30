@@ -1,5 +1,5 @@
 <div style="margin-top: 20px;" class="BEED">
-			<table>
+			<table id="example2" class="table table-bordered table-hover">
 				<thead>
 					<th colspan="11" style="text-align: center;">Assessment</th>
 				</thead>
@@ -42,7 +42,7 @@
 </div>
 
 <div style="margin-top: 20px;" class="BSIT d-none">
-			<table>
+			<table id="example2" class="table table-bordered table-hover">
 				<thead>
 					<th colspan="11" style="text-align: center;">Assessment</th>
 				</thead>
@@ -85,7 +85,7 @@
 </div>
 
 <div style="margin-top: 20px;" class="BSBA d-none">
-			<table>
+			<table id="example2" class="table table-bordered table-hover">
 				<thead>
 					<th colspan="11" style="text-align: center;">Assessment</th>
 				</thead>
@@ -128,7 +128,7 @@
 </div>
 
 <div style="margin-top: 20px;" class="BSHM d-none">
-			<table>
+			<table id="example2" class="table table-bordered table-hover">
 				<thead>
 					<th colspan="11" style="text-align: center;">Assessment</th>
 				</thead>
@@ -171,7 +171,7 @@
 </div>
 
 <div style="margin-top: 20px;" class="BSED d-none">
-			<table>
+			<table id="example2" class="table table-bordered table-hover">
 				<thead>
 					<th colspan="11" style="text-align: center;">Assessment</th>
 				</thead>

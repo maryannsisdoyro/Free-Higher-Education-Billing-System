@@ -1,3 +1,9 @@
+<?php 
+       $get_academic = $conn->query("SELECT * FROM academic WHERE status = 1 ORDER BY id DESC");
+       $res_academic = $get_academic->fetch_array();
+       $semester = $res_academic['semester'];
+?>
+
 <div class="BSIT d-none">
 <table id="example2" class="table table-bordered table-hover" style="font-size: small;">
         <thead>
@@ -15,7 +21,7 @@
             <?php
             // Assuming $conn is your database connection
             $totalUnits = 0;
-            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = 'BSIT'");
+            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = 'BSIT' AND sem = '$semester'");
 
             foreach ($query as $row) :
                 $totalUnits += $row['units'];
@@ -63,7 +69,7 @@
             <?php
             // Assuming $conn is your database connection
             $totalUnits = 0;
-            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = 'BSBA'");
+            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = 'BSBA' AND sem = '$semester'");
 
             foreach ($query as $row) :
                 $totalUnits += $row['units'];
@@ -111,7 +117,7 @@
             <?php
             // Assuming $conn is your database connection
             $totalUnits = 0;
-            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = 'BEED'");
+            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = 'BEED' AND sem = '$semester'");
 
             foreach ($query as $row) :
                 $totalUnits += $row['units'];
@@ -159,7 +165,7 @@
             <?php
             // Assuming $conn is your database connection
             $totalUnits = 0;
-            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = 'BSED'");
+            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = 'BSED' AND sem = '$semester'");
 
             foreach ($query as $row) :
                 $totalUnits += $row['units'];
@@ -207,7 +213,7 @@
             <?php
             // Assuming $conn is your database connection
             $totalUnits = 0;
-            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = 'BSHM'");
+            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = 'BSHM' AND sem = '$semester'");
 
             foreach ($query as $row) :
                 $totalUnits += $row['units'];

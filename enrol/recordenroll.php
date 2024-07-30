@@ -1,6 +1,10 @@
 <?php
 session_start();
 include 'db.php';
+
+if (isset($_POST['search'])) {
+    header('location: home.php?page=enrol&search='. $_POST['search']);
+  }
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +81,7 @@ include 'db.php';
 <?php include './topbar.php' ?>
 	<?php include './navbar.php' ?>
 
-    <main id="view-panel" class="container p-3">
+    <main id="view-panel" class="container p-3 position-relative overflow-hidden" style="min-height: 70vh;">
 
         <h2 class="my-4 text-center">Enrol Student</h2>
 
@@ -93,7 +97,7 @@ include 'db.php';
         <div class="mt-3 mb-5 ">
             <!-- <a href="?export=csv" class="btn btn-success">Export to CSV</a> -->
             <!-- <a href="college-applications.php" class="btn btn-primary">Back</a> -->
-            <form method="get" class="d-flex align-items-center mx-auto" style="gap: 10px; width: 500px;">
+            <form method="post" action="home.php?page=enrol" class="d-flex align-items-center mx-auto" style="gap: 10px; width: 500px;">
                 <input type="search" class="form-control my-2" name="search" placeholder="Student ID">
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
@@ -105,7 +109,9 @@ include 'db.php';
 
         </div>
 
+        <div class="position-absolute bottom-0 my-auto w-100 overflow-hidden">
         <?php include '../footer.php' ?>
+        </div>
 
     </main>
     <link href="sweetalerts/sweetalert2.min.css" rel="stylesheet">

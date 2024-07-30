@@ -187,7 +187,7 @@
 
                         </div>
                         <div class="card-body table-responsive" id="student-table">
-                            <table class="wborder">
+                            <table id="example2" class="table table-bordered table-hover">
                                 <tr>
                                     <td colspan="29" class="text-center">
                                         <p class="mt-3">Republic of the Philippines</p>

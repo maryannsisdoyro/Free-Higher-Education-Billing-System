@@ -1,4 +1,5 @@
   <?php
+
     if (isset($_GET['search'])) {
         $search = $_GET['search'];
         $sql = "SELECT * FROM enroll2024 WHERE stu_id = '$search' ";

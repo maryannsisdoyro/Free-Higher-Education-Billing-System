@@ -148,7 +148,7 @@ if ($row) {
             <!-- <button class="btn btn-warning" id="startButton">Take Photo</button>
             <button class="btn btn-danger hidden" id="captureButton">Capture</button> -->
             <button type="button" class="btn btn-primary" onclick="window.print()">Print</button>
-            <a href="./college-applications.php" class="btn btn-secondary">Back</a>
+            <a href="../index.php?page=college-application" class="btn btn-secondary">Back</a>
 
 
         </div>
@@ -999,51 +999,51 @@ if ($row) {
                     }
                 </style>
                 <div class="table-responsive table-responsive-data2">
-                    <table id="example2" class="table table-bordered table-hover" style="font-size: small;">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Time</th>
-                                <th class="text-center">Day</th>
-                                <th class="text-center">Subject Code</th>
-                                <th class="text-center">Subject Description</th>
-                                <th class="text-center">Units</th>
-                                <th class="text-center">Room</th>
-                                <th class="text-center">Instructor</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            // Assuming $conn is your database connection
-                            $totalUnits = 0;
-                            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '" . $row['course'] . "' AND sem = '" . $row['semester'] . "' AND year = '" . $row['section'] . "'");
+                <table id="example2" class="table table-bordered table-hover" style="font-size: small;">
+        <thead>
+            <tr>
+                <th class="text-center">Time</th>
+                <th class="text-center">Day</th>
+                <th class="text-center">Subject Code</th>
+                <th class="text-center">Subject Description</th>
+                <th class="text-center">Units</th>
+                <th class="text-center">Room</th>
+                <th class="text-center">Instructor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Assuming $conn is your database connection
+            $totalUnits = 0;
+            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$row['course']."' AND sem = '".$row['semester']."'");
 
-                            foreach ($query as $row) :
-                                $totalUnits += $row['units'];
-                            ?>
-                                <tr>
-                                    <td class="text-center"><?php echo htmlentities($row['tbl_time']); ?></td>
-                                    <td class="text-center"><?php echo htmlentities($row['tbl_day']); ?></td>
-                                    <td class="text-center sub-column"><?php echo htmlentities($row['subjectcode']); ?></td>
-                                    <td class="text-center des-column"><?php echo htmlentities($row['subdes']); ?></td>
-                                    <td class="text-center units-column"><?php echo htmlentities($row['units']); ?></td>
-                                    <td class="text-center"><?php echo htmlentities($row['room']); ?></td>
-                                    <td class="text-center ins-column"><?php echo htmlentities($row['inst']); ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-
-                                <td class="sub-column" colspan="2" style="text-align: right;"><strong>Numbers of Units Applied: </strong></td>
-                                <td class="units-column" style="text-align: center;"><strong> <?php echo number_format($totalUnits); ?></strong></td>
-
-                                <td class="des-column" style="text-align: right;"><strong>Approved Units: </strong></td>
-                                <td class="units-column" style="text-align: center;"><strong><?php echo number_format($totalUnits); ?></strong></td>
-                                <td class="des-column" style="text-align: right;"><strong>Dispproved Units: </strong></td>
-                                <td class="ins-column" style="text-align: center;"><strong></strong></td>
-                            </tr>
-                        </tfoot>
-                    </table>
+            foreach ($query as $row) :
+                $totalUnits += $row['units'];
+            ?>
+                <tr>
+                    <td class="text-center"><?php echo htmlentities($row['tbl_time']); ?></td>
+                    <td class="text-center"><?php echo htmlentities($row['tbl_day']); ?></td>
+                    <td class="text-center sub-column"><?php echo htmlentities($row['subjectcode']); ?></td>
+                    <td class="text-center des-column"><?php echo htmlentities($row['subdes']); ?></td>
+                    <td class="text-center units-column"><?php echo htmlentities($row['units']); ?></td>
+                    <td class="text-center"><?php echo htmlentities($row['room']); ?></td>
+                    <td class="text-center ins-column"><?php echo htmlentities($row['inst']); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+        <tfoot>
+            <tr>
+                
+                <td class="sub-column" colspan="2" style="text-align: right;"><strong>Numbers of Units Applied: </strong></td>
+                  <td class="units-column" style="text-align: center;"><strong> <?php echo number_format($totalUnits); ?></strong></td>
+              
+                <td class="des-column" style="text-align: right;"><strong>Approved Units: </strong></td>
+                <td class="units-column" style="text-align: center;"><strong><?php echo number_format($totalUnits); ?></strong></td>
+                <td class="des-column" style="text-align: right;"><strong>Dispproved Units: </strong></td>
+                <td class="ins-column" style="text-align: center;"><strong></strong></td>
+            </tr>
+        </tfoot>
+</table>
                     <!--   <div class="center-images">
        <img src="r2.jpg" alt="MCC Logo" style="height: 90px; width: 800px;">
     </div> -->
@@ -1508,7 +1508,7 @@ if ($row) {
     </tbody>
 </table> -->
 <div style="margin-top: 20px;" class="">
-			<table>
+			<table id="example2" class="table table-bordered table-hover">
 				<thead>
 					<th colspan="11" style="text-align: center;">Assessment</th>
 				</thead>
@@ -1521,31 +1521,36 @@ if ($row) {
 				<?php
                 
 				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."'");
-				$fetch_course = $get_course->fetch_assoc();
-
-				$cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
-				$ftotal = 0;
-				while ($row = $cfees->fetch_assoc()) {
-					$ftotal += $row['amount'];
-				?>
-
-
-				<tr>
-					<td colspan="2"><?= $row['description'] ?></td>
-					<td colspan="5" style="text-align: center;"></td>
-					<td colspan="2" style="text-align: center;"><?= $row['amount'] != 0 ? $row['amount'] : '-' ?></td>
-					<td colspan="3" style="text-align: center;"><?= $row['amount'] ?></td>
-				</tr>
-
-				<?php
-				}
-				?>
-				<tr>
-					<td colspan="2">Grand Total</td>
-					<td colspan="5" style="text-align: center;"></td>
-					<td colspan="2" style="text-align: center;"></td>
-					<td colspan="3" class="text-right"><b><?php echo number_format($ftotal, 2) ?></b></td>
-				</tr>
+				
+                
+                if ($get_course->num_rows > 0) {
+                    $fetch_course = $get_course->fetch_assoc();
+                    $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
+                    $ftotal = 0;
+                    while ($row = $cfees->fetch_assoc()) {
+                        $ftotal += $row['amount'];
+                    ?>
+    
+    
+                    <tr>
+                        <td colspan="2"><?= $row['description'] ?></td>
+                        <td colspan="5" style="text-align: center;"></td>
+                        <td colspan="2" style="text-align: center;"><?= $row['amount'] != 0 ? $row['amount'] : '-' ?></td>
+                        <td colspan="3" style="text-align: center;"><?= $row['amount'] ?></td>
+                    </tr>
+    
+                    <?php
+                    }
+                    ?>
+                    <tr>
+                        <td colspan="2">Grand Total</td>
+                        <td colspan="5" style="text-align: center;"></td>
+                        <td colspan="2" style="text-align: center;"></td>
+                        <td colspan="3" class="text-right"><b><?php echo number_format($ftotal, 2) ?></b></td>
+                    </tr>
+                    <?php
+                }
+                ?>
 				
 				
 			</table>
