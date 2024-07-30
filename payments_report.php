@@ -28,11 +28,14 @@
                       c.total_amount    
                       FROM 
                         payments p 
+                        INNER JOIN 
+                        courses c ON e.course = c.department
                       INNER JOIN 
                         enroll2024 e ON p.ef_id = e.id 
-                    LEFT JOIN 
-                        courses c ON e.course = c.department
+                   
                     WHERE MONTH(p.date_created) = '$month' AND YEAR(p.date_created) = '$year' ORDER BY e.lname ASC ");
+
+                    echo $payments->num_rows;
                    
                       if($payments->num_rows > 0):
 			          while($row = $payments->fetch_array()):
