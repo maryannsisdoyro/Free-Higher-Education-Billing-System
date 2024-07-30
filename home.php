@@ -67,7 +67,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <h1 class="border-bottom pb-3"><img src="assets/icons/BSBA.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
+                        <h1 class="border-bottom pb-3"><img src="assets/icons/bsba.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
                             $get_bsba = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSBA' AND curr = '$year'");
                             echo $get_bsba->num_rows;
