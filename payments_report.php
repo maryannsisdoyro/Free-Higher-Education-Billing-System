@@ -32,7 +32,7 @@
                         enroll2024 e ON p.ef_id = e.id 
                     INNER JOIN 
                         courses c ON e.course = c.department
-                    WHERE MONTH(p.date_created) = '$month' AND YEAR(p.date_created) = '$year' ORDER BY e.lname ASC ");
+                    WHERE MONTH(p.date_created) = '$month' AND YEAR(p.date_created) = '$year' GROUP BY p.ef_id ORDER BY e.lname ASC ");
                    
                       if($payments->num_rows > 0):
 			          while($row = $payments->fetch_array()):
