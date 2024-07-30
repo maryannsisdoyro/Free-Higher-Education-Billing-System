@@ -124,9 +124,9 @@
                                                 <th>Total TOSF</th>
                                             </thead>
                                             <?php
-                                            if (count($data) > 0) {
+                                            if ($payments->num_rows > 0) {
                                                 $count = 1;
-                                                foreach ($data as $row) {
+                                                foreach ($payments as $row) {
                                                    
                                             ?>
                                                     <tr>
