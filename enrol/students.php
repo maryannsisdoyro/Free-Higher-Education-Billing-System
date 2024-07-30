@@ -271,11 +271,11 @@ $conn->close();
             var application_no = $(this).val(); // Get the value of the checkbox, which is the application number
 
             // Update status to 'Read'
-            $.ajax({
-                url: "resetstatus.php?application_no=" + application_no, // Corrected the URL
-                type: "POST",
-                data: {}, // No need to send any data in this request
-                success: function() {
+            // $.ajax({
+            //     url: "resetstatus.php?application_no=" + application_no, // Corrected the URL
+            //     type: "POST",
+            //     data: {}, // No need to send any data in this request
+            //     success: function() {
                     // Display confirmation dialog
                     Swal.fire({
                         title: 'COLLEGE APPLICATION FORM',
@@ -316,12 +316,12 @@ $conn->close();
                             window.location.href = "edit-student.php?application_no=" + application_no;
                         }
                     });
-                },
-                error: function(xhr, status, error) {
-                    console.error("Error occurred: " + error);
-                }
+                // },
+                // error: function(xhr, status, error) {
+                //     console.error("Error occurred: " + error);
+                // }
             });
-        });
+        // });
     });
 </script>
 
