@@ -146,9 +146,9 @@
                         payments p 
                       INNER JOIN 
                         enroll2024 e ON p.ef_id = e.id 
-                    LEFT JOIN 
+                    INNER JOIN 
                         courses c ON e.course = c.department
-                    WHERE MONTH(p.date_created) = '$month' AND YEAR(p.date_created) = '$year' ORDER BY e.lname ASC ");
+                    WHERE MONTH(p.date_created) = '$month' AND YEAR(p.date_created) = '$year' GROUP BY p.ef_id ORDER BY e.lname ASC ");
                    
                       if($payments->num_rows > 0):
 			          while($row = $payments->fetch_array()):
@@ -262,15 +262,15 @@
                                                         <td><?= $row['academic_nstp'] ?></td>
                                                         <?php
                                                      
-                                                        $cfees2 = $conn->query("SELECT * FROM fees where course_id = '". $row['course_id'] ."'");
-                                                        $ftotal = 0;
-                                                            while ($row2 = $cfees2->fetch_assoc()) {
-                                                                $ftotal += $row2['amount'];
-                                                                ?>
-                                                                    <td class='text-right'><b><?php echo number_format($row2['amount'] ?? 0, 2) ?></b></td>
-                                                                <?php
-                                                            }
-                                                        ?>
+                                                     $cfees2 = $conn->query("SELECT * FROM fees f INNER JOIN courses c ON f.course_id = c.id where course_id = '". $row['course_id'] ."' AND c.level = '".$row['year_level']."' ");
+                                                     $ftotal = 0;
+                                                         while ($row2 = $cfees2->fetch_assoc()) {
+                                                             $ftotal += $row2['amount'];
+                                                             ?>
+                                                                 <td class='text-right'><b><?php echo number_format($row2['amount'] ?? 0, 2) ?></b></td>
+                                                             <?php
+                                                         }
+                                                     ?>
                                                       
                                                       
                                                         <td style="text-align: right;" colspan="<?= $count == 1 ? $cfees->num_rows + 1 : '' ?>"><?= $row['total_amount'] ?? 0 ?></td>
