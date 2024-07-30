@@ -54,7 +54,7 @@ function sanitize_input($data) {
                 window.onload = function() {
                     Swal.fire({
                         title: "Success!",
-                        text: "Subject Data Successfully Created !!",
+                        text: "Subject Data Successfully Updated !!",
                         icon: "success"
                     }).then((result) => {
                         if (result.isConfirmed) {

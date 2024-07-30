@@ -178,9 +178,9 @@
                 text: 'Records Information',
                 icon: 'info',
                 showCancelButton: true,
-                // showDenyButton: true, // Add showDenyButton option to show the "Edit" button
+                showDenyButton: true, // Add showDenyButton option to show the "Edit" button
                 // confirmButtonText: 'Enroll',
-                // denyButtonText: 'Delete', // Text for the "Edit" button
+                denyButtonText: 'Delete', // Text for the "Edit" button
                 cancelButtonText: 'Cancel',
                 confirmButtonText: 'Print',
                 didRender: function() {
@@ -202,7 +202,7 @@
                     var printWindow = window.open("enrol/print-college-enrol.php?application_no=" + application_no, "_blank");
                 } else if (result.isDenied) {
                     // Redirect to the edit page
-                    window.location.href = "delete-subject.php?id=" + application_no;
+                    window.location.href = "enrol/delete-enrol.php?id=" + application_no;
                 }
             });
         });
