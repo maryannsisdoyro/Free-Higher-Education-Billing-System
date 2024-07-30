@@ -161,7 +161,7 @@
                                                       
                                                       
                                                         <td style="text-align: right;" colspan="<?= $count == 1 ? $cfees->num_rows + 1 : '' ?>"><?= $row['total_amount'] ?? 0 ?></td>
-                                                        <?php  $count++; ?>
+                                                       
                                                        
                                                     </tr>
                                             <?php
