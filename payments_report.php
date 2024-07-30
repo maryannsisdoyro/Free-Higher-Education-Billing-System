@@ -124,12 +124,48 @@
                                                 <th>Total TOSF</th>
                                             </thead>
                                             <?php
-                                            if ($payments->num_rows > 0) {
+                                            echo count($data);
+                                            if (count($data) > 0) {
                                                 $count = 1;
-                                                foreach ($payments as $row) {
-                                                    echo "hello ";
+                                                foreach ($data as $row) {
                                                    
-                                        
+                                            ?>
+                                                    <tr>
+                                                       <td>000<?= $row['id'] ?></td>
+                                                       
+                                                        <td><?= $row['stu_id'] ?></td>
+                                                        <td></td>
+                                                        <td><?= strtoupper($row['lname']) ?></td>
+                                                        <td><?= strtoupper($row['fname']) ?></td>
+                                                        <td><?= strtoupper($row['mname']) ?></td>
+                                                       
+                                                        <td><?= $courses[$row['course']] ?></td>
+                                                        <td><?= $row['year_level'] ?></td>
+                                                        <td><?= $row['gender'] ?></td>
+                                                        <td><?= $row['email'] ?></td>
+                                                        <td><?= $row['con_no'] ?></td>
+                                                        <td><?= $row['laboratory'] ?></td>
+                                                        <td><?= $row['computer'] ?></td>
+                                                        <td><?= $row['academic'] ?></td>
+                                                        <td><?= $row['academic_nstp'] ?></td>
+                                                        <?php
+                                                     
+                                                        $cfees2 = $conn->query("SELECT * FROM fees f INNER JOIN courses c ON f.course_id = c.id where course_id = '". $row['course_id'] ."' AND c.level = '".$row['year_level']."' ");
+                                                        $ftotal = 0;
+                                                            while ($row2 = $cfees2->fetch_assoc()) {
+                                                                $ftotal += $row2['amount'];
+                                                                ?>
+                                                                    <td class='text-right'><b><?php echo number_format($row2['amount'] ?? 0, 2) ?></b></td>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                      
+                                                      
+                                                        <td style="text-align: right;" colspan="<?= $count == 1 ? $cfees->num_rows + 1 : '' ?>"><?= $row['total_amount'] ?? 0 ?></td>
+                                                       
+                                                       
+                                                    </tr>
+                                            <?php
                                                 }
                                             }
                                             ?>
