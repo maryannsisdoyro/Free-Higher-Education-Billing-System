@@ -30,7 +30,7 @@
                         payments p 
                       INNER JOIN 
                         enroll2024 e ON p.ef_id = e.id 
-                    INNER JOIN 
+                    LEFT JOIN 
                         courses c ON e.course = c.department
                     WHERE MONTH(p.date_created) = '$month' AND YEAR(p.date_created) = '$year' ORDER BY e.lname ASC ");
                    
@@ -149,14 +149,14 @@
                                                         <td><?= $row['academic_nstp'] ?></td>
                                                         <?php
                                                      
-                                                        $cfees2 = $conn->query("SELECT * FROM fees where course_id = '". $row['course_id'] ."' ");
-                                                        $ftotal = 0;
-                                                            while ($row2 = $cfees2->fetch_assoc()) {
-                                                                $ftotal += $row2['amount'];
-                                                                ?>
-                                                                    <td class='text-right'><b><?php echo number_format($row2['amount'] ?? 0, 2) ?></b></td>
-                                                                <?php
-                                                            }
+                                                        // $cfees2 = $conn->query("SELECT * FROM fees where course_id = '". $row['course_id'] ."' ");
+                                                        // $ftotal = 0;
+                                                        //     while ($row2 = $cfees2->fetch_assoc()) {
+                                                        //         $ftotal += $row2['amount'];
+                                                        //         ?>
+                                                        <!-- //             <td class='text-right'><b><?php # echo number_format($row2['amount'] ?? 0, 2) ?></b></td> -->
+                                                                 <?php
+                                                        //     }
                                                         ?>
                                                       
                                                       
