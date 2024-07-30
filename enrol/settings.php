@@ -257,7 +257,9 @@ $academic_query = $conn->query("SELECT * FROM academic");
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location = z
-                }
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+            window.location.href = "home.php?page=settings";
+        }
             });
         }
     </script>

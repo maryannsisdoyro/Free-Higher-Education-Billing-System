@@ -110,7 +110,7 @@
                             2nd 
                         </div>
                         <div class="col-lg-3 col-6">
-                            <input type="radio" name="semester" value="2nd">
+                            <input type="radio" name="semester" value="Summer">
                             Summer 
                         </div>
                       
