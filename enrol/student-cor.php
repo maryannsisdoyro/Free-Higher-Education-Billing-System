@@ -99,6 +99,8 @@ if ($row) {
     
     $date_signed  = date('Y-m-d', strtotime($row["date_signed"]));
     $course_to_be_enrolled  = $all_course[$row["course"]];
+    $y_level = $row['year_level'];
+    
    
 }
 
@@ -1508,6 +1510,7 @@ if ($row) {
     </tbody>
 </table> -->
 <div style="margin-top: 20px;" class="">
+
 			<table id="example2" class="table table-bordered table-hover">
 				<thead>
 					<th colspan="11" style="text-align: center;">Assessment</th>
@@ -1520,7 +1523,8 @@ if ($row) {
 				</tr>
 				<?php
                 
-				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND level = '". $row['year_level'] ."'");
+				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND level = '". $y_level ."'");
+                
 				
                 
                 if ($get_course->num_rows > 0) {
