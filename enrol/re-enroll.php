@@ -32,7 +32,7 @@
                               <th>Email</th>
                               <th>Year Level</th>
                               <th>Section</th>
-                              <th>2nd Semester</th>
+                              <th>Semester</th>
                               <th>Academic</th>
                               <th></th>
                           </thead>

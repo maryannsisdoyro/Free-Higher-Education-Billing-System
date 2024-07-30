@@ -11,6 +11,8 @@ if (isset($_GET['page'])) {
         include 'recordenroll.php';
     }else if ($page == 'subjects') {
         include 'subject.php';
+    }else if ($page == 'edit-subject') {
+        include 'edit-subject.php';
     }else if ($page == 'settings') {
         include 'settings.php';
     }else if ($page == 'add-new') {

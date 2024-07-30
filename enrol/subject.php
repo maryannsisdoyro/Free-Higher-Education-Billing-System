@@ -212,7 +212,7 @@ $conn->close();
             }).then((result) => {
                 if (result.isConfirmed) {
                      // Redirect to the edit page
-                    window.location.href = "edit-subject.php?id=" + application_no;
+                    window.location.href = "home.php?page=edit-subject&id=" + application_no;
                 } else if (result.isDenied) {
                     // Redirect to the edit page
                     window.location.href = "delete-subject.php?id=" + application_no;

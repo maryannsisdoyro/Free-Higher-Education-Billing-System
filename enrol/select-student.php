@@ -148,7 +148,7 @@ if ($row) {
                                 <option value="BSHM">Bachelor of Science in Hotel Management</option>
                                 <option value="BSBA">Bachelor of Science in Business Administration</option> -->
                                 <?php
-                                $get_course = $conn->query("SELECT * FROM courses");
+                                $get_course = $conn->query("SELECT * FROM courses WHERE level = '1st'");
                                 // $fetch_course = $get_course->fetch_assoc();
 
                                 // $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
@@ -156,7 +156,7 @@ if ($row) {
                                 while ($row = $get_course->fetch_assoc()) {
                                     // $ftotal += $row['amount'];
                                 ?>
-                                    <option value="<?= $row['department'] ?>"><?= $row['course'] .' '. $row['level']  ?></option>
+                                    <option value="<?= $row['department'] ?>"><?= $row['course']  ?></option>
                                 <?php } ?>
                             </select>
 
