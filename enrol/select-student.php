@@ -327,7 +327,7 @@ if ($row) {
 
                     <!-- <button class="btn btn-primary" type="submit" id="submit"><i class="fa fa-print"></i> Save</button> -->
                     <button class="btn btn-success" type="button" id="print"><i class="fa fa-print"></i> Print</button>
-                    <a href="students.php" class="btn btn-secondary">Cancel</a>
+                    <a href="home.php?page=students" class="btn btn-secondary">Cancel</a>
 
 
                 </form>
