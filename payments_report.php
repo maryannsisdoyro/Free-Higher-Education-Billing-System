@@ -124,9 +124,10 @@
                                                 <th>Total TOSF</th>
                                             </thead>
                                             <?php
-                                            if (count($data) > 0) {
+                                            if ($payments->num_rows > 0) {
                                                 $count = 1;
-                                                foreach ($data as $row) {
+                                                foreach ($payments as $row) {
+                                                    echo "hello ";
                                                    
                                             ?>
                                                     <tr>
@@ -158,9 +159,9 @@
                                                                 <?php
                                                             }
                                                         ?>
-                                                      sdsdsds
                                                       
-                                                        <td style="text-align: right;" colspan=""><?= $row['total_amount'] ?? 0 ?></td>
+                                                      
+                                                        <td style="text-align: right;" colspan="<?= $count == 1 ? $cfees->num_rows + 1 : '' ?>"><?= $row['total_amount'] ?? 0 ?></td>
                                                        
                                                        
                                                     </tr>
