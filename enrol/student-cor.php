@@ -1015,7 +1015,7 @@ if ($row) {
             <?php
             // Assuming $conn is your database connection
             $totalUnits = 0;
-            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$row['course']."' AND sem = '".$row['semester']."'");
+            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$row['course']."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
 
             foreach ($query as $row) :
                 $totalUnits += $row['units'];
