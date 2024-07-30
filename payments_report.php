@@ -127,7 +127,7 @@
                                                 <th>Total TOSF</th>
                                             </thead>
                                             <?php
-                                            echo count($data);
+                                            // echo count($data);
                                             if (count($data) > 0) {
                                                 $count = 1;
                                                 foreach ($data as $row) {
