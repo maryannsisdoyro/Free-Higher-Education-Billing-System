@@ -156,7 +156,7 @@ if ($row) {
                                 while ($row = $get_course->fetch_assoc()) {
                                     // $ftotal += $row['amount'];
                                 ?>
-                                    <option value="<?= $row['department'] ?>"><?= $row['course'] ?></option>
+                                    <option value="<?= $row['department'] ?>"><?= $row['course'] .' '. $row['level']  ?></option>
                                 <?php } ?>
                             </select>
 

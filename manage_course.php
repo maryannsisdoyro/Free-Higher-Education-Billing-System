@@ -6,6 +6,13 @@ foreach($qry->fetch_array() as $k => $val){
     $$k=$val;
 }
 }
+
+$levels = [
+    '1st',
+    '2nd',
+    '3rd',
+    '4th'
+];
 ?>
 <div class="container-fluid">
     <form action="" id="manage-course">
@@ -32,7 +39,35 @@ foreach($qry->fetch_array() as $k => $val){
             </div> -->
             <div class="form-group">
                 <label for="" class="control-label">Level</label>
-                <input type="text" class="form-control" name="level"  value="<?php echo isset($level) ? $level :'' ?>" required>
+                <!-- <input type="text" class="form-control" name="level"  value="<?php #echo isset($level) ? $level :'' ?>" required> -->
+
+                <select name="level" class="form-control" required>
+                    <option value="" selected disabled>Select Year Level</option>
+                    <?php 
+                        foreach ($levels as $key => $value) {
+                            if (isset($level)) {
+                                if ($level == $value) {
+                                    ?>
+                                    <option value="<?= $value ?>" selected><?= $value ?> Year</option>
+                                    <?php 
+                                }else{
+                                    ?>
+                                    <option value="<?= $value ?>"><?= $value ?> Year</option>
+                                    <?php 
+                                }
+                            }else{
+                                ?>
+                                <option value="<?= $value ?>"><?= $value ?> Year</option>
+                                <?php 
+                            }
+                           
+                        }
+                    ?>
+                    
+                    <!-- <option value="2nd">2nd Year</option>
+                    <option value="3rd">3rd Year</option>
+                    <option value="4th">4th Year</option> -->
+                </select>
             </div>
             <!-- <div class="form-group">
                 <label for="" class="control-label">Description</label>
