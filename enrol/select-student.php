@@ -218,7 +218,7 @@ if ($row) {
                                 <option value="BSBA-ABM">BSBA-ABM</option>
                                 <option value="BSBA-NONE">BSBA-NONE</option> -->
                                 <?php
-                                $get_course = $conn->query("SELECT * FROM courses");
+                                $get_course = $conn->query("SELECT * FROM courses WHERE level = '1st'");
                                 // $fetch_course = $get_course->fetch_assoc();
 
                                 // $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
