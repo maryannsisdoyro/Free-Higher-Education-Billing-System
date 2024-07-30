@@ -16,7 +16,7 @@
   		
   		</div> -->
       <div class=" float-left text-white">
-        <img src="./assets/logo.png" alt="image" style="width: 50px;">
+        <img src="<?= str_contains($_SERVER['REQUEST_URI'], 'enrol/') ? '../assets/logo.png' : './assets/logo.png' ?>" alt="image" style="width: 50px;">
         <large><b><?php echo isset($_SESSION['system']['name']) ? $_SESSION['system']['name'] : '' ?></b></large>
       </div>
 	  	<div class="float-right">
@@ -24,7 +24,7 @@
             <a href="#" class="text-white dropdown-toggle"  id="account_settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['login_name'] ?> </a>
               <div class="dropdown-menu" aria-labelledby="account_settings" style="left: -2.5em;">
                 <a class="dropdown-item" href="javascript:void(0)" id="manage_my_account"><i class="fa fa-cog"></i> Manage Account</a>
-                <a class="dropdown-item" href="ajax.php?action=logout"><i class="fa fa-power-off"></i> Logout</a>
+                <a class="dropdown-item" href="<?= str_contains($_SERVER['REQUEST_URI'], 'enrol/') ? '../ajax.php?action=logout' : 'ajax.php?action=logout' ?>"><i class="fa fa-power-off"></i> Logout</a>
               </div>
         </div>
       </div>
