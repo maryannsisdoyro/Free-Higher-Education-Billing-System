@@ -1520,7 +1520,7 @@ if ($row) {
 				</tr>
 				<?php
                 
-				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."'");
+				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND level = '". $row['year_level'] ."'");
 				
                 
                 if ($get_course->num_rows > 0) {
