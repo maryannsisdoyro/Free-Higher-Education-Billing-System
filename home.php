@@ -2,8 +2,8 @@
     include 'db_connect.php';
     $get_academic = $conn->query("SELECT * FROM academic WHERE status = 1 ORDER BY id DESC");
     $res_academic = $get_academic->fetch_array();
-    $year = $res_academic['year'];
-    $semester = $res_academic['semester'];
+    $academic_year = $res_academic['year'];
+    $semester_academic = $res_academic['semester'];
 ?>
 <style>
    span.float-right.summary_icon {
@@ -54,7 +54,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom pb-3" ><img src="assets/icons/BSIT.png" alt="icon" style="width: 50px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
-                            $get_bsit = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSIT' AND curr = '$year' AND semester = '$semester'");
+                            $get_bsit = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSIT' AND curr = '$academic_year' AND semester = '$semester_academic'");
                             echo $get_bsit->num_rows;
                         ?>
                         </h1>
@@ -70,7 +70,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom pb-3"><img src="assets/icons/bsba.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
-                            $get_bsba = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSBA' AND curr = '$year' AND semester = '$semester'");
+                            $get_bsba = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSBA' AND curr = '$academic_year' AND semester = '$semester_academic'");
                             echo $get_bsba->num_rows;
                         ?>
                     </h1>
@@ -86,7 +86,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom pb-3"><img src="assets/icons/BSHM.png" alt="icon" style="width: 50px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
-                            $get_bshm = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSHM' AND curr = '$year' AND semester = '$semester'");
+                            $get_bshm = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSHM' AND curr = '$academic_year' AND semester = '$semester_academic'");
                             echo $get_bshm->num_rows;
                         ?>
                     </h1>
@@ -102,7 +102,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom pb-3"><img src="assets/icons/BSED.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
-                            $get_bsed = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSED' AND curr = '$year' AND semester = '$semester'");
+                            $get_bsed = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSED' AND curr = '$academic_year' AND semester = '$semester_academic'");
                             echo $get_bsed->num_rows;
                         ?>
                     </h1>
@@ -118,7 +118,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom pb-3"><img src="assets/icons/BEED.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
-                            $get_beed = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BEED' AND curr = '$year' AND semester = '$semester'");
+                            $get_beed = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BEED' AND curr = '$academic_year' AND semester = '$semester_academic'");
                             echo $get_beed->num_rows;
                         ?>
                     </h1>
