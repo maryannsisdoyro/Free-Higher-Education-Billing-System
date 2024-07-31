@@ -118,7 +118,7 @@
                               </td>
                               <td>
                                 <?php 
-                                    if ($row['curr'] == $academic['year']) {
+                                    if ($row['curr'] == $academic['year'] && $row['semester'] == $academic['semester']) {
                                         ?>
                                          <button type="button" class="btn btn-secondary disabled px-5" disabled>Enrolled</button>
                                         <?php 

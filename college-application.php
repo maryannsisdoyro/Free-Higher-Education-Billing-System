@@ -20,7 +20,7 @@
             <a href="javascript:void(0);" onclick="printTable()" class="btn btn-primary">Print</a> 
             <button class="btn btn-primary" type="button" onclick="location.href='enrol/home.php?page=subjects'">Subject</button>
             <br>
-            <a href="" class="btn btn-danger mt-2">Delete All</a>
+            <a href="#" id="delete-all-btn" class="btn btn-danger mt-2">Delete All</a>
             <!-- <button class="btn btn-primary" type="button" onclick="location.href='students.php'">Students</button> -->
             <!--
             <button class="btn btn-primary" type="button" onclick="location.href='college-applications.php'">College of application Form </button> -->
@@ -212,6 +212,38 @@
                 } else if (result.isDenied) {
                     // Redirect to the edit page
                     window.location.href = "enrol/delete-enrol.php?id=" + application_no;
+                }
+            });
+        });
+
+        $(".delete-all-btn").on("click", function() {
+            // Display confirmation dialog
+            Swal.fire({
+                title: 'Enrollment Database',
+                text: 'Records Information',
+                icon: 'question',
+                showCancelButton: true,
+                // showDenyButton: true, // Add showDenyButton option to show the "Edit" button
+                // confirmButtonText: 'Enroll',
+                cancelButtonText: 'Cancel',
+                confirmButtonText: 'Yes',
+                didRender: function() {
+                            // Create custom "Select" button
+                            const selectButton = Swal.getConfirmButton().cloneNode();
+                            selectButton.style.backgroundColor = 'green'; 
+                            selectButton.innerText = 'COR';
+                            selectButton.classList.add('swal2-confirm', 'swal2-styled');
+                            selectButton.addEventListener('click', function() {
+                                Swal.close();
+                                // Handle the select button click
+                                console.log("Select button clicked");
+                                window.location.href = "enrol/student-cor.php?application_no=" + application_no;
+                            });
+                            Swal.getActions().prepend(selectButton);
+                        }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href= "enroll/deleteAll.php"
                 }
             });
         });
