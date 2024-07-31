@@ -62,6 +62,7 @@ $section = sanitize_input($_POST['section']);
 $email = sanitize_input($_POST['email']);
 $gender = sanitize_input($_POST['gender']);
 $year_level = '1st';
+$application_id = sanitize_input($_POST['application_id']);
 
 // Check if the record already exists
 $check_query = "SELECT * FROM enroll2024 WHERE stu_id = '$stu_id' AND stu_name = '$stu_name' AND course = '$course'";
@@ -75,6 +76,8 @@ if (mysqli_num_rows($check_result) > 0) {
     );
     echo json_encode($response);
 } else {
+
+    $delete = $conn->query("DELETE FROM students WHERE application_no = '$application_id'");
 
     if ($_FILES['fileInput']['error'] > 0) {
         $insert_query = "INSERT INTO enroll2024 (application_no,stu_id, stu_name, stu_sta, course, major, year_level, curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot, section,email,fname,mname,lname,gender,semester)

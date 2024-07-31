@@ -251,6 +251,7 @@ if ($row) {
                         <input type="hidden" class="form-control" name="d_birth" id="d_birth" value="<?php echo strtoupper($date_of_birth); ?>" readonly>
                         <input type="hidden" class="form-control" name="p_birth" id="p_birth" value="<?php echo strtoupper($place_of_birth); ?>" readonly>
                         <input type="hidden" class="form-control" name="email" id="email" value="<?php echo $email; ?>" readonly>
+                        <input type="hidden" class="form-control" name="application_id" id="email" value="<?php echo $application_no; ?>" readonly>
                         <?php
                         // Assuming $high_school_year_graduated contains the year as a string or null
                         $academic_year = '';
