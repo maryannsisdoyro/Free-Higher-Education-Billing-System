@@ -54,7 +54,7 @@
 								while($row=$fees->fetch_assoc()):
 									$paid = $conn->query("SELECT sum(amount) as paid FROM payments where ef_id=".$row['id']);
 									$paid = $paid->num_rows > 0 ? $paid->fetch_array()['paid']:'';
-									$balance = $row['g_tot'] - $paid;
+									$balance = (int)$row['g_tot'] - $paid;
 								?>
 								<tr>
 									<td class="text-center"><?php echo $i++ ?></td>
@@ -71,7 +71,7 @@
 										<p> <b><?php echo $row['course'] ?></b></p>
 									</td>
 									<td class="text-right">
-										<p> <b><?php echo number_format($row['g_tot'],2) ?></b></p>
+										<p> <b><?php echo number_format((int)$row['g_tot'],2) ?></b></p>
 									</td>
 									<td class="text-right">
 										<p> <b><?php echo number_format($paid,2) ?></b></p>

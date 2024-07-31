@@ -485,6 +485,29 @@ Class Action {
 				fgetcsv($csvFile);
 				$i = 0;
 
+			
+				function getFirstThreeWords($sentence) {
+					// Split the sentence into an array of words
+					$words = explode(' ', $sentence);
+
+					// Initialize $fname and $lname
+					$fname = '';
+					$lname = $words[0] ?? '';
+					$lastWord = $words[count($words) - 1] ?? '';
+
+					// Get the first, second, and third words based on the number of words in the sentence
+					if (count($words) == 4) {
+						$fname = ($words[1] ?? '') . ' ' . ($words[2] ?? '');
+					} else if (count($words) == 5) {
+						$fname = ($words[1] ?? '') . ' ' . ($words[2] ?? '') . ' ' . ($words[3] ?? '');
+					} else {
+						$fname = $words[1] ?? '';
+					}
+
+					return array(trim($lname), trim($fname), trim($lastWord));
+				}
+
+
 				while(($line = fgetcsv($csvFile)) !== FALSE){ 
 					
 					$line_arr = !empty($line) ? array_filter($line) : ''; 
@@ -494,7 +517,13 @@ Class Action {
 						$year_level = trim($line_arr[3]);
 						$stu_name = trim($line_arr[4]);
 						$stu_sta = trim($line_arr[5]);
-						$course = trim($line_arr[6]);
+						
+						if (trim($line_arr[6]) == 'BS-HM') {
+							$course = "BSHM";
+						}else{
+							$course = trim($line_arr[6]);
+						}
+
 						$major = trim($line_arr[7]);
 						$section = trim($line_arr[8]);
 						$curr = trim($line_arr[9]);
@@ -532,6 +561,11 @@ Class Action {
 						$t_misfe = trim($line_arr[41]);
 						$g_tot = trim($line_arr[42]);
 						$image = trim($line_arr[43]);
+
+						$sentence = $stu_name;
+						$fname = getFirstThreeWords($sentence)[1];
+						$lname = getFirstThreeWords($sentence)[0];
+						$mname = getFirstThreeWords($sentence)[2];
 						
 
 						$check = $this->db->query("SELECT * FROM enroll2024 WHERE stu_id = '$stu_id'");
@@ -580,7 +614,10 @@ Class Action {
 								cul = '$cul',
 								t_misfe = '$t_misfe',
 								g_tot = '$g_tot',
-								image = '$image'
+								image = '$image',
+								fname = '$fname',
+								lname = '$lname',
+								mname = '$mname'
 							 WHERE stu_id = '$stu_id'");
 						}else{
 							$stmt = $this->db->query("INSERT INTO enroll2024
@@ -627,7 +664,10 @@ Class Action {
 								cul,
 								t_misfe,
 								g_tot,
-								image
+								image,
+								fname,
+								lname,
+								mname
 							) 
 							VALUES
 							(
@@ -673,7 +713,10 @@ Class Action {
 								'$cul',
 								'$t_misfe',
 								'$g_tot',
-								'$image'
+								'$image',
+								'$fname',
+								'$lname',
+								'$mname'
 							)");
 						}
 

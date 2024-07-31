@@ -28,13 +28,12 @@ if(isset($_GET['id'])){
 					$fees = $conn->query("SELECT * FROM enroll2024");
 					while($row= $fees->fetch_assoc()):
 						$get_latest = $conn->query("SELECT * FROM payments WHERE ef_id = '". $row['id'] ."' ORDER BY id DESC");
-						$latest_payment = $get_latest->fetch_assoc();
+						if ($get_latest->num_rows > 0) {
+							$latest_payment = $get_latest->fetch_assoc();
 		
 						$get_total = $conn->query("SELECT SUM(amount) AS TOTAL FROM payments WHERE ef_id = '". $row['id'] ."'");
 						$total_payment = $get_total->fetch_assoc();
 						$total = $row['g_tot'] - $total_payment['TOTAL'];
-
-
 
 						// $paid = $conn->query("SELECT sum(amount) as paid FROM payments where ef_id=".$row['id'].(isset($id) ? " and id!=$id " : ''));
 						// $paid = $paid->num_rows > 0 ? $paid->fetch_array()['paid']:'';
@@ -42,6 +41,11 @@ if(isset($_GET['id'])){
 						if ($total != 0) {
 							?>
 							<option value="<?php echo $row['id'] ?>" data-balance="<?php echo $total ?>" <?php echo isset($ef_id) && $ef_id == $row['stu_id'] ? 'selected' : '' ?>><?php echo  $row['stu_id'].' | '.ucwords($row['stu_name']) ?></option>
+							<?php
+						}
+						}else{
+							?>
+							<option value="<?php echo $row['id'] ?>" data-balance="<?php echo $row['g_tot'] ?>" <?php echo isset($ef_id) && $ef_id == $row['stu_id'] ? 'selected' : '' ?>><?php echo  $row['stu_id'].' | '.ucwords($row['stu_name']) ?></option>
 							<?php
 						}
 				endwhile; ?>
