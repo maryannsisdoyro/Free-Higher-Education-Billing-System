@@ -8,7 +8,7 @@ foreach($qry->fetch_array() as $k => $val){
 }
 ?>
 <div class="container-fluid">
-    <form action="" id="import-csv" enctype="multipart/form-data">
+    <form action="import-csv-enrollment.php" id="import-csv" enctype="multipart/form-data">
         <label for="csv-file">CSV File</label>
         <input type="file" name="file" id="csv-file" class="form-control" required/>
     </form>
