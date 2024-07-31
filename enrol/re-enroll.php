@@ -83,7 +83,7 @@
                                           <option value="C">C</option>
                                       </select>
                                   <?php
-                                    } else if ($row['course'] == 'BSHM') {
+                                    } else if ($row['course'] == 'BSHM' || $row['course'] == 'BS-HM') {
                                     ?>
                                       <select name="section" class="form-control" required>
                                           <option value="" selected disabled>Select Section</option>
@@ -117,7 +117,18 @@
 
                               </td>
                               <td>
-                                  <button type="submit" name="submit" class="btn btn-primary px-5">Enroll</button>
+                                <?php 
+                                    if ($row['curr'] == $academic['year']) {
+                                        ?>
+                                         <button type="button" class="btn btn-secondary disabled px-5" disabled>Enrolled</button>
+                                        <?php 
+                                    }else{
+                                        ?>
+                                         <button type="submit" name="submit" class="btn btn-primary px-5">Enroll</button>
+                                        <?php 
+                                    }
+                                ?>
+                                 
                               </td>
                           </tbody>
                       </table>
