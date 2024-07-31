@@ -6,24 +6,19 @@
 include 'db.php';
 date_default_timezone_set('Asia/Manila'); // change according timezone
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-
-    $stmt = $conn->query("DELETE FROM enroll2024");
-    if ($stmt) {
-        echo '<script>
-        window.onload = function() {
-            Swal.fire({
-                title: "Success!",
-                text: "Record removed successfully !!",
-                icon: "success"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "../index.php?page=college-application";
-                }
-            });
-        };
-      </script>';
-    }
-
+$stmt = $conn->query("DELETE FROM enroll2024");
+if ($stmt) {
+    echo '<script>
+    window.onload = function() {
+        Swal.fire({
+            title: "Success!",
+            text: "Record removed successfully !!",
+            icon: "success"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "../index.php?page=college-application";
+            }
+        });
+    };
+  </script>';
 }
