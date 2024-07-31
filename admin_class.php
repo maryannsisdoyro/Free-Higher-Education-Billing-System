@@ -566,60 +566,7 @@ Class Action {
 						$fname = getFirstThreeWords($stu_name)[1];
 						$lname = getFirstThreeWords($stu_name)[0];
 						$mname = getFirstThreeWords($stu_name)[2];
-						
-
-						$check = $this->db->query("SELECT * FROM enroll2024 WHERE fname = '$fname' AND lname = '$lname' AND mname = '$mname'");
-
-						if ($check->num_rows > 0) {
-							$stmt = $this->db->query("UPDATE enroll2024 SET 
-								application_no = '$application_no',
-								stu_id = '$stu_id',
-								year_level = '$year_level',
-								stu_name = '$stu_name',
-								stu_sta = '$stu_sta',
-								course = '$course',
-								major = '$major',
-								section = '$section',
-								curr = '$curr',
-								reli = '$reli',
-								con_no = '$con_no',
-								home_ad = '$home_ad',
-								civil = '$civil',
-								d_birth = '$d_birth',
-								p_birth = '$p_birth',
-								ele = '$ele',
-								ele_year = '$ele_year',
-								high = '$high',
-								high_year = '$high_year',
-								last_sc = '$last_sc',
-								last_year = '$last_year',
-								tot_units = '$tot_units',
-								un_enrol = '$un_enrol',
-								rate_per = '$rate_per',
-								total = '$total',
-								lib = '$lib',
-								com = '$com',
-								lab1 = '$lab1',
-								lab2 = '$lab2',
-								lab3 = '$lab3',
-								sch_id = '$sch_id',
-								ath = '$ath',
-								adm = '$adm',
-								dev = '$dev',
-								guid = '$guid',
-								hand = '$hand',
-								entr = '$entr',
-								reg_fe = '$reg_fe',
-								med_den = '$med_den',
-								cul = '$cul',
-								t_misfe = '$t_misfe',
-								g_tot = '$g_tot',
-								image = '$image',
-								fname = '$fname',
-								lname = '$lname',
-								mname = '$mname'
-							 WHERE stu_id = '$stu_id'");
-						}else{
+										
 							$stmt = $this->db->query("INSERT INTO enroll2024
 							(
 								application_no,
@@ -718,7 +665,7 @@ Class Action {
 								'$lname',
 								'$mname'
 							)");
-						}
+						
 
 						if ($stmt) {
 							$i++;
