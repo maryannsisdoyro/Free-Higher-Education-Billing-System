@@ -90,7 +90,6 @@
                         <td>".$row["stu_id"]."</td>
                         <td>".$row["stu_name"]."</td>
                         <td>".$row["stu_sta"]."</td>
-                        
                         <td>".$row["course"]."</td>
                         <td>".$row["major"]."</td>
                         <td>".$row["year_level"]."</td>
