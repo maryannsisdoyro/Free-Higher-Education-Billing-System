@@ -512,63 +512,63 @@ Class Action {
 					
 					$line_arr = !empty($line) ? array_filter($line) : ''; 
 					if(!empty($line_arr)){ 
-						$application_no = trim($line_arr[1]);
-						$stu_id = trim($line_arr[2]);
-						$year_level = trim($line_arr[3]);
-						$stu_name = trim($line_arr[4]);
-						$stu_sta = trim($line_arr[5]);
+						$application_no = trim($line_arr[1]) ?? '';
+						$stu_id = trim($line_arr[2]) ?? '';
+						$year_level = trim($line_arr[3]) ?? '';
+						$stu_name = trim($line_arr[4]) ?? '';
+						$stu_sta = trim($line_arr[5]) ?? '';
 						
 						if (trim($line_arr[6]) == 'BS-HM') {
 							$course = "BSHM";
 						}else{
-							$course = trim($line_arr[6]);
+							$course = trim($line_arr[6]) ?? '';
 						}
 
-						$major = trim($line_arr[7]);
-						$section = trim($line_arr[8]);
-						$curr = trim($line_arr[9]);
-						$reli = trim($line_arr[10]);
-						$con_no = trim($line_arr[11]);
-						$home_ad = trim($line_arr[12]);
-						$civil = trim($line_arr[13]);
-						$d_birth = trim($line_arr[14]);
-						$p_birth = trim($line_arr[15]);
-						$ele = trim($line_arr[16]);
-						$ele_year = trim($line_arr[17]);
-						$high = trim($line_arr[18]);
-						$high_year = trim($line_arr[19]);
-						$last_sc = trim($line_arr[20]);
-						$last_year = trim($line_arr[21]);
-						$tot_units = trim($line_arr[22]);
-						$un_enrol = trim($line_arr[23]);
-						$rate_per = trim($line_arr[24]);
-						$total = trim($line_arr[25]);
-						$lib = trim($line_arr[26]);
-						$com = trim($line_arr[27]);
-						$lab1 = trim($line_arr[28]);
-						$lab2 = trim($line_arr[29]);
-						$lab3 = trim($line_arr[30]);
-						$sch_id = trim($line_arr[31]);
-						$ath = trim($line_arr[32]);
-						$adm = trim($line_arr[33]);
-						$dev = trim($line_arr[34]);
-						$guid = trim($line_arr[35]);
-						$hand = trim($line_arr[36]);
-						$entr = trim($line_arr[37]);
-						$reg_fe = trim($line_arr[38]);
-						$med_den = trim($line_arr[39]);
-						$cul = trim($line_arr[40]);
-						$t_misfe = trim($line_arr[41]);
-						$g_tot = trim($line_arr[42]);
-						$image = trim($line_arr[43]);
+						$major = trim($line_arr[7]) ?? '';
+						$section = trim($line_arr[8]) ?? '';
+						$curr = trim($line_arr[9]) ?? '';
+						$reli = trim($line_arr[10]) ?? '';
+						$con_no = trim($line_arr[11]) ?? '';
+						$home_ad = trim($line_arr[12]) ?? '';
+						$civil = trim($line_arr[13]) ?? '';
+						$d_birth = trim($line_arr[14]) ?? '';
+						$p_birth = trim($line_arr[15]) ?? '';
+						$ele = trim($line_arr[16]) ?? '';
+						$ele_year = trim($line_arr[17]) ?? '';
+						$high = trim($line_arr[18]) ?? '';
+						$high_year = trim($line_arr[19]) ?? '';
+						$last_sc = trim($line_arr[20]) ?? '';
+						$last_year = trim($line_arr[21]) ?? '';
+						$tot_units = trim($line_arr[22]) ?? '';
+						$un_enrol = trim($line_arr[23]) ?? '';
+						$rate_per = trim($line_arr[24]) ?? '';
+						$total = trim($line_arr[25]) ?? '';
+						$lib = trim($line_arr[26]) ?? '';
+						$com = trim($line_arr[27]) ?? '';
+						$lab1 = trim($line_arr[28]) ?? '';
+						$lab2 = trim($line_arr[29]) ?? '';
+						$lab3 = trim($line_arr[30]) ?? '';
+						$sch_id = trim($line_arr[31]) ?? '';
+						$ath = trim($line_arr[32]) ?? '';
+						$adm = trim($line_arr[33]) ?? '';
+						$dev = trim($line_arr[34]) ?? '';
+						$guid = trim($line_arr[35]) ?? '';
+						$hand = trim($line_arr[36]) ?? '';
+						$entr = trim($line_arr[37]) ?? '';
+						$reg_fe = trim($line_arr[38]) ?? '';
+						$med_den = trim($line_arr[39]) ?? '';
+						$cul = trim($line_arr[40]) ?? '';
+						$t_misfe = trim($line_arr[41]) ?? '';
+						$g_tot = trim($line_arr[42]) ?? '';
+						$image = trim($line_arr[43]) ?? '';
 
-						$sentence = $stu_name;
-						$fname = getFirstThreeWords($sentence)[1];
-						$lname = getFirstThreeWords($sentence)[0];
-						$mname = getFirstThreeWords($sentence)[2];
+						// $sentence =;
+						$fname = getFirstThreeWords($stu_name)[1];
+						$lname = getFirstThreeWords($stu_name)[0];
+						$mname = getFirstThreeWords($stu_name)[2];
 						
 
-						$check = $this->db->query("SELECT * FROM enroll2024 WHERE stu_id = '$stu_id'");
+						$check = $this->db->query("SELECT * FROM enroll2024 WHERE fname = '$fname' AND lname = '$lname' AND mname = '$mname'");
 
 						if ($check->num_rows > 0) {
 							$stmt = $this->db->query("UPDATE enroll2024 SET 
