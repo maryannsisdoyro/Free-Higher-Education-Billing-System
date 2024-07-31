@@ -5,7 +5,10 @@
 
 <div class="container">
 
-        <div class="d-flex align-items-center justify-content-between">
+<div class="card">
+
+<div class="card-body">
+<div class="d-flex align-items-center justify-content-between">
         <h2 >Enrollment Database</h2>
         <a href="javascript:void(0);" class="btn btn-danger" id="import"> Import CSV</a>
         </div>
@@ -16,12 +19,14 @@
             <a href="index.php?page=college-application&export=csv" class="btn btn-success">Export to CSV</a>
             <a href="javascript:void(0);" onclick="printTable()" class="btn btn-primary">Print</a> 
             <button class="btn btn-primary" type="button" onclick="location.href='enrol/home.php?page=subjects'">Subject</button>
+            <br>
+            <a href="" class="btn btn-danger mt-2">Delete All</a>
             <!-- <button class="btn btn-primary" type="button" onclick="location.href='students.php'">Students</button> -->
             <!--
             <button class="btn btn-primary" type="button" onclick="location.href='college-applications.php'">College of application Form </button> -->
         </div>
         <div class="table-responsive">
-           <table id="table" class="">
+           <table id="table" class="table table-condensed table-bordered table-hover">
     <thead>
       
         <tr>
@@ -33,6 +38,7 @@
             <th>Course</th>
             <th>Major</th>
             <th>Year</th>
+            <th>Semester</th>
             <th>Section</th>
             <th>Curriculum Year</th>
             <th>Religious</th>
@@ -84,10 +90,12 @@
                         <td>".$row["stu_id"]."</td>
                         <td>".$row["stu_name"]."</td>
                         <td>".$row["stu_sta"]."</td>
+                        
                         <td>".$row["course"]."</td>
                         <td>".$row["major"]."</td>
-                        <td>".$year."</td>
-                        <td>".$row["section"]."</td>
+                        <td>".$row["year_level"]."</td>
+                        <td>".$row["semester"]."</td>
+                        <td>".$row['section']."</td>
                         <td>".$row["curr"]."</td>
                         <td>".$row["reli"]."</td>
                         <td>".$row["con_no"]."</td>
@@ -132,9 +140,10 @@
 </table>
 
         </div>
+</div>
 
         
-        
+        </div>  
     </div>
     <link href="sweetalerts/sweetalert2.min.css" rel="stylesheet">
     <script src="sweetalerts/sweetalert2@11.js"></script>

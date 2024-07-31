@@ -2,7 +2,7 @@
 
     if (isset($_GET['search'])) {
         $search = $_GET['search'];
-        $sql = "SELECT * FROM enroll2024 WHERE stu_id = '$search' ";
+        $sql = "SELECT * FROM enroll2024 WHERE stu_id = '$search' ORDER BY id DESC ";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
