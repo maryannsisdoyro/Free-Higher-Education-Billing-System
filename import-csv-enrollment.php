@@ -8,7 +8,7 @@ foreach($qry->fetch_array() as $k => $val){
 }
 ?>
 <div class="container-fluid">
-    <form action="import-cs-enrollment.php" id="import-csv" enctype="multipart/form-data">
+    <form action="import-csv-enrollment.php" id="import-csv" enctype="multipart/form-data">
         <label for="csv-file">CSV File</label>
         <input type="file" name="file" id="csv-file" class="form-control" required/>
     </form>
@@ -38,9 +38,9 @@ foreach($qry->fetch_array() as $k => $val){
 			}
 		})
 
-        alert_toast("Data successfully saved. Refresh in 5 seconds....", 'success')
+        alert_toast("Data successfully saved. Refresh in 10 seconds....", 'success')
         setTimeout(function(){
 						location.href = "index.php?page=college-application"
-					}, 10000)
+					}, 999999)
 	})
 </script>
