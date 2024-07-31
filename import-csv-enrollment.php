@@ -38,7 +38,7 @@ foreach($qry->fetch_array() as $k => $val){
 			}
 		})
 
-        alert_toast("Data successfully saved. Refresh in 10 seconds....", 'success')
+        alert_toast("Data successfully saved. Refresh in 5 seconds....", 'success')
         setTimeout(function(){
 						location.href = "index.php?page=college-application"
 					}, 10000)
