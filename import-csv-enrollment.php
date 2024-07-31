@@ -1,46 +1,41 @@
 <?php 
 include 'db_connect.php'; 
-if(isset($_GET['id'])){
-$qry = $conn->query("SELECT * FROM courses where id= ".$_GET['id']);
-foreach($qry->fetch_array() as $k => $val){
-    $$k=$val;
-}
-}
-?>
-<div class="container-fluid">
-    <form action="import-csv-enrollment.php" id="import-csv" enctype="multipart/form-data">
-        <label for="csv-file">CSV File</label>
-        <input type="file" name="file" id="csv-file" class="form-control" required/>
-    </form>
-</div>
-<script>
-     $('#import-csv').submit(function(e){
-		e.preventDefault()
-		start_load()
-		var formData = new FormData(this);
-		$.ajax({
-			url:'ajax.php?action=import_csv_enrollment',
-			method:'POST',
-			data: formData,
-			contentType: false,
-			processData: false,
-			error: err => {
-				console.log(err)
-				end_load()
-			},
-			success: function(resp){
-				resp = JSON.parse(resp)
-                console.log(resp);
-				if(resp.status == 1){
-					
-					
-				}
-			}
-		})
+  // Check if a file is uploaded
+    if (is_uploaded_file($_FILES['csvFile']['tmp_name'])) {
+        $csvFile = $_FILES['csvFile']['tmp_name'];
 
-        alert_toast("Data successfully saved. Refresh in 10 seconds....", 'success')
-        setTimeout(function(){
-						location.href = "index.php?page=college-application"
-					}, 999999)
-	})
+        // Open the CSV file for reading
+        if (($handle = fopen($csvFile, "r")) !== FALSE) {
+            // Get the first row, which contains the column headers
+            $headers = fgetcsv($handle, 1000, ",");
+
+            // Prepare the SQL statement with placeholders
+            $placeholders = implode(',', array_fill(0, 44, '?'));
+            $stmt = $conn->prepare("INSERT INTO enroll2024 VALUES ($placeholders)");
+
+            // Bind the parameters dynamically
+            $params = array_fill(0, 44, null);
+            $types = str_repeat('s', 44); // Assuming all columns are strings
+            $stmt->bind_param($types, ...$params);
+
+            // Iterate over the remaining rows
+            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                for ($i = 0; $i < 44; $i++) {
+                    $params[$i] = $data[$i];
+                }
+                $stmt->execute();
+            }
+
+            fclose($handle);
+            echo "Data imported successfully.";
+        } else {
+            echo "Could not open the file.";
+        }
+    } else {
+        echo "No file uploaded.";
+    }
+
+    // Close the connection
+    $conn->close();
+}
 </script>
