@@ -175,14 +175,14 @@
 	})
     </script>
 
-<script>
-    $(document).ready(function() {
-        $(".row_checkbox").on("click", function() {
-            var application_no = $(this).val();
-            var stu_id = $(this).attr('data'); // Get the value of the checkbox, which is the application number
+    <script>
+        let allSelect = document.querySelectorAll(".row_checkbox");
 
-            // Display confirmation dialog
-            Swal.fire({
+        allSelect.forEach(select => {
+            select.onclick = () => {
+                var application_no = select.value;
+                var stu_id = select.getAttribute('data');
+                Swal.fire({
                 title: 'STUDENTS ENROLLMENT',
                 text: 'Records Information',
                 icon: 'info',
@@ -214,7 +214,52 @@
                     window.location.href = "enrol/delete-enrol.php?id=" + application_no;
                 }
             });
+            }
         });
+
+    </script>
+
+<script>
+    
+    $(document).ready(function() {
+        // $(".row_checkbox").on("click", function() {
+        //     var application_no = $(this).val();
+        //     var stu_id = $(this).attr('data'); // Get the value of the checkbox, which is the application number
+
+        //     // Display confirmation dialog
+        //     Swal.fire({
+        //         title: 'STUDENTS ENROLLMENT',
+        //         text: 'Records Information',
+        //         icon: 'info',
+        //         showCancelButton: true,
+        //         showDenyButton: true, // Add showDenyButton option to show the "Edit" button
+        //         // confirmButtonText: 'Enroll',
+        //         denyButtonText: 'Delete', // Text for the "Edit" button
+        //         cancelButtonText: 'Cancel',
+        //         confirmButtonText: 'Print',
+        //         didRender: function() {
+        //                     // Create custom "Select" button
+        //                     const selectButton = Swal.getConfirmButton().cloneNode();
+        //                     selectButton.style.backgroundColor = 'green'; 
+        //                     selectButton.innerText = 'COR';
+        //                     selectButton.classList.add('swal2-confirm', 'swal2-styled');
+        //                     selectButton.addEventListener('click', function() {
+        //                         Swal.close();
+        //                         // Handle the select button click
+        //                         console.log("Select button clicked");
+        //                         window.location.href = "enrol/student-cor.php?application_no=" + application_no;
+        //                     });
+        //                     Swal.getActions().prepend(selectButton);
+        //                 }
+        //     }).then((result) => {
+        //         if (result.isConfirmed) {
+        //             var printWindow = window.open("enrol/print-college-enrol.php?application_no=" + application_no, "_blank");
+        //         } else if (result.isDenied) {
+        //             // Redirect to the edit page
+        //             window.location.href = "enrol/delete-enrol.php?id=" + application_no;
+        //         }
+        //     });
+        // });
 
         $(".delete-all-btn").on("click", function() {
             // Display confirmation dialog
