@@ -6,13 +6,13 @@
 include 'db.php';
 date_default_timezone_set('Asia/Manila'); // change according timezone
 
-$stmt = $conn->query("UPDATE enroll2024 SET delete_status = 2");
+$stmt = $conn->query("UPDATE enroll2024 SET delete_status = 1");
 if ($stmt) {
     echo '<script>
     window.onload = function() {
         Swal.fire({
             title: "Success!",
-            text: "Record removed successfully !!",
+            text: "Record recovered successfully !!",
             icon: "success"
         }).then((result) => {
             if (result.isConfirmed) {

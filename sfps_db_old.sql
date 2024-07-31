@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2024 at 10:03 PM
+-- Generation Time: Jul 27, 2024 at 07:33 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,15 +34,6 @@ CREATE TABLE `academic` (
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `academic`
---
-
-INSERT INTO `academic` (`id`, `year`, `semester`, `status`) VALUES
-(2, '2020-2021', '1st', 1),
-(3, '2021-2022', '1st', 2),
-(4, '2024-2025', '2nd', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -68,8 +59,8 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`id`, `course`, `department`, `description`, `level`, `laboratory`, `computer`, `academic`, `academic_nstp`, `total_amount`, `date_created`) VALUES
-(2, 'Bachelor of Science in Information Technology(BSIT)', 'BSIT', 'dsfdsfsd', '1st', 0, 0, 0, 0, 3125.02, '2024-06-28 13:05:29'),
-(5, 'Bachelor of Elementary Education', 'BEED', NULL, '1st', 0, 0, 0, 0, 222, '2024-07-25 00:19:49');
+(2, 'Bachelor of Science in Information Technology(BSIT)', 'BSIT', 'dsfdsfsd', '3rd ', 0, 0, 0, 0, 3125.02, '2024-06-28 13:05:29'),
+(5, 'Bachelor of Elementary Education', 'BEED', NULL, '3rd Year', 0, 0, 0, 0, 222, '2024-07-25 00:19:49');
 
 -- --------------------------------------------------------
 
@@ -79,15 +70,15 @@ INSERT INTO `courses` (`id`, `course`, `department`, `description`, `level`, `la
 
 CREATE TABLE `enroll2024` (
   `id` int(11) NOT NULL,
-  `application_no` text NOT NULL,
-  `stu_id` varchar(50) DEFAULT NULL,
+  `application_no` int(20) NOT NULL,
+  `stu_id` varchar(50) NOT NULL,
   `learners_number` text DEFAULT NULL,
-  `fname` text DEFAULT NULL,
+  `fname` text NOT NULL,
   `mname` text DEFAULT NULL,
-  `lname` text DEFAULT NULL,
-  `stu_name` text DEFAULT NULL,
+  `lname` text NOT NULL,
+  `stu_name` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `stu_sta` varchar(50) DEFAULT NULL,
+  `stu_sta` varchar(50) NOT NULL,
   `course` varchar(50) DEFAULT NULL,
   `academic` text DEFAULT NULL,
   `major` varchar(255) DEFAULT NULL,
@@ -96,7 +87,7 @@ CREATE TABLE `enroll2024` (
   `curr` varchar(255) DEFAULT NULL,
   `reli` varchar(255) DEFAULT NULL,
   `con_no` varchar(255) DEFAULT NULL,
-  `home_ad` varchar(255) DEFAULT NULL,
+  `home_ad` varchar(255) NOT NULL,
   `civil` varchar(50) DEFAULT NULL,
   `d_birth` varchar(255) DEFAULT NULL,
   `p_birth` varchar(100) DEFAULT NULL,
@@ -105,7 +96,7 @@ CREATE TABLE `enroll2024` (
   `high` varchar(255) DEFAULT NULL,
   `high_year` varchar(255) DEFAULT NULL,
   `last_sc` varchar(255) DEFAULT NULL,
-  `last_year` varchar(255) DEFAULT NULL,
+  `last_year` varchar(255) NOT NULL,
   `tot_units` varchar(50) DEFAULT NULL,
   `un_enrol` varchar(50) DEFAULT NULL,
   `rate_per` varchar(100) DEFAULT NULL,
@@ -114,7 +105,7 @@ CREATE TABLE `enroll2024` (
   `com` varchar(255) DEFAULT NULL,
   `lab1` varchar(255) DEFAULT NULL,
   `lab2` varchar(255) DEFAULT NULL,
-  `lab3` varchar(255) DEFAULT NULL,
+  `lab3` varchar(255) NOT NULL,
   `sch_id` varchar(50) DEFAULT NULL,
   `ath` varchar(50) DEFAULT NULL,
   `adm` varchar(100) DEFAULT NULL,
@@ -123,15 +114,14 @@ CREATE TABLE `enroll2024` (
   `hand` varchar(255) DEFAULT NULL,
   `entr` varchar(255) DEFAULT NULL,
   `reg_fe` varchar(255) DEFAULT NULL,
-  `med_den` varchar(255) DEFAULT NULL,
+  `med_den` varchar(255) NOT NULL,
   `cul` varchar(50) DEFAULT NULL,
   `t_misfe` varchar(50) DEFAULT NULL,
   `g_tot` varchar(100) DEFAULT NULL,
   `image` text DEFAULT NULL,
   `date_signed` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `year_level` text DEFAULT NULL,
-  `gender` text DEFAULT NULL,
-  `delete_status` int(11) NOT NULL DEFAULT 1 COMMENT '1=active,2=inactive'
+  `year_level` text NOT NULL DEFAULT '\'1st\'',
+  `gender` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
@@ -152,8 +142,8 @@ CREATE TABLE `fees` (
 --
 
 INSERT INTO `fees` (`id`, `course_id`, `description`, `amount`) VALUES
-(4, 5, 'Tuition Fee based on enrolled academic units(credit and none-credit courses) ', 1375.02),
-(17, 5, 'NSTP based on enrolled academic units (credit and non-credit courses)', 0),
+(4, 2, 'Tuition Fee based on enrolled academic units(credit and none-credit courses) ', 1375.02),
+(17, 2, 'NSTP based on enrolled academic units (credit and non-credit courses)', 0),
 (18, 2, 'Athletic Fees', 150),
 (19, 2, 'Computer Fees', 100),
 (20, 2, 'Cultural Fees', 200),
@@ -307,6 +297,7 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`id`, `sem`, `year`, `course`, `tbl_time`, `tbl_day`, `subjectcode`, `subdes`, `prerequi`, `units`, `room`, `inst`) VALUES
+(103, '1st', '1st', 'BSIT', '1:00-2:00', 'MWF', 'LIT 110', 'THE CONTEMPORARY WORLD', 'NONE', '3', 'TBA', 'TBA'),
 (104, '1st', '1st', 'BSIT', '2:00-3:00', 'MWF', 'SOCSCI 110', 'UNDERSTANDING THE SELF', 'NONE', '3', 'TBA', 'TBA'),
 (105, '1st', '1st', 'BSIT', '2:00-3:00', 'MWF', 'HIST 110', 'READINGS IN THE PHILLIPINE HISTORY', 'NONE', '3', 'TBA', 'TBA'),
 (106, '1st', '1st', 'BSIT', '5:15-6:15', 'MWF', 'FIL 110', 'KOMUNIKASYON SA AKADEMIKONG FILIPINO', 'NONE', '3', 'TBA', 'TBA'),
@@ -490,7 +481,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `academic`
 --
 ALTER TABLE `academic`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `courses`
