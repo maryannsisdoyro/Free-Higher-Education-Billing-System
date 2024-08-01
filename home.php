@@ -86,7 +86,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom pb-3"><img src="assets/icons/BSHM.png" alt="icon" style="width: 50px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
-                            $get_bshm = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSHM' OR course = 'BS-HM' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
+                            $get_bshm = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSHM' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
                             echo $get_bshm->num_rows;
                         ?>
                     </h1>
