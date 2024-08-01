@@ -24,6 +24,7 @@
             <br/>
             <a href="#" id="delete-all-btn" class="btn btn-danger mt-2 delete-all-btn">Delete All</a>
             <a href="#" id="recover-all-btn" class="btn btn-success mt-2 recover-all-btn">Recover All</a>
+            <a href="#" id="delete-all-btn" class="btn btn-danger mt-2 clean-all-btn">Empty Trash</a>
             <!-- <button class="btn btn-primary" type="button" onclick="location.href='students.php'">Students</button> -->
             <!--
             <button class="btn btn-primary" type="button" onclick="location.href='college-applications.php'">College of application Form </button> -->
@@ -296,6 +297,23 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href= "enrol/recoverAll.php"
+                }
+            });
+        });
+        $(".clean-all-btn").on("click", function() {
+            // Display confirmation dialog
+            Swal.fire({
+                title: 'Enrollment Database',
+                text: 'Empty Trash',
+                icon: 'question',
+                showCancelButton: true,
+                // showDenyButton: true, // Add showDenyButton option to show the "Edit" button
+                // confirmButtonText: 'Enroll',
+                cancelButtonText: 'Cancel',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href= "enrol/deleteTrash.php"
                 }
             });
         });

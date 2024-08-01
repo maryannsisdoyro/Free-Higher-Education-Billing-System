@@ -1,4 +1,5 @@
 <?php 
+echo "hello world";
   if (str_contains($_SERVER['REQUEST_URI'], "page=college-application")) {
     include 'db_connect.php';
     $sql = "SELECT `id`,`application_no`,`stu_id`, `year_level`, `stu_name`, `stu_sta`, `course`, `major`, `section`, `curr`, `reli`, `con_no`, `home_ad`, `civil`, `d_birth`, `p_birth`, `ele`, `ele_year`, `high`, `high_year`, `last_sc`, `last_year`, `tot_units`, `un_enrol`, `rate_per`, `total`, `lib`, `com`, `lab1`, `lab2`, `lab3`, `sch_id`, `ath`, `adm`, `dev`, `guid`, `hand`, `entr`, `reg_fe`, `med_den`, `cul`, `t_misfe`, `g_tot`, `image`, `semester`, curr FROM `enroll2024` WHERE delete_status = 1 ";
