@@ -749,7 +749,13 @@ class Action
 					$lname = getFirstThreeWords($stu_name)[0];
 					$mname = getFirstThreeWords($stu_name)[2];
 					$stu_sta = mysqli_real_escape_string($conn, $data[5]);
-					$course = mysqli_real_escape_string($conn, $data[6]);
+
+					if ($data[6] == 'BS-HM') {
+						$course = "BSHM";
+					}{
+						$course = mysqli_real_escape_string($conn, $data[6]);
+					}
+
 					$major = mysqli_real_escape_string($conn, $data[7]);
 					$section = mysqli_real_escape_string($conn, $data[8]);
 					$curr = mysqli_real_escape_string($conn, $data[9]);
