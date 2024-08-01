@@ -3,17 +3,18 @@
    
 ?>
 
-<div class="container">
+<div class="container" onscroll="scrollDown()">
 
 <div class="card">
 
 <div class="card-body">
-<div class="d-flex align-items-center justify-content-between">
+        <div class="card-header bg-white" id="card-head">
+        <div class="d-flex align-items-center justify-content-between">
         <h2 >Enrollment Database</h2>
         <a href="javascript:void(0);" class="btn btn-danger" id="import"> Import CSV</a>
         </div>
         
-        <div class="my-4">
+        <div class="my-4" >
             <button type="button" class="btn btn-info" onclick="RestartoPrint()">0</button>
             <button type="button" class="btn btn-danger" onclick="RestartoUnprint()">1</button>
             <a href="index.php?page=college-application&export=csv" class="btn btn-success">Export to CSV</a>
@@ -26,6 +27,7 @@
             <!-- <button class="btn btn-primary" type="button" onclick="location.href='students.php'">Students</button> -->
             <!--
             <button class="btn btn-primary" type="button" onclick="location.href='college-applications.php'">College of application Form </button> -->
+        </div>
         </div>
         <div class="table-responsive">
            <table id="table" class="table table-condensed table-bordered table-hover">
@@ -298,4 +300,21 @@
             });
         });
     });
+</script>
+
+<script>
+  let cardHead = document.getElementById("card-head");
+
+const scrollDown = () => {
+    if (window.pageYOffset > 10) {
+        cardHead.classList.add("sticky-top")
+    } else {
+        cardHead.classList.remove("sticky-top")
+    }
+};
+
+// Add event listener to call scrollDown when the window is scrolled
+window.addEventListener('scroll', scrollDown);
+
+
 </script>
