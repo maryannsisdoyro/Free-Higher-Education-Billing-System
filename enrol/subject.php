@@ -104,7 +104,7 @@ $conn->close();
         <h2 class="mb-4">Subject Load</h2>
         <div class="my-4">
              <a href="addsub.php" class="btn btn-success">Add</a>
-            <a href="college-applications.php" class="btn btn-secondary">Cancel</a>
+            <a href="../index.php?page=college-application" class="btn btn-secondary">Cancel</a>
         </div>
         <div class="table-responsive">
            <table id="example1" class="table table-bordered table-striped">
