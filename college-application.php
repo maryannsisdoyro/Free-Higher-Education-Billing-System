@@ -208,7 +208,18 @@
                                 console.log("Select button clicked");
                                 window.location.href = "enrol/student-cor.php?application_no=" + application_no;
                             });
-                            Swal.getActions().prepend(selectButton);
+
+                            const selectButton2 = Swal.getConfirmButton().cloneNode();
+                            selectButton2.innerText = 'Edit';
+                            selectButton2.classList.add('swal2-confirm', 'swal2-styled');
+                            selectButton2.addEventListener('click', function() {
+                                Swal.close();
+                                // Handle the select button click
+                                console.log("Select button clicked");
+                                window.location.href = "enrol/edit-enroll.php?id=" + application_no;
+                            });
+
+                            Swal.getActions().prepend(selectButton, selectButton2);
                         }
             }).then((result) => {
                 if (result.isConfirmed) {

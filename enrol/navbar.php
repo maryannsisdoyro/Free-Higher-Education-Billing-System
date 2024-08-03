@@ -18,7 +18,7 @@
 
 				<a href="home.php?page=students" class="nav-item nav-students <?= str_contains($_SERVER['REQUEST_URI'], 'students') || str_contains($_SERVER['REQUEST_URI'], 'page=add-new')  ? 'active' : '' ?>"><span class='icon-field mr-2'><i class="fa fa-users "></i></span> College of Application Form</a>
 
-				<a href="../index.php?page=college-application" class="nav-item nav-enrolled <?= isset($_GET['page']) ? $_GET['page'] == 'college-application'  ? 'active' : '' : '' ?> <?= str_contains($_SERVER['REQUEST_URI'], 'subjects') || str_contains($_SERVER['REQUEST_URI'], 'add-new') ? 'active' : '' ?>"><span class='icon-field mr-2 '><i class="fa fa-inbox "></i></span> Enrollment Database</a>
+				<a href="../index.php?page=college-application" class="nav-item nav-enrolled <?= isset($_GET['page']) ? $_GET['page'] == 'college-application'  ? 'active' : '' : '' ?> <?= str_contains($_SERVER['REQUEST_URI'], 'subjects') || str_contains($_SERVER['REQUEST_URI'], 'add-new') || str_contains($_SERVER['REQUEST_URI'], 'edit-enroll.php') ? 'active' : '' ?>"><span class='icon-field mr-2 '><i class="fa fa-inbox "></i></span> Enrollment Database</a>
 
 				<div class="mx-2 text-white">Report</div>
 
