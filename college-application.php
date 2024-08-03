@@ -3,6 +3,18 @@
    
 ?>
 
+<style>
+  .swal2-confirm {
+    font-size: 10px; /* Change the font size */
+    padding: 10px 15px; /* Change the padding */
+  }
+
+  .swal2-cancel {
+    font-size: 10px; /* Change the font size */
+    padding: 10px 15px; /* Change the padding */
+  }
+</style>
+
 <div class="container" onscroll="scrollDown()">
 
 <div class="card">
