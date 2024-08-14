@@ -7,11 +7,25 @@
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
 
+            $all_course = [
+                'BEED' => 'Bachelor of Elementary Education',
+                'BSED' => 'Bachelor of Secondary Education',
+                'BSIT' => 'Bachelor of Science in Information Technology',
+                'BSHM' => 'Bachelor of Science in Hotel Management',
+                'BSBA' => 'Bachelor of Science in Business Administration'
+            ];
 
     ?>
 
+    <style>
+        select{
+            font-size: 12px !important;
+        }
+    </style>
+
           <form action="" method="post">
               <input type="hidden" name="stu_id" value="<?= $row['stu_id'] ?>">
+              <input type="hidden" name="id" value="<?= $row['id'] ?>">
 
               <div class="row">
                   <!-- <div class="col-12">
@@ -29,7 +43,7 @@
                           <thead>
                               <th>ID #</th>
                               <th>Name</th>
-                              <th>Email</th>
+                              <th>Course/Program</th>
                               <th>Year Level</th>
                               <th>Section</th>
                               <th>Semester</th>
@@ -39,7 +53,7 @@
                           <tbody>
                               <td><?= $row['stu_id'] ?></td>
                               <td><?= $row['stu_name'] ?></td>
-                              <td><?= $row['email'] ?></td>
+                              <td><?= $all_course[$row['course']] ?></td>
                               <td>
                                   <select name="year_level" class="form-select" required>
                                       <option value="" selected disabled>Select Year Level</option>

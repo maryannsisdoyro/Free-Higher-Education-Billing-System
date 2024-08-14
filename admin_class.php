@@ -234,6 +234,7 @@ class Action
 		$academic = $_POST['academic'];
 		$academic_nstp = $_POST['academic_nstp'];
 		$total_amount = $_POST['total_amount'];
+		$semester = $_POST['semester'];
 
 
 		foreach ($_POST as $k => $v) {
@@ -245,7 +246,7 @@ class Action
 				}
 			}
 		}
-		$check = $this->db->query("SELECT * FROM courses where course ='$course' and level ='$level' " . (!empty($id) ? " and id != {$id} " : ''))->num_rows;
+		$check = $this->db->query("SELECT * FROM courses where course ='$course' and level ='$level' and semester = '$semester' " . (!empty($id) ? " and id != {$id} " : ''))->num_rows;
 		if ($check > 0) {
 			return 2;
 			exit;
@@ -255,6 +256,7 @@ class Action
 			laboratory = $laboratory,
 			computer = $computer,
 			academic = $academic,
+			semester = '$semester',
 			academic_nstp = $academic_nstp,
 			total_amount = $total_amount");
 			if ($save) {
@@ -270,6 +272,7 @@ class Action
 			}
 		} else {
 			$save = $this->db->query("UPDATE courses set course='$new_course', department='$key', level = '$level',
+			semester = '$semester',
 			laboratory = $laboratory,
 			computer = $computer,
 			academic = $academic,

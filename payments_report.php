@@ -3,44 +3,81 @@
     $month = isset($_GET['month']) ? date('m', strtotime($_GET['month'])) : date('m');
     $year = isset($_GET['month']) ? date('Y', strtotime($_GET['month'])) : date('Y');
 
+    $get_academic = $conn->query("SELECT * FROM academic WHERE status = 1 ORDER BY id DESC");
+    $res_academic = $get_academic->fetch_array();
+    $academic_year = $res_academic['year'];
+    $semester_academic = $res_academic['semester'];
+
     $i = 1;
     $data = [];
                       $total = 0;
-                      $payments = $conn->query("SELECT 
-                      p.*, 
-                      e.stu_name, 
-                      e.id AS stud_id,
-                      e.stu_id, 
-                      e.course,
-                      e.year_level,
-                      e.g_tot,
-                      e.email,
-                      e.con_no,
-                      e.fname,
-                      e.mname,
-                      e.lname,
-                      e.gender,
-                      c.laboratory,
-                      c.computer,
-                      c.academic,
-                      c.academic_nstp,
-                      c.id AS course_id,
-                      c.total_amount    
-                      FROM 
-                        payments p 
+
+                      if (!isset($_GET['month'])) {
+                        $payments = $conn->query("SELECT 
+                        e.*,
+                        e.stu_name, 
+                        e.id AS stud_id,
+                        e.stu_id, 
+                        e.course,
+                        e.year_level,
+                        e.g_tot,
+                        e.email,
+                        e.con_no,
+                        e.fname,
+                        e.mname,
+                        e.lname,
+                        e.gender,
+                        c.laboratory,
+                        c.computer,
+                        c.academic,
+                        c.academic_nstp,
+                        c.id AS course_id,
+                        c.total_amount    
+                        FROM 
+                          enroll2024 e
                       INNER JOIN 
-                        enroll2024 e ON p.ef_id = e.id 
-                    INNER JOIN 
-                        courses c ON e.course = c.department
-                    WHERE MONTH(p.date_created) = '$month' AND YEAR(p.date_created) = '$year' GROUP BY p.ef_id ORDER BY e.lname ASC ");
+                          courses c ON e.course = c.department
+                        WHERE e.curr = '$academic_year' AND e.semester = '$semester_academic'
+                      ORDER BY e.course,e.lname ASC ");
+                      }else{
+                        $payments = $conn->query("SELECT 
+                        p.*, 
+                        e.stu_name, 
+                        e.id AS stud_id,
+                        e.stu_id, 
+                        e.course,
+                        e.year_level,
+                        e.g_tot,
+                        e.email,
+                        e.con_no,
+                        e.fname,
+                        e.mname,
+                        e.lname,
+                        e.gender,
+                        c.laboratory,
+                        c.computer,
+                        c.academic,
+                        c.academic_nstp,
+                        c.id AS course_id,
+                        c.total_amount    
+                        FROM 
+                          payments p 
+                        RIGHT JOIN 
+                          enroll2024 e ON p.ef_id = e.id 
+                      INNER JOIN 
+                          courses c ON e.course = c.department
+                      WHERE MONTH(p.date_created) = '$month' AND YEAR(p.date_created) = '$year' GROUP BY p.ef_id ORDER BY e.lname ASC ");
+                      }
+
+                     
                    
                       if($payments->num_rows > 0):
 			          while($row = $payments->fetch_array()):
-                        $total += $row['amount'];
+                        // $total += $row['amount'];
 
-                        $get_total = $conn->query("SELECT SUM(amount) AS TOTAL FROM payments WHERE ef_id = '". $row['stud_id'] ."'");
-                        $total_payment = $get_total->fetch_assoc();
-                        $balance = $row['g_tot'] - $total_payment['TOTAL'];
+                        // $get_total = $conn->query("SELECT SUM(amount) AS TOTAL FROM payments WHERE ef_id = '". $row['stud_id'] ."'");
+                        // $total_payment = $get_total->fetch_assoc();
+                        // $balance = $row['g_tot'] - $total_payment['TOTAL'];
 
                         $data[] = $row;
                       endwhile;
@@ -65,13 +102,13 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card_body">
-            <div class="row justify-content-center pt-4">
+            <!-- <div class="row justify-content-center pt-4">
                 <label for="" class="mt-2">Month</label>
                 <div class="col-sm-3">
                     <input type="month" name="month" id="month" value="<?php echo $month ?>" class="form-control">
                 </div>
             </div>
-            <hr>
+            <hr> -->
             <div class="col-md-12">
             <div class="table-responsive" id="student-table">
             <table class="wborder">
@@ -114,7 +151,7 @@
                                                     $cfees = $conn->query("SELECT * FROM fees where course_id = '". $course['id'] ."'");
                                                     $ftotal = 0;
                                                     while ($row1 = $cfees->fetch_assoc()) {
-                                                        $ftotal += $row1['amount'];
+                                                        // $ftotal += $row1['amount'];
                                                     ?>
                                                         <th><b><?php echo $row1['description'] ?></b></th>
                                                     <?php

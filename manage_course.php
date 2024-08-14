@@ -69,6 +69,18 @@ $levels = [
                     <option value="4th">4th Year</option> -->
                 </select>
             </div>
+
+            <div class="form-group">
+                <label for="" class="control-label">Semester</label>
+                <!-- <input type="text" class="form-control" name="level"  value="<?php #echo isset($level) ? $level :'' ?>" required> -->
+
+                <select name="semester" class="form-control" required>
+                    <option value="" selected disabled>Select Semester</option>
+                    <option value="1st">1st Semester</option>
+                    <option value="2nd">2nd Semester</option>
+                    <option value="Summer">Summer Semester</option>
+                </select>
+            </div>
             <!-- <div class="form-group">
                 <label for="" class="control-label">Description</label>
                 <textarea name="description" id="" cols="30" rows="4" class="form-control" required=""><?php echo isset($description) ? $description :'' ?></textarea>

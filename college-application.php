@@ -187,7 +187,9 @@
 		
 	})
         $(document).ready(function(){
-		$('table').dataTable()
+		$('table').dataTable({
+            aaSorting: [[0, "asc"]]
+        })
 	})
     </script>
 

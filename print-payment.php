@@ -123,7 +123,7 @@
     $data = [];
                       $total = 0;
                       $payments = $conn->query("SELECT 
-                      p.*, 
+                      e.*,
                       e.stu_name, 
                       e.id AS stud_id,
                       e.stu_id, 
@@ -143,20 +143,17 @@
                       c.id AS course_id,
                       c.total_amount    
                       FROM 
-                        payments p 
-                      INNER JOIN 
-                        enroll2024 e ON p.ef_id = e.id 
+                        enroll2024 e
                     INNER JOIN 
                         courses c ON e.course = c.department
-                    WHERE MONTH(p.date_created) = '$month' AND YEAR(p.date_created) = '$year' GROUP BY p.ef_id ORDER BY e.lname ASC ");
-                   
+                    ORDER BY e.lname ASC ");
                       if($payments->num_rows > 0):
 			          while($row = $payments->fetch_array()):
-                        $total += $row['amount'];
+                        // $total += $row['amount'];
 
-                        $get_total = $conn->query("SELECT SUM(amount) AS TOTAL FROM payments WHERE ef_id = '". $row['stud_id'] ."'");
-                        $total_payment = $get_total->fetch_assoc();
-                        $balance = $row['g_tot'] - $total_payment['TOTAL'];
+                        // $get_total = $conn->query("SELECT SUM(amount) AS TOTAL FROM payments WHERE ef_id = '". $row['stud_id'] ."'");
+                        // $total_payment = $get_total->fetch_assoc();
+                        // $balance = $row['g_tot'] - $total_payment['TOTAL'];
 
                         $data[] = $row;
                       endwhile;
@@ -181,7 +178,11 @@
 
                 <!-- Table Panel -->
                 <div class="col-md-12">
+                    <div class="mb-3">
+                            <button type="button" onclick="printTable()" class="btn btn-primary"><i class="fa fa-print"></i> Print</button>
+                        </div>
                     <div class="card print">
+                        
                         <div class="card-header dont-print d-flex justify-content-between">
                             <a href="index.php?page=payments_report" class="btn btn-secondary"><i class="fa fa-arrow-left"></i></a>
 

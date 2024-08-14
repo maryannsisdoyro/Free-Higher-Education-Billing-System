@@ -100,7 +100,6 @@ if ($row) {
     $date_signed  = date('Y-m-d', strtotime($row["date_signed"]));
     $course_to_be_enrolled  = $all_course[$row["course"]];
     $y_level = $row['year_level'];
-    $semester = $row['semester'];
     
    
 }
@@ -1524,7 +1523,7 @@ if ($row) {
 				</tr>
 				<?php
                 
-				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND level = '". $y_level ."' AND semester = '". $semester ."' ");
+				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND level = '". $y_level ."'");
                 
 				
                 

@@ -190,6 +190,10 @@ if (isset($_POST['search'])) {
 
         if ($insert_result) {
 
+            $get_new_enroll = $conn->query("SELECT * FROM enroll2024 ORDER BY id DESC");
+            $fetch_new_enroll = $get_new_enroll->fetch_assoc();
+            $id = $fetch_new_enroll['id'];
+
             echo "<script>
             window.onload = function() {
                 Swal.fire({
@@ -198,7 +202,7 @@ if (isset($_POST['search'])) {
                     icon: 'success'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = 'recordenroll.php';
+                        window.location.href = 're-enroll-cor.php?application_no=$id';
                     }
                 });
             };

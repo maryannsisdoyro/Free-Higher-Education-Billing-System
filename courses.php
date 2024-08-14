@@ -40,6 +40,7 @@
 									<th class="text-center">#</th>
 									<th class="">Course</th>
 									<th class="">Level</th>
+									<th>Semester</th>
 									<th class="">Total Fee</th>
 									<th class="text-center">Action</th>
 								</tr>
@@ -55,8 +56,12 @@
 									<td>
 										<p> <b><?php echo $row['course'] ?></b></p>
 									</td>
+									
 									<td class="">
 										 <p><small><i><b><?php echo $row['level'] ?></i></small></p>
+									</td>
+									<td>
+										<p> <small><?php echo $row['semester'] ?></small></p>
 									</td>
 									<td class="text-right">
 										<p> <b><?php echo number_format($row['total_amount'],2) ?></b></p>
