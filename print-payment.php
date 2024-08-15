@@ -117,6 +117,12 @@
 <body>
     <?php
     include('db_connect.php');
+
+    $get_academic = $conn->query("SELECT * FROM academic WHERE status = 1 ORDER BY id DESC");
+    $res_academic = $get_academic->fetch_array();
+    $academic_year = $res_academic['year'];
+    $semester_academic = $res_academic['semester'];
+
     $month = $_GET['month'];
     $year = $_GET['year'];
     $i = 1;
@@ -146,7 +152,8 @@
                         enroll2024 e
                     INNER JOIN 
                         courses c ON e.course = c.department
-                    ORDER BY e.lname ASC ");
+                      WHERE e.curr = '$academic_year' AND e.semester = '$semester_academic' AND e.delete_status = 1
+                    ORDER BY e.course,e.lname ASC ");
                       if($payments->num_rows > 0):
 			          while($row = $payments->fetch_array()):
                         // $total += $row['amount'];

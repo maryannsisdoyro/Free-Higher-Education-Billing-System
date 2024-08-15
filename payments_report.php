@@ -11,8 +11,6 @@
     $i = 1;
     $data = [];
                       $total = 0;
-
-                      if (!isset($_GET['month'])) {
                         $payments = $conn->query("SELECT 
                         e.*,
                         e.stu_name, 
@@ -37,37 +35,8 @@
                           enroll2024 e
                       INNER JOIN 
                           courses c ON e.course = c.department
-                        WHERE e.curr = '$academic_year' AND e.semester = '$semester_academic'
+                        WHERE e.curr = '$academic_year' AND e.semester = '$semester_academic' AND e.delete_status = 1
                       ORDER BY e.course,e.lname ASC ");
-                      }else{
-                        $payments = $conn->query("SELECT 
-                        p.*, 
-                        e.stu_name, 
-                        e.id AS stud_id,
-                        e.stu_id, 
-                        e.course,
-                        e.year_level,
-                        e.g_tot,
-                        e.email,
-                        e.con_no,
-                        e.fname,
-                        e.mname,
-                        e.lname,
-                        e.gender,
-                        c.laboratory,
-                        c.computer,
-                        c.academic,
-                        c.academic_nstp,
-                        c.id AS course_id,
-                        c.total_amount    
-                        FROM 
-                          payments p 
-                        RIGHT JOIN 
-                          enroll2024 e ON p.ef_id = e.id 
-                      INNER JOIN 
-                          courses c ON e.course = c.department
-                      WHERE MONTH(p.date_created) = '$month' AND YEAR(p.date_created) = '$year' GROUP BY p.ef_id ORDER BY e.lname ASC ");
-                      }
 
                      
                    
@@ -105,7 +74,7 @@
             <!-- <div class="row justify-content-center pt-4">
                 <label for="" class="mt-2">Month</label>
                 <div class="col-sm-3">
-                    <input type="month" name="month" id="month" value="<?php echo $month ?>" class="form-control">
+                    <input type="month" name="month" id="month" value="<?php #echo $month ?>" class="form-control">
                 </div>
             </div>
             <hr> -->
@@ -167,7 +136,7 @@
                                                 <th>Total TOSF</th>
                                             </thead>
                                             <?php
-                                            echo count($data);
+                                            // echo count($data);
                                             if (count($data) > 0) {
                                                 $count = 1;
                                                 foreach ($data as $row) {
