@@ -80,13 +80,14 @@
             <hr> -->
             <div class="col-md-12 mb-4 py-3">
                     <center>
-                        <a href="print-payment.php?month=<?= $month ?>&year=<?= $year ?>" class="btn btn-success btn-sm col-sm-3" type="button" ><i class="fa fa-print"></i> Print</a>
+                        <!-- <a href="print-payment.php?month=<?= $month ?>&year=<?= $year ?>" class="btn btn-success btn-sm col-sm-3" type="button" ><i class="fa fa-print"></i> Print</a> -->
+                        <button class="btn btn-success btn-sm col-sm-3 print" type="button" ><i class="fa fa-print"></i> Print</button>
                     </center>
                     <hr>
                 </div>
             <div class="col-md-12">
             <div class="table-responsive" id="student-table">
-            <table class="wborder" id="table">
+            <table class="wborder" id="report-list">
                                 <tr>
                                     <td colspan="29" class="text-center">
                                         <p class="mt-3">Republic of the Philippines</p>
@@ -189,7 +190,7 @@
                 <hr>
                 <div class="col-md-12 mb-4">
                     <center>
-                        <a href="print-payment.php?month=<?= $month ?>&year=<?= $year ?>" class="btn btn-success btn-sm col-sm-3" type="button" ><i class="fa fa-print"></i> Print</a>
+                        <button class="btn btn-success btn-sm col-sm-3 print" type="button" ><i class="fa fa-print"></i> Print</button>
                     </center>
                 </div>
             </div>
@@ -218,21 +219,62 @@
 	</style>
 </noscript>
 <script>
-    $('#table').DataTable();
+    // $('#table').DataTable();
 // $('#month').change(function(){
 //     location.replace('index.php?page=payments_report&month='+$(this).val())
 // })
-// $('#print').click(function(){
-// 		var _c = $('#report-list').clone();
-// 		var ns = $('noscript').clone();
-//             ns.append(_c)
-// 		var nw = window.open('','_blank','width=900,height=600')
-// 		nw.document.write('<p class="text-center"><b>Payment Report as of <?php echo date("F, Y",strtotime($month)) ?></b></p>')
-// 		nw.document.write(ns.html())
-// 		nw.document.close()
-// 		nw.print()
-// 		setTimeout(() => {
-// 			nw.close()
-// 		}, 500);
-// 	})
+$('.print').click(function(){
+    var _c = $('#report-list').clone();
+    var ns = $('noscript').clone();
+    ns.append(_c);
+
+    // Create a new window
+    var nw = window.open('', '_blank', 'width=900,height=600');
+
+    // Add CSS styles for print
+    nw.document.write(`
+        <style>
+            table {
+                width: 100%;
+                border-collapse: collapse !important;
+            }
+            table, th, td {
+                border: 1px solid black;
+                padding: 10px;
+                border-collapse: collapse !important;
+            }
+            @page {size: A4 landscape !important;max-height:100% !important; max-width:100% !important;}
+            .text-center {
+                text-align: center;
+            }
+        </style>
+    `);
+
+    // Add content to the new window
+    nw.document.write('<p class="text-center"><b>Payment Report as of <?php echo date("F, Y",strtotime($month)) ?></b></p>');
+    nw.document.write(ns.html());
+    nw.document.close();
+
+    // Print the content
+    nw.print();
+
+    // Close the window after printing
+    setTimeout(() => {
+        nw.close();
+    }, 500);
+});
+
+
+// function printData()
+// {
+//    var divToPrint=document.getElementById("table");
+//    newWin= window.open("");
+//    newWin.document.write(divToPrint.outerHTML);
+//    newWin.print();
+//    newWin.close();
+// }
+
+// $('.print').on('click',function(){
+// printData();
+// })
 </script>
