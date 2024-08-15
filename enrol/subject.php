@@ -111,9 +111,10 @@ $conn->close();
     <thead>
         <tr>
             <th>Select</th>
-            <th>Semester</th>
-            <th>Year</th>
             <th>Course</th>
+            <th>Year</th>
+            <th>Semester</th>
+            
             <th>Time</th>
             <th>Day</th>
             <th>Subject Code</th>
@@ -131,9 +132,9 @@ $conn->close();
             while($row = $result->fetch_assoc()) {
                 echo "<tr>
                         <td class='text-center'><input type='checkbox' class='row_checkbox' name='selected_application[]' value='".$row["id"]."'></td> <!-- Checkbox -->
-                        <td>".$row["sem"]."</td>
-                        <td>".$row["year"]."</td>
                         <td>".$row["course"]."</td>
+                        <td>".$row["year"]."</td>
+                        <td>".$row["sem"]."</td>
                         <td>".$row["tbl_time"]."</td>
                         <td>".$row["tbl_day"]."</td>
                         <td>".$row["subjectcode"]."</td>
