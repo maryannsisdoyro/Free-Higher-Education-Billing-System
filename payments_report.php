@@ -24,6 +24,7 @@
                         e.fname,
                         e.mname,
                         e.lname,
+                        e.semester,
                         e.gender,
                         c.laboratory,
                         c.computer,
@@ -119,7 +120,7 @@
                                                 <th>Academic Units Enrolled(credit and non-credit courses)</th>
                                                 <th>Academic Units of NSTP Enrolled(credit and non-credit courses)</th>
                                                 <?php
-                                                  $get_course = $conn->query("SELECT * FROM courses WHERE department = 'BSIT'");
+                                                  $get_course = $conn->query("SELECT * FROM courses WHERE department = 'BSIT' ");
                                                   $course = $get_course->fetch_assoc();
                                                 // foreach ($data as $value) {
                                                   
@@ -163,7 +164,7 @@
                                                         <td><?= $row['academic_nstp'] ?></td>
                                                         <?php
                                                      
-                                                        $cfees2 = $conn->query("SELECT * FROM fees f INNER JOIN courses c ON f.course_id = c.id where course_id = '". $row['course_id'] ."' AND c.level = '".$row['year_level']."' ");
+                                                        $cfees2 = $conn->query("SELECT * FROM fees f INNER JOIN courses c ON f.course_id = c.id where course_id = '". $row['course_id'] ."' AND c.level = '".$row['year_level']."' AND semester = '".$row['semester']."' ");
                                                         $ftotal = 0;
                                                             while ($row2 = $cfees2->fetch_assoc()) {
                                                                 $ftotal += $row2['amount'];

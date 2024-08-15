@@ -2,7 +2,7 @@
 session_start();
 include 'db.php';
 
-$sql = "SELECT `id`, `sem`,`year`, `course`,  `tbl_time`, `tbl_day`, `subjectcode`, `prerequi`, `subdes`, `units`, `room`, `inst` FROM `subject`";
+$sql = "SELECT `id`, `sem`,`year`, `course`,  `tbl_time`, `tbl_day`, `subjectcode`, `prerequi`, `subdes`, `units`, `room`, `inst` FROM `subject` ORDER BY course,sem,year ASC";
 
 $result = $conn->query($sql);
 
