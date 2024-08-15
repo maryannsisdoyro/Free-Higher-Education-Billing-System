@@ -109,9 +109,15 @@
                 </div>
             </div>
             <hr> -->
+            <div class="col-md-12 mb-4 py-3">
+                    <center>
+                        <a href="print-payment.php?month=<?= $month ?>&year=<?= $year ?>" class="btn btn-success btn-sm col-sm-3" type="button" ><i class="fa fa-print"></i> Print</a>
+                    </center>
+                    <hr>
+                </div>
             <div class="col-md-12">
             <div class="table-responsive" id="student-table">
-            <table class="wborder">
+            <table class="wborder" id="table">
                                 <tr>
                                     <td colspan="29" class="text-center">
                                         <p class="mt-3">Republic of the Philippines</p>
@@ -243,20 +249,21 @@
 	</style>
 </noscript>
 <script>
-$('#month').change(function(){
-    location.replace('index.php?page=payments_report&month='+$(this).val())
-})
-$('#print').click(function(){
-		var _c = $('#report-list').clone();
-		var ns = $('noscript').clone();
-            ns.append(_c)
-		var nw = window.open('','_blank','width=900,height=600')
-		nw.document.write('<p class="text-center"><b>Payment Report as of <?php echo date("F, Y",strtotime($month)) ?></b></p>')
-		nw.document.write(ns.html())
-		nw.document.close()
-		nw.print()
-		setTimeout(() => {
-			nw.close()
-		}, 500);
-	})
+    $('#table').DataTable();
+// $('#month').change(function(){
+//     location.replace('index.php?page=payments_report&month='+$(this).val())
+// })
+// $('#print').click(function(){
+// 		var _c = $('#report-list').clone();
+// 		var ns = $('noscript').clone();
+//             ns.append(_c)
+// 		var nw = window.open('','_blank','width=900,height=600')
+// 		nw.document.write('<p class="text-center"><b>Payment Report as of <?php echo date("F, Y",strtotime($month)) ?></b></p>')
+// 		nw.document.write(ns.html())
+// 		nw.document.close()
+// 		nw.print()
+// 		setTimeout(() => {
+// 			nw.close()
+// 		}, 500);
+// 	})
 </script>
