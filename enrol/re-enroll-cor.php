@@ -150,7 +150,7 @@ if ($row) {
             <!-- <button class="btn btn-warning" id="startButton">Take Photo</button>
             <button class="btn btn-danger hidden" id="captureButton">Capture</button> -->
             <button type="button" class="btn btn-primary" onclick="window.print()">Print</button>
-            <a href="../index.php?page=college-application" class="btn btn-secondary">Back</a>
+            <a href="home.php?page=enrol" class="btn btn-secondary">Back</a>
 
 
         </div>
