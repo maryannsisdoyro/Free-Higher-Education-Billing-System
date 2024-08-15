@@ -49,6 +49,14 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     <div class="container-fluid py-3">
         <div class="row" style="gap: 20px 0;">
 
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="mb-0">Academic School Year  <?= $res_academic['year'] ?>  |  <?= $res_academic['semester'] ?> Semester <span class="bg-danger px-2 text-light">OPENED</span></h3>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
