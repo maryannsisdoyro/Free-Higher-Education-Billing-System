@@ -164,7 +164,7 @@
                                                         <td><?= $row['academic_nstp'] ?></td>
                                                         <?php
                                                      
-                                                        $cfees2 = $conn->query("SELECT * FROM fees f INNER JOIN courses c ON f.course_id = c.id where course_id = '". $row['course_id'] ."' AND c.level = '".$row['year_level']."' AND semester = '".$row['semester']."' ");
+                                                        $cfees2 = $conn->query("SELECT * FROM fees f INNER JOIN courses c ON f.course_id = c.id where course_id = '". $row['course_id'] ."' AND c.level = '".$row['year_level']."' AND c.semester = '".$row['semester']."' ");
                                                         $ftotal = 0;
                                                             while ($row2 = $cfees2->fetch_assoc()) {
                                                                 $ftotal += $row2['amount'];
