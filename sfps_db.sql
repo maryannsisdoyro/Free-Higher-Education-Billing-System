@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2024 at 10:03 PM
+-- Generation Time: Aug 21, 2024 at 06:08 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,15 +34,6 @@ CREATE TABLE `academic` (
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `academic`
---
-
-INSERT INTO `academic` (`id`, `year`, `semester`, `status`) VALUES
-(2, '2020-2021', '1st', 1),
-(3, '2021-2022', '1st', 2),
-(4, '2024-2025', '2nd', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -55,6 +46,7 @@ CREATE TABLE `courses` (
   `department` text NOT NULL,
   `description` text DEFAULT NULL,
   `level` varchar(150) NOT NULL,
+  `semester` text DEFAULT NULL,
   `laboratory` int(11) NOT NULL,
   `computer` int(11) NOT NULL,
   `academic` int(11) NOT NULL,
@@ -62,14 +54,6 @@ CREATE TABLE `courses` (
   `total_amount` float NOT NULL,
   `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `courses`
---
-
-INSERT INTO `courses` (`id`, `course`, `department`, `description`, `level`, `laboratory`, `computer`, `academic`, `academic_nstp`, `total_amount`, `date_created`) VALUES
-(2, 'Bachelor of Science in Information Technology(BSIT)', 'BSIT', 'dsfdsfsd', '1st', 0, 0, 0, 0, 3125.02, '2024-06-28 13:05:29'),
-(5, 'Bachelor of Elementary Education', 'BEED', NULL, '1st', 0, 0, 0, 0, 222, '2024-07-25 00:19:49');
 
 -- --------------------------------------------------------
 
@@ -146,27 +130,6 @@ CREATE TABLE `fees` (
   `description` varchar(200) NOT NULL,
   `amount` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `fees`
---
-
-INSERT INTO `fees` (`id`, `course_id`, `description`, `amount`) VALUES
-(4, 5, 'Tuition Fee based on enrolled academic units(credit and none-credit courses) ', 1375.02),
-(17, 5, 'NSTP based on enrolled academic units (credit and non-credit courses)', 0),
-(18, 2, 'Athletic Fees', 150),
-(19, 2, 'Computer Fees', 100),
-(20, 2, 'Cultural Fees', 200),
-(21, 2, 'Development Fees', 250),
-(22, 2, 'Entrance/Admission Fees*', 200),
-(23, 2, 'Guidance Fees', 100),
-(24, 2, 'Handbook Fees', 0),
-(25, 2, 'Laboratory Fees', 0),
-(26, 2, 'Library Fee', 150),
-(27, 2, 'Medical and Dental Fees', 300),
-(28, 2, 'Registration Fees', 300),
-(29, 2, 'School ID Fees', 0),
-(32, 5, 'sdsds', 222);
 
 -- --------------------------------------------------------
 
@@ -302,64 +265,6 @@ CREATE TABLE `subject` (
   `inst` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data for table `subject`
---
-
-INSERT INTO `subject` (`id`, `sem`, `year`, `course`, `tbl_time`, `tbl_day`, `subjectcode`, `subdes`, `prerequi`, `units`, `room`, `inst`) VALUES
-(104, '1st', '1st', 'BSIT', '2:00-3:00', 'MWF', 'SOCSCI 110', 'UNDERSTANDING THE SELF', 'NONE', '3', 'TBA', 'TBA'),
-(105, '1st', '1st', 'BSIT', '2:00-3:00', 'MWF', 'HIST 110', 'READINGS IN THE PHILLIPINE HISTORY', 'NONE', '3', 'TBA', 'TBA'),
-(106, '1st', '1st', 'BSIT', '5:15-6:15', 'MWF', 'FIL 110', 'KOMUNIKASYON SA AKADEMIKONG FILIPINO', 'NONE', '3', 'TBA', 'TBA'),
-(107, '1st', '1st', 'BSIT', '6:15-7:15', 'MWF', 'MATH 110', 'MATHEMATICS IN THE MODERN WORLD', 'NONE', '3', 'TBA', 'TBA'),
-(108, '1st', '1st', 'BSIT', '8:00-9:00', 'TTH', 'PE 1', 'MOVEMENT ENHANCEMENT', 'NONE', '2', 'TBA', 'TBA'),
-(109, '1st', '1st', 'BSIT', '9:30-10:30', 'TTH', 'ITE 112', 'COMPUTER PROGRAMMING 1 LAB', 'NONE', '1', 'TBA', 'TBA'),
-(110, '1st', '1st', 'BSIT', '1:00-2:00', 'TTH', 'ITE 111', 'INTRODUCTION TO COMPUTING LAB', 'NONE', '1', 'TBA', 'TBA'),
-(111, '1st', '1st', 'BSIT', '3:00-4:00', 'TTH', 'NSTP 1', 'NATIONAL SERVICE TRAINING PROGRAM 1', 'NONE', '3', 'TBA', 'TBA'),
-(112, '1st', '1st', 'BSIT', '10:30-12:00', 'FRI', 'GENERAL BIOLOGY', 'GENERAL BIOLOGY', 'STEM', '3', 'TBA', 'TBA'),
-(113, '1st', '1st', 'BSIT', '4:00-5:30', 'FRI', 'PRE-CALCULUS', 'PRE-CALCULUS', 'STEM', '3', 'TBA', 'TBA'),
-(114, '1st', '1st', 'BSIT', '8:30-9:30', 'MWF', 'ITE 112', 'COMPUTER PROGRAMMING 1 LEC', 'NONE', '2', 'TBA', 'TBA'),
-(115, '1st', '1st', 'BSIT', '9:30-10:30', 'MWF', 'ITE 111', 'INTRODUCTION TO COMPUTING LEC', 'NONE', '2', 'TBA', 'TBA'),
-(116, '1st', '1st', 'BSBA', '8:30-9:30', 'MWF', 'SOCSCI 112', 'THE CONTEMPORARY WORLD', 'NONE', '3', 'TBA', 'TBA'),
-(117, '1st', '1st', 'BSBA', '9:30-11:30', 'MWF', 'ECON 111', 'BASIC MICRO ECONOMICS', 'NONE', '3', 'TBA', 'TBA'),
-(118, '1st', '1st', 'BSBA', '1:00-2:00', 'MW', 'PE 1', 'MOVEMENT ENHANCEMENT', 'NONE', '2', 'TBA', 'TBA'),
-(119, '1st', '1st', 'BSBA', '3:00-4:00', 'MW', 'HIST 110', 'READINGS IN THE PHILLIPINE HISTORY', 'NONE', '3', 'TBA', 'TBA'),
-(120, '1st', '1st', 'BSBA', '10:30-12:30', 'TTH', 'NSTP 1', 'NATIONAL SERVICE TRAINING PROGRAM 1', 'NONE', '3', 'TBA', 'TBA'),
-(121, '1st', '1st', 'BSBA', '2:30-4:00', 'TTH', 'FIL 111', 'KOMUNIKASYON SA AKADEMIKONG FILIPINO', 'NONE', '3', 'TBA', 'TBA'),
-(122, '1st', '1st', 'BSBA', '8:00-11:00', 'SAT', 'SOCSCI 111', 'UNDERSTANDING THE SELF', 'NONE', '3', 'TBA', 'TBA'),
-(123, '1st', '1st', 'BSBA', '11:00-2:00', 'SAT', 'MATH 111', 'MATHEMATICS IN THE MODERN WORLD', 'NONE', '3', 'TBA', 'TBA'),
-(124, '1st', '1st', 'BSBA', '8:30-9:30', 'MWF', 'ACCOUNTING 1', 'ACCOUNTING 1', 'ABM', '3', 'TBA', 'TBA'),
-(125, '1st', '1st', 'BSBA', '8:00-11:00', 'SAT', 'APPLIED ECONOMICS 2', 'APPLIED ECONOMICS 2', 'ABM', '3', 'TBA', 'TBA'),
-(126, '1st', '1st', 'BS-HM', '1:00-4:00', 'WED', 'HM 111.1', 'KITCHEN ESSENTIALS AND FOOD BASIC OPERATION LAB', 'NONE', '1', 'TBA', 'TBA'),
-(127, '1st', '1st', 'BS-HM', '5:15-6:15', 'WED', 'HIST 110', 'READINGS IN THE PHILLIPINE HISTORY', 'NONE', '3', 'TBA', 'TBA'),
-(128, '1st', '1st', 'BS-HM', '6:15-7:15', 'MWF', 'NSTP 1', 'NATIONAL SERVICE TRAINING PROGRAM 1', 'NONE', '3', 'TBA', 'TBA'),
-(129, '1st', '1st', 'BS-HM', '7:30-9:00', 'TTH', 'THM 112', 'RISK MANAGEMENT AS APPLIED AND SECURITY', 'NONE', '3', 'TBA', 'TBA'),
-(130, '1st', '1st', 'BS-HM', '9:30-10:30', 'TTH', 'PE 1', 'MOVEMENT ENHANCEMENT', 'NONE', '2', 'TBA', 'TBA'),
-(131, '1st', '1st', 'BS-HM', '9:30-12:30', 'TTH', 'HM 111', 'KITCHEN ESSENTIALS AND FOOD BASIC OPERATION LEC', 'NONE', '2', 'TBA', 'TBA'),
-(132, '1st', '1st', 'BS-HM', '1:00-2:30', 'TTH', 'ENGL 111', 'PURPOSIVE COMMUNICATION', 'NONE', '3', 'TBA', 'TBA'),
-(133, '1st', '1st', 'BS-HM', '4:00-5:30', 'TTH', 'THM 111', 'MACRO PERSPECTIVE OF TOURISM AND HOSPITALITY', 'NONE', '3', 'TBA', 'TBA'),
-(134, '1st', '1st', 'BS-HM', '5:30-7:00', 'TTH', 'MATH 110', 'MATHEMATICS IN THE MODERN WORLD', 'NONE', '3', 'TBA', 'TBA'),
-(135, '1st', '1st', 'BS-HM', '8:30-9:30', 'MWF', 'BRIDGING', 'ORGANIZATION AND MANAGEMENT(BRIDGING)', 'ABM', '3', 'TBA', 'TBA'),
-(136, '1st', '1st', 'BS-HM', '2:30-4:00', 'MWF', 'BRIDGING', 'FUNDAMENTALS OF ACCOUNTING, BUSINESS AND MANAGEMENT', 'ABM', '3', 'TBA', 'TBA'),
-(137, '1st', '1st', 'BS-HM', '11:00-2:00', 'SAT', 'BRIDGING', 'BUSINESS MARKETING(BRIDGING)', 'ABM', '3', 'TBA', 'TBA'),
-(138, '1st', '1st', 'BEED', '8:30-9:30', 'MWF', 'EDUC 111', 'THE CHILD AND ADOLESCENT LEARNERS AND LEARNING PRINCIPLES', 'NONE', '3', 'TBA', 'TBA'),
-(139, '1st', '1st', 'BEED', '9:30-10:30', 'MWF', 'NSTP 1', 'NATIONAL SERVICE TRAINING PROGRAM ', 'NONE', '3', 'TBA', 'TBA'),
-(140, '1st', '1st', 'BEED', '10:30-11:30', 'MW', 'PE 1', 'MOVEMENT ENHANCEMENT', 'NONE', '2', 'TBA', 'TBA'),
-(141, '1st', '1st', 'BEED', '1:00-2:00', 'MWF', 'MST 114', 'PEOPLE AND THE EARTH\'S ECOSYSTEM', 'NONE', '3', 'TBA', 'TBA'),
-(142, '1st', '1st', 'BEED', '3:00-4:00', 'MWF', 'SOCSCI 112', 'THE CONTEMPORARY WORLD', 'NONE', '3', 'TBA', 'TBA'),
-(143, '1st', '1st', 'BEED', '7:30-9:00', 'TTH', 'SOCSCI 111', 'UNDERSTANDING THE SELF', 'NONE', '3', 'TBA', 'TBA'),
-(144, '1st', '1st', 'BEED', '9:00-10:30', 'TTH', 'HIST 110', 'READINGS IN THE PHILLIPINE HISTORY', 'NONE', '3', 'TBA', 'TBA'),
-(145, '1st', '1st', 'BEED', '1:00-2:00', 'TTH', 'MATH 110', 'MATHEMATICS IN THE MODERN WORLD', 'NONE', '3', 'TBA', 'TBA'),
-(146, '1st', '1st', 'BEED', '2:30-4:00', 'TTH', 'FIL 110', 'KOMUNIKASYON SA AKADEMIKONG FILIPINO', 'NONE', '3', 'TBA', 'TBA'),
-(147, '1st', '1st', 'BSED', '8:30-9:30', 'MWF', 'FIL 101', 'INTRODUKSYON SA PAG-AARAL NG WIKA', 'NONE', '3', 'TBA', 'TBA'),
-(148, '1st', '1st', 'BSED', '9:30-10:30', 'MWF', 'FIL 110', 'KOMUNIKASYON SA AKADEMIKONG FILIPINO', 'NONE', '3', 'TBA', 'TBA'),
-(149, '1st', '1st', 'BSED', '10:30-11:30', 'MW', 'PE 1', 'MOVEMENT ENHANCEMENT', 'NONE', '2', 'TBA', 'TBA'),
-(150, '1st', '1st', 'BSED', '2:00-3:00', 'MWF', 'SOCSCI 111', 'UNDERSTANDING THE SELF', 'NONE', '3', 'TBA', 'TBA'),
-(151, '1st', '1st', 'BSED', '4:00-5:00', 'MWF', 'MATH 110', 'MATHEMATICS IN THE MODERN WORLD', 'NONE', '3', 'TBA', 'TBA'),
-(152, '1st', '1st', 'BSED', '5:15-6:15', 'MWF', 'FIL 102', 'PANIMULANG LINGGWISTIKA', 'NONE', '3', 'TBA', 'TBA'),
-(153, '1st', '1st', 'BSED', '10:30-12:00', 'TTH', 'HIST 110', 'READINGS IN THE PHILLIPINE HISTORY', 'NONE', '3', 'TBA', 'TBA'),
-(154, '1st', '1st', 'BSED', '1:00-2:30', 'TTH', 'SOCSCI 112', 'THE CONTEMPORARY WORLD', 'NONE', '3', 'TBA', 'TBA'),
-(155, '1st', '1st', 'BSED', '2:30-4:00', 'TTH', 'NSTP 1', 'NATIONAL SERVICE TRAINING PROGRAM 1', 'NONE', '3', 'TBA', 'TBA');
-
 -- --------------------------------------------------------
 
 --
@@ -403,7 +308,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `type`, `verification`) VALUES
-(1, ' admin', 'admin', 'sisdoyromaryannlawan20@gmail.com', '0192023a7bbd73250516f069df18b500', 1, '66a52bd54b7df');
+(1, ' admin', 'admin', 'sisdoyromaryannlawan20@gmail.com', '$2y$10$awTNsqce99hhkGBto/0iguI4OukSRUJwBCbIWGgNAS.UiYi3BPuZa', 1, '66a52bd54b7df');
 
 --
 -- Indexes for dumped tables
@@ -490,13 +395,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `academic`
 --
 ALTER TABLE `academic`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `enroll2024`
@@ -508,7 +413,7 @@ ALTER TABLE `enroll2024`
 -- AUTO_INCREMENT for table `fees`
 --
 ALTER TABLE `fees`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payments`
@@ -544,7 +449,7 @@ ALTER TABLE `student_enroll`
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `system_settings`
