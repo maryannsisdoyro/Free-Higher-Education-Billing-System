@@ -3,9 +3,9 @@
 
 //MySQL server and database
 $dbhost = 'localhost';
-$dbuser = 'root';
-$dbpass = '';
-$dbname = 'sfps_db';
+$dbuser = 'u510162695_fhebilling';
+$dbpass = '1Fhebilling';
+$dbname = 'u510162695_fhebilling';
 $tables = '*';
 
 //Call the core function
