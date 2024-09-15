@@ -90,6 +90,10 @@ class Action
 		header("location:../index.php");
 	}
 
+	function backUp(){
+		
+	}
+
 	function save_user()
 	{
 		extract($_POST);

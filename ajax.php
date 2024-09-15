@@ -15,14 +15,18 @@ if($action == 'login2'){
 		echo $login;
 }
 if($action == 'logout'){
+	include 'backup.php';
 	$logout = $crud->logout();
 	if($logout)
-		echo $logout;
+	
+	echo $logout;
 }
 if($action == 'logout2'){
+
 	$logout = $crud->logout2();
 	if($logout)
 		echo $logout;
+
 }
 if($action == 'save_user'){
 	$save = $crud->save_user();
