@@ -46,9 +46,8 @@
  	
 
 <?php
-var_dump($_SESSION);
   if(!isset($_SESSION['login_id']))
-    #header('location:login.php');
+    header('location:login.php');
  include('./header.php'); 
  // include('./auth.php'); 
  ?>
