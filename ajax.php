@@ -14,13 +14,13 @@ if($action == 'login2'){
 	if($login)
 		echo $login;
 }
-/*if($action == 'logout'){
-	#include 'backup.php';
+if($action == 'logout'){
+	include 'backup.php';
 	$logout = $crud->logout();
 	if($logout)
 	
 	echo $logout;
-}*/
+}
 if($action == 'logout2'){
 
 	$logout = $crud->logout2();
