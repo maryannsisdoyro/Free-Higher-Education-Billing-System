@@ -48,7 +48,7 @@ class Action
 				$_SESSION['login_id'] = $row['id'];
 				$_SESSION['login_name'] = $row['name'];
 				$_SESSION['login_username'] = $row['username'];
-				$_SESSION['login_password'] = $row['password'];
+				#$_SESSION['login_password'] = $row['password'];
 				$_SESSION['login_type'] = $row['type'];
 				$_SESSION['login_verification'] = $row['verification'];
 			}
