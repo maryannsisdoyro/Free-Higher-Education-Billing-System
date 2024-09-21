@@ -51,7 +51,7 @@ class Action
 				#$_SESSION['login_password'] = $row['password'];
 				$_SESSION['login_type'] = $row['type'];
 				$_SESSION['login_verification'] = $row['verification'];
-			}
+			}else{  return 3; }
 			return 1;
 		} else {
 			return 3;
