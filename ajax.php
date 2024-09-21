@@ -15,7 +15,7 @@ if($action == 'login2'){
 		echo $login;
 }
 if($action == 'logout'){
-	include 'backup.php';
+	#include 'backup.php';
 	$logout = $crud->logout();
 	if($logout)
 	
