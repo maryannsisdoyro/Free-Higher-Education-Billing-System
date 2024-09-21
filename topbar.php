@@ -16,7 +16,7 @@
   		
   		</div> -->
       <div class=" float-left text-white">
-        <img src="<?= str_contains($_SERVER['REQUEST_URI'], 'enrol/') ? '../assets/logo.png' : './assets/logo.png' ?>" alt="image" style="width: 50px;">
+        <img src="<?= str_contains($_SERVER['REQUEST_URI'], 'enrol/') ? '../assets/icons/main-logo.png' : './assets/icons/main-logo.png' ?>" alt="image" style="width: 50px;">
         <large><b><?php echo isset($_SESSION['system']['name']) ? $_SESSION['system']['name'] : '' ?></b></large>
       </div>
 	  	<div class="float-right">
