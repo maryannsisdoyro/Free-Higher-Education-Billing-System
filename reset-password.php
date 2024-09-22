@@ -19,6 +19,7 @@ ob_end_flush();
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title><?php echo $_SESSION['system']['name'] ?></title>
+<link rel="icon" type="image/x-icon" href="assets/logo.png">
  	
 
 <?php include('./header.php'); ?>
