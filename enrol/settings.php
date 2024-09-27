@@ -7,7 +7,7 @@ $academic_query = $conn->query("SELECT * FROM academic");
 <html lang="en">
 
 <head>
-
+<link rel="icon" type="image/x-icon" href="assets/logo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student List</title>
