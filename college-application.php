@@ -8,8 +8,8 @@
     font-size: 10px; /* Change the font size */
     padding: 10px 15px; /* Change the padding */
   }
- <title><?php echo $_SESSION['system']['name'] ?></title>
-	<link rel="icon" type="image/x-icon" href="assets/logo.png">
+
+<link rel="icon" type="image/x-icon" href="assets/logo.png">
  	
   .swal2-cancel {
     font-size: 10px; /* Change the font size */
