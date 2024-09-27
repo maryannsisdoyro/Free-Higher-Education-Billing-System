@@ -9,8 +9,7 @@
     padding: 10px 15px; /* Change the padding */
   }
 
-<link rel="icon" type="image/x-icon" href="assets/logo.png">
- 	
+
   .swal2-cancel {
     font-size: 10px; /* Change the font size */
     padding: 10px 15px; /* Change the padding */
