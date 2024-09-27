@@ -21,7 +21,7 @@ ob_end_flush();
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title><?php echo $_SESSION['system']['name'] ?>HELLO WORLD</title>
+  <title><?php echo $_SESSION['system']['name'] ?></title>
 	<link rel="icon" type="image/x-icon" href="assets/logo.png">
  	
 
