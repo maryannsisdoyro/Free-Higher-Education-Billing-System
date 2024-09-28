@@ -47,7 +47,7 @@
 
 <?php
   if(!isset($_SESSION['login_id']))
-    header('location:login.php');
+    header('location:admin/login.php');
  include('./header.php'); 
  // include('./auth.php'); 
  ?>
