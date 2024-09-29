@@ -133,7 +133,7 @@
                               <td>
           
                                       <div class="dropdown">
-                                            <button class="dropdown-toggle" data-bs-toggle="dropdown">Select to Enroll</button>
+                                            <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Select to Enroll</button>
                                             <ul class="dropdown-menu">
                                                 <li class="dropdown-item">
                                                    <button type="submit" name="submit" class="btn btn-primary px-5">Enroll</button>
@@ -154,7 +154,7 @@
                                     }else{
                                       ?>
                                         
-                                         <button type="submit" name="submit" class="btn btn-primary px-5">Enroll</button>
+                                        <!--<button type="submit" name="submit" class="btn btn-primary px-5">Enroll</button>-->
                                         <?php 
                                     }
                                 ?>
