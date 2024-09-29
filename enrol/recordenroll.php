@@ -119,20 +119,14 @@ if (isset($_POST['search'])) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <?php
-    if (isset($_POST['stu_id']) && isset($_POST['academic']) {
+    if (isset($_POST['submit'])) {
         $stu_id = $_POST['stu_id'];
         $year_level = $_POST['year_level'];
         $section = $_POST['section'];
         $semester = $_POST['semester'];
         $academic = $_POST['academic'];
-        $stud_status = '';
-        if(isset($_POST['submit_irregular'])){
-            $stud_status = 'irregular';
-        }else if(isset($_POST['submit_shiftee'])){
-            $stud_status = 'shiftee';
-        }else{
-            $stud_status = 'regular';
-        }
+        $stud_status = $_POST['submit'];
+        
 
 
         $get_enroll = $conn->query("SELECT * FROM enroll2024 WHERE stu_id = '$stu_id' ORDER BY id DESC");
