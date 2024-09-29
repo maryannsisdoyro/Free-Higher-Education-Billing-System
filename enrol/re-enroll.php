@@ -131,13 +131,29 @@
 
                               </td>
                               <td>
+          
+                                      <div class="dropdown">
+                                            <button class="dropdown-toggle" data-bs-toggle="dropdown">Select to Enroll</button>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-item">
+                                                   <button type="submit" name="submit" class="btn btn-primary px-5">Enroll</button>
+                                                </li>
+                                                <li class="dropdown-item">
+                                                   <button type="submit" name="submit" class="btn btn-primary px-5">Enroll</button>
+                                                </li>
+                                                <li class="dropdown-item">
+                                                   <button type="submit" name="submit" class="btn btn-primary px-5">Enroll</button>
+                                                </li>
+                                            </ul>
+                                        </div>
                                 <?php 
                                     if ($row['curr'] == $academic['year'] && $row['semester'] == $academic['semester']) {
                                         ?>
                                          <button type="button" class="btn btn-secondary disabled px-5" disabled>Enrolled</button>
                                         <?php 
                                     }else{
-                                        ?>
+                                      ?>
+                                        
                                          <button type="submit" name="submit" class="btn btn-primary px-5">Enroll</button>
                                         <?php 
                                     }
