@@ -133,7 +133,7 @@
                               <td>
           
                                       <div class="dropdown">
-                                            <button type='button' class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Select to Enroll</button>
+                                            <button type='button' class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id='toggle'>Select to Enroll</button>
                                             <ul class="dropdown-menu">
                                                 <li class="dropdown-item">
                                                    <button type="submit" name="submit" class="btn btn-primary px-5">Enroll as Regular</button>
@@ -168,6 +168,16 @@
 
               </div>
           </form>
+<script>
+                    document.getElementById('toggle').onclick(function(){
+                        let mainCon = document.querySelector('main');
+                        if(mainCon.style.minHeight == '70vh')){
+                            mainCon.style.minHeight = '100vh';
+                        }else{
+                            mainCon.style.minHeight = '70vh';
+                        }
+                    })
+                  </script>
   <?php
 
         } else {
