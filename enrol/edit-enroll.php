@@ -195,7 +195,7 @@
                 
                 <div class="form-group">
                     <label for="course_to_be_enrolled">Course to be Enrolled:</label>
-                    <select class="form-control" id="course_to_be_enrolled" name="course" required>
+		   <select class="form-control" id="course_to_be_enrolled" name="course"  <?php $row['stud_status'] != 'shiftee' ? 'disabled' : '' ?> required>
                          <option value="">Select Course to be Enrolled</option>
                         <option value="BEED" <?= $row['course'] == 'BEED' ? 'selected' : '' ?>>BEED (Bachelor of Elementary Education)</option>
                         <option value="BSED" <?= $row['course'] == 'BSED' ? 'selected' : '' ?>>BSED (Bachelor of Secondary Education Major in Filipino)</option>
