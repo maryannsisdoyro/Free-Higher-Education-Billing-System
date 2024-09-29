@@ -132,8 +132,8 @@
                               </td>
                               <td>
           
-                                      <div class="dropdown">
-                                            <button type='button' class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Select to Enroll</button>
+                                      <div class="dropup">
+                                            <button type='button' class="btn btn-primary dropdown-toggle" data-toggle="dropup">Select to Enroll</button>
                                             <ul class="dropdown-menu">
                                                 <li class="dropdown-item">
                                                    <button type="submit" name="submit" class="btn btn-primary px-5">Enroll</button>
