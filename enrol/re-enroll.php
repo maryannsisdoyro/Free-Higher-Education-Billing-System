@@ -164,7 +164,7 @@
                       </table>
                   </div>
 
-            <input type="text" name="submit" id="submit">
+            <input type="hidden" name="submit" id="submit">
 
               </div>
           </form>
