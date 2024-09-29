@@ -172,7 +172,7 @@
                     document.getElementById('toggle').addEventListener('click',function(){
                       console.log('UwU');
                         let mainCon = document.querySelector('main');
-                      console.log(mainCon.style.minHeight;
+                      console.log(mainCon.style.height;
                     })
                   </script>
   <?php
