@@ -136,13 +136,13 @@
                                             <button type='button' class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id='toggle'>Select to Enroll</button>
                                             <ul class="dropdown-menu">
                                                 <li class="dropdown-item">
-                                                   <button type="submit" name="submit" class="btn btn-primary px-5">Enroll as Regular</button>
+                                                   <button type="submit" name="submit_regular" class="btn btn-primary px-5">Enroll as Regular</button>
                                                 </li>
                                                 <li class="dropdown-item">
-                                                   <button type="submit" name="submit" class="btn btn-primary px-5">Enroll as Irregular</button>
+                                                   <button type="submit" name="submit_irregular" class="btn btn-primary px-5">Enroll as Irregular</button>
                                                 </li>
                                                 <li class="dropdown-item">
-                                                   <button type="submit" name="submit" class="btn btn-primary px-5">Enroll as Shiftee</button>
+                                                   <button type="submit" name="submit_shiftee" class="btn btn-primary px-5">Enroll as Shiftee</button>
                                                 </li>
                                             </ul>
                                         </div>
