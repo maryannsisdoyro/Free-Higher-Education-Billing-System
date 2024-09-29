@@ -170,9 +170,8 @@
           </form>
 <script>
                     document.getElementById('toggle').addEventListener('click',function(){
-                      console.log('UwU');
                         let mainCon = document.querySelector('main');
-                      console.log(mainCon.style.height);
+                        console.log(mainCon.style.minHeight);
                     })
                   </script>
   <?php
