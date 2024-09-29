@@ -77,6 +77,7 @@ CREATE TABLE `enroll2024` (
   `major` varchar(255) DEFAULT NULL,
   `section` varchar(255) DEFAULT NULL,
   `semester` varchar(20) NOT NULL DEFAULT '1st',
+  `stud_status` varchar(20) NOT NULL,
   `curr` varchar(255) DEFAULT NULL,
   `reli` varchar(255) DEFAULT NULL,
   `con_no` varchar(255) DEFAULT NULL,
