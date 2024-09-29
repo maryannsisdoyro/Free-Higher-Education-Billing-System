@@ -171,12 +171,7 @@
 <script>
                     document.getElementById('toggle').addEventListener('click',function(){
                       console.log('UwU');
-                        let mainCon = document.querySelector('main');
-                        if(mainCon.style.minHeight == '70vh')){
-                            mainCon.style.minHeight = '100vh';
-                        }else{
-                            mainCon.style.minHeight = '70vh';
-                        }
+                      
                     })
                   </script>
   <?php
