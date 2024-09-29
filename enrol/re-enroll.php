@@ -170,6 +170,7 @@
           </form>
 <script>
                     document.getElementById('toggle').onclick(function(){
+                      console.log('UwU');
                         let mainCon = document.querySelector('main');
                         if(mainCon.style.minHeight == '70vh')){
                             mainCon.style.minHeight = '100vh';
