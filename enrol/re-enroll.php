@@ -169,7 +169,7 @@
               </div>
           </form>
 <script>
-                    document.getElementById('toggle').onclick(function(){
+                    document.getElementById('toggle').addEventListener('click',function(){
                       console.log('UwU');
                         let mainCon = document.querySelector('main');
                         if(mainCon.style.minHeight == '70vh')){
