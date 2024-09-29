@@ -164,7 +164,7 @@
                       </table>
                   </div>
 
-
+            <input type="text" name="submit" id="submit">
 
               </div>
           </form>
@@ -177,6 +177,11 @@
                         }else{
                             mainCon.style.minHeight = '70vh';
                         }
+                    })
+                     document.querySelectorAll('.dropdown-item').forEach(item => {
+                        item.addEventListener('click', function(){
+                            document.getElementById('submit').value = item.getAttribute('name'); 
+                        })
                     })
                   </script>
   <?php
