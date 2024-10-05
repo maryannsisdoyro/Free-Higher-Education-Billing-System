@@ -2,10 +2,7 @@
 <html lang="en">
 <?php 
 session_start();
-$auth_id = implode(explode('/login.php/', $_SERVER['REQUEST_URI']));
-if(htmlspecialchars(stripslashes(trim($_SESSION['AUTH_KEY']))) !== htmlspecialchars(stripslashes(trim($auth_id)))){
-    header('location: index.php?page=home');
-}
+
 
 // echo password_hash('mayannlawan@@123', PASSWORD_DEFAULT);
 
