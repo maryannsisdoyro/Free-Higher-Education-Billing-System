@@ -47,10 +47,8 @@
 
 <?php
   if(!isset($_SESSION['login_id']))
-	$uniq_id = uniqid() . ' ' . uniqid() . ' ' . uniqid() . ' ' . uniqid() . ' ' . uniqid() .' ' . uniqid();
-	$valid_id = rand(9, 9999999) . uniqid() . rand(20, 99999) . uniqid();
-	$_SESSION['AUTH_KEY'] = htmlspecialchars($valid_id);
-    header("location:login.php?auth_key=$uniq_id&codemary=$valid_id");
+	
+    header("location:login.php");
  include('./header.php'); 
  // include('./auth.php'); 
  ?>
