@@ -47,7 +47,7 @@
 
 <?php
   if(!isset($_SESSION['login_id']))
-	$uniq_id = uni();
+	$uniq_id = uniqid();
 	$_SESSION['AUTH_KEY'] = htmlspecialchars($uniq_id);
     header("location:login.php/$uniq_id/");
  include('./header.php'); 
