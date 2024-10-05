@@ -27,6 +27,11 @@ ob_end_flush();
 
 <?php include('./header.php'); ?>
 <?php 
+$auth_id = implode(explode('/login.php/', $_SERVER['REQUEST_URI']);
+if(htmlspecialchars($_SESSION['auth_login']) !== htmlspecialchars(stripslashes(trim($auth_id)))){
+header('location: index.php?page=home');
+}
+
 if(isset($_SESSION['login_id']))
 header("location:index.php?page=home");
 
