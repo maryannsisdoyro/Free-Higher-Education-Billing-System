@@ -225,9 +225,24 @@ new Chart("chart", {
         legend: { display: false },
         title: {
             display: true,
-            text: `Academic School Year ${<?= $res_academic['year'] ?>} | ${<?= $res_academic['semester'] ?>} Semester`
+            text: `Academic School Year  Semester`
         },
-       
+        scales: {
+            x: { // Updated to use the new scales API
+                title: {
+                    display: true,
+                    text: 'Month'
+                }
+            },
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    steps: 10,
+                    stepSize: 5,
+                    max: 100
+                }
+            }
+        }
     }
 });
 
