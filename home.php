@@ -182,7 +182,11 @@ new Chart("chart", {
     datasets: [{
       backgroundColor: barColors,
       data: yValues
-    }]
+    }],
+    ticks: {
+        suggestedMin: 0,
+        beginAtZero: true
+    }
   },
   options: {
     legend: {display: false},
