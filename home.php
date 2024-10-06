@@ -220,7 +220,15 @@ new Chart("chart", {
             data: yValues
         }]
     },
-   
+    options: {
+        responsive: true, // Make the chart responsive
+        legend: { display: false },
+        title: {
+            display: true,
+            text: `Academic School Year ${<?= $res_academic['year'] ?>} | ${<?= $res_academic['semester'] ?>} Semester`
+        },
+       
+    }
 });
 
     </script>
