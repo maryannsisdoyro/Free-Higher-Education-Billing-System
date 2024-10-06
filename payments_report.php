@@ -222,7 +222,7 @@
 </noscript>
 <script>
     document.getElementById("exportBtn").addEventListener("click", function () {
-    let table = document.getElementById("myTable");
+    let table = document.getElementById("report-list");
     let rows = Array.from(table.querySelectorAll("tr"));
     
     let csvContent = rows.map(row => {
