@@ -172,7 +172,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 
     <script>
         var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
-var yValues = [<?php echo $get_bsit->num_rows ?>, <?php echo $get_bsba->num_rows ?>, <?php echo $get_bshm->num_rows + $get_bs_hm->num_rows ?>, <?php echo $get_bsed->num_rows ?>, <?php echo $get_beed->num_rows ?>];
+var yValues = [<?php echo $get_bsit->num_rows ?? 0 ?>, <?php echo $get_bsba->num_rows ?? 0 ?>, <?php echo $get_bshm->num_rows ?? 0 + $get_bs_hm->num_rows ?? 0 ?>, <?php echo $get_bsed->num_rows ?? 0 ?>, <?php echo $get_beed->num_rows ?? 0 ?>];
 var barColors = ["#dc3545"];
 
 // new Chart("chart", {
