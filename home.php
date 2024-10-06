@@ -188,7 +188,7 @@ var barColors = ["#dc3545"];
 //             legend: {display: false},
 //             title: {
 //             display: true,
-//             text: "Academic School Year  <?= $res_academic['year'] ?>  |  <?= $res_academic['semester'] ?> Semester"
+//             text: "Academic School Year Semester"
 //             }
 //         },
 //         scales: {
