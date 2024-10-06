@@ -192,23 +192,21 @@ new Chart("chart", {
             }
         },
         scales: {
-                    x: [{
-                            display: true,
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Month'
-                            }
-                        }],
-                    y: [{
-                            display: true,
-                            ticks: {
-                                beginAtZero: true,
-                                steps: 10,
-                                stepValue: 5,
-                                max: 100
-                            }
-                        }]
-                },
+            x: { // Updated to use the new scales API
+                title: {
+                    display: true,
+                    text: 'Month'
+                }
+            },
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    steps: 10,
+                    stepSize: 5,
+                    max: 100
+                }
+            }
+        }
 });
     </script>
 <script>
