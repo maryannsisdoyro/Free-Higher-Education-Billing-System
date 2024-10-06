@@ -176,42 +176,40 @@ var yValues = [<?php echo $get_bsit->num_rows ?>, <?php echo $get_bsba->num_rows
 var barColors = ["#dc3545"];
 
 new Chart("chart", {
-    type: "line",
-    data: {
-        labels: xValues,
-        datasets: [{
+        type: "line",
+        data: {
+            labels: xValues,
+            datasets: [{
             backgroundColor: barColors,
-            borderColor: barColors, // Added to show the line color
-            fill: false, // Change to true if you want the area under the line to be filled
             data: yValues
-        }]
-    },
-    options: {
-        responsive: true, // Make the chart responsive
-        legend: { display: false },
-        title: {
+            }]
+        },
+        options: {
+            legend: {display: false},
+            title: {
             display: true,
-            text: `Academic School Year ${<?= $res_academic['year'] ?>} | ${<?= $res_academic['semester'] ?>} Semester`
+            text: "Academic School Year  <?= $res_academic['year'] ?>  |  <?= $res_academic['semester'] ?> Semester"
+            }
         },
         scales: {
-            x: { // Updated to use the new scales API
-                title: {
-                    display: true,
-                    text: 'Month'
-                }
-            },
-            y: {
-                beginAtZero: true,
-                ticks: {
-                    steps: 10,
-                    stepSize: 5,
-                    max: 100
-                }
-            }
-        }
-    }
+                    x: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Month'
+                            }
+                        }],
+                    y: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                steps: 10,
+                                stepValue: 5,
+                                max: 100
+                            }
+                        }]
+                },
 });
-
     </script>
 <script>
 	$('#manage-records').submit(function(e){
