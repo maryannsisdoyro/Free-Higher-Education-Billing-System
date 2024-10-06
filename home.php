@@ -169,7 +169,6 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
         
     </div>
 
-    <?= $res_academic['year'] ?> <?= $res_academic['semester'] ?>
 
     <script>
         var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
@@ -226,7 +225,7 @@ new Chart("chart", {
         legend: { display: false },
         title: {
             display: true,
-            text: `Academic School Year ${<?= $res_academic['year'] ?>} | ${<?= $res_academic['semester'] ?>} Semester`
+            text: "Academic School Year  <?= $res_academic['year'] ?>  |  <?= $res_academic['semester'] ?> Semester"
         },
         scales: {
             x: { // Updated to use the new scales API
