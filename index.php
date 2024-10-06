@@ -32,6 +32,35 @@
     $conn->close();
   }
 
+  if (str_contains($_SERVER['REQUEST_URI'], "page=payments_report")) {
+    include 'db_connect.php';
+    function array_to_csv_download($array, $filename = "export.csv", $delimiter = ",") {
+      header('Content-Type: application/csv');
+      header('Content-Disposition: attachment; filename="' . $filename . '";');
+  
+      $f = fopen('php://output', 'w');
+  
+      fputcsv($f, array_keys($array[0]), $delimiter);
+  
+      
+      foreach ($array as $row) {
+          fputcsv($f, $row, $delimiter);
+      }
+      fclose($f);
+      exit();
+  }
+  
+  if (isset($_GET['export']) && $_GET['export'] == 'csv') {
+      $data = [];
+      while ($row = $result->fetch_assoc()) {
+          $data[] = $row;
+      }
+      array_to_csv_download($data, 'student_list.csv');
+  }
+  
+  $conn->close();
+  }
+
   
 ?>
 <!DOCTYPE html>
