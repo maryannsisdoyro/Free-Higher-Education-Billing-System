@@ -182,11 +182,7 @@ new Chart("chart", {
     datasets: [{
       backgroundColor: barColors,
       data: yValues
-    }],
-    ticks: {
-        suggestedMin: 0,
-        beginAtZero: true
-    }
+    }]
   },
   options: {
     legend: {display: false},
@@ -194,7 +190,11 @@ new Chart("chart", {
       display: true,
       text: "Academic School Year  <?= $res_academic['year'] ?>  |  <?= $res_academic['semester'] ?> Semester"
     }
-  }
+  },
+  ticks: {
+        suggestedMin: 0,
+        beginAtZero: true
+    }
 });
     </script>
 <script>
