@@ -191,10 +191,14 @@ new Chart("chart", {
       text: "Academic School Year  <?= $res_academic['year'] ?>  |  <?= $res_academic['semester'] ?> Semester"
     }
   },
-  ticks: {
-        suggestedMin: 0,
-        beginAtZero: true
-    }
+  yAxes: [{
+            display: true,
+            ticks: {
+                suggestedMin: 0,    // minimum will be 0, unless there is a lower value.
+                // OR //
+                beginAtZero: true   // minimum value will be 0.
+            }
+        }]
 });
     </script>
 <script>
