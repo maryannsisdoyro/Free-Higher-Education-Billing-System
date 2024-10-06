@@ -192,7 +192,13 @@ new Chart("chart", {
     }
   },
   scales: {
-                    
+                    xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Month'
+                            }
+                        }],
                     yAxes: [{
                             display: true,
                             ticks: {
