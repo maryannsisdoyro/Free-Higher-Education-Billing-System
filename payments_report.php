@@ -82,7 +82,8 @@
             <div class="col-md-12 mb-4 py-3">
                     <center>
                         <!-- <a href="print-payment.php?month=<?= $month ?>&year=<?= $year ?>" class="btn btn-success btn-sm col-sm-3" type="button" ><i class="fa fa-print"></i> Print</a> -->
-                        <button class="btn btn-success btn-sm col-sm-3 print" type="button" ><i class="fa fa-print"></i> Print</button>
+                        <!-- <button class="btn btn-success btn-sm col-sm-3 print" type="button" ><i class="fa fa-print"></i> Print</button> -->
+                        <a href="index.php?page=payment_reports&export=csv" class="btn btn-success">Export to CSV</a>
                     </center>
                     <hr>
                 </div>
@@ -191,7 +192,7 @@
                 <hr>
                 <div class="col-md-12 mb-4">
                     <center>
-                        <button class="btn btn-success btn-sm col-sm-3 print" type="button" ><i class="fa fa-print"></i> Print</button>
+                    <a href="index.php?page=payment_reports&export=csv" class="btn btn-success">Export to CSV</a>
                     </center>
                 </div>
             </div>
