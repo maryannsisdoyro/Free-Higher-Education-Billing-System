@@ -83,7 +83,7 @@
                     <center>
                         <!-- <a href="print-payment.php?month=<?= $month ?>&year=<?= $year ?>" class="btn btn-success btn-sm col-sm-3" type="button" ><i class="fa fa-print"></i> Print</a> -->
                         <!-- <button class="btn btn-success btn-sm col-sm-3 print" type="button" ><i class="fa fa-print"></i> Print</button> -->
-                        <a href="#" class="btn btn-success" id="exportBtn">Export to CSV</a>
+                        <a href="#" class="btn btn-success" id="exportBtn">Download Form 2</a>
                     </center>
                     <hr>
                 </div>
@@ -192,7 +192,7 @@
                 <hr>
                 <div class="col-md-12 mb-4">
                     <center>
-                    <a href="#" class="btn btn-success" id="exportBtn">Export to CSV</a>
+                    <a href="#" class="btn btn-success" id="exportBtn2">Download Form 2</a>
                     </center>
                 </div>
             </div>
@@ -222,6 +222,26 @@
 </noscript>
 <script>
     document.getElementById("exportBtn").addEventListener("click", function () {
+    let table = document.getElementById("report-list");
+    let rows = Array.from(table.querySelectorAll("tr"));
+    
+    let csvContent = rows.map(row => {
+        let cols = Array.from(row.querySelectorAll("th, td"));
+        return cols.map(col => col.innerText).join(",");
+    }).join("\n");
+
+    // Create a link element to trigger the download
+    let link = document.createElement("a");
+    link.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvContent);
+    link.download = 'table.csv';
+
+    // Append to the body to make it work in Firefox
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
+
+document.getElementById("exportBtn2").addEventListener("click", function () {
     let table = document.getElementById("report-list");
     let rows = Array.from(table.querySelectorAll("tr"));
     
