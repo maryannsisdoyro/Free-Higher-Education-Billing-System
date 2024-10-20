@@ -149,7 +149,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                         ?>
                     </h1>
                         <div style="text-align: center;">
-                        <h5 class="mb-0">Total Population</h5>
+                        <h5 class="mb-0">Total Populations</h5>
                         </div>
                     </div>
                 </div>
