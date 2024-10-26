@@ -62,9 +62,6 @@ header("location:index.php?page=home");
   			<div class="card col-md-4">
   				<div class="card-body">
   					<form id="login-form" >
-						<?php 
-							
-						?>
 						
   						<div class="form-group">
   							<label for="username" class="control-label">Username</label>
