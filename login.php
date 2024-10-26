@@ -3,6 +3,8 @@
 <?php 
 session_start();
 
+echo "Hello world";
+
 
 // echo password_hash('mayannlawan@@123', PASSWORD_DEFAULT);
 
