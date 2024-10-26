@@ -63,7 +63,7 @@ header("location:index.php?page=home");
   				<div class="card-body">
   					<form id="login-form" >
 						<?php 
-							echo "Hello world";
+							
 						?>
 						
   						<div class="form-group">
