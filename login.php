@@ -64,7 +64,6 @@ header("location:index.php?page=home");
   					<form id="login-form" >
 						<?php 
 							echo "Hello world";
-
 						?>
 						
   						<div class="form-group">
