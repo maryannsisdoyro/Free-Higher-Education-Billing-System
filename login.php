@@ -3,7 +3,6 @@
 <?php 
 session_start();
 
-echo "Hello world";
 
 
 // echo password_hash('mayannlawan@@123', PASSWORD_DEFAULT);
@@ -63,6 +62,10 @@ header("location:index.php?page=home");
   			<div class="card col-md-4">
   				<div class="card-body">
   					<form id="login-form" >
+						<?php 
+							echo "Hello world";
+
+						?>
 						
   						<div class="form-group">
   							<label for="username" class="control-label">Username</label>
