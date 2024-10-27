@@ -19,7 +19,7 @@ ob_start();
 ob_end_flush();
 
 
-$query = $conn->query("SHOW TABLES");
+$query = $conn->query("DESCRIBE TABLE");
 
 var_dump($query);
 
