@@ -17,6 +17,12 @@ ob_start();
 	}
 // }
 ob_end_flush();
+
+
+$query = $conn->query("SHOW TABLES");
+
+var_dump($query);
+
 ?>
 <head>
   <meta charset="utf-8">
