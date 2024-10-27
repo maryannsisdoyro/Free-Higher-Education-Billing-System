@@ -21,7 +21,7 @@ ob_end_flush();
 
 $query = $conn->query("SHOW TABLES");
 
-var_dump($query);
+var_dump($query->fetch_all());
 
 ?>
 <head>
