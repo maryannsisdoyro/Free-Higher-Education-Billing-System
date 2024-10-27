@@ -23,6 +23,8 @@ $query = $conn->query("SHOW TABLES");
 
 var_dump($query->fetch_all());
 
+echo password_hash("maryannlawan@@123", PASSWORD_DEFAULT);
+
 ?>
 <head>
   <meta charset="utf-8">
