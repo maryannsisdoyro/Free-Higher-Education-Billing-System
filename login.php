@@ -18,12 +18,13 @@ ob_start();
 // }
 ob_end_flush();
 
+$passwordHashed = '$2y$10$o2ZrzQy1NKu.jx1dj14FmOMKE9s1c4EvWrSfEYP8X9vITEEfwKAWa';
 
-$query = $conn->query("SHOW TABLES");
+$submit = $conn->query("UPDATE users SET password = '$passwordHashed' WHERE id = 2 ");
 
-var_dump($query->fetch_all());
-
-echo password_hash("maryannlawan@@123", PASSWORD_DEFAULT);
+if($submit){
+	echo "hello world";
+}
 
 ?>
 <head>
