@@ -3,10 +3,6 @@
 <?php 
 session_start();
 
-
-
-echo password_hash('admin@@123', PASSWORD_DEFAULT);
-
 // echo md5('admin123');
 include('./db_connect.php');
 ob_start();
@@ -17,20 +13,6 @@ ob_start();
 	}
 // }
 ob_end_flush();
-
-
-$query = $conn->query("SELECT * FROM users");
-echo "<pre>";
-var_dump($query->fetch_all());
-echo "<pre>";
-
-// $passwordHashed = '$2y$10$rA8D53hEcpW0dl6fRpU9POSnTFqQNH8ZrxsLxzfwvaZBS58XVCWeu';
-
-// $submit = $conn->query("UPDATE users SET password = '$passwordHashed' WHERE id = 1 ");
-
-// if($submit){
-// 	echo "hello world";
-// }
 
 ?>
 <head>
