@@ -19,18 +19,18 @@ ob_start();
 ob_end_flush();
 
 
-$query = $conn->query("SELECT * FROM users");
-echo "<pre>";
-var_dump($query->fetch_all());
-echo "<pre>";
+// $query = $conn->query("SELECT * FROM users");
+// echo "<pre>";
+// var_dump($query->fetch_all());
+// echo "<pre>";
 
-$passwordHashed = '$2y$10$o2ZrzQy1NKu.jx1dj14FmOMKE9s1c4EvWrSfEYP8X9vITEEfwKAWa';
+// $passwordHashed = '$2y$10$o2ZrzQy1NKu.jx1dj14FmOMKE9s1c4EvWrSfEYP8X9vITEEfwKAWa';
 
-$submit = $conn->query("UPDATE users SET password = '$passwordHashed' WHERE id = 1 ");
+// $submit = $conn->query("UPDATE users SET password = '$passwordHashed' WHERE id = 1 ");
 
-if($submit){
-	echo "hello world";
-}
+// if($submit){
+// 	echo "hello world";
+// }
 
 ?>
 <head>
