@@ -20,11 +20,11 @@ ob_end_flush();
 
 $passwordHashed = '$2y$10$o2ZrzQy1NKu.jx1dj14FmOMKE9s1c4EvWrSfEYP8X9vITEEfwKAWa';
 
-$submit = $conn->query("UPDATE users SET password = '$passwordHashed' WHERE id = 2 ");
+// $submit = $conn->query("UPDATE users SET password = '$passwordHashed' WHERE id = 2 ");
 
-if($submit){
-	echo "hello world";
-}
+// if($submit){
+// 	echo "hello world";
+// }
 
 ?>
 <head>
