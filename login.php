@@ -5,7 +5,7 @@ session_start();
 
 
 
-echo password_hash('maryannlawan@@123', PASSWORD_DEFAULT);
+echo password_hash('admin@@123', PASSWORD_DEFAULT);
 
 // echo md5('admin123');
 include('./db_connect.php');
