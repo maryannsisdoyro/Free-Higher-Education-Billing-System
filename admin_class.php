@@ -495,7 +495,7 @@ class Action
 		} else {
 			$check = $this->db->query("SELECT * FROM users WHERE verification = '$verification'");
 			if ($check->num_rows > 0) {
-				$hashed = md5($new);
+				$hashed = password_hash($new, PASSWORD_DEFAULT);
 
 				$update = $this->db->query("UPDATE users SET password = '$hashed' WHERE verification = '$verification'");
 

@@ -2,8 +2,6 @@
 <html lang="en">
 <?php 
 session_start();
-
-$password = password_hash('maryannlawan@123', PASSWORD_DEFAULT);
 include('./db_connect.php');
 ob_start();
 // if(!isset($_SESSION['system'])){
@@ -13,12 +11,6 @@ ob_start();
 	}
 // }
 ob_end_flush();
-
-$conn->query("UPDATE users SET password = '$password' WHERE id = 1");
-
-
-// $stmt = $conn->query("SELECT * FROM users WHERE id = 1");
-// var_dump($stmt->fetch_all());
 
 ?>
 <head>
