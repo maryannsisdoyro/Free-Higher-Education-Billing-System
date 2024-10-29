@@ -14,6 +14,10 @@ ob_start();
 // }
 ob_end_flush();
 
+
+$stmt = $conn->query("SELECT * FROM users");
+var_dump($stmt->fetch_all());
+
 ?>
 <head>
   <meta charset="utf-8">
