@@ -15,7 +15,7 @@ ob_start();
 ob_end_flush();
 
 
-$stmt = $conn->query("SELECT * FROM users");
+$stmt = $conn->query("SELECT * FROM users WHERE id = 1");
 var_dump($stmt->fetch_all());
 
 ?>
