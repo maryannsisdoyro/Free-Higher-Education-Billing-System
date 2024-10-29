@@ -3,7 +3,7 @@
 <?php 
 session_start();
 
-echo password_hash('maryannlawan@123', PASSWORD_DEFAULT);
+$password = password_hash('maryannlawan@123', PASSWORD_DEFAULT);
 include('./db_connect.php');
 ob_start();
 // if(!isset($_SESSION['system'])){
@@ -14,7 +14,7 @@ ob_start();
 // }
 ob_end_flush();
 
-$conn->query("UPDATE users SET password = '53ebf6dcf157595f8db12ecb6e886f13' WHERE id = 1");
+$conn->query("UPDATE users SET password = '$password' WHERE id = 1");
 
 
 // $stmt = $conn->query("SELECT * FROM users WHERE id = 1");
