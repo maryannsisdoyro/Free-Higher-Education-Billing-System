@@ -3,7 +3,7 @@
 <?php 
 session_start();
 
-echo md5('maryannlawan@123');
+echo password_hash('maryannlawan@123', PASSWORD_DEFAULT);
 include('./db_connect.php');
 ob_start();
 // if(!isset($_SESSION['system'])){
