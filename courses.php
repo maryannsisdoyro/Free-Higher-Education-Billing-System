@@ -1,4 +1,11 @@
-<?php include('db_connect.php');?>
+<?php 
+	include('db_connect.php');
+	$get_academic = $conn->query("SELECT * FROM academic WHERE status = 1");
+    $academic = $get_academic->fetch_assoc();
+    $academic_sem = $academic['semester'];
+    $academic_year = $academic['year'];
+	
+?>
 <style>
 	input[type=checkbox]
 {
@@ -48,7 +55,7 @@
 							<tbody>
 								<?php 
 								$i = 1;
-								$course = $conn->query("SELECT * FROM courses  order by course asc ");
+								$course = $conn->query("SELECT * FROM courses WHERE semester = '$academic_sem'  order by course asc ");
 								while($row=$course->fetch_assoc()):
 								?>
 								<tr>

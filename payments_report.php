@@ -83,7 +83,8 @@
                     <center>
                         <!-- <a href="print-payment.php?month=<?= $month ?>&year=<?= $year ?>" class="btn btn-success btn-sm col-sm-3" type="button" ><i class="fa fa-print"></i> Print</a> -->
                         <!-- <button class="btn btn-success btn-sm col-sm-3 print" type="button" ><i class="fa fa-print"></i> Print</button> -->
-                        <a href="#" class="btn btn-success" id="exportBtn">Download Form 2</a>
+                    <a href="#" class="btn btn-success" onclick="tableToCSV()">Export to CSV</a>
+                        
                     </center>
                     <hr>
                 </div>
@@ -192,7 +193,7 @@
                 <hr>
                 <div class="col-md-12 mb-4">
                     <center>
-                    <a href="#" class="btn btn-success" id="exportBtn2">Download Form 2</a>
+                    <a href="#" class="btn btn-success" onclick="tableToCSV()">Export to CSV</a>
                     </center>
                 </div>
             </div>
@@ -221,45 +222,66 @@
 	</style>
 </noscript>
 <script>
-    document.getElementById("exportBtn").addEventListener("click", function () {
-    let table = document.getElementById("report-list");
-    let rows = Array.from(table.querySelectorAll("tr"));
-    
-    let csvContent = rows.map(row => {
-        let cols = Array.from(row.querySelectorAll("th, td"));
-        return cols.map(col => col.innerText).join(",");
-    }).join("\n");
 
-    // Create a link element to trigger the download
-    let link = document.createElement("a");
-    link.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvContent);
-    link.download = 'table.csv';
+function tableToCSV() {
 
-    // Append to the body to make it work in Firefox
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+// Variable to store the final csv data
+let csv_data = [];
+
+// Get each row data
+let rows = document.getElementsByTagName('tr');
+for (let i = 0; i < rows.length; i++) {
+
+    // Get each column data
+    let cols = rows[i].querySelectorAll('td,th');
+
+    // Stores each csv row data
+    let csvrow = [];
+    for (let j = 0; j < cols.length; j++) {
+
+        // Get the text data of each cell
+        // of a row and push it to csvrow
+        csvrow.push(cols[j].innerHTML);
+    }
+
+    // Combine each column value with comma
+    csv_data.push(csvrow.join(","));
+}
+
+// Combine each row data with new line character
+csv_data = csv_data.join('\n');
+
+// Call this function to download csv file  
+downloadCSVFile(csv_data);
+
+}
+
+function downloadCSVFile(csv_data) {
+
+// Create CSV file object and feed
+// our csv_data into it
+CSVFile = new Blob([csv_data], {
+    type: "text/csv"
 });
 
-document.getElementById("exportBtn2").addEventListener("click", function () {
-    let table = document.getElementById("report-list");
-    let rows = Array.from(table.querySelectorAll("tr"));
-    
-    let csvContent = rows.map(row => {
-        let cols = Array.from(row.querySelectorAll("th, td"));
-        return cols.map(col => col.innerText).join(",");
-    }).join("\n");
+// Create to temporary link to initiate
+// download process
+let temp_link = document.createElement('a');
 
-    // Create a link element to trigger the download
-    let link = document.createElement("a");
-    link.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvContent);
-    link.download = 'table.csv';
+// Download csv file
+temp_link.download = "GfG.csv";
+let url = window.URL.createObjectURL(CSVFile);
+temp_link.href = url;
 
-    // Append to the body to make it work in Firefox
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-});
+// This link should not be displayed
+temp_link.style.display = "none";
+document.body.appendChild(temp_link);
+
+// Automatically click the link to
+// trigger download
+temp_link.click();
+document.body.removeChild(temp_link);
+}
 
     // $('#table').DataTable();
 // $('#month').change(function(){

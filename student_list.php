@@ -7,7 +7,6 @@
 <div class="container">
         <!-- <a href="" class="btn btn-secondary"> Back</a> -->
         <!-- <a href="index.php" class="btn btn-danger"> Add New +</a> -->
-     
 
         <div class="d-flex align-items-center justify-content-between">
         <h2 >COLLEGE APPLICATION FORM</h2>

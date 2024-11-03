@@ -76,4 +76,4 @@ foreach($user->fetch_array() as $k =>$v){
 		})
 	})
 
-</script> 
+</script>

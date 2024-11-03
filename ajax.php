@@ -1,97 +1,144 @@
 <?php
+
 ob_start();
-$action = isset($_GET['action']) ? htmlspecialchars($_GET['action']) : '';  // Sanitize the action parameter
+$action = $_GET['action'];
 include 'admin_class.php';
 $crud = new Action();
-
-// Check if the action is valid
-if (method_exists($crud, $action)) {
-    switch ($action) {
-        case 'login':
-            $login = $crud->login();
-            if ($login) {
-                echo $login;
-            } else {
-                echo 'Login failed.';
-            }
-            break;
-        
-        case 'login2':
-            $login = $crud->login2();
-            if ($login) {
-                echo $login;
-            } else {
-                echo 'Login2 failed.';
-            }
-            break;
-        
-        case 'logout':
-            include 'backup.php';
-            $logout = $crud->logout();
-            if ($logout) {
-                echo $logout;
-            } else {
-                echo 'Logout failed.';
-            }
-            break;
-
-        case 'logout2':
-            $logout = $crud->logout2();
-            if ($logout) {
-                echo $logout;
-            } else {
-                echo 'Logout2 failed.';
-            }
-            break;
-
-        case 'save_user':
-            $save = $crud->save_user();
-            if ($save) {
-                echo $save;
-            } else {
-                echo 'Saving user failed.';
-            }
-            break;
-
-        case 'delete_user':
-            $delete = $crud->delete_user();
-            if ($delete) {
-                echo $delete;
-            } else {
-                echo 'Deleting user failed.';
-            }
-            break;
-
-        // Add similar cases for the remaining actions
-        case 'signup':
-        case 'update_account':
-        case 'save_settings':
-        case 'save_course':
-        case 'delete_course':
-        case 'save_student':
-        case 'delete_student':
-        case 'save_fees':
-        case 'delete_fees':
-        case 'save_payment':
-        case 'delete_payment':
-        case 'forgotPassword':
-        case 'resetPassword':
-        case 'import_csv_enrollment':
-            $response = $crud->$action();  // Dynamically call the method
-            if ($response) {
-                echo $response;
-            } else {
-                echo ucfirst($action) . ' failed.';
-            }
-            break;
-
-        default:
-            echo 'Unknown action.';
-            break;
-    }
-} else {
-    echo 'Invalid action or method not found.';
+if($action == 'login'){
+	$login = $crud->login();
+	if($login)
+		echo $login;
 }
+if($action == 'login2'){
+	$login = $crud->login2();
+	if($login)
+		echo $login;
+}
+if($action == 'logout'){
+	include 'backup.php';
+	$logout = $crud->logout();
+	if($logout)
+	
+	echo $logout;
+}
+if($action == 'logout2'){
+
+	$logout = $crud->logout2();
+	if($logout)
+		echo $logout;
+
+}
+if($action == 'save_user'){
+	$save = $crud->save_user();
+	if($save)
+		echo $save;
+}
+if($action == 'delete_user'){
+	$save = $crud->delete_user();
+	if($save)
+		echo $save;
+}
+if($action == 'signup'){
+	$save = $crud->signup();
+	if($save)
+		echo $save;
+}
+if($action == 'update_account'){
+	$save = $crud->update_account();
+	if($save)
+		echo $save;
+}
+if($action == "save_settings"){
+	$save = $crud->save_settings();
+	if($save)
+		echo $save;
+}
+if($action == "save_course"){
+	$save = $crud->save_course();
+	if($save)
+		echo $save;
+}
+if($action == "delete_course"){
+	$delete = $crud->delete_course();
+	if($delete)
+		echo $delete;
+}
+if($action == "save_student"){
+	$save = $crud->save_student();
+	if($save)
+		echo $save;
+}
+if($action == "delete_student"){
+	$delete = $crud->delete_student();
+	if($delete)
+		echo $delete;
+}
+if($action == "save_fees"){
+	$save = $crud->save_fees();
+	if($save)
+		echo $save;
+}
+if($action == "delete_fees"){
+	$delete = $crud->delete_fees();
+	if($delete)
+		echo $delete;
+}
+if($action == "save_payment"){
+	$save = $crud->save_payment();
+	if($save)
+		echo $save;
+}
+if($action == "delete_payment"){
+	$delete = $crud->delete_payment();
+	if($delete)
+		echo $delete;
+}
+if($action == "forgotPassword"){
+	$forgot = $crud->forgotPassword();
+	if($forgot)
+		echo $forgot;
+}
+
+if($action == "resetPassword"){
+	$forgot = $crud->resetPassword();
+	if($forgot)
+		echo $forgot;
+}
+
+if($action == "import_csv_enrollment"){
+	$import = $crud->importCsvEnrollment();
+	if($import)
+		echo $import;
+}
+
+if($action == 'save_shiftee'){
+	$save_shiftee = $crud->save_shiftee();
+	if($save_shiftee){
+		echo $save_shiftee;
+	}
+}
+
+if($action == 'save_irregular'){
+	$save_irregular = $crud->save_irregular();
+	if($save_irregular){
+		echo $save_irregular;
+	}
+}
+
+if($action == 'save_regular'){
+	$save_regular = $crud->save_regular();
+	if($save_regular){
+		echo $save_regular;
+	}
+}
+
+
+
+// if($action == "new_enroll"){
+// 	$new = $crud->newEnroll();
+// 	if($new)
+// 		echo $new;
+// }
 
 ob_end_flush();
 ?>

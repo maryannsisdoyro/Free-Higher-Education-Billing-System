@@ -2,6 +2,11 @@
 <html lang="en">
 <?php 
 session_start();
+
+
+// echo password_hash('mayannlawan@@123', PASSWORD_DEFAULT);
+
+// echo md5('admin123');
 include('./db_connect.php');
 ob_start();
 // if(!isset($_SESSION['system'])){
@@ -11,7 +16,6 @@ ob_start();
 	}
 // }
 ob_end_flush();
-
 ?>
 <head>
   <meta charset="utf-8">
