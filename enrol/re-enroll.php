@@ -15,17 +15,24 @@
                 'BSBA' => 'Bachelor of Science in Business Administration'
             ];
 
+            if ($row['course'] == 'BS-HM') {
+                $row['course'] = "BSHM";
+                 }
     ?>
 
     <style>
         select{
             font-size: 12px !important;
         }
+
+        .table {
+            position: relative;
+            z-index: 100;
+        }
     </style>
 
-          <form action="" method="post">
-              <input type="hidden" name="stu_id" value="<?= $row['stu_id'] ?>">
-              <input type="hidden" name="id" value="<?= $row['id'] ?>">
+          <div>
+              
 
               <div class="row">
                   <!-- <div class="col-12">
@@ -44,8 +51,6 @@
                               <th>ID #</th>
                               <th>Name</th>
                               <th>Course/Program</th>
-                              <th>Year Level</th>
-                              <th>Section</th>
                               <th>Semester</th>
                               <th>Academic</th>
                               <th></th>
@@ -55,109 +60,55 @@
                               <td><?= $row['stu_name'] ?></td>
                               <td><?= $all_course[$row['course']] ?></td>
                               <td>
-                                  <select name="year_level" class="form-select" required>
-                                      <option value="" selected disabled>Select Year Level</option>
-                                      <option value="1st">1st Year</option>
-                                      <option value="2nd">2nd Year</option>
-                                      <option value="3rd">3rd Year</option>
-                                      <option value="4th">4th Year</option>
-                                  </select>
-                              </td>
-                              <td>
-
-                                  <?php
-                                    if ($row['course'] == 'BSIT') {
-                                    ?>
-                                      <select name="section" class="form-select" required>
-                                          <option value="" selected disabled>Select Section</option>
-                                          <option value="North">North</option>
-                                          <option value="North East">North East</option>
-                                          <option value="East">East</option>
-                                          <option value="West">West</option>
-                                          <option value="South">South</option>
-                                          <option value="South East">South East</option>
-                                      </select>
-                                  <?php
-                                    } else if ($row['course'] == 'BSBA') {
-                                    ?>
-                                      <select name="section" class="form-control" required>
-                                          <option value="" selected disabled>Select Section</option>
-                                          <option value="A">A</option>
-                                          <option value="B">B</option>
-                                          <option value="C">C</option>
-                                          <option value="D">D</option>
-                                      </select>
-                                  <?php
-                                    } else if ($row['course'] == 'BSED' || $row['course'] == 'BEED') {
-                                    ?>
-                                      <select name="section" class="form-control" required>
-                                          <option value="" selected disabled>Select Section</option>
-                                          <option value="A">A</option>
-                                          <option value="B">B</option>
-                                          <option value="C">C</option>
-                                      </select>
-                                  <?php
-                                    } else if ($row['course'] == 'BSHM' || $row['course'] == 'BS-HM') {
-                                    ?>
-                                      <select name="section" class="form-control" required>
-                                          <option value="" selected disabled>Select Section</option>
-                                          <option value="A">A</option>
-                                          <option value="B">B</option>
-                                          <option value="C">C</option>
-                                          <option value="D">D</option>
-                                      </select>
-                                  <?php
-                                    }
-                                    ?>
-
-
-                              </td>
-                              <td>
                                   <!-- <select name="semester" class="form-select" required>
                                                 <option value="" selected disabled>Select Semester</option>
                                                 <option value="1st">1st Semester</option>
                                                 <option value="2nd">2nd Semester</option>
                                                 <option value="Summer">Summer Semester</option>
                                             </select> -->
-                                  <?= $academic['semester'] ?> Semester
-                                  <input type="hidden" name="semester" value="<?= $academic['semester'] ?>">
+                                  <?= $academic['semester'] != NULL ? $academic['semester'] : '' ?> Semester
+                                  <input type="hidden" name="semester" value="<?= $academic['semester'] != NULL ? $academic['semester'] : ''  ?>">
                               </td>
                               <td>
 
 
-                                  <?= $academic['year'] ?> | <?= $academic['semester'] ?>
+                                  <?= $academic['year'] != NULL ? $academic['year'] : '' ?> | <?= $academic['semester'] != NULL ? $academic['semester'] : ''  ?>
                                   <input type="hidden" name="academic" value="<?= $academic['id'] ?>">
 
 
                               </td>
-                              <td>
-          
-                                      <div class="dropdown">
-                                            <button type='button' class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id='toggle'>Select to Enroll</button>
-                                            <ul class="dropdown-menu">
-                                                <li class="dropdown-item">
-                                                   <button type="submit" name="submit_regular" class="btn btn-primary px-5">Enroll as Regular</button>
-                                                </li>
-                                                <li class="dropdown-item">
-                                                   <button type="submit" name="submit_irregular" class="btn btn-primary px-5">Enroll as Irregular</button>
-                                                </li>
-                                                <li class="dropdown-item">
-                                                   <button type="submit" name="submit_shiftee" class="btn btn-primary px-5">Enroll as Shiftee</button>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                <?php 
-                                    if ($row['curr'] == $academic['year'] && $row['semester'] == $academic['semester']) {
-                                        ?>
-                                         <button type="button" class="btn btn-secondary disabled px-5" disabled>Enrolled</button>
-                                        <?php 
-                                    }else{
-                                      ?>
-                                        
-                                        <!--<button type="submit" name="submit" class="btn btn-primary px-5">Enroll</button>-->
-                                        <?php 
-                                    }
-                                ?>
+                              <td class="dropup">
+                               
+
+                                     
+                                    
+                                                    <?php 
+                                                        if($row['curr'] != NULL){
+                                                        if ($row['curr'] == $academic['year'] && $row['semester'] == $academic['semester']) {
+                                                            ?>
+                                                            <button type="button" class="btn btn-secondary disabled px-5" disabled>Enrolled</button>
+                                                            <?php 
+                                                        }else{
+                                                        ?>
+                                                            
+                                                            <a href="#" data-toggle="dropdown" class="btn btn-danger dropdown-toggle">Select Enrollment</a>
+                                      
+                                      <ul class="dropdown-menu">
+                                          <li class="dropdown-item">
+                                              <a href="#" type="button" class="d-flex align-items-center gap-1 text-dark" data-toggle="modal" data-target="#regular" style="z-index: 100 !important; position: relative;">Enroll Regular</a>
+                                              
+                                          </li>
+                                          <li class="dropdown-item">
+                                              <a type="button" class="d-flex align-items-center gap-1" data-toggle="modal" data-target="#irregular" style="z-index: 100 !important; position: relative;">Enroll Irregular</a>
+                                          </li>
+                                          <li class="dropdown-item">
+                                              <a href="#" type="button" class="d-flex align-items-center gap-1 text-dark" data-toggle="modal" data-target="#shiftee" style="z-index: 100 !important; position: relative;">Enroll Shiftee</a>
+                                          </li>
+                                      </ul>
+                                                            <?php 
+                                                        }
+                                                    }
+                                                    ?>
                                  
                               </td>
                           </tbody>
@@ -167,22 +118,27 @@
             <input type="hidden" name="submit" id="submit">
 
               </div>
-          </form>
+          </div>
+
+
+          <?php require __DIR__ . '/modal-irregular.php'; ?>
+          <?php require __DIR__ . '/modal-shiftee.php'; ?>
+          <?php require __DIR__ . '/modal-regular.php'; ?>
 <script>
-                    document.getElementById('toggle').addEventListener('click',function(){
-                        let mainCon = document.querySelector('main');
-                        console.log(mainCon.style.minHeight);
-                       if(mainCon.style.minHeight == '70vh'){
-                            mainCon.style.minHeight = '100vh';
-                        }else{
-                            mainCon.style.minHeight = '70vh';
-                        }
-                    })
-                     document.querySelectorAll('.dropdown-item').forEach(item => {
-                        item.addEventListener('click', function(){
-                            document.getElementById('submit').value = item.getAttribute('name'); 
-                        })
-                    })
+                    // document.getElementById('toggle').addEventListener('click',function(){
+                    //     let mainCon = document.querySelector('main');
+                    //     console.log(mainCon.style.minHeight);
+                    //    if(mainCon.style.minHeight == '70vh'){
+                    //         mainCon.style.minHeight = '100vh';
+                    //     }else{
+                    //         mainCon.style.minHeight = '70vh';
+                    //     }
+                    // })
+                    //  document.querySelectorAll('.dropdown-item').forEach(item => {
+                    //     item.addEventListener('click', function(){
+                    //         document.getElementById('submit').value = item.getAttribute('name'); 
+                    //     })
+                    // })
                   </script>
   <?php
 
