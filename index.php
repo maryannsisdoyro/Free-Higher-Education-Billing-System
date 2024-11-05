@@ -80,10 +80,11 @@
  <link rel="icon" type="image/x-icon" href="assets/logo.png">	
 
 <?php
+include('./header.php'); 
   if(!isset($_SESSION['login_id']))
 	
     header("location: login.php");
- include('./header.php'); 
+    
  // include('./auth.php'); 
  ?>
 
