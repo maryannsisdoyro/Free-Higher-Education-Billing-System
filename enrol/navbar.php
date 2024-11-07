@@ -36,7 +36,7 @@
 				<?php if($_SESSION['login_type'] == 1): ?>
 				<a href="../index.php?page=users" class="nav-item nav-users"><span class='icon-field mr-2'><i class="fa fa-users "></i></span> Users</a>
 				<!-- <a href="index.php?page=site_settings" class="nav-item nav-site_settings"><span class='icon-field'><i class="fa fa-cogs"></i></span> System Settings</a> -->
-				<a href="index.php?page=downloadable_form" class="nav-item nav-site_settings"><span class='icon-field'><i class="fa fa-download"></i></span> Downloadable Form</a>
+				<a href="../index.php?page=downloadable_form" class="nav-item nav-site_settings"><span class='icon-field'><i class="fa fa-download"></i></span> Downloadable Form</a>
 			<?php endif; ?>
 			<a href="home.php?page=settings" class="nav-item nav-settings  <?= str_contains($_SERVER['REQUEST_URI'], 'settings') || str_contains($_SERVER['REQUEST_URI'], 'new-academics')  ? 'active' : '' ?>"><span class='icon-field mr-2'><i class="fa fa-wrench"></i></span> Settings</a>
 		</div>
