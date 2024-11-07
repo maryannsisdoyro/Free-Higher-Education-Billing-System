@@ -22,7 +22,7 @@
 
 				<div class="mx-2 text-white">Report</div>
 
-				<a href="../index.php?page=fees" class="nav-item nav-fees"><span class='icon-field mr-2'><i class="fa fa-money-check "></i></span> Student Fees</a>
+				<!-- <a href="../index.php?page=fees" class="nav-item nav-fees"><span class='icon-field mr-2'><i class="fa fa-money-check "></i></span> Student Fees</a> -->
 				<a href="../index.php?page=payments" class="nav-item nav-payments"><span class='icon-field mr-2'><i class="fa fa-receipt "></i></span> Payments</a>
 
 				<a href="../index.php?page=courses" class="nav-item nav-courses"><span class='icon-field mr-2'><i class="fa fa-th-list"></i></span> Courses and fees</a>

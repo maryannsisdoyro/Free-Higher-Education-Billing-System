@@ -288,10 +288,11 @@
             method: 'POST',
             type: 'POST',
             success:function(resp){
-                if(resp==1){
+                console.log(resp)
+                if(resp[1]==1){
                     alert_toast("Data successfully saved.",'success')
                         setTimeout(function(){
-                            location.reload()
+                            location.href = "enrol/print-college-enrol.php?application_no=<?=  ?>"
                         },1000)
                 }else if(resp == 2){
                 $('#msg').html('<div class="alert alert-danger mx-2">Course Name & Level already exist.</div>')

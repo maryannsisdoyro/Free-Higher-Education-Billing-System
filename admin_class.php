@@ -939,7 +939,7 @@ class Action
 	
 			}
 
-			return 1;
+			return [1, $enroll_id];
 
 		}
 			
