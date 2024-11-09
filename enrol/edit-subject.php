@@ -4,6 +4,14 @@
     $id = $_GET['id'];
     
 
+
+    if(session_status() != 2){
+        session_start();
+        }
+        
+        if(!isset($_SESSION['login_id'])){
+            header("location: login.php");
+            }
 $sql = "SELECT `id`, `sem`,`year`, `course`,  `tbl_time`, `tbl_day`, `subjectcode`, `prerequi`, `subdes`, `units`, `room`, `inst` FROM `subject` WHERE id = '$id'";
 
 $result = $conn->query($sql);

@@ -2,6 +2,16 @@
        $get_academic = $conn->query("SELECT * FROM academic WHERE status = 1 ORDER BY id DESC");
        $res_academic = $get_academic->fetch_array();
        $semester = $res_academic['semester'];
+
+       
+
+if(session_status() != 2){
+    session_start();
+    }
+    
+    if(!isset($_SESSION['login_id'])){
+        header("location: login.php");
+        }
 ?>
 
 <div class="BSIT d-none">

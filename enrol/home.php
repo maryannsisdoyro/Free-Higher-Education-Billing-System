@@ -1,5 +1,13 @@
 <?php 
 
+
+if(session_status() != 2){
+    session_start();
+    }
+    
+    if(!isset($_SESSION['login_id'])){
+        header("location: login.php");
+        }
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 
