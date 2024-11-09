@@ -127,119 +127,119 @@ if (isset($_POST['search'])) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <?php
-    if (isset($_POST['submit'])) {
-        $stu_id = $_POST['stu_id'];
-        $year_level = $_POST['year_level'];
-        $section = $_POST['section'];
-        $semester = $_POST['semester'];
-        $academic = $_POST['academic'];
-        $stud_status = $_POST['submit'];
+    // if (isset($_POST['submit'])) {
+    //     $stu_id = $_POST['stu_id'];
+    //     $year_level = $_POST['year_level'];
+    //     $section = $_POST['section'];
+    //     $semester = $_POST['semester'];
+    //     $academic = $_POST['academic'];
+    //     $stud_status = $_POST['submit'];
         
 
 
-        $get_enroll = $conn->query("SELECT * FROM enroll2024 WHERE stu_id = '$stu_id' ORDER BY id DESC");
-        $data = $get_enroll->fetch_assoc();
+    //     $get_enroll = $conn->query("SELECT * FROM enroll2024 WHERE stu_id = '$stu_id' ORDER BY id DESC");
+    //     $data = $get_enroll->fetch_assoc();
 
-        $get_academic = $conn->query("SELECT * FROM academic WHERE id = '$academic'");
-        $res_academic = $get_academic->fetch_array();
-        $curr = $res_academic['year'];
-        $semester = $res_academic['semester'];
+    //     $get_academic = $conn->query("SELECT * FROM academic WHERE id = '$academic'");
+    //     $res_academic = $get_academic->fetch_array();
+    //     $curr = $res_academic['year'];
+    //     $semester = $res_academic['semester'];
 
-        $fname = $data['fname'];
-        $mname = $data['mname'];
-        $lname = $data['lname'];
-        $application_no = $data['application_no'];
-        $stu_name = $data['stu_name'];
-        $stu_id = $data['stu_id'];
-        $stu_sta = $data['stu_sta'];
-        $course = $data['course'];
-        $majorOutput1 = $data['major'];
-        // $selectedSection1 = $data['selectedSection1'];
-        // $curr = $data['curr'];
-        $religiousOutput1 = $data['reli'];
-        $con_no = $data['con_no'];
-        $home_ad = $data['home_ad'];
-        $civil = $data['civil'];
-        $d_birth = $data['d_birth'];
-        $p_birth = $data['p_birth'];
-        $ele = $data['ele'];
-        $ele_year = $data['ele_year'];
-        $high = $data['high'];
-        $high_year = $data['high_year'];
-        $last_sc = $data['last_sc'];
-        $last_year = $data['last_year'];
-        $tot_units = $data['tot_units'];
-        $un_enrol = $data['un_enrol'];
-        $rate_per = $data['rate_per'];
-        $total = $data['total'];
-        $lib = $data['lib'];
-        $com = $data['com'];
-        $lab1 = $data['lab1'];
-        $lab2 = $data['lab2'];
-        $lab3 = $data['lab3'];
-        $sch_id = $data['sch_id'];
-        $ath = $data['ath'];
-        $adm = $data['adm'];
-        $dev = $data['dev'];
-        $guid = $data['guid'];
-        $hand = $data['hand'];
-        $entr = $data['entr'];
-        $reg_fe = $data['reg_fe'];
-        $med_den = $data['med_den'];
-        $cul = $data['cul'];
-        $t_misfe = $data['t_misfe'];
-        $g_tot = $data['g_tot'];
-        // $section = $data['section'];
-        $email = $data['email'];
-        $gender = $data['gender'];
-        $filename = $data['image'];
+    //     $fname = $data['fname'];
+    //     $mname = $data['mname'];
+    //     $lname = $data['lname'];
+    //     $application_no = $data['application_no'];
+    //     $stu_name = $data['stu_name'];
+    //     $stu_id = $data['stu_id'];
+    //     $stu_sta = $data['stu_sta'];
+    //     $course = $data['course'];
+    //     $majorOutput1 = $data['major'];
+    //     // $selectedSection1 = $data['selectedSection1'];
+    //     // $curr = $data['curr'];
+    //     $religiousOutput1 = $data['reli'];
+    //     $con_no = $data['con_no'];
+    //     $home_ad = $data['home_ad'];
+    //     $civil = $data['civil'];
+    //     $d_birth = $data['d_birth'];
+    //     $p_birth = $data['p_birth'];
+    //     $ele = $data['ele'];
+    //     $ele_year = $data['ele_year'];
+    //     $high = $data['high'];
+    //     $high_year = $data['high_year'];
+    //     $last_sc = $data['last_sc'];
+    //     $last_year = $data['last_year'];
+    //     $tot_units = $data['tot_units'];
+    //     $un_enrol = $data['un_enrol'];
+    //     $rate_per = $data['rate_per'];
+    //     $total = $data['total'];
+    //     $lib = $data['lib'];
+    //     $com = $data['com'];
+    //     $lab1 = $data['lab1'];
+    //     $lab2 = $data['lab2'];
+    //     $lab3 = $data['lab3'];
+    //     $sch_id = $data['sch_id'];
+    //     $ath = $data['ath'];
+    //     $adm = $data['adm'];
+    //     $dev = $data['dev'];
+    //     $guid = $data['guid'];
+    //     $hand = $data['hand'];
+    //     $entr = $data['entr'];
+    //     $reg_fe = $data['reg_fe'];
+    //     $med_den = $data['med_den'];
+    //     $cul = $data['cul'];
+    //     $t_misfe = $data['t_misfe'];
+    //     $g_tot = $data['g_tot'];
+    //     // $section = $data['section'];
+    //     $email = $data['email'];
+    //     $gender = $data['gender'];
+    //     $filename = $data['image'];
 
-        $insert_query = "INSERT INTO enroll2024 (application_no,stu_id, stu_name, stu_sta, course, major, year_level, stud_status,curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot,image, section, email,fname,mname,lname,gender,semester,academic)
-    VALUES ('$application_no','$stu_id', '$stu_name', '$stu_sta', '$course', '$majorOutput1', '$year_level', '$stud_status','$curr', '$religiousOutput1', '$con_no', '$home_ad', '$civil', '$d_birth', '$p_birth', '$ele', '$ele_year', '$high', '$high_year', '$last_sc', '$last_year', '$tot_units', '$un_enrol', '$rate_per', '$total', '$lib', '$com', '$lab1', '$lab2', '$lab3', '$sch_id', '$ath', '$adm', '$dev', '$guid', '$hand', '$entr', '$reg_fe', '$med_den', '$cul', '$t_misfe', '$g_tot', '$filename', '$section', '$email','$fname', '$mname', '$lname', '$gender', '$semester', '$academic')";
+    //     $insert_query = "INSERT INTO enroll2024 (application_no,stu_id, stu_name, stu_sta, course, major, year_level, stud_status,curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot,image, section, email,fname,mname,lname,gender,semester,academic)
+    // VALUES ('$application_no','$stu_id', '$stu_name', '$stu_sta', '$course', '$majorOutput1', '$year_level', '$stud_status','$curr', '$religiousOutput1', '$con_no', '$home_ad', '$civil', '$d_birth', '$p_birth', '$ele', '$ele_year', '$high', '$high_year', '$last_sc', '$last_year', '$tot_units', '$un_enrol', '$rate_per', '$total', '$lib', '$com', '$lab1', '$lab2', '$lab3', '$sch_id', '$ath', '$adm', '$dev', '$guid', '$hand', '$entr', '$reg_fe', '$med_den', '$cul', '$t_misfe', '$g_tot', '$filename', '$section', '$email','$fname', '$mname', '$lname', '$gender', '$semester', '$academic')";
 
-        $insert_result = mysqli_query($conn, $insert_query);
+    //     $insert_result = mysqli_query($conn, $insert_query);
 
-        if ($insert_result) {
+    //     if ($insert_result) {
 
-            $get_new_enroll = $conn->query("SELECT * FROM enroll2024 ORDER BY id DESC");
-            $fetch_new_enroll = $get_new_enroll->fetch_assoc();
-            $id = $fetch_new_enroll['id'];
+    //         $get_new_enroll = $conn->query("SELECT * FROM enroll2024 ORDER BY id DESC");
+    //         $fetch_new_enroll = $get_new_enroll->fetch_assoc();
+    //         $id = $fetch_new_enroll['id'];
 
-            echo "<script>
-            window.onload = function() {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Student enrolled successfully !!',
-                    icon: 'success'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = 're-enroll-cor.php?application_no=$id';
-                    }
-                });
-            };
-          </script>";
+    //         echo "<script>
+    //         window.onload = function() {
+    //             Swal.fire({
+    //                 title: 'Success!',
+    //                 text: 'Student enrolled successfully !!',
+    //                 icon: 'success'
+    //             }).then((result) => {
+    //                 if (result.isConfirmed) {
+    //                     window.location.href = 're-enroll-cor.php?application_no=$id';
+    //                 }
+    //             });
+    //         };
+    //       </script>";
 
-        } 
+    //     } 
 
-        // $stmt = $conn->prepare("UPDATE enroll2024 SET year_level = ?, section=?, semester=?, academic=? WHERE stu_id = ?");
-        // $stmt->bind_param("sssss", $year_level, $section, $semester, $academic, $stu_id);
+    //     // $stmt = $conn->prepare("UPDATE enroll2024 SET year_level = ?, section=?, semester=?, academic=? WHERE stu_id = ?");
+    //     // $stmt->bind_param("sssss", $year_level, $section, $semester, $academic, $stu_id);
 
-        // if ($stmt->execute()) {
-        //     echo "<script>
-        //         window.onload = function() {
-        //             Swal.fire({
-        //                 title: 'Success!',
-        //                 text: 'Student enrolled successfully !!',
-        //                 icon: 'success'
-        //             }).then((result) => {
-        //                 if (result.isConfirmed) {
-        //                     window.location.href = 'recordenroll.php';
-        //                 }
-        //             });
-        //         };
-        //       </script>";
-        // }
-    }
+    //     // if ($stmt->execute()) {
+    //     //     echo "<script>
+    //     //         window.onload = function() {
+    //     //             Swal.fire({
+    //     //                 title: 'Success!',
+    //     //                 text: 'Student enrolled successfully !!',
+    //     //                 icon: 'success'
+    //     //             }).then((result) => {
+    //     //                 if (result.isConfirmed) {
+    //     //                     window.location.href = 'recordenroll.php';
+    //     //                 }
+    //     //             });
+    //     //         };
+    //     //       </script>";
+    //     // }
+    // }
     ?>
     
 
