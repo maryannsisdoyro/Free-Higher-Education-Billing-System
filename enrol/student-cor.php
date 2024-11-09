@@ -846,7 +846,7 @@ if ($row) {
         </style>
 
         <div class="center-images">
-            <img src="logo-img.png" alt="MCC Logo" style="height: 210px; width: 690px;">
+            <img src="logo.jpg" alt="MCC Logo" style="height: 210px; width: 690px;">
             <img id="preview" src="<?= $row['image'] != null || $row['image'] != '' ? './upload/' . $row['image'] : 'default.jpg' ?>" alt="Preview Image">
         </div>
         <br>
