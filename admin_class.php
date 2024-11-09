@@ -1066,7 +1066,7 @@ class Action
 
 			for($i = 0; $i < count($type_irregular); $i++){
 	
-				$insert_fees = $conn->query("INSERT INTO student_individual_fees(enroll_id, type, amount) VALUES($id, '".$_POST['type_shiftee'][$i]."', '".$_POST['amount_shiftee'][$i]."')");
+				$insert_fees = $conn->query("INSERT INTO student_individual_fees(enroll_id, type, amount) VALUES($id, '".$_POST['type_irregular'][$i]."', '".$_POST['amount_irregular'][$i]."')");
 	
 			}
 
@@ -1169,7 +1169,7 @@ class Action
 
 			for($i = 0; $i < count($type_regular); $i++){
 	
-				$insert_fees = $conn->query("INSERT INTO student_individual_fees(enroll_id, type, amount) VALUES($id, '".$_POST['type_shiftee'][$i]."', '".$_POST['amount_shiftee'][$i]."')");
+				$insert_fees = $conn->query("INSERT INTO student_individual_fees(enroll_id, type, amount) VALUES($id, '".$_POST['type_regular'][$i]."', '".$_POST['amount_regular'][$i]."')");
 	
 			}
 
