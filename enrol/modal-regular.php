@@ -291,11 +291,11 @@
             method: 'POST',
             type: 'POST',
             success:function(resp){
-                resp = JSON.parse(resp)
-                if(resp.status==1){
+                const result = JSON.parse(resp)
+                if(result.status==1){
                     alert_toast("Data successfully saved.",'success')
                         setTimeout(function(){
-                           console.log(resp.enroll_id);
+                           console.log(result.enroll_id);
                            
                         },1000)
                 }else if(resp == 2){
