@@ -1,6 +1,10 @@
 <?php
 // Include database connection
 include 'db.php';
+session_start();
+if(!isset($_SESSION['login_id'])){
+    header("location: login.php");
+    }
 
 // Check if application_no is provided in the URL
 if (isset($_GET['application_no'])) {

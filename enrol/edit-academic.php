@@ -1,5 +1,10 @@
 <?php 
     require './db.php';
+
+    session_start();
+if(!isset($_SESSION['login_id'])){
+    header("location: login.php");
+    }
     $id = $_GET['id'];
     $academic_query = $conn->query("SELECT * FROM academic WHERE id = $id");
     $academic = $academic_query->fetch_assoc();

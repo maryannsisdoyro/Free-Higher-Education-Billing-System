@@ -4,6 +4,9 @@
       $res_academic = $get_academic->fetch_array();
       $academic_year = $res_academic['year'];
       $semester_academic = $res_academic['semester'];
+      if(!isset($_SESSION['login_id'])){
+        header("location: login.php");
+        }
 ?>
 
 <style>

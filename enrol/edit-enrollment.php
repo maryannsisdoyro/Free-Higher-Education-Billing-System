@@ -1,5 +1,9 @@
 <?php
 require './db.php';
+session_start();
+if(!isset($_SESSION['login_id'])){
+    header("location: login.php");
+    }
 $id = $_GET['id'];
 $get_enroll = $conn->query("SELECT * FROM enroll2024 WHERE id ='$id'");
 $row = $get_enroll->fetch_object();

@@ -2,6 +2,7 @@
     session_start();
     include 'db.php';
     $id = $_GET['id'];
+    
 
 $sql = "SELECT `id`, `sem`,`year`, `course`,  `tbl_time`, `tbl_day`, `subjectcode`, `prerequi`, `subdes`, `units`, `room`, `inst` FROM `subject` WHERE id = '$id'";
 
