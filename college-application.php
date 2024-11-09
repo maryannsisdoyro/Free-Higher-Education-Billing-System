@@ -1,6 +1,9 @@
 <?php 
     include 'db_connect.php';
-   
+    $get_academic = $conn->query("SELECT * FROM academic WHERE status = 1 ORDER BY id DESC");
+      $res_academic = $get_academic->fetch_array();
+      $academic_year = $res_academic['year'];
+      $semester_academic = $res_academic['semester'];
 ?>
 
 <style>
