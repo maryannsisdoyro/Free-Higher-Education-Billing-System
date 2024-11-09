@@ -102,6 +102,7 @@
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 $year = $row["year_level"] ?? '0';
+                if($row['curr'] == $academic_year && $row['semester'] == $semester_academic)
                 echo "<tr>
                         <td class='text-center'><input type='checkbox' class='row_checkbox' name='selected_application[]' value='".$row["id"]."' data='".$row["stu_id"]."'></td> <!-- Checkbox -->
                         <td>".$row["application_no"]."</td>
