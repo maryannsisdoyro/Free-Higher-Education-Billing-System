@@ -1173,7 +1173,7 @@ class Action
 	
 			}
 
-			return json_encode(['status' => 1, 'enroll_id' => $enrol_id]);
+			return json_encode(['status' => 1, 'enroll_id' => $enroll_id]);
 
 		}
 	}
