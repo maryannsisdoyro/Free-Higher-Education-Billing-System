@@ -984,8 +984,8 @@ class Action
 		$computer = $this->clean($_POST['computer']);
 		$academic_unit = $this->clean($_POST['academic_unit']);
 		$academic_nstp = $this->clean($_POST['academic_nstp']);
-		$type_shiftee =$_POST['type_shiftee'];
-		$amount_shiftee =$_POST['amount_shiftee'];
+		$type_irregular =$_POST['type_irregular'];
+		$amount_irregular =$_POST['amount_irregular'];
 
 		$stu_id = $this->clean($_POST['stu_id']);
         $year_level = $this->clean($_POST['year_level']);
@@ -1064,7 +1064,7 @@ class Action
 			$fetch_new_enroll = $get_new_enroll->fetch_assoc();
 			$id = $fetch_new_enroll['id'];
 
-			for($i = 0; $i < count($type_shiftee); $i++){
+			for($i = 0; $i < count($type_irregular); $i++){
 	
 				$insert_fees = $conn->query("INSERT INTO student_individual_fees(enroll_id, type, amount) VALUES($id, '".$_POST['type_shiftee'][$i]."', '".$_POST['amount_shiftee'][$i]."')");
 	
@@ -1087,8 +1087,8 @@ class Action
 		$computer = $this->clean($_POST['computer']);
 		$academic_unit = $this->clean($_POST['academic_unit']);
 		$academic_nstp = $this->clean($_POST['academic_nstp']);
-		$type_shiftee =$_POST['type_shiftee'];
-		$amount_shiftee =$_POST['amount_shiftee'];
+		$type_regular =$_POST['type_regular'];
+		$amount_regular =$_POST['amount_regular'];
 
 		$stu_id = $this->clean($_POST['stu_id']);
         $year_level = $this->clean($_POST['year_level']);
@@ -1167,7 +1167,7 @@ class Action
 			$fetch_new_enroll = $get_new_enroll->fetch_assoc();
 			$id = $fetch_new_enroll['id'];
 
-			for($i = 0; $i < count($type_shiftee); $i++){
+			for($i = 0; $i < count($type_regular); $i++){
 	
 				$insert_fees = $conn->query("INSERT INTO student_individual_fees(enroll_id, type, amount) VALUES($id, '".$_POST['type_shiftee'][$i]."', '".$_POST['amount_shiftee'][$i]."')");
 	
