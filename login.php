@@ -3,7 +3,7 @@
 <?php 
 session_start();
 // echo password_hash("maryannlawan@123456", PASSWORD_DEFAULT);
-echo session_status();
+// echo session_status();
 
 // echo password_hash('mayannlawan@@123', PASSWORD_DEFAULT);
 
