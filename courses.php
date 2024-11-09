@@ -50,6 +50,7 @@
 								$i = 1;
 								$course = $conn->query("SELECT * FROM courses  order by course asc ");
 								while($row=$course->fetch_assoc()):
+									if($row['semester'] == $semester_academic):
 								?>
 								<tr>
 									<td class="text-center"><?php echo $i++ ?></td>
@@ -72,7 +73,9 @@
 										<button class="btn btn-sm btn-outline-dark view_students_fees" type="button" data-id="<?php echo $row['id'] ?>">Print Students</button>
 									</td>
 								</tr>
-								<?php endwhile; ?>
+								<?php 
+								endif;
+								endwhile; ?>
 							</tbody>
 						</table>
 					</div>
