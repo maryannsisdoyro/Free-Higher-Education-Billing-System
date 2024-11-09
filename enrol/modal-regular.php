@@ -291,6 +291,7 @@
             method: 'POST',
             type: 'POST',
             success:function(resp){
+                resp = JSON.parse(resp)
                 if(resp.status==1){
                     alert_toast("Data successfully saved.",'success')
                         setTimeout(function(){
