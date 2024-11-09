@@ -939,7 +939,7 @@ class Action
 	
 			}
 
-			return 1;
+			return json_encode(['status' => 1, 'enroll_id' => $id]);
 
 		}
 			
@@ -1070,7 +1070,7 @@ class Action
 	
 			}
 
-			return 1;
+			return json_encode(['status' => 1, 'enroll_id' => $id]);
 
 		}
 	}
@@ -1173,7 +1173,8 @@ class Action
 	
 			}
 
-			return json_encode(['status' => 1, 'enroll_id' => $enroll_id]);
+			
+			return json_encode(['status' => 1, 'enroll_id' => $id]);
 
 		}
 	}
