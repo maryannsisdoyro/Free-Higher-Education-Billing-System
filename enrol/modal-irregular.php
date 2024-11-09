@@ -293,7 +293,7 @@
                 if(resp==1){
                     alert_toast("Data successfully saved.",'success')
                         setTimeout(function(){
-                            // location.reload()
+                            location.reload()
                         },1000)
                 }else if(resp == 2){
                 $('#msg').html('<div class="alert alert-danger mx-2">Course Name & Level already exist.</div>')

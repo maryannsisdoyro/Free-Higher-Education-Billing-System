@@ -2,6 +2,14 @@
 session_start();
 include 'db.php';
 
+
+if(session_status() != 2){
+    session_start();
+    }
+    
+    if(!isset($_SESSION['login_id'])){
+        header("location: login.php");
+        }
 if (isset($_POST['search'])) {
     header('location: home.php?page=enrol&search=' . $_POST['search']);
 }
