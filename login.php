@@ -86,6 +86,7 @@ header("location:index.php?page=home");
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
 
+  </body>
   <script>
 	 window.start_load = function(){
     $('body').prepend('<di id="preloader2"></di>')
@@ -222,6 +223,6 @@ window._conf = function($msg='',$func='',$params = []){
         }
     }
 </script>
-</body>
+
 
 </html>
