@@ -89,6 +89,11 @@ if (isset($_POST['search'])) {
     <?php include './topbar.php' ?>
     <?php include './navbar.php' ?>
 
+    <div class="toast" id="alert_toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-body text-white">
+    </div>
+  </div>
+
     <main id="view-panel" class="container p-3 position-relative overflow-hidden" style="min-height: 70vh;">
 
         <h2 class="my-4 text-center">Enrol Student</h2>
