@@ -326,7 +326,7 @@ window.start_load = function(){
                 console.log(resp);
                 const result = JSON.parse(resp)
                 if(result.status==1){
-                    alert_toast("Student enrolled successfully",'success')
+                    alert_toast("Student officially enrolled",'success')
                         setTimeout(function(){
                            console.log(result.enroll_id);
                            location.href = "student-cor.php?application_no=" + result.enroll_id
