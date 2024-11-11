@@ -86,8 +86,7 @@ header("location:index.php?page=home");
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
 
-</body>
-<script>
+  <script>
 	$('#login-form').submit(function(e){
 		e.preventDefault()
 		$('#login-form button[type="button"]').attr('disabled',true).html('Logging in...');
@@ -131,4 +130,6 @@ header("location:index.php?page=home");
         }
     }
 </script>
+</body>
+
 </html>
