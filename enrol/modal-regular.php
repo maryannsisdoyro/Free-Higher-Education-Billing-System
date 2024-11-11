@@ -293,11 +293,11 @@
             success:function(resp){
                 const result = JSON.parse(resp)
                 if(result.status==1){
-                    alert_toast("Data successfully saved.",'success')
+                    alert_toast("Student enrolled successfully",'success')
                         setTimeout(function(){
                            console.log(result.enroll_id);
                            location.href = "student-cor.php?application_no=" + result.enroll_id
-                        },1000)
+                        },2000)
                 }else if(resp == 2){
                 $('#msg').html('<div class="alert alert-danger mx-2">Course Name & Level already exist.</div>')
                 end_load()
