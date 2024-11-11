@@ -104,7 +104,11 @@ header("location:index.php?page=home");
 			},
 			success:function(resp){
 				if(resp == 1){
-					location.href ='index.php?page=home';
+					alert_toast("Account logged in successfully",'success')
+					setTimeout(function(){
+						location.href ='index.php?page=home';
+					},1500)
+					
 				}else{
 					$('#login-form').prepend('<div class="alert alert-danger">Username or password is incorrect.</div>')
 					$('#login-form button[type="button"]').removeAttr('disabled').html('Login');
