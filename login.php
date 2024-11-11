@@ -85,7 +85,7 @@ header("location:index.php?page=home");
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
 	$('#login-form').submit(function(e){
 		e.preventDefault()
