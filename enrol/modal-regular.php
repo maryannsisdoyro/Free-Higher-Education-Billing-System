@@ -319,23 +319,51 @@
     // })
 
   
+    // fix this code
     $("#year_level").change(function(){
-        var selectCourse = $("#course").val();
-        var selectYearLevel = $("#year_level").val();
-        $.ajax({
-            url: '../ajax.php?action=get_fees',
-            data: { course_id: selectCourse, year_level: selectYearLevel },
-            cache: false,
-            method: 'POST',
-            success: function(resp) {
-                // You can parse the response here if it's JSON
+    var selectCourse = $("#course").val();
+    var selectYearLevel = $("#year_level").val();
+
+    // Perform AJAX call to get fees based on course and year level
+    $.ajax({
+        url: '../ajax.php?action=get_fees',
+        data: { course_id: selectCourse, year_level: selectYearLevel },
+        cache: false,
+        method: 'POST',
+        success: function(resp) {
+            // Parse the JSON response if the server returns a JSON-encoded string
+            try {
                 const result = JSON.parse(resp);
-                console.log(result);
-            },
-            error: function(xhr, status, error) {
-                console.error("AJAX Error:", status, error);
+
+                // Clear existing fee rows before appending new ones
+                $('#fee-list-regular tbody').empty();
+
+                // Loop through each fee in the response and add it to the list
+                result.forEach(data => {
+                    var tr = $('#fee_clone_regular tr').clone();
+                    tr.find('[name="type_regular[]"]').val(data.description); // Set the fee description
+                    tr.find('.ftype_regular').text(data.description);         // Display the fee description
+                    tr.find('[name="amount_regular[]"]').val(data.amount);    // Set the fee amount
+                    tr.find('.famount_regular').text(parseFloat(data.amount).toLocaleString('en-US')); // Display formatted amount
+
+                    // Append the cloned row to the fee list table
+                    $('#fee-list-regular tbody').append(tr);
+                });
+
+                // Recalculate the total after updating the fee list
+                calculate_total_regular();
+            } catch (error) {
+                console.error("Error parsing response:", error);
+                alert("Failed to retrieve fees. Please try again.");
             }
-        });
+        },
+        error: function(xhr, status, error) {
+            console.error("AJAX Error:", status, error);
+            alert("An error occurred while fetching fees.");
+        }
     });
+});
+
+    
 
 </script>
