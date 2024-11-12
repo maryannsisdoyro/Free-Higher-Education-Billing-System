@@ -318,7 +318,7 @@
     //     console.log($("input[name='year_level']"))
     // })
 
-    var selectCourse = $("#course");
+    var selectCourse = $("#course").val();
     $("#year_level").change(function(){
         console.log(selectCourse)
     })
