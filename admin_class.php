@@ -355,9 +355,7 @@ class Action
 			];
 		}
 
-		if ($delete) {
-			return $all;
-		}
+		return $all_data;
 	}
 	}
 	function save_student()
