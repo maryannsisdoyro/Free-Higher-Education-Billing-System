@@ -311,6 +311,8 @@
         width:'100%'
     })
 
+    console.log($("input[name='year_level']"))
+
     var courseSelect = $("select[name='course']")
     $("input[name='year_level']").select(function(){
         console.log($("input[name='year_level']"))
