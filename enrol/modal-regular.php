@@ -324,7 +324,7 @@
         var selectYearLevel = $("#year_level").val();
         $.ajax({
             url: '../ajax.php?action=get_fees',
-            data: { course_id: selectCourse, year_level:selectYearLevel },
+            data: { course_id: selectCourse, year_level: selectYearLevel },
             cache: false,
             method: 'POST',
             success: function(resp) {
