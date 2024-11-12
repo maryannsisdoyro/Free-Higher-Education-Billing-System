@@ -341,8 +341,7 @@ class Action
 		}
 	}
 	function get_fees(){
-		function delete_course()
-	{
+		
 		extract($_POST);
 		$course_id = $_POST['course_id'];
 		$query = $this->db->query("SELECT * FROM fees WHERE course_id = $course_id");
@@ -356,7 +355,6 @@ class Action
 		}
 
 		return json_eo;
-	}
 	}
 	function save_student()
 	{
