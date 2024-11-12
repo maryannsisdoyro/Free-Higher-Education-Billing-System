@@ -310,4 +310,10 @@
         placeholder:"Please Select here",
         width:'100%'
     })
+
+    var courseSelect = $("select[name='course']")
+
+    courseSelect.change(function(){
+        console.log(courseSelect.val())
+    })
 </script>
