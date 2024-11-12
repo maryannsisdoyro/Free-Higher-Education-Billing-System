@@ -341,10 +341,10 @@
                 // Loop through each fee in the response and add it to the list
                 result.forEach(data => {
                     var tr = $('#fee_clone_regular tr').clone();
-                    tr.find('[name="type_regular[]"]').val(data.description); // Set the fee description
-                    tr.find('.ftype_regular').text(data.description);         // Display the fee description
-                    tr.find('[name="amount_regular[]"]').val(data.amount);    // Set the fee amount
-                    tr.find('.famount_regular').text(parseFloat(data.amount).toLocaleString('en-US')); // Display formatted amount
+                    tr.find('[name="type_regular[]"]').val(data[1]); // Set the fee description
+                    tr.find('.ftype_regular').text(data[1]);         // Display the fee description
+                    tr.find('[name="amount_regular[]"]').val(data[2]);    // Set the fee amount
+                    tr.find('.famount_regular').text(parseFloat(data[2]).toLocaleString('en-US')); // Display formatted amount
 
                     // Append the cloned row to the fee list table
                     $('#fee-list-regular tbody').append(tr);
