@@ -190,7 +190,7 @@
                 <tfoot>
                     <tr>
                         <th colspan="2" class="text-center">Total</th>
-                        <th class="text-right">
+                        <th class="text-right fees_list">
                             <input type="hidden" name="total_amount_regular" value="<?php echo isset($total) ? $total : 0 ?>">
                             <span class="tamount_regular"><?php echo isset($total) ? number_format($total,2) : '0.00' ?></span>
                         </th>
@@ -318,8 +318,8 @@
     //     console.log($("input[name='year_level']"))
     // })
 
-    $("#year_level");
+    var selectCourse = $("#course");
     $("#year_level").change(function(){
-        console.log("hellow world")
+        console.log(selectCourse)
     })
 </script>
