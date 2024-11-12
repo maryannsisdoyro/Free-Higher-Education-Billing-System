@@ -319,7 +319,7 @@
     // })
 
     $("#year_level");
-    $("#course").select(function(){
+    $("#course").change(function(){
         console.log("hellow world")
     })
 </script>
