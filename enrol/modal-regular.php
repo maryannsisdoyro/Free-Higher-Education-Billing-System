@@ -312,8 +312,7 @@
     })
 
     var courseSelect = $("select[name='course']")
-
-    courseSelect.change(function(){
-        console.log(courseSelect.val())
+    $("input[name='year_level']").select(function(){
+        console.log($("input[name='year_level']"))
     })
 </script>
