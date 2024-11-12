@@ -340,6 +340,26 @@ class Action
 			return 1;
 		}
 	}
+	function get_fees(){
+		function delete_course()
+	{
+		extract($_POST);
+		$course_id = $_POST['course_id'];
+		$query = $this->db->query("SELECT * FROM fees WHERE course_id = $course_id");
+		$all_data = [];
+		foreach($query as $row){
+			$all_data[] = [
+				$row['id'],
+				$row['description'],
+				$row['amount']
+			];
+		}
+
+		if ($delete) {
+			return $all;
+		}
+	}
+	}
 	function save_student()
 	{
 		extract($_POST);

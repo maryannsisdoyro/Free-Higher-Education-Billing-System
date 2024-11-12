@@ -320,6 +320,27 @@
 
     var selectCourse = $("#course").val();
     $("#year_level").change(function(){
-        console.log(selectCourse)
+        $.ajax({
+            url:'../ajax.php?action=get_fees',
+            data: new FormData($(this)[0]),
+            cache: false,
+            contentType: false,
+            processData: false,
+            method: 'POST',
+            type: 'POST',
+            success:function(resp){
+                const result = JSON.parse(resp)
+                if(result.status==1){
+                    alert_toast("Student officially enrolled",'success')
+                        setTimeout(function(){
+                           console.log(result.enroll_id);
+                           location.href = "student-cor.php?application_no=" + result.enroll_id
+                        },2000)
+                }else if(resp == 2){
+                $('#msg').html('<div class="alert alert-danger mx-2">Course Name & Level already exist.</div>')
+                end_load()
+                }   
+            }
+        })
     })
 </script>
