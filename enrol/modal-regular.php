@@ -318,8 +318,9 @@
     //     console.log($("input[name='year_level']"))
     // })
 
-    var selectCourse = $("#course").val();
+  
     $("#year_level").change(function(){
+        var selectCourse = $("#course").val();
         $.ajax({
             url:'../ajax.php?action=get_fees',
             data: { course_id: selectCourse },
