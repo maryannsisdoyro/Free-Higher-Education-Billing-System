@@ -329,8 +329,8 @@
             method: 'POST',
             type: 'POST',
             success:function(resp){
-                const result = JSON.parse(resp)
-                console.log(result)
+                // const result = JSON.parse(resp)
+                console.log(resp)
             }
         })
     })
