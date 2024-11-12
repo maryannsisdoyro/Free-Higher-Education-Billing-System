@@ -360,7 +360,7 @@ class Action
 			];
 		}
 
-		return json_eo;
+		return json_encode($all_data);
 	}
 	function save_student()
 	{
