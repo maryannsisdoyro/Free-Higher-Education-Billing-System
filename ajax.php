@@ -132,7 +132,12 @@ if($action == 'save_regular'){
 	}
 }
 
-
+if($action == 'get_fees'){
+	$get_fees = $crud->get_fees();
+	if($get_fees){
+		echo $get_fees;
+	}
+}
 
 // if($action == "new_enroll"){
 // 	$new = $crud->newEnroll();
