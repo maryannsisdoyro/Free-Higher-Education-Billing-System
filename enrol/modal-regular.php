@@ -329,8 +329,8 @@
             method: 'POST',
             success: function(resp) {
                 // You can parse the response here if it's JSON
-                // const result = JSON.parse(resp);
-                console.log(resp);
+                const result = JSON.parse(resp);
+                console.log(result);
             },
             error: function(xhr, status, error) {
                 console.error("AJAX Error:", status, error);
