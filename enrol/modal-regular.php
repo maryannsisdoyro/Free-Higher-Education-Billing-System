@@ -36,7 +36,7 @@
                         <!-- <input type="text" name="course" class="form-control my-2" value="<?= $all_course[$row['course']] ?>" readonly> -->
 
                         <label for="">Course/Program</label>
-                        <select class="custom-select form-control-sm rounded-0 my-2" name="course" readonly="" required>
+                        <select class="custom-select form-control-sm rounded-0 my-2" name="course" readonly="" id="course" required>
                                 <!-- <option value="">Select Course to be Enrolled</option> -->
                                 <?php 
                                   if ($row['course'] == 'BS-HM') {
@@ -57,7 +57,7 @@
                         </select>
 
                         <label for="">Year Level</label>
-                        <select name="year_level" class="form-select my-2" required>
+                        <select name="year_level" class="form-select my-2" id="year_level" required>
                             <option value="" selected disabled>Select Year Level</option>
                             <option value="1st">1st Year</option>
                             <option value="2nd">2nd Year</option>
@@ -311,10 +311,15 @@
         width:'100%'
     })
 
-    console.log($("input[name='year_level']"))
+    // console.log($("input[name='year_level']"))
 
-    var courseSelect = $("select[name='course']")
-    $("input[name='year_level']").select(function(){
-        console.log($("input[name='year_level']"))
+    // var courseSelect = $("select[name='course']")
+    // $("input[name='year_level']").select(function(){
+    //     console.log($("input[name='year_level']"))
+    // })
+
+    $("#year_level");
+    $("#course").select(function(){
+        console.log("hellow world")
     })
 </script>
