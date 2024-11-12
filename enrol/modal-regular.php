@@ -322,17 +322,19 @@
     $("#year_level").change(function(){
         var selectCourse = $("#course").val();
         $.ajax({
-            url:'../ajax.php?action=get_fees',
+            url: '../ajax.php?action=get_fees',
             data: { course_id: selectCourse },
             cache: false,
-            contentType: false,
-            processData: false,
             method: 'POST',
-            type: 'POST',
-            success:function(resp){
-                // const result = JSON.parse(resp)
-                console.log(resp)
+            success: function(resp) {
+                // You can parse the response here if it's JSON
+                // const result = JSON.parse(resp);
+                console.log(resp);
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX Error:", status, error);
             }
-        })
-    })
+        });
+    });
+
 </script>
