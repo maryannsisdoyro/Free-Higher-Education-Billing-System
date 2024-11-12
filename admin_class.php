@@ -343,7 +343,13 @@ class Action
 	function get_fees(){
 		
 		extract($_POST);
-		$course_id = $_POST['course_id'];
+		$course = $_POST['course_id'];
+		$year_level = $_POST['year_level'];
+
+		$get_course = $this->db->query("SELECT * FROM courses WHERE department = '$course' AND level = '$year_level'");
+		$course_data = $get_course->fetch_assoc();
+		$course_id = $course_data['id'];
+
 		$query = $this->db->query("SELECT * FROM fees WHERE course_id = $course_id");
 		$all_data = [];
 		foreach($query as $row){
