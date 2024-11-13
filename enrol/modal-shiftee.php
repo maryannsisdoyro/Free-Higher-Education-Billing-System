@@ -33,7 +33,7 @@
                     <label for="">Name</label>
                         <input type="text" name="name" class="form-control my-2" value="<?= $row['stu_name'] ?>" readonly>
                         <label for="">Course/Program</label>
-                        <select class="custom-select form-control-sm rounded-0 my-2" id="year_level_shift" name="course" required>
+                        <select class="custom-select form-control-sm rounded-0 my-2" id="course_shift" name="course" required>
                                 <!-- <option value="">Select Course to be Enrolled</option> -->
                                 <?php 
                                   
@@ -54,7 +54,7 @@
                         </select>
 
                         <label for="">Year Level</label>
-                        <select name="year_level" class="form-select my-2" id="course_shift" required>
+                        <select name="year_level" class="form-select my-2" id="year_level_shift" required>
                             <option value="" selected disabled>Select Year Level</option>
                             <option value="1st">1st Year</option>
                             <option value="2nd">2nd Year</option>
