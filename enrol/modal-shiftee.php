@@ -405,22 +405,22 @@ $("#course_shift").change(function(){
                 const result = JSON.parse(resp);
 
                 // Clear existing fee rows before appending new ones
-                $('#fee-list-regular tbody').empty();
+                $('#fee-list-shifteee tbody').empty();
 
                 // Loop through each fee in the response and add it to the list
                 result.forEach(data => {
-                    var tr = $('#fee_clone_regular tr').clone();
-                    tr.find('[name="type_regular[]"]').val(data[1]); // Set the fee description
-                    tr.find('.ftype_regular').text(data[1]);         // Display the fee description
-                    tr.find('[name="amount_regular[]"]').val(data[2]);    // Set the fee amount
-                    tr.find('.famount_regular').text(parseFloat(data[2]).toLocaleString('en-US')); // Display formatted amount
+                    var tr = $('#fee_clone_shifteee tr').clone();
+                    tr.find('[name="type_shifteee[]"]').val(data[1]); // Set the fee description
+                    tr.find('.ftype_shifteee').text(data[1]);         // Display the fee description
+                    tr.find('[name="amount_shifteee[]"]').val(data[2]);    // Set the fee amount
+                    tr.find('.famount_shifteee').text(parseFloat(data[2]).toLocaleString('en-US')); // Display formatted amount
 
                     // Append the cloned row to the fee list table
-                    $('#fee-list-regular tbody').append(tr);
+                    $('#fee-list-shifteee tbody').append(tr);
                 });
 
                 // Recalculate the total after updating the fee list
-                calculate_total_regular();
+                calculate_total_shifteee();
             } catch (error) {
                 console.error("Error parsing response:", error);
                 alert("Failed to retrieve fees. Please try again.");
