@@ -33,7 +33,7 @@
                         <input type="text" name="name" class="form-control my-2" value="<?= $row['stu_name'] ?>" readonly>
 
                         <label for="">Course/Program</label>
-                        <select class="custom-select form-control-sm rounded-0 my-2" name="course" readonly="" required>
+                        <select class="custom-select form-control-sm rounded-0 my-2" id="course_irreg" name="course" readonly="" required>
                                 <!-- <option value="">Select Course to be Enrolled</option> -->
                                 <?php 
                                   if ($row['course'] == 'BS-HM') {
@@ -54,7 +54,7 @@
                         </select>
 
                         <label for="">Year Level</label>
-                        <select name="year_level" class="form-select my-2" required>
+                        <select name="year_level" class="form-select my-2" id="year_level_irreg" required>
                             <option value="" selected disabled>Select Year Level</option>
                             <option value="1st">1st Year</option>
                             <option value="2nd">2nd Year</option>
@@ -309,4 +309,49 @@
         placeholder:"Please Select here",
         width:'100%'
     })
+
+    // fix this code
+    $("#year_level_irreg").change(function(){
+    var selectCourse = $("#course_irreg").val();
+    var selectYearLevel = $("#year_level_irreg").val();
+
+    // Perform AJAX call to get fees based on course and year level
+    $.ajax({
+        url: '../ajax.php?action=get_fees',
+        data: { course_id: selectCourse, year_level: selectYearLevel },
+        cache: false,
+        method: 'POST',
+        success: function(resp) {
+            // Parse the JSON response if the server returns a JSON-encoded string
+            try {
+                const result = JSON.parse(resp);
+
+                // Clear existing fee rows before appending new ones
+                $('#fee-list-regular tbody').empty();
+
+                // Loop through each fee in the response and add it to the list
+                result.forEach(data => {
+                    var tr = $('#fee_clone_regular tr').clone();
+                    tr.find('[name="type_regular[]"]').val(data[1]); // Set the fee description
+                    tr.find('.ftype_regular').text(data[1]);         // Display the fee description
+                    tr.find('[name="amount_regular[]"]').val(data[2]);    // Set the fee amount
+                    tr.find('.famount_regular').text(parseFloat(data[2]).toLocaleString('en-US')); // Display formatted amount
+
+                    // Append the cloned row to the fee list table
+                    $('#fee-list-regular tbody').append(tr);
+                });
+
+                // Recalculate the total after updating the fee list
+                calculate_total_regular();
+            } catch (error) {
+                console.error("Error parsing response:", error);
+                alert("Failed to retrieve fees. Please try again.");
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("AJAX Error:", status, error);
+            alert("An error occurred while fetching fees.");
+        }
+    });
+});
 </script>
