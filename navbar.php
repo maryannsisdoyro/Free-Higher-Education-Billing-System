@@ -28,7 +28,14 @@
 				
 				<a href="index.php?page=courses" class="nav-item nav-courses"><span class='icon-field mr-2'><i class="fa  fa-th-list"></i></span> Courses and fees</a>
 
-				<a href="index.php?page=payments_report" class="nav-item nav-payments_report"><span class='icon-field mr-2'><i class="fa fa-scroll"></i></span> FHE Form2</a>
+
+				<div class=" dropdown" style="margin: auto 0 !important;">
+					<a href="#" class="text-white dropdown-toggle"  id="list-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-download"></i> Downloadable Form</a>
+					<div class="dropdown-menu" aria-labelledby="list-drop1" style="left: -2.5em;">
+					<a href="index.php?page=payments_report" class="nav-item nav-payments_report"><span class='icon-field mr-2'><i class="fa fa-scroll"></i></span> FHE Form2</a>
+					<a href="../index.php?page=downloadable_form" class="nav-item nav-site_settings"><span class='icon-field'><i class="fa fa-download"></i></span> Student </a>
+					</div>
+				</div>
 
 
 				<div class="mx-2 text-white">Systems</div>
@@ -36,7 +43,6 @@
 				<?php if($_SESSION['login_type'] == 1): ?>
 				<a href="index.php?page=users" class="nav-item nav-users"><span class='icon-field mr-2'><i class="fa fa-users "></i></span> Users</a>
 				<!-- <a href="index.php?page=site_settings" class="nav-item nav-site_settings"><span class='icon-field'><i class="fa fa-cogs"></i></span> System Settings</a> -->
-				<a href="../index.php?page=downloadable_form" class="nav-item nav-site_settings"><span class='icon-field'><i class="fa fa-download"></i></span> Downloadable Form</a>
 				<?php endif; ?>
 			<a href="./enrol/home.php?page=settings" class="nav-item nav-settings"><span class='icon-field mr-2'><i class="fa fa-wrench"></i></span> Settings</a>
 		</div>
