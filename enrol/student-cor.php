@@ -1536,26 +1536,43 @@ if ($row) {
                     $ftotal = 0;
 
                     $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND year = '" . $fetch_course['level'] . "'");
-                    // var_dump();
-                   
+
+                    $subjects = $query_subjects->fetch_all(MYSQLI_ASSOC); // Fetch as associative array
+                    $total_units = 0;
                     
-                   
-                    $i = 0;
-                    $subject_total = [];
+                    // Calculate total units
+                    foreach ($subjects as $subject) {
+                        $total_units += $subject['units'];
+                    }
+
+                    $tuition_based = 'Tuition Fee based on enrolled academic units (credit and non-credit courses)';
+
                     // $subject_count = count($subjects);
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['amount'];
                         $subject = $query_subjects->fetch_assoc();
-                        $subject_tot = $subject['units'] * 229.17;      
-                        $subject_total[] = $subject_tot;
+                        $rate = 229.17;      
+                        // $subject_total[] = $subject_tot;
                         
                     ?>
     
     
                     <tr>
                         <td colspan="2"><?= $row['description'] ?></td>
-                        <td colspan="5" style="text-align: center;"><?= $subject['units'] == NULL || $subject['units'] == 0 ? '-' : '-' ?></td>
-                        <td colspan="2" style="text-align: center;"><?= $subject['units'] == NULL || $subject['units'] == 0 ? '-' : '-' ?></td>
+                        <td colspan="5" style="text-align: center;">
+                            <?php
+                                if ($row['description'] == $tuition_based && $total_units != null) {
+                                   echo $total_units;
+                                }
+                            ?>
+                        </td>
+                        <td colspan="2" style="text-align: center;">
+                        <?php
+                                if ($row['description'] == $tuition_based && && $total_units != null) {
+                                   echo $rate;
+                                }
+                            ?>
+                        </td>
                         <td colspan="3" style="text-align: center;"><?= $subject_tot == NULL || $subject_tot == 0 ? '-' : '-' ?></td>
                     </tr>
     
@@ -1566,7 +1583,7 @@ if ($row) {
                         <td colspan="2">Grand Total</td>
                         <td colspan="5" style="text-align: center;"></td>
                         <td colspan="2" style="text-align: center;"></td>
-                        <td colspan="3" class="text-right"><b><?php echo '-' #number_format(array_sum($subject_total) , 2) ?></b></td>
+                        <td colspan="3" class="text-right"><b><?php echo number_format($total_units , 2) ?></b></td>
                     </tr>
                     <?php
                 }
