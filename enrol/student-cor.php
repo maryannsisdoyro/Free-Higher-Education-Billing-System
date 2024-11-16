@@ -1554,9 +1554,9 @@ if ($row) {
     
                     <tr>
                         <td colspan="2"><?= $row['description'] ?></td>
-                        <td colspan="5" style="text-align: center;"><?= $subject['units'] == NULL || $subject['units'] == 0 ? '-' : $subject['units'] ?></td>
+                        <td colspan="5" style="text-align: center;"><?= $subject['units'] == NULL || $subject['units'] == 0 ? '-' : '-' ?></td>
                         <td colspan="2" style="text-align: center;"><?= $subject['units'] == NULL || $subject['units'] == 0 ? '-' : 229.17 ?></td>
-                        <td colspan="3" style="text-align: center;"><?= $subject_tot == NULL || $subject_tot == 0 ? '-' : $subject_tot ?></td>
+                        <td colspan="3" style="text-align: center;"><?= $subject_tot == NULL || $subject_tot == 0 ? '-' : '-' ?></td>
                     </tr>
     
                     <?php
@@ -1566,7 +1566,7 @@ if ($row) {
                         <td colspan="2">Grand Total</td>
                         <td colspan="5" style="text-align: center;"></td>
                         <td colspan="2" style="text-align: center;"></td>
-                        <td colspan="3" class="text-right"><b><?php echo number_format(array_sum($subject_total) , 2) ?></b></td>
+                        <td colspan="3" class="text-right"><b><?php echo '-' #number_format(array_sum($subject_total) , 2) ?></b></td>
                     </tr>
                     <?php
                 }
