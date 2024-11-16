@@ -10,7 +10,7 @@
 ?>
 
 <style>
-  .swal2-confirm {
+  .sw Cal2-confirm {
     font-size: 10px; /* Change the font size */
     padding: 10px 15px; /* Change the padding */
   }
@@ -18,7 +18,7 @@
 
   .swal2-cancel {
     font-size: 10px; /* Change the font size */
-    padding: 10px 15px; /* Change the padding */
+    padding: 10px 15px; /*hange the padding */
   }
 </style>
 
@@ -359,6 +359,7 @@
 const scrollDown = () => {
     if (window.pageYOffset > 10) {
         cardHead.classList.add("sticky-top")
+        cardHead.style.padding = "56px 0 0 0 !important";
     } else {
         cardHead.classList.remove("sticky-top")
     }
