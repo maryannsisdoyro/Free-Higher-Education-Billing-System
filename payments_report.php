@@ -37,7 +37,7 @@
                       INNER JOIN 
                           courses c ON e.course = c.department
                         WHERE e.curr = '$academic_year' AND e.semester = '$semester_academic' AND e.delete_status = 1
-                      ORDER BY e.course,e.lname ASC ");
+                     GROUP BY e.fname AND e.lname ORDER BY e.course,e.lname ASC ");
 
                      
                    
