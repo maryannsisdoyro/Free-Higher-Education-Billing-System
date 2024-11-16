@@ -1543,7 +1543,7 @@ if ($row) {
                     // Calculate total units
                     foreach ($subjects as $subject) {
                         $total_units += $subject['units'];
-                    }
+                    } 
                    
                     $i = 0;
                     $subject_total = [];
