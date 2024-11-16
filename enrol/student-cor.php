@@ -1553,15 +1553,15 @@ if ($row) {
                     // $subject_count = count($subjects);
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['amount'];
-                       
+                       echo $total_units;
                         
                     ?>
     
     
                     <tr>
                         <td colspan="2"><?= $row['description'] ?></td>
-                        <td colspan="5" style="text-align: center;"><?= array_sum($total_units) == NULL || array_sum($total_units) == 0 ? '-' : array_sum($total_units) ?></td>
-                        <td colspan="2" style="text-align: center;"><?= array_sum($total_units) == NULL || array_sum($total_units) == 0 ? '-' : 229.17 ?></td>
+                        <td colspan="5" style="text-align: center;"><?= "" == NULL || "" == 0 ? '-' : "" ?></td>
+                        <td colspan="2" style="text-align: center;"><?= "" == NULL || "" == 0 ? '-' : 229.17 ?></td>
                         <td colspan="3" style="text-align: center;"><?= $subject_tot == NULL || $subject_tot == 0 ? '-' : $subject_tot ?></td>
                     </tr>
     
