@@ -1550,7 +1550,7 @@ if ($row) {
                     // $subject_count = count($subjects);
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['amount'];
-                       
+                        $rate = 229.17;
                         
                     ?>
     
@@ -1558,8 +1558,8 @@ if ($row) {
                     <tr>
                         <td colspan="2"><?= $row['description'] ?></td>
                         <td colspan="5" style="text-align: center;"><?= $total_units == NULL || $total_units == 0 ? '-' : $total_units ?></td>
-                        <td colspan="2" style="text-align: center;"><?= $total_units == NULL || $total_units == 0 ? '-' : 229.17 ?></td>
-                        <td colspan="3" style="text-align: center;"><?= $subject_tot == NULL || $subject_tot == 0 ? '-' : $subject_tot ?></td>
+                        <td colspan="2" style="text-align: center;"><?= $total_units == NULL || $total_units == 0 ? '-' : $rate ?></td>
+                        <td colspan="3" style="text-align: center;"><?= $total_units * $rate  == NULL || $total_units * $rate  == 0 ? '-' : $total_units * $rate  ?></td>
                     </tr>
     
                     <?php
