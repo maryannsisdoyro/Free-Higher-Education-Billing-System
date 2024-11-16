@@ -29,7 +29,7 @@
 				<a href="index.php?page=courses" class="nav-item nav-courses"><span class='icon-field mr-2'><i class="fa  fa-th-list"></i></span> Courses and fees</a>
 
 
-				<div class="dropdown bg-transparent" >
+				<div class="dropdown" style="background: #ffffffc4;" >
 					<a href="#" class="text-white dropdown-toggle"  id="list-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-download"></i> Downloadable Form</a>
 					<div class="dropdown-menu" aria-labelledby="list-drop1" style="left: -2.5em;">
 					<a href="index.php?page=payments_report" class="nav-item nav-payments_report"><span class='icon-field mr-2'><i class="fa fa-scroll"></i></span> FHE Form2</a>
