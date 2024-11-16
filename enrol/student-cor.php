@@ -1551,7 +1551,7 @@ if ($row) {
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['amount'];
                         $rate = 229.17;
-                        
+                        $subject_total[] = $total_units * $rate;
                     ?>
     
     
