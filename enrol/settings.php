@@ -42,9 +42,9 @@ $academic_query = $conn->query("SELECT * FROM academic");
   <script src="../assets/vendor/counterup/counterup.min.js"></script>
   <script src="../assets/vendor/owl.carousel/owl.carousel.min.js"></script>
   <script src="../assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="../assets/js/select2.min.js"></script>
-    <script type="text/javascript" src="../assets/js/jquery.datetimepicker.full.min.js"></script>
-    <script type="text/javascript" src="../assets/font-awesome/js/all.min.js"></script>
+  <script type="text/javascript" src="../assets/js/select2.min.js"></script>
+  <script type="text/javascript" src="../assets/js/jquery.datetimepicker.full.min.js"></script>
+ <script type="text/javascript" src="../assets/font-awesome/js/all.min.js"></script>
   <script type="text/javascript" src="../assets/js/jquery-te-1.4.0.min.js" charset="utf-8"></script>
     <style>
         body {
@@ -225,22 +225,22 @@ $academic_query = $conn->query("SELECT * FROM academic");
     </main>
     
 
-    <script src="plugins2/jquery/jquery.min.js"></script>
+    <!-- <script src="plugins2/jquery/jquery.min.js"></script> -->
     <!-- Bootstrap 4 -->
-    <script src="plugins2/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="plugins2/bootstrap/js/bootstrap.bundle.min.js"></script> -->
     <!-- DataTables  & Plugins -->
-    <script src="plugins2/datatables/jquery.dataTables.min.js"></script>
-    <script src="plugins2/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="plugins2/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="plugins2/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="plugins2/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="plugins2/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="plugins2/jszip/jszip.min.js"></script>
-    <script src="plugins2/pdfmake/pdfmake.min.js"></script>
-    <script src="plugins2/pdfmake/vfs_fonts.js"></script>
-    <script src="plugins2/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="plugins2/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="plugins2/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- <script src="plugins2/datatables/jquery.dataTables.min.js"></script> -->
+    <!-- <script src="plugins2/datatables-bs4/js/dataTables.bootstrap4.min.js"></script> -->
+    <!-- <script src="plugins2/datatables-responsive/js/dataTables.responsive.min.js"></script> -->
+    <!-- <script src="plugins2/datatables-responsive/js/responsive.bootstrap4.min.js"></script> -->
+    <!-- <script src="plugins2/datatables-buttons/js/dataTables.buttons.min.js"></script> -->
+    <!-- <script src="plugins2/datatables-buttons/js/buttons.bootstrap4.min.js"></script> -->
+    <!-- <script src="plugins2/jszip/jszip.min.js"></script> -->
+    <!-- <script src="plugins2/pdfmake/pdfmake.min.js"></script> -->
+    <!-- <script src="plugins2/pdfmake/vfs_fonts.js"></script> -->
+    <!-- <script src="plugins2/datatables-buttons/js/buttons.html5.min.js"></script> -->
+    <!-- <script src="plugins2/datatables-buttons/js/buttons.print.min.js"></script> -->
+    <!-- <script src="plugins2/datatables-buttons/js/buttons.colVis.min.js"></script> -->
     <!-- AdminLTE App -->
     <script src="dist/js/adminlte.min.js"></script>
     <script>
