@@ -183,11 +183,11 @@ $conn->close();
         <?php include '../footer.php' ?>
     </main>
     <link href="sweetalerts/sweetalert2.min.css" rel="stylesheet">
-    <!-- <script src="sweetalerts/sweetalert2@11.js"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-1BmE4k2HxZbAUot0H8VW4+nH6HiQoTCtVhjx2Ks11P+3pFb6PI8qzWJ5KqL5vmHH" crossorigin="anonymous"></script> -->
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+EW0PA/Nk5O2AWK3xFPrDh4Ta1gYhT3Y2vo" crossorigin="anonymous"></script> -->
+    <script src="sweetalerts/sweetalert2@11.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-1BmE4k2HxZbAUot0H8VW4+nH6HiQoTCtVhjx2Ks11P+3pFb6PI8qzWJ5KqL5vmHH" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+EW0PA/Nk5O2AWK3xFPrDh4Ta1gYhT3Y2vo" crossorigin="anonymous"></script>
 
     <script>
         function printTable() {
@@ -203,11 +203,11 @@ $conn->close();
     </script>
 
 
-<script src="plugins2/jquery/jquery.min.js"></script>
+<!-- <script src="plugins2/jquery/jquery.min.js"></script> -->
 <!-- Bootstrap 4 -->
-<script src="plugins2/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="plugins2/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 <!-- DataTables  & Plugins -->
-<script src="plugins2/datatables/jquery.dataTables.min.js"></script>
+<!-- <script src="plugins2/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins2/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="plugins2/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="plugins2/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
@@ -218,9 +218,9 @@ $conn->close();
 <script src="plugins2/pdfmake/vfs_fonts.js"></script>
 <script src="plugins2/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="plugins2/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="plugins2/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="plugins2/datatables-buttons/js/buttons.colVis.min.js"></script> -->
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+<!-- <script src="dist/js/adminlte.min.js"></script> -->
 <!-- <script>
     $(document).ready(function() {
         $(".row_checkbox").on("click", function() {
