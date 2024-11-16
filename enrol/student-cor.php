@@ -1585,7 +1585,7 @@ if ($row) {
                                 if ($row['description'] == $tuition_based && $total_units != null) {
                                    echo $subject_total;
                                 }else{
-                                    echo '-';
+                                    echo $subject_total;
                                 }
                             ?>
                         </td>
