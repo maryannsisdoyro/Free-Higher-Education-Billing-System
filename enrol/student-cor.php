@@ -1546,12 +1546,12 @@ if ($row) {
                     }
 
                     $tuition_based = 'Tuition Fee based on enrolled academic units (credit and non-credit courses)';
-
+                    $rate = 229.17;    
                     // $subject_count = count($subjects);
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['amount'];
                        
-                        $rate = 229.17;      
+                        
                         // $subject_total[] = $subject_tot;
                         
                     ?>
