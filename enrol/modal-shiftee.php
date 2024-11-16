@@ -338,21 +338,21 @@ window.start_load = function(){
             }
         })
     })
-    function calculate_total_shiftee(){
-        var total = 0;
-        $('#fee-list-shiftee tbody').find('[name="amount_shiftee[]"]').each(function(){
-            total += parseFloat($(this).val())
-        })
-        $('#fee-list-shiftee tfoot').find('.tamount_shiftee').text(parseFloat(total).toLocaleString('en-US'))
-        $('#fee-list-shiftee tfoot').find('[name="total_amount_shiftee"]').val(total)
+    function calculate_total_shiftee() {
+    var total = 0;
+    $('#fee-list-shiftee tbody').find('[name="amount_shiftee[]"]').each(function() {
+        total += parseFloat($(this).val());
+    });
+    $('#fee-list-shiftee tfoot').find('.tamount_shiftee').text(parseFloat(total).toLocaleString('en-US'));
+    $('#fee-list-shiftee tfoot').find('[name="total_amount_shiftee"]').val(total);
+}
 
-    }
-    function rem_list_shiftee(_this){
-        _this.closest('tr').remove()
-        calculate_total_shiftee()
-    }
+function rem_list_shiftee(_this) {
+    _this.closest('tr').remove();
+    calculate_total_shiftee();
+}
 
-    $("#year_level_shift").change(function(){
+$("#year_level_shift").change(function() {
     var selectCourse = $("#course_shift").val();
     var selectYearLevel = $("#year_level_shift").val();
 
@@ -395,5 +395,6 @@ window.start_load = function(){
         }
     });
 });
+
 
 </script>
