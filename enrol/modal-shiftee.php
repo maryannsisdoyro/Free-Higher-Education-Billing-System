@@ -62,51 +62,7 @@
                             <option value="4th">4th Year</option>
                         </select>
 
-                        <label for="">Section</label>
-                                                    <?php
-                                                        if ($row['course'] == 'BSIT') {
-                                                        ?>
-                                                        <select name="section" class="form-select my-2" required>
-                                                            <option value="" selected disabled>Select Section</option>
-                                                            <option value="North">North</option>
-                                                            <option value="North East">North East</option>
-                                                            <option value="East">East</option>
-                                                            <option value="West">West</option>
-                                                            <option value="South">South</option>
-                                                            <option value="South East">South East</option>
-                                                        </select>
-                                                    <?php
-                                                        } else if ($row['course'] == 'BSBA') {
-                                                        ?>
-                                                        <select name="section" class="form-control my-2" required>
-                                                            <option value="" selected disabled>Select Section</option>
-                                                            <option value="A">A</option>
-                                                            <option value="B">B</option>
-                                                            <option value="C">C</option>
-                                                            <option value="D">D</option>
-                                                        </select>
-                                                    <?php
-                                                        } else if ($row['course'] == 'BSED' || $row['course'] == 'BEED') {
-                                                        ?>
-                                                        <select name="section" class="form-control" required>
-                                                            <option value="" selected disabled>Select Section</option>
-                                                            <option value="A">A</option>
-                                                            <option value="B">B</option>
-                                                            <option value="C">C</option>
-                                                        </select>
-                                                    <?php
-                                                        } else if ($row['course'] == 'BSHM' || $row['course'] == 'BS-HM') {
-                                                        ?>
-                                                        <select name="section" class="form-control my-2" required>
-                                                            <option value="" selected disabled>Select Section</option>
-                                                            <option value="A">A</option>
-                                                            <option value="B">B</option>
-                                                            <option value="C">C</option>
-                                                            <option value="D">D</option>
-                                                        </select>
-                                                    <?php
-                                                        }
-                                                        ?>
+                       
 
             <div class="form-group">
                 <label for="" class="control-label">Laboratory Units/subject</label>
