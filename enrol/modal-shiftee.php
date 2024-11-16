@@ -338,6 +338,15 @@ window.start_load = function(){
             }
         })
     })
+    function calculate_total_shiftee(){
+        var total = 0;
+        $('#fee-list-regular tbody').find('[name="amount_regular[]"]').each(function(){
+            total += parseFloat($(this).val())
+        })
+        $('#fee-list-regular tfoot').find('.tamount_regular').text(parseFloat(total).toLocaleString('en-US'))
+        $('#fee-list-regular tfoot').find('[name="total_amount_regular"]').val(total)
+
+    }
 
     // $('.select2').select2({
     //     placeholder:"Please Select here",
