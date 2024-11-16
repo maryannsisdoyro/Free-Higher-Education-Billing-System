@@ -1546,7 +1546,8 @@ if ($row) {
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['amount'];
                         $subject = $query_subjects->fetch_assoc();
-                        $subject_total[] = $subject['units'];
+                        $subject_tot = $subject['units'] * 229.17;      
+                        $subject_total[] = $subject_tot;
                     ?>
     
     
@@ -1554,7 +1555,7 @@ if ($row) {
                         <td colspan="2"><?= $row['description'] ?></td>
                         <td colspan="5" style="text-align: center;"><?= $subject['units'] == NULL || $subject['units'] == 0 ? '-' : $subject['units'] ?></td>
                         <td colspan="2" style="text-align: center;">-<?php #$row['amount'] != 0 ? $row['amount'] : '-' ?></td>
-                        <td colspan="3" style="text-align: center;"><?= $subject['units'] == NULL || $subject['units'] == 0 ? '-' : $subject['units'] ?></td>
+                        <td colspan="3" style="text-align: center;"><?= $subject_tot == NULL || $subject_tot == 0 ? '-' : $subject_tot ?></td>
                     </tr>
     
                     <?php
@@ -1564,7 +1565,7 @@ if ($row) {
                         <td colspan="2">Grand Total</td>
                         <td colspan="5" style="text-align: center;"></td>
                         <td colspan="2" style="text-align: center;"></td>
-                        <td colspan="3" class="text-right"><b><?php echo number_format(array_sum($subject_total) * 229.17, 2) ?></b></td>
+                        <td colspan="3" class="text-right"><b><?php echo number_format(array_sum($subject_total) , 2) ?></b></td>
                     </tr>
                     <?php
                 }
