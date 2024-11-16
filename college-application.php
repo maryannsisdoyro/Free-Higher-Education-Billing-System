@@ -248,7 +248,7 @@
                 // Open print page in a new tab when "Print" is clicked
                 window.open("enrol/print-college-enrol.php?application_no=" + application_no, "_blank");
             } else if (result.isDenied) {
-                // Redirect to delete page when "Delete" is clicked
+                // Show delete confirmation alert
                 Swal.fire({
                     title: 'Do you really want to delete this student?',
                     icon: 'warning',
@@ -257,6 +257,7 @@
                     cancelButtonText: 'No, keep it'
                 }).then((deleteResult) => {
                     if (deleteResult.isConfirmed) {
+                        // Redirect to delete page when "Yes" is clicked
                         window.location.href = "enrol/delete-enrol.php?id=" + application_no;
                     }
                 });
@@ -264,6 +265,7 @@
         });
     }
 });
+
 
     </script>
 
