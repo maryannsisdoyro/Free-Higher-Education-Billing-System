@@ -1537,9 +1537,10 @@ if ($row) {
                     $query_subjects = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$row['course']."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
                     $i = 0;
                     $subjects = $query_subjects->fetch_all();
+                    $subject_count = count($subjects);
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['amount'];
-                        var_dump($subjects);
+                        echo $subject_count;
                     ?>
     
     
