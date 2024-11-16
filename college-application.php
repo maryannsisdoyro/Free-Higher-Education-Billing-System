@@ -360,6 +360,7 @@ const scrollDown = () => {
     if (window.pageYOffset > 10) {
         cardHead.classList.add("sticky-top")
         cardHead.style.padding = "56px 0 0 0";
+        cardHead.style.zIndex = "1";
     } else {
         cardHead.classList.remove("sticky-top")
     }
