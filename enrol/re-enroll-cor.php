@@ -1267,7 +1267,7 @@ if ($row) {
         <tr>
             <td colspan="4" class="no-border"><strong>Tuition Fee Due for the Semester</strong></td>
             <td class="no-border" style="text-align: center;">${details.unitsenrolled}</td>
-            <td style="text-align: right;"><strong>${details.rateunit}</strong></td>
+            <td style="text-align: right;"><strong></strong></td>
             <td style="text-align: right;"><strong>${details.total}</strong></td>
         </tr>
         <tr style="text-align: center;">
