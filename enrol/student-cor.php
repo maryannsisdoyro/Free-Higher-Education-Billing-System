@@ -1536,7 +1536,8 @@ if ($row) {
                     $ftotal = 0;
 
                     $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND year = '" . $fetch_course['level'] . "'");
-                    var_dump($query_subjects->fetch_all(MYSQLI_ASSOC));
+                    // var_dump();
+                    $subject = $query_subjects->fetch_all(MYSQLI_ASSOC);
                     
                    
                     $i = 0;
@@ -1544,12 +1545,13 @@ if ($row) {
                     // $subject_count = count($subjects);
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['amount'];
+                        
                     ?>
     
     
                     <tr>
                         <td colspan="2"><?= $row['description'] ?></td>
-                        <td colspan="5" style="text-align: center;"><?= $subjects['units'] ?></td>
+                        <td colspan="5" style="text-align: center;"><?= $subject['units'][$i++] ?></td>
                         <td colspan="2" style="text-align: center;">-<?php #$row['amount'] != 0 ? $row['amount'] : '-' ?></td>
                         <td colspan="3" style="text-align: center;"><?= $row['amount'] == NULL || $row['amount'] == 0 ? '-' : $row['amount'] ?></td>
                     </tr>
