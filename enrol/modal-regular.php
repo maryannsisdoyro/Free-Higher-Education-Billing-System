@@ -138,7 +138,7 @@
             <table class="table table-condensed" id="fee-list-regular">
                 <thead>
                     <tr>
-                        <th width="5%"></th>
+                        <!-- <th width="5%"></th> -->
                         <th width="50%">Type</th>
                         <th width="45%">Amount</th>
                     </tr>
@@ -152,7 +152,7 @@
                             $total += $row['amount'];
                     ?>
                         <tr>
-                            <td class="text-center"><button class="btn-sm btn-outline-danger" type="button" onclick="rem_list_regular($(this))" ><i class="fa fa-times"></i></button></td>
+                            <!-- <td class="text-center"><button class="btn-sm btn-outline-danger" type="button" onclick="rem_list_regular($(this))" ><i class="fa fa-times"></i></button></td> -->
                             <td>
                                 <input type="hidden" name="fid_regular[]" value="<?php echo $row['id'] ?>">
                                 <input type="hidden" name="type_regular[]" value="<?php echo $row['description'] ?>">
