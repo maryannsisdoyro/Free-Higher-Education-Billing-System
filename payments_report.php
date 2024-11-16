@@ -158,18 +158,15 @@
                                                 <?php
                                                   $get_course = $conn->query("SELECT * FROM courses WHERE department = 'BSIT' ");
                                                   $course = $get_course->fetch_assoc();
-                                                // foreach ($data as $value) {
-                                                  
+                                           
 
                                                     $cfees = $conn->query("SELECT * FROM fees where course_id = '". $course['id'] ."'");
                                                     $ftotal = 0;
                                                     while ($row1 = $cfees->fetch_assoc()) {
-                                                        // $ftotal += $row1['amount'];
                                                     ?>
                                                         <th><b><?php echo $row1['description'] ?></b></th>
                                                     <?php
                                                     }
-                                                // }
                                                 ?>
                                                 <th>Total TOSF</th>
                                             </thead>
@@ -200,7 +197,7 @@
                                                         <td><?= $row['academic_nstp'] ?></td>
                                                         <?php
                                                      
-                                                        $cfees2 = $conn->query("SELECT * FROM fees f INNER JOIN courses c ON f.course_id = c.id where course_id = '". $row['course_id'] ."' AND c.level = '".$row['year_level']."' AND c.semester = '".$row['semester']."' ");
+                                                        $cfees2 = $conn->query("SELECT * FROM student_individual_fees WHERE enroll_id = '".$row['id']."'");
                                                         $ftotal = 0;
                                                             while ($row2 = $cfees2->fetch_assoc()) {
                                                                 $ftotal += $row2['amount'];
