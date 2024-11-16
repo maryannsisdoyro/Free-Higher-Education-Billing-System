@@ -1553,9 +1553,6 @@ if ($row) {
 
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['amount'];
-                       
-                        
-                        // $subject_total[] = $subject_tot;
                         
                     ?>
     
@@ -1585,7 +1582,7 @@ if ($row) {
                                 if ($row['description'] == $tuition_based && $total_units != null) {
                                    echo $subject_total;
                                 }else{
-                                    echo $subject_total;
+                                    echo $row['amount'];
                                 }
                             ?>
                         </td>
@@ -1598,7 +1595,8 @@ if ($row) {
                         <td colspan="2">Grand Total</td>
                         <td colspan="5" style="text-align: center;"></td>
                         <td colspan="2" style="text-align: center;"></td>
-                        <td colspan="3" class="text-right"><b><?php echo number_format($subject_total  , 2) ?></b></td>
+                        <td colspan="3" class="text-right"><b><?php echo number_format($subject_total +
+$ftotal  , 2) ?></b></td>
                     </tr>
                     <?php
                 }
