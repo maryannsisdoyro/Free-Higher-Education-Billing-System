@@ -1576,6 +1576,8 @@ if ($row) {
 </div>
 <img src="n2.jpg" alt="MCC Logo" style="height: 90px; width: 800px;">
 
+<p class="text-start">This document is computer-generated.</p>
+
 </div>
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
