@@ -1531,7 +1531,7 @@ if ($row) {
                 
                 if ($get_course->num_rows > 0) {
                     $fetch_course = $get_course->fetch_assoc();
-                    $cfees = $conn->query("SELECT * FROM subject where course = '". $fetch_course['department'] ."'");
+                    $cfees = $conn->query("SELECT * FROM subject where course = '". $fetch_course['department'] ."' AND year = '". $y_level ."' AND sem = '". $semester ."' ");
                     $ftotal = 0;
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['units'];
