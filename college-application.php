@@ -205,54 +205,65 @@
         let allSelect = document.querySelectorAll(".row_checkbox");
 
         allSelect.forEach(select => {
-            select.onclick = () => {
-                var application_no = select.value;
-                var stu_id = select.getAttribute('data');
+    select.onclick = () => {
+        var application_no = select.value;
+        var stu_id = select.getAttribute('data');
+        
+        Swal.fire({
+            title: 'STUDENTS ENROLLMENT',
+            text: 'Records Information',
+            icon: 'info',
+            showCancelButton: true,
+            showDenyButton: true,    // Show the "Delete" button
+            confirmButtonText: 'Print',    // Text for the "Print" button
+            denyButtonText: 'Delete',      // Text for the "Delete" button
+            cancelButtonText: 'Cancel',
+            didRender: function() {
+                // Create custom "COR" button
+                const corButton = Swal.getConfirmButton().cloneNode();
+                corButton.style.backgroundColor = 'green';
+                corButton.innerText = 'COR';
+                corButton.classList.add('swal2-confirm', 'swal2-styled');
+                corButton.addEventListener('click', function() {
+                    Swal.close();
+                    // Redirect to the COR page
+                    window.location.href = "enrol/student-cor.php?application_no=" + application_no;
+                });
+
+                // Create custom "Edit" button
+                const editButton = Swal.getConfirmButton().cloneNode();
+                editButton.innerText = 'Edit';
+                editButton.classList.add('swal2-confirm', 'swal2-styled');
+                editButton.addEventListener('click', function() {
+                    Swal.close();
+                    // Redirect to the Edit page
+                    window.location.href = "enrol/edit-enroll.php?id=" + application_no;
+                });
+
+                // Prepend custom buttons to Swal actions
+                Swal.getActions().prepend(corButton, editButton);
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Open print page in a new tab when "Print" is clicked
+                window.open("enrol/print-college-enrol.php?application_no=" + application_no, "_blank");
+            } else if (result.isDenied) {
+                // Redirect to delete page when "Delete" is clicked
                 Swal.fire({
-                title: 'STUDENTS ENROLLMENT',
-                text: 'Records Information',
-                icon: 'info',
-                showCancelButton: true,
-                showDenyButton: true, // Add showDenyButton option to show the "Edit" button
-                // confirmButtonText: 'Enroll',
-                denyButtonText: 'Delete', // Text for the "Edit" button
-                cancelButtonText: 'Cancel',
-                confirmButtonText: 'Print',
-                didRender: function() {
-                            // Create custom "Select" button
-                            const selectButton = Swal.getConfirmButton().cloneNode();
-                            selectButton.style.backgroundColor = 'green'; 
-                            selectButton.innerText = 'COR';
-                            selectButton.classList.add('swal2-confirm', 'swal2-styled');
-                            selectButton.addEventListener('click', function() {
-                                Swal.close();
-                                // Handle the select button click
-                                console.log("Select button clicked");
-                                window.location.href = "enrol/student-cor.php?application_no=" + application_no;
-                            });
-
-                            const selectButton2 = Swal.getConfirmButton().cloneNode();
-                            selectButton2.innerText = 'Edit';
-                            selectButton2.classList.add('swal2-confirm', 'swal2-styled');
-                            selectButton2.addEventListener('click', function() {
-                                Swal.close();
-                                // Handle the select button click
-                                console.log("Select button clicked");
-                                window.location.href = "enrol/edit-enroll.php?id=" + application_no;
-                            });
-
-                            Swal.getActions().prepend(selectButton, selectButton2);
-                        }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    var printWindow = window.open("enrol/print-college-enrol.php?application_no=" + application_no, "_blank");
-                } else if (result.isDenied) {
-                    // Redirect to the edit page
-                    window.location.href = "enrol/delete-enrol.php?id=" + application_no;
-                }
-            });
+                    title: 'Do you really want to delete this student?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'No, keep it'
+                }).then((deleteResult) => {
+                    if (deleteResult.isConfirmed) {
+                        window.location.href = "enrol/delete-enrol.php?id=" + application_no;
+                    }
+                });
             }
         });
+    }
+});
 
     </script>
 
