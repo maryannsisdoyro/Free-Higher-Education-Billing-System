@@ -1546,6 +1546,7 @@ if ($row) {
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['amount'];
                         $subject = $query_subjects->fetch_assoc();
+                        $subject_total = $subject['units'];
                     ?>
     
     
@@ -1563,7 +1564,7 @@ if ($row) {
                         <td colspan="2">Grand Total</td>
                         <td colspan="5" style="text-align: center;"></td>
                         <td colspan="2" style="text-align: center;"></td>
-                        <td colspan="3" class="text-right"><b><?php echo number_format($ftotal, 2) ?></b></td>
+                        <td colspan="3" class="text-right"><b><?php echo number_format($subject_total  * 229.17, 2) ?></b></td>
                     </tr>
                     <?php
                 }
