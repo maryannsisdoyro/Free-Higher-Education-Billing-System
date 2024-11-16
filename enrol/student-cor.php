@@ -1540,7 +1540,7 @@ if ($row) {
                     <tr>
                         <td colspan="2"><?= $row['description'] ?></td>
                         <td colspan="5" style="text-align: center;"></td>
-                        <td colspan="2" style="text-align: center;"><?= $row['amount'] != 0 ? $row['amount'] : '-' ?></td>
+                        <td colspan="2" style="text-align: center;">-<?= #$row['amount'] != 0 ? $row['amount'] : '-' ?></td>
                         <td colspan="3" style="text-align: center;"><?= $row['amount'] ?></td>
                     </tr>
     
@@ -1560,7 +1560,7 @@ if ($row) {
 				
 			</table>
 </div>
-<img src="../n2.jpg" alt="MCC Logo" style="height: 90px; width: 800px;">
+<img src="n2.jpg" alt="MCC Logo" style="height: 90px; width: 800px;">
 
 </div>
 <!-- jQuery -->
