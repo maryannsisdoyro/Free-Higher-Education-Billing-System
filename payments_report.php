@@ -156,17 +156,16 @@
                                                 <th>Academic Units Enrolled(credit and non-credit courses)</th>
                                                 <th>Academic Units of NSTP Enrolled(credit and non-credit courses)</th>
                                                 <?php
-                                                  $get_course = $conn->query("SELECT * FROM courses WHERE department = 'BSIT' ");
-                                                  $course = $get_course->fetch_assoc();
-                                           
-
-                                                    $cfees = $conn->query("SELECT * FROM fees where course_id = '". $course['id'] ."'");
+                                                  foreach ($data as $row1) {
+                                             
+                                                    $cfees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '". $row1['id'] ."'");
                                                     $ftotal = 0;
-                                                    while ($row1 = $cfees->fetch_assoc()) {
+                                                    while ($row2 = $cfees->fetch_assoc()) {
                                                     ?>
-                                                        <th><b><?php echo $row1['description'] ?></b></th>
+                                                        <th><b><?php echo $row2['type'] ?></b></th>
                                                     <?php
                                                     }
+                                                }
                                                 ?>
                                                 <th>Total TOSF</th>
                                             </thead>
