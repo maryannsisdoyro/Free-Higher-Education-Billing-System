@@ -1541,12 +1541,12 @@ if ($row) {
                     
                    
                     $i = 0;
-                   
+                    $subject_total = [];
                     // $subject_count = count($subjects);
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['amount'];
                         $subject = $query_subjects->fetch_assoc();
-                        $subject_total = $subject['units'];
+                        $subject_total = [$subject['units']];
                     ?>
     
     
