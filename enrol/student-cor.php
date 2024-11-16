@@ -1550,7 +1550,7 @@ if ($row) {
                     // $subject_count = count($subjects);
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['amount'];
-                        $subject = $query_subjects->fetch_assoc();
+                       
                         $rate = 229.17;      
                         // $subject_total[] = $subject_tot;
                         
