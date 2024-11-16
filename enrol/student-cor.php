@@ -1527,8 +1527,9 @@ if ($row) {
                 
 				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND level = '". $y_level ."' AND semester = '". $semester ."' ");
                 
-                $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '".$row['course']."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
-                var_dump($query_subjects->fetch_all());
+                $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $row['course'] . "' AND sem = '" . $row['semester'] . "' AND year = '" . $row['year_level'] . "'");
+                var_dump($query_subjects->fetch_all(MYSQLI_ASSOC));
+                
                 
                 if ($get_course->num_rows > 0) {
                     $fetch_course = $get_course->fetch_assoc();
