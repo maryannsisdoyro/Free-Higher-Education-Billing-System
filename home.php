@@ -60,7 +60,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <h1 class="border-bottom pb-3" ><i class="fa fa-download"></i>
+                        <h1 class="border-bottom pb-3" ><img src="assets/icons/BSIT.png" alt="icon" style="width: 50px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
                             $get_bsit = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSIT' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
                             echo $get_bsit->num_rows;
