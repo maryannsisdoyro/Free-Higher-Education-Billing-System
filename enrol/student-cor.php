@@ -1536,12 +1536,14 @@ if ($row) {
                     $ftotal = 0;
 
                     $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND year = '" . $fetch_course['level'] . "'");
-                    // var_dump();
-                   
-                    $subject = $query_subjects->fetch_all();
-                    // $subject_tot = $subject['units'] * 229.17;      
-                    // $subject_total[] = $subject_tot;
-                    $total_units = array_sum($subject['units']);
+
+                    $subjects = $query_subjects->fetch_all(MYSQLI_ASSOC); // Fetch as associative array
+                    $total_units = 0;
+                    
+                    // Calculate total units
+                    foreach ($subjects as $subject) {
+                        $total_units += $subject['units'];
+                    }
                    
                     $i = 0;
                     $subject_total = [];
