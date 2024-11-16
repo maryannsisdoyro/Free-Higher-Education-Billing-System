@@ -1054,7 +1054,7 @@ if ($row) {
                     <p style="margin-left: 120px; margin-top: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <strong><u style="text-transform: uppercase;">&nbsp;&nbsp; <?= strtoupper($fullname) ?>&nbsp;&nbsp;</u></strong><br>
                         <span>Student's Signature Above Printed Name</span>
-                        <img src="n3.jpg" alt="MCC Logo" style="height: 80px; width: 400px; float: right;">
+                        <img src="n3.JPG" alt="MCC Logo" style="height: 80px; width: 400px; float: right;">
                     </p>
 
 
