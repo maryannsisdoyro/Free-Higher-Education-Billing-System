@@ -1,7 +1,10 @@
 <?php
 session_start();
 include 'db.php';
-
+$get_academic = $conn->query("SELECT * FROM academic WHERE status = 1 ORDER BY id DESC");
+$res_academic = $get_academic->fetch_array();
+$academic_year = $res_academic['year'];
+$semester_academic = $res_academic['semester'];
 $sql = "SELECT `id`, `sem`,`year`, `course`,  `tbl_time`, `tbl_day`, `subjectcode`, `prerequi`, `subdes`, `units`, `room`, `inst` FROM `subject` ORDER BY course,sem,year ASC";
 
 $result = $conn->query($sql);
@@ -130,6 +133,8 @@ $conn->close();
         <?php
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
+
+                if($semester_academic  == $row['sem']):
                 echo "<tr>
                         <td class='text-center'><input type='checkbox' class='row_checkbox' name='selected_application[]' value='".$row["id"]."'></td> <!-- Checkbox -->
                         <td>".$row["course"]."</td>
@@ -144,6 +149,7 @@ $conn->close();
                         <td>".$row["room"]."</td>
                         <td>".$row["inst"]."</td>
                       </tr>";
+                endif;
             }
         } else {
             echo "<tr><td colspan='23'>No Subject yet</td></tr>";
