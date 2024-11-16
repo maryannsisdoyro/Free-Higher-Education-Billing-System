@@ -1564,8 +1564,7 @@ if ($row) {
                         <td colspan="2">Grand Total</td>
                         <td colspan="5" style="text-align: center;"></td>
                         <td colspan="2" style="text-align: center;"></td>
-                        <td colspan="3" class="text-right"><b><?php echo number_format(229.17, 2) ?></b></td>
-                        <td><?= array_sum($subject_total) ?></td>
+                        <td colspan="3" class="text-right"><b><?php echo number_format(array_sum($subject_total) * 229.17, 2) ?></b></td>
                     </tr>
                     <?php
                 }
