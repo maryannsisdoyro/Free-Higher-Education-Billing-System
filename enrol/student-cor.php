@@ -1539,7 +1539,7 @@ if ($row) {
     
                     <tr>
                         <td colspan="2"><?= $row['description'] ?></td>
-                        <td colspan="5" style="text-align: center;"><?php echo htmlentities($row['units']); ?></td>
+                        <td colspan="5" style="text-align: center;"><?php echo htmlentities($row['academic']); ?></td>
                         <td colspan="2" style="text-align: center;">-<?php #$row['amount'] != 0 ? $row['amount'] : '-' ?></td>
                         <td colspan="3" style="text-align: center;"><?= $row['amount'] ?></td>
                     </tr>
