@@ -1534,6 +1534,8 @@ if ($row) {
                     $ftotal = 0;
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['amount'];
+
+                        var_dump($row);
                     ?>
     
     
