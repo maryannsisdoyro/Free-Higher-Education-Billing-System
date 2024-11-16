@@ -1551,7 +1551,7 @@ if ($row) {
     
                     <tr>
                         <td colspan="2"><?= $row['description'] ?></td>
-                        <td colspan="5" style="text-align: center;"><?= $subject['units'][$i++] ?></td>
+                        <td colspan="5" style="text-align: center;"><?= $subject['units'] ?></td>
                         <td colspan="2" style="text-align: center;">-<?php #$row['amount'] != 0 ? $row['amount'] : '-' ?></td>
                         <td colspan="3" style="text-align: center;"><?= $row['amount'] == NULL || $row['amount'] == 0 ? '-' : $row['amount'] ?></td>
                     </tr>
