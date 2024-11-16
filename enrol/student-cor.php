@@ -1534,10 +1534,12 @@ if ($row) {
                     $total_units = $fetch_course['laboratory'] + $fetch_course['computer'] + $fetch_course['academic'] + $fetch_course['academic_nstp'];
                     $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
                     $ftotal = 0;
-                    
-                    while ($row = $cfees->fetch_assoc()) {
+                    $query_subjects = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$row['course']."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
+                    $i = 0;
+                    $subjects = $query_subjects->fetch_all();
+                    while ($row = $cfees->fetch_all()) {
                         $ftotal += $row['amount'];
-                        vard_dump($query->fetch_assoc());
+                        vard_dump($subjects);
                     ?>
     
     
