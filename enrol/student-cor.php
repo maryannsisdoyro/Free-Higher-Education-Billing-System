@@ -1536,30 +1536,27 @@ if ($row) {
                     $ftotal = 0;
 
                     $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND year = '" . $fetch_course['level'] . "'");
-
-                    $subjects = $query_subjects->fetch_all(MYSQLI_ASSOC); // Fetch as associative array
-                    $total_units = 0;
+                    // var_dump();
+                   
                     
-                    // Calculate total units
-                    foreach ($subjects as $subject) {
-                        $total_units += $subject['units'];
-                    } 
                    
                     $i = 0;
                     $subject_total = [];
                     // $subject_count = count($subjects);
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['amount'];
-                        $rate = 229.17;
-                        $subject_total[] = $total_units * $rate;
+                        $subject = $query_subjects->fetch_assoc();
+                        $subject_tot = $subject['units'] * 229.17;      
+                        $subject_total[] = $subject_tot;
+                        
                     ?>
     
     
                     <tr>
                         <td colspan="2"><?= $row['description'] ?></td>
-                        <td colspan="5" style="text-align: center;"><?= $total_units == NULL || $total_units == 0 ? '-' : $total_units ?></td>
-                        <td colspan="2" style="text-align: center;"><?= $total_units == NULL || $total_units == 0 ? '-' : $rate ?></td>
-                        <td colspan="3" style="text-align: center;"><?= $total_units * $rate  == NULL || $total_units * $rate  == 0 ? '-' : $total_units * $rate  ?></td>
+                        <td colspan="5" style="text-align: center;"><?= $subject['units'] == NULL || $subject['units'] == 0 ? '-' : $subject['units'] ?></td>
+                        <td colspan="2" style="text-align: center;"><?= $subject['units'] == NULL || $subject['units'] == 0 ? '-' : 229.17 ?></td>
+                        <td colspan="3" style="text-align: center;"><?= $subject_tot == NULL || $subject_tot == 0 ? '-' : $subject_tot ?></td>
                     </tr>
     
                     <?php
