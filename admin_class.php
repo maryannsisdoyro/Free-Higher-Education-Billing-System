@@ -870,7 +870,7 @@ class Action
 		$enroll_id = $this->clean($_POST['id']);
 		$course = $this->clean($_POST['course']);
 		$year_level = $this->clean($_POST['year_level']);
-		$section = $this->clean($_POST['section']);
+		// $section = $this->clean($_POST['section']);
 		$laboratory = $this->clean($_POST['laboratory']);
 		$computer = $this->clean($_POST['computer']);
 		$academic_unit = $this->clean($_POST['academic_unit']);
@@ -880,7 +880,7 @@ class Action
 
 		$stu_id = $this->clean($_POST['stu_id']);
         $year_level = $this->clean($_POST['year_level']);
-        $section = $this->clean($_POST['section']);
+        // $section = $this->clean($_POST['section']);
         $semester = $this->clean($_POST['semester']);
         $academic = $this->clean($_POST['academic']);
         $stud_status = $this->clean($_POST['submit']);
@@ -944,8 +944,8 @@ class Action
         $filename = $this->clean($data['image']);
 		$enroll_status = "shiftee";
 		
-		$insert_query = "INSERT INTO enroll2024 (application_no,stu_id, stu_name, stu_sta, course, major, year_level, stud_status,curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot,image, section, email,fname,mname,lname,gender,semester,academic,enroll_status)
-		VALUES ('$application_no','$stu_id', '$stu_name', '$stu_sta', '$course', '$majorOutput1', '$year_level', '$stud_status','$curr', '$religiousOutput1', '$con_no', '$home_ad', '$civil', '$d_birth', '$p_birth', '$ele', '$ele_year', '$high', '$high_year', '$last_sc', '$last_year', '$tot_units', '$un_enrol', '$rate_per', '$total', '$lib', '$com', '$lab1', '$lab2', '$lab3', '$sch_id', '$ath', '$adm', '$dev', '$guid', '$hand', '$entr', '$reg_fe', '$med_den', '$cul', '$t_misfe', '$g_tot', '$filename', '$section', '$email','$fname', '$mname', '$lname', '$gender', '$semester', '$academic', '$enroll_status')";
+		$insert_query = "INSERT INTO enroll2024 (application_no,stu_id, stu_name, stu_sta, course, major, year_level, stud_status,curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot,image, email,fname,mname,lname,gender,semester,academic,enroll_status)
+		VALUES ('$application_no','$stu_id', '$stu_name', '$stu_sta', '$course', '$majorOutput1', '$year_level', '$stud_status','$curr', '$religiousOutput1', '$con_no', '$home_ad', '$civil', '$d_birth', '$p_birth', '$ele', '$ele_year', '$high', '$high_year', '$last_sc', '$last_year', '$tot_units', '$un_enrol', '$rate_per', '$total', '$lib', '$com', '$lab1', '$lab2', '$lab3', '$sch_id', '$ath', '$adm', '$dev', '$guid', '$hand', '$entr', '$reg_fe', '$med_den', '$cul', '$t_misfe', '$g_tot', '$filename','$email','$fname', '$mname', '$lname', '$gender', '$semester', '$academic', '$enroll_status')";
 	
 			$insert_result = mysqli_query($conn, $insert_query);
 	
@@ -974,7 +974,7 @@ class Action
 
 		$enroll_id = $this->clean($_POST['id']);
 		$year_level = $this->clean($_POST['year_level']);
-		$section = $this->clean($_POST['section']);
+		// $section = $this->clean($_POST['section']);
 		$laboratory = $this->clean($_POST['laboratory']);
 		$computer = $this->clean($_POST['computer']);
 		$academic_unit = $this->clean($_POST['academic_unit']);
@@ -984,7 +984,7 @@ class Action
 
 		$stu_id = $this->clean($_POST['stu_id']);
         $year_level = $this->clean($_POST['year_level']);
-        $section = $this->clean($_POST['section']);
+        // $section = $this->clean($_POST['section']);
         $semester = $this->clean($_POST['semester']);
         $academic = $this->clean($_POST['academic']);
         $stud_status = $this->clean($_POST['submit']);
@@ -1048,8 +1048,8 @@ class Action
         $filename = $this->clean($data['image']);
 		$enroll_status = "irregular";
 		
-		$insert_query = "INSERT INTO enroll2024 (application_no,stu_id, stu_name, stu_sta, course, major, year_level, stud_status,curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot,image, section, email,fname,mname,lname,gender,semester,academic,enroll_status)
-		VALUES ('$application_no','$stu_id', '$stu_name', '$stu_sta', '$course', '$majorOutput1', '$year_level', '$stud_status','$curr', '$religiousOutput1', '$con_no', '$home_ad', '$civil', '$d_birth', '$p_birth', '$ele', '$ele_year', '$high', '$high_year', '$last_sc', '$last_year', '$tot_units', '$un_enrol', '$rate_per', '$total', '$lib', '$com', '$lab1', '$lab2', '$lab3', '$sch_id', '$ath', '$adm', '$dev', '$guid', '$hand', '$entr', '$reg_fe', '$med_den', '$cul', '$t_misfe', '$g_tot', '$filename', '$section', '$email','$fname', '$mname', '$lname', '$gender', '$semester', '$academic', '$enroll_status')";
+		$insert_query = "INSERT INTO enroll2024 (application_no,stu_id, stu_name, stu_sta, course, major, year_level, stud_status,curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot,image, email,fname,mname,lname,gender,semester,academic,enroll_status)
+		VALUES ('$application_no','$stu_id', '$stu_name', '$stu_sta', '$course', '$majorOutput1', '$year_level', '$stud_status','$curr', '$religiousOutput1', '$con_no', '$home_ad', '$civil', '$d_birth', '$p_birth', '$ele', '$ele_year', '$high', '$high_year', '$last_sc', '$last_year', '$tot_units', '$un_enrol', '$rate_per', '$total', '$lib', '$com', '$lab1', '$lab2', '$lab3', '$sch_id', '$ath', '$adm', '$dev', '$guid', '$hand', '$entr', '$reg_fe', '$med_den', '$cul', '$t_misfe', '$g_tot', '$filename', '$email','$fname', '$mname', '$lname', '$gender', '$semester', '$academic', '$enroll_status')";
 	
 			$insert_result = mysqli_query($conn, $insert_query);
 	
