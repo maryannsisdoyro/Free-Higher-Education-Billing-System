@@ -1548,6 +1548,9 @@ if ($row) {
                     $tuition_based = 'Tuition Fee based on enrolled academic units (credit and non-credit courses)';
                     $rate = 229.17;    
                     // $subject_count = count($subjects);
+
+                    $subject_total = $total_units * $rate;
+
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['amount'];
                        
@@ -1573,7 +1576,7 @@ if ($row) {
                                 }
                             ?>
                         </td>
-                        <td colspan="3" style="text-align: center;"><?= $subject_tot == NULL || $subject_tot == 0 ? '-' : '-' ?></td>
+                        <td colspan="3" style="text-align: center;"><?= $subject_total == NULL || $subject_total == 0 ? '-' : $subject_total ?></td>
                     </tr>
     
                     <?php
@@ -1583,7 +1586,7 @@ if ($row) {
                         <td colspan="2">Grand Total</td>
                         <td colspan="5" style="text-align: center;"></td>
                         <td colspan="2" style="text-align: center;"></td>
-                        <td colspan="3" class="text-right"><b><?php echo number_format($total_units , 2) ?></b></td>
+                        <td colspan="3" class="text-right"><b><?php echo number_format($subject_total  , 2) ?></b></td>
                     </tr>
                     <?php
                 }
