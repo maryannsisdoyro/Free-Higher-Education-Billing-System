@@ -1531,19 +1531,18 @@ if ($row) {
                 
                 if ($get_course->num_rows > 0) {
                     $fetch_course = $get_course->fetch_assoc();
-                    $total_units = $fetch_course['laboratory'] + $fetch_course['computer'] + $fetch_course['academic'] + $fetch_course['academic_nstp'];
-                    $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
+                    $cfees = $conn->query("SELECT * FROM subject where course = '". $fetch_course['department'] ."'");
                     $ftotal = 0;
                     while ($row = $cfees->fetch_assoc()) {
-                        $ftotal += $row['amount'];
+                        $ftotal += $row['units'];
                     ?>
     
     
                     <tr>
                         <td colspan="2"><?= $row['description'] ?></td>
-                        <td colspan="5" style="text-align: center;">-</td>
+                        <td colspan="5" style="text-align: center;"><?= $row['units'] == NULL || $row['units'] == 0 ? '-' : $row['units'] ?></td>
                         <td colspan="2" style="text-align: center;">-<?php #$row['amount'] != 0 ? $row['amount'] : '-' ?></td>
-                        <td colspan="3" style="text-align: center;"><?= $row['amount'] == NULL || $row['amount'] == 0 ? '-' : $row['amount'] ?></td>
+                        <td colspan="3" style="text-align: center;"><?= $row['units'] == NULL || $row['units'] == 0 ? '-' : $row['units'] ?></td>
                     </tr>
     
                     <?php
