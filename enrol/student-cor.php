@@ -1536,12 +1536,17 @@ if ($row) {
                     $ftotal = 0;
 
                     $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND year = '" . $fetch_course['level'] . "'");
-                    // var_dump();
-                   
-                    $subject = $query_subjects->fetch_all();
+
+                    $subjects = $query_subjects->fetch_all(MYSQLI_ASSOC); // Fetch as associative array
+                    $total_units = 0;
+                    
+                    // Calculate total units
+                    foreach ($subjects as $subject) {
+                        $total_units += $subject['units'];
+                    }
+                    
                     // $subject_tot = $subject['units'] * 229.17;      
                     // $subject_total[] = $subject_tot;
-                    $total_units = array_sum($subject['units']);
                    
                     $i = 0;
                     $subject_total = [];
@@ -1555,8 +1560,8 @@ if ($row) {
     
                     <tr>
                         <td colspan="2"><?= $row['description'] ?></td>
-                        <td colspan="5" style="text-align: center;"><?= $$total_units == NULL || $$total_units == 0 ? '-' : $$total_units ?></td>
-                        <td colspan="2" style="text-align: center;"><?= $$total_units == NULL || $$total_units == 0 ? '-' : 229.17 ?></td>
+                        <td colspan="5" style="text-align: center;"><?= array_sum($total_units) == NULL || array_sum($total_units) == 0 ? '-' : array_sum($total_units) ?></td>
+                        <td colspan="2" style="text-align: center;"><?= array_sum($total_units) == NULL || array_sum($total_units) == 0 ? '-' : 229.17 ?></td>
                         <td colspan="3" style="text-align: center;"><?= $subject_tot == NULL || $subject_tot == 0 ? '-' : $subject_tot ?></td>
                     </tr>
     
