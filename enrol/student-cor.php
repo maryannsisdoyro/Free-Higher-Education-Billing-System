@@ -1537,7 +1537,7 @@ if ($row) {
 
                     $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND year = '" . $fetch_course['level'] . "'");
                     // var_dump();
-                    $subject = $query_subjects->fetch_all();
+                   
                     
                    
                     $i = 0;
@@ -1545,7 +1545,7 @@ if ($row) {
                     // $subject_count = count($subjects);
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['amount'];
-                        
+                        $subject = $query_subjects->fetch_assoc();
                     ?>
     
     
