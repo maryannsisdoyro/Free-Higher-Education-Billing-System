@@ -1576,7 +1576,13 @@ if ($row) {
                                 }
                             ?>
                         </td>
-                        <td colspan="3" style="text-align: center;"><?= $subject_total == NULL || $subject_total == 0 ? '-' : $subject_total ?></td>
+                        <td colspan="3" style="text-align: center;">
+                        <?php
+                                if ($row['description'] == $tuition_based && $total_units != null) {
+                                   echo $subject_total;
+                                }
+                            ?>
+                        </td>
                     </tr>
     
                     <?php
