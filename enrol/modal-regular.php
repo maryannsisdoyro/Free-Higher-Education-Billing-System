@@ -134,25 +134,7 @@
         <div class="col-lg-12">
             <h5><b>Fee Details</b></h5>
             <hr>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="ft" class="control-label">Fee Type</label>
-                        <input type="text" id="ft_regular" class="form-control-sm">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="" class="control-label">Amount</label>
-                        <input type="number" step="any" min="0" id="amount_regular" class="form-control-sm text-right">
-                    </div>
-                </div>
-                 <div class="form-group pt-1">
-                    <label for="" class="control-label">&nbsp;</label>
-                    <button class="btn btn-danger btn-sm" type="button" id="add_fee_regular">Add to List</button>
-                </div>
-            </div>
-            <hr>
+           
             <table class="table table-condensed" id="fee-list-regular">
                 <thead>
                     <tr>
