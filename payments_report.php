@@ -11,33 +11,37 @@
     $i = 1;
     $data = [];
                       $total = 0;
-                        $payments = $conn->query("SELECT 
-                        e.*,
-                        e.stu_name, 
-                        e.id AS stud_id,
-                        e.stu_id, 
-                        e.course,
-                        e.year_level,
-                        e.g_tot,
-                        e.email,
-                        e.con_no,
-                        e.fname,
-                        e.mname,
-                        e.lname,
-                        e.semester,
-                        e.gender,
-                        c.laboratory,
-                        c.computer,
-                        c.academic,
-                        c.academic_nstp,
-                        c.id AS course_id,
-                        c.total_amount    
-                        FROM 
-                          enroll2024 e
-                      INNER JOIN 
-                          courses c ON e.course = c.department
-                        WHERE e.curr = '$academic_year' AND e.semester = '$semester_academic' AND e.delete_status = 1
-                      ORDER BY e.course,e.lname ASC ");
+                      $payments = $conn->query("SELECT 
+                            e.id AS stud_id,
+                            e.stu_id,
+                            e.stu_name,
+                            e.course,
+                            e.year_level,
+                            e.g_tot,
+                            e.email,
+                            e.con_no,
+                            e.fname,
+                            e.mname,
+                            e.lname,
+                            e.semester,
+                            e.gender,
+                            c.laboratory,
+                            c.computer,
+                            c.academic,
+                            c.academic_nstp,
+                            c.id AS course_id,
+                            c.total_amount
+                          FROM 
+                            enroll2024 e
+                          INNER JOIN 
+                            courses c ON e.course = c.department
+                          WHERE 
+                            e.curr = '$academic_year' 
+                            AND e.semester = '$semester_academic' 
+                            AND e.delete_status = 1
+                          ORDER BY 
+                            e.course, e.lname ASC");
+
 
                      
                    
