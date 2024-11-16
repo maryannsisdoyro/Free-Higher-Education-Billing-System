@@ -388,49 +388,4 @@ window.start_load = function(){
     });
 });
 
-// fix this code
-// $("#course_shift").change(function(){
-//     var selectCourse = $("#course_shift").val();
-//     var selectYearLevel = $("#year_level_shift").val();
-
-//     // Perform AJAX call to get fees based on course and year level
-//     $.ajax({
-//         url: '../ajax.php?action=get_fees',
-//         data: { course_id: selectCourse, year_level: selectYearLevel },
-//         cache: false,
-//         method: 'POST',
-//         success: function(resp) {
-//             // Parse the JSON response if the server returns a JSON-encoded string
-//             try {
-//                 const result = JSON.parse(resp);
-
-//                 // Clear existing fee rows before appending new ones
-//                 $('#fee-list-shiftee tbody').empty();
-
-//                 // Loop through each fee in the response and add it to the list
-//                 result.forEach(data => {
-//                     var tr = $('#fee_clone_shiftee tr').clone();
-//                     tr.find('[name="type_shiftee[]"]').val(data[1]); // Set the fee description
-//                     tr.find('.ftype_shiftee').text(data[1]);         // Display the fee description
-//                     tr.find('[name="amount_shiftee[]"]').val(data[2]);    // Set the fee amount
-//                     tr.find('.famount_shiftee').text(parseFloat(data[2]).toLocaleString('en-US')); // Display formatted amount
-
-//                     // Append the cloned row to the fee list table
-//                     $('#fee-list-shiftee tbody').append(tr);
-//                 });
-
-//                 // Recalculate the total after updating the fee list
-//                 calculate_total_shiftee();
-//             } catch (error) {
-//                 console.error("Error parsing response:", error);
-//                 alert("Failed to retrieve fees. Please try again.");
-//             }
-//         },
-//         error: function(xhr, status, error) {
-//             console.error("AJAX Error:", status, error);
-//             alert("An error occurred while fetching fees.");
-//         }
-//     });
-// });
-    
 </script>
