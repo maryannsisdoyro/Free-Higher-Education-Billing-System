@@ -152,7 +152,7 @@
                             $total += $row['amount'];
                     ?>
                         <tr>
-                            <td class="text-center"><button class="btn-sm btn-outline-danger" type="button" onclick="rem_list_regular($(this))" ><i class="fa fa-times"></i></button></td>
+                            <!-- <td class="text-center"><button class="btn-sm btn-outline-danger" type="button" onclick="rem_list_regular($(this))" ><i class="fa fa-times"></i></button></td> -->
                             <td>
                                 <input type="hidden" name="fid_regular[]" value="<?php echo $row['id'] ?>">
                                 <input type="hidden" name="type_regular[]" value="<?php echo $row['description'] ?>">
