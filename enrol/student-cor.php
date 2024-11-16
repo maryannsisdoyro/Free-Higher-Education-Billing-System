@@ -1555,7 +1555,7 @@ if ($row) {
                     <tr>
                         <td colspan="2"><?= $row['description'] ?></td>
                         <td colspan="5" style="text-align: center;"><?= $subject['units'] == NULL || $subject['units'] == 0 ? '-' : '-' ?></td>
-                        <td colspan="2" style="text-align: center;"><?= $subject['units'] == NULL || $subject['units'] == 0 ? '-' : 229.17 ?></td>
+                        <td colspan="2" style="text-align: center;"><?= $subject['units'] == NULL || $subject['units'] == 0 ? '-' : '-' ?></td>
                         <td colspan="3" style="text-align: center;"><?= $subject_tot == NULL || $subject_tot == 0 ? '-' : '-' ?></td>
                     </tr>
     
