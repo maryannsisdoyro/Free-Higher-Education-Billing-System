@@ -340,11 +340,11 @@ window.start_load = function(){
     })
     function calculate_total_shiftee(){
         var total = 0;
-        $('#fee-list-regular tbody').find('[name="amount_regular[]"]').each(function(){
+        $('#fee-list-shiftee tbody').find('[name="amount_shiftee[]"]').each(function(){
             total += parseFloat($(this).val())
         })
-        $('#fee-list-regular tfoot').find('.tamount_regular').text(parseFloat(total).toLocaleString('en-US'))
-        $('#fee-list-regular tfoot').find('[name="total_amount_regular"]').val(total)
+        $('#fee-list-shiftee tfoot').find('.tamount_shiftee').text(parseFloat(total).toLocaleString('en-US'))
+        $('#fee-list-shiftee tfoot').find('[name="total_amount_shiftee"]').val(total)
 
     }
     function rem_list_shiftee(_this){
@@ -352,11 +352,6 @@ window.start_load = function(){
         calculate_total_shiftee()
     }
 
-    // $('.select2').select2({
-    //     placeholder:"Please Select here",
-    //     width:'100%'
-    // })
-    // fix this code
     $("#year_level_shift").change(function(){
     var selectCourse = $("#course_shift").val();
     var selectYearLevel = $("#year_level_shift").val();
