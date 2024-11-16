@@ -33,7 +33,7 @@
 					<a href="#" class="text-dark dropdown-toggle"  id="list-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-download"></i> Downloadable Form</a>
 					<div class="dropdown-menu" aria-labelledby="list-drop1" style="left: -2.5em;">
 					<a href="index.php?page=payments_report"  style="border-top: none;" class="nav-item nav-payments_report"><span class='icon-field mr-2'><i class="fa fa-scroll"></i></span> FHE Form2</a>
-					<a href="../index.php?page=downloadable_form" class="nav-item nav-site_settings"><span class='icon-field'><i class="fa fa-download"></i></span> Student </a>
+					<a href="../index.php?page=downloadable_form" class="nav-item nav-site_settings"><span class='icon-field'><i class="fa fa-download"></i></span> Student Form</a>
 					</div>
 				</div>
 
