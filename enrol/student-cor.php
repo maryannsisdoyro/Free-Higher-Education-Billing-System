@@ -1568,7 +1568,7 @@ if ($row) {
                         </td>
                         <td colspan="2" style="text-align: center;">
                         <?php
-                                if ($row['description'] == $tuition_based && && $total_units != null) {
+                                if ($row['description'] == $tuition_based && $total_units != null) {
                                    echo $rate;
                                 }
                             ?>
