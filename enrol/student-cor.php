@@ -1539,7 +1539,7 @@ if ($row) {
                     $subjects = $query_subjects->fetch_all();
                     while ($row = $cfees->fetch_all()) {
                         $ftotal += $row['amount'];
-                        vard_dump($subjects);
+                        var_dump($subjects);
                     ?>
     
     
