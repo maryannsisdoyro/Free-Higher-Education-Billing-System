@@ -869,7 +869,7 @@ class Action
     $stu_id = $this->clean($_POST['stu_id']);
     $course = $this->clean($_POST['course']);
     $year_level = $this->clean($_POST['year_level']);
-    $section = $this->clean($_POST['section']);
+    // $section = $this->clean($_POST['section']);
     $semester = $this->clean($_POST['semester']);
     $academic = $this->clean($_POST['academic']);
     $stud_status = $this->clean($_POST['submit']);
@@ -909,8 +909,8 @@ class Action
     $conn->begin_transaction();
     try {
         // Insert enrollment data
-        $stmt = $conn->prepare("INSERT INTO enroll2024 (application_no, stu_id, stu_name, course, year_level, stud_status, curr, con_no, section, email, fname, mname, lname, gender, semester, academic, enroll_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssssssssssssss", $application_no, $stu_id, $stu_name, $course, $year_level, $stud_status, $curr, $con_no, $section, $email, $fname, $mname, $lname, $gender, $semester, $academic, $enroll_status);
+        $stmt = $conn->prepare("INSERT INTO enroll2024 (application_no, stu_id, stu_name, course, year_level, stud_status, curr, con_no, email, fname, mname, lname, gender, semester, academic, enroll_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssssssssssss", $application_no, $stu_id, $stu_name, $course, $year_level, $stud_status, $curr, $con_no, $email, $fname, $mname, $lname, $gender, $semester, $academic, $enroll_status);
         $stmt->execute();
         
         // Get the newly inserted enrollment ID
