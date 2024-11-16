@@ -1566,6 +1566,8 @@ if ($row) {
                             <?php
                                 if ($row['description'] == $tuition_based && $total_units != null) {
                                    echo $total_units;
+                                }else{
+                                    echo '-';
                                 }
                             ?>
                         </td>
@@ -1573,6 +1575,8 @@ if ($row) {
                         <?php
                                 if ($row['description'] == $tuition_based && $total_units != null) {
                                    echo $rate;
+                                }else{
+                                    echo '-';
                                 }
                             ?>
                         </td>
@@ -1580,6 +1584,8 @@ if ($row) {
                         <?php
                                 if ($row['description'] == $tuition_based && $total_units != null) {
                                    echo $subject_total;
+                                }else{
+                                    echo '-';
                                 }
                             ?>
                         </td>
