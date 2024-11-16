@@ -1560,7 +1560,7 @@ if ($row) {
 				
 			</table>
 </div>
-<img src="./enrol/n2.jpg" alt="MCC Logo" style="height: 90px; width: 800px;">
+<img src="../enrol/n2.jpg" alt="MCC Logo" style="height: 90px; width: 800px;">
 
 </div>
 <!-- jQuery -->
