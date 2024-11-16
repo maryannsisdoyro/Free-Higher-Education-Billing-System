@@ -347,6 +347,10 @@ window.start_load = function(){
         $('#fee-list-regular tfoot').find('[name="total_amount_regular"]').val(total)
 
     }
+    function rem_list_shiftee(_this){
+        _this.closest('tr').remove()
+        calculate_total_shiftee()
+    }
 
     // $('.select2').select2({
     //     placeholder:"Please Select here",
