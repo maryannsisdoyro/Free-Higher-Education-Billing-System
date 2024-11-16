@@ -863,264 +863,314 @@ class Action
 
 
 	function save_shiftee()
-{
-    // Sanitize and assign POST data to variables
-    $conn = $this->db;
-    $stu_id = $this->clean($_POST['stu_id']);
-    $course = $this->clean($_POST['course']);
-    $year_level = $this->clean($_POST['year_level']);
-    // $section = $this->clean($_POST['section']);
-    $semester = $this->clean($_POST['semester']);
-    $academic = $this->clean($_POST['academic']);
-    $stud_status = $this->clean($_POST['submit']);
-    $type_shiftee = $_POST['type_shiftee'];
-    $amount_shiftee = $_POST['amount_shiftee'];
-    $enroll_status = "shiftee";
+	{
+		extract($_POST);
+		$conn = $this->db;
 
-    // Fetch latest enrollment data
-    $get_enroll = $conn->query("SELECT * FROM enroll2024 WHERE stu_id = '$stu_id' ORDER BY id DESC LIMIT 1");
-    if ($get_enroll->num_rows === 0) {
-        return json_encode(['status' => 0, 'message' => 'Student enrollment data not found.']);
-    }
-    $data = $get_enroll->fetch_assoc();
+		$enroll_id = $this->clean($_POST['id']);
+		$course = $this->clean($_POST['course']);
+		$year_level = $this->clean($_POST['year_level']);
+		$section = $this->clean($_POST['section']);
+		$laboratory = $this->clean($_POST['laboratory']);
+		$computer = $this->clean($_POST['computer']);
+		$academic_unit = $this->clean($_POST['academic_unit']);
+		$academic_nstp = $this->clean($_POST['academic_nstp']);
+		$type_shiftee =$_POST['type_shiftee'];
+		$amount_shiftee =$_POST['amount_shiftee'];
 
-    // Fetch academic year and semester
-    $get_academic = $conn->query("SELECT * FROM academic WHERE id = '$academic' LIMIT 1");
-    if ($get_academic->num_rows === 0) {
-        return json_encode(['status' => 0, 'message' => 'Academic data not found.']);
-    }
-    $res_academic = $get_academic->fetch_assoc();
-    $curr = $this->clean($res_academic['year']);
-    $semester = $this->clean($res_academic['semester']);
+		$stu_id = $this->clean($_POST['stu_id']);
+        $year_level = $this->clean($_POST['year_level']);
+        $section = $this->clean($_POST['section']);
+        $semester = $this->clean($_POST['semester']);
+        $academic = $this->clean($_POST['academic']);
+        $stud_status = $this->clean($_POST['submit']);
 
-    // Extract additional student details
-    $application_no = $this->clean($data['application_no']);
-    $stu_name = $this->clean($data['stu_name']);
-    $course = $this->clean($data['course']);
-    $con_no = $this->clean($data['con_no']);
-    $email = $this->clean($data['email']);
-    $fname = $this->clean($data['fname']);
-    $mname = $this->clean($data['mname']);
-    $lname = $this->clean($data['lname']);
-    $gender = $this->clean($data['gender']);
-    $filename = $this->clean($data['image']);
 
-    // Begin transaction for multi-query operation
-    $conn->begin_transaction();
-    try {
-        // Insert enrollment data
-        $stmt = $conn->prepare("INSERT INTO enroll2024 (application_no, stu_id, stu_name, course, year_level, stud_status, curr, con_no, email, fname, mname, lname, gender, semester, academic, enroll_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssssssssssssss", $application_no, $stu_id, $stu_name, $course, $year_level, $stud_status, $curr, $con_no, $email, $fname, $mname, $lname, $gender, $semester, $academic, $enroll_status);
-        $stmt->execute();
-        
-        // Get the newly inserted enrollment ID
-        $id = $conn->insert_id;
+		$get_enroll = $conn->query("SELECT * FROM enroll2024 WHERE stu_id = '$stu_id' ORDER BY id DESC");
+        $data = $get_enroll->fetch_assoc();
 
-        // Insert individual shiftee fees
-        $stmt = $conn->prepare("INSERT INTO student_individual_fees(enroll_id, type, amount) VALUES(?, ?, ?)");
-        for ($i = 0; $i < count($type_shiftee); $i++) {
-            $type = $this->clean($type_shiftee[$i]);
-            $amount = $this->clean($amount_shiftee[$i]);
-            $stmt->bind_param("iss", $id, $type, $amount);
-            $stmt->execute();
-        }
+        $get_academic = $conn->query("SELECT * FROM academic WHERE id = '$academic'");
+        $res_academic = $get_academic->fetch_array();
+        $curr = $this->clean($res_academic['year']);
+        $semester = $this->clean($res_academic['semester']);
 
-        // Commit transaction
-        $conn->commit();
-        return json_encode(['status' => 1, 'enroll_id' => $id]);
+        $fname = $this->clean($data['fname']);
+        $mname = $this->clean($data['mname']);
+        $lname = $this->clean($data['lname']);
+        $application_no = $this->clean($data['application_no']);
+        $stu_name = $this->clean($data['stu_name']);
+        $stu_id = $this->clean($data['stu_id']);
+        $stu_sta = $this->clean($data['stu_sta']);
+        // $course = $this->clean($data['course']);
+        $majorOutput1 = $this->clean($data['major']);
+        // $selectedSection1 = $this->clean($data['selectedSection1']);
+        // $curr = $this->clean($data['curr']);
+        $religiousOutput1 = $this->clean($data['reli']);
+        $con_no = $this->clean($data['con_no']);
+        $home_ad = $this->clean($data['home_ad']);
+        $civil = $this->clean($data['civil']);
+        $d_birth = $this->clean($data['d_birth']);
+        $p_birth = $this->clean($data['p_birth']);
+        $ele = $this->clean($data['ele']);
+        $ele_year = $this->clean($data['ele_year']);
+        $high = $this->clean($data['high']);
+        $high_year = $this->clean($data['high_year']);
+        $last_sc = $this->clean($data['last_sc']);
+        $last_year = $this->clean($data['last_year']);
+        $tot_units = $this->clean($data['tot_units']);
+        $un_enrol = $this->clean($data['un_enrol']);
+        $rate_per = $this->clean($data['rate_per']);
+        $total = $this->clean($data['total']);
+        $lib = $this->clean($data['lib']);
+        $com = $this->clean($data['com']);
+        $lab1 = $this->clean($data['lab1']);
+        $lab2 = $this->clean($data['lab2']);
+        $lab3 = $this->clean($data['lab3']);
+        $sch_id = $this->clean($data['sch_id']);
+        $ath = $this->clean($data['ath']);
+        $adm = $this->clean($data['adm']);
+        $dev = $this->clean($data['dev']);
+        $guid = $this->clean($data['guid']);
+        $hand = $this->clean($data['hand']);
+        $entr = $this->clean($data['entr']);
+        $reg_fe = $this->clean($data['reg_fe']);
+        $med_den = $this->clean($data['med_den']);
+        $cul = $this->clean($data['cul']);
+        $t_misfe = $this->clean($data['t_misfe']);
+        $g_tot = $this->clean($data['g_tot']);
+        // $section = $this->clean($data['section']);
+        $email = $this->clean($data['email']);
+        $gender = $this->clean($data['gender']);
+        $filename = $this->clean($data['image']);
+		$enroll_status = "shiftee";
+		
+		$insert_query = "INSERT INTO enroll2024 (application_no,stu_id, stu_name, stu_sta, course, major, year_level, stud_status,curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot,image, section, email,fname,mname,lname,gender,semester,academic,enroll_status)
+		VALUES ('$application_no','$stu_id', '$stu_name', '$stu_sta', '$course', '$majorOutput1', '$year_level', '$stud_status','$curr', '$religiousOutput1', '$con_no', '$home_ad', '$civil', '$d_birth', '$p_birth', '$ele', '$ele_year', '$high', '$high_year', '$last_sc', '$last_year', '$tot_units', '$un_enrol', '$rate_per', '$total', '$lib', '$com', '$lab1', '$lab2', '$lab3', '$sch_id', '$ath', '$adm', '$dev', '$guid', '$hand', '$entr', '$reg_fe', '$med_den', '$cul', '$t_misfe', '$g_tot', '$filename', '$section', '$email','$fname', '$mname', '$lname', '$gender', '$semester', '$academic', '$enroll_status')";
+	
+			$insert_result = mysqli_query($conn, $insert_query);
+	
+		if ($insert_result) {
+	
+			$get_new_enroll = $conn->query("SELECT * FROM enroll2024 ORDER BY id DESC");
+			$fetch_new_enroll = $get_new_enroll->fetch_assoc();
+			$id = $fetch_new_enroll['id'];
 
-    } catch (Exception $e) {
-        // Rollback transaction in case of error
-        $conn->rollback();
-        return json_encode(['status' => 0, 'message' => 'Error processing enrollment data.', 'error' => $e->getMessage()]);
-    }
-}
+			for($i = 0; $i < count($type_shiftee); $i++){
+	
+				$insert_fees = $conn->query("INSERT INTO student_individual_fees(enroll_id, type, amount) VALUES($id, '".$_POST['type_shiftee'][$i]."', '".$_POST['amount_shiftee'][$i]."')");
+	
+			}
 
+			return json_encode(['status' => 1, 'enroll_id' => $id]);
+
+		}
+			
+	}
 
 	function save_irregular()
-{
-    extract($_POST);
-    $conn = $this->db;
+	{
+		extract($_POST);
+		$conn = $this->db;
 
-    $enroll_id = $this->clean($_POST['id']);
-    $year_level = $this->clean($_POST['year_level']);
-    $laboratory = $this->clean($_POST['laboratory']);
-    $computer = $this->clean($_POST['computer']);
-    $academic_unit = $this->clean($_POST['academic_unit']);
-    $academic_nstp = $this->clean($_POST['academic_nstp']);
-    $type_irregular = $_POST['type_irregular'];
-    $amount_irregular = $_POST['amount_irregular'];
+		$enroll_id = $this->clean($_POST['id']);
+		$year_level = $this->clean($_POST['year_level']);
+		$section = $this->clean($_POST['section']);
+		$laboratory = $this->clean($_POST['laboratory']);
+		$computer = $this->clean($_POST['computer']);
+		$academic_unit = $this->clean($_POST['academic_unit']);
+		$academic_nstp = $this->clean($_POST['academic_nstp']);
+		$type_irregular =$_POST['type_irregular'];
+		$amount_irregular =$_POST['amount_irregular'];
 
-    $stu_id = $this->clean($_POST['stu_id']);
-    $year_level = $this->clean($_POST['year_level']);
-    $semester = $this->clean($_POST['semester']);
-    $academic = $this->clean($_POST['academic']);
-    $stud_status = $this->clean($_POST['submit']);
+		$stu_id = $this->clean($_POST['stu_id']);
+        $year_level = $this->clean($_POST['year_level']);
+        $section = $this->clean($_POST['section']);
+        $semester = $this->clean($_POST['semester']);
+        $academic = $this->clean($_POST['academic']);
+        $stud_status = $this->clean($_POST['submit']);
 
-    $get_enroll = $conn->query("SELECT * FROM enroll2024 WHERE stu_id = '$stu_id' ORDER BY id DESC");
-    $data = $get_enroll->fetch_assoc();
 
-    $get_academic = $conn->query("SELECT * FROM academic WHERE id = '$academic'");
-    $res_academic = $get_academic->fetch_array();
-    $curr = $this->clean($res_academic['year']);
-    $semester = $this->clean($res_academic['semester']);
+		$get_enroll = $conn->query("SELECT * FROM enroll2024 WHERE stu_id = '$stu_id' ORDER BY id DESC");
+        $data = $get_enroll->fetch_assoc();
 
-    $fname = $this->clean($data['fname']);
-    $mname = $this->clean($data['mname']);
-    $lname = $this->clean($data['lname']);
-    $application_no = $this->clean($data['application_no']);
-    $stu_name = $this->clean($data['stu_name']);
-    $stu_id = $this->clean($data['stu_id']);
-    $stu_sta = $this->clean($data['stu_sta']);
-    $course = $this->clean($data['course']);
-    $majorOutput1 = $this->clean($data['major']);
-    $religiousOutput1 = $this->clean($data['reli']);
-    $con_no = $this->clean($data['con_no']);
-    $home_ad = $this->clean($data['home_ad']);
-    $civil = $this->clean($data['civil']);
-    $d_birth = $this->clean($data['d_birth']);
-    $p_birth = $this->clean($data['p_birth']);
-    $ele = $this->clean($data['ele']);
-    $ele_year = $this->clean($data['ele_year']);
-    $high = $this->clean($data['high']);
-    $high_year = $this->clean($data['high_year']);
-    $last_sc = $this->clean($data['last_sc']);
-    $last_year = $this->clean($data['last_year']);
-    $tot_units = $this->clean($data['tot_units']);
-    $un_enrol = $this->clean($data['un_enrol']);
-    $rate_per = $this->clean($data['rate_per']);
-    $total = $this->clean($data['total']);
-    $lib = $this->clean($data['lib']);
-    $com = $this->clean($data['com']);
-    $lab1 = $this->clean($data['lab1']);
-    $lab2 = $this->clean($data['lab2']);
-    $lab3 = $this->clean($data['lab3']);
-    $sch_id = $this->clean($data['sch_id']);
-    $ath = $this->clean($data['ath']);
-    $adm = $this->clean($data['adm']);
-    $dev = $this->clean($data['dev']);
-    $guid = $this->clean($data['guid']);
-    $hand = $this->clean($data['hand']);
-    $entr = $this->clean($data['entr']);
-    $reg_fe = $this->clean($data['reg_fe']);
-    $med_den = $this->clean($data['med_den']);
-    $cul = $this->clean($data['cul']);
-    $t_misfe = $this->clean($data['t_misfe']);
-    $g_tot = $this->clean($data['g_tot']);
-    $email = $this->clean($data['email']);
-    $gender = $this->clean($data['gender']);
-    $filename = $this->clean($data['image']);
-    $enroll_status = "irregular";
+        $get_academic = $conn->query("SELECT * FROM academic WHERE id = '$academic'");
+        $res_academic = $get_academic->fetch_array();
+        $curr = $this->clean($res_academic['year']);
+        $semester = $this->clean($res_academic['semester']);
 
-    $insert_query = "INSERT INTO enroll2024 (application_no, stu_id, stu_name, stu_sta, course, major, year_level, stud_status, curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot, image, email, fname, mname, lname, gender, semester, academic, enroll_status)
-    VALUES ('$application_no', '$stu_id', '$stu_name', '$stu_sta', '$course', '$majorOutput1', '$year_level', '$stud_status', '$curr', '$religiousOutput1', '$con_no', '$home_ad', '$civil', '$d_birth', '$p_birth', '$ele', '$ele_year', '$high', '$high_year', '$last_sc', '$last_year', '$tot_units', '$un_enrol', '$rate_per', '$total', '$lib', '$com', '$lab1', '$lab2', '$lab3', '$sch_id', '$ath', '$adm', '$dev', '$guid', '$hand', '$entr', '$reg_fe', '$med_den', '$cul', '$t_misfe', '$g_tot', '$filename', '$email', '$fname', '$mname', '$lname', '$gender', '$semester', '$academic', '$enroll_status')";
+        $fname = $this->clean($data['fname']);
+        $mname = $this->clean($data['mname']);
+        $lname = $this->clean($data['lname']);
+        $application_no = $this->clean($data['application_no']);
+        $stu_name = $this->clean($data['stu_name']);
+        $stu_id = $this->clean($data['stu_id']);
+        $stu_sta = $this->clean($data['stu_sta']);
+        $course = $this->clean($data['course']);
+        $majorOutput1 = $this->clean($data['major']);
+        // $selectedSection1 = $this->clean($data['selectedSection1']);
+        // $curr = $this->clean($data['curr']);
+        $religiousOutput1 = $this->clean($data['reli']);
+        $con_no = $this->clean($data['con_no']);
+        $home_ad = $this->clean($data['home_ad']);
+        $civil = $this->clean($data['civil']);
+        $d_birth = $this->clean($data['d_birth']);
+        $p_birth = $this->clean($data['p_birth']);
+        $ele = $this->clean($data['ele']);
+        $ele_year = $this->clean($data['ele_year']);
+        $high = $this->clean($data['high']);
+        $high_year = $this->clean($data['high_year']);
+        $last_sc = $this->clean($data['last_sc']);
+        $last_year = $this->clean($data['last_year']);
+        $tot_units = $this->clean($data['tot_units']);
+        $un_enrol = $this->clean($data['un_enrol']);
+        $rate_per = $this->clean($data['rate_per']);
+        $total = $this->clean($data['total']);
+        $lib = $this->clean($data['lib']);
+        $com = $this->clean($data['com']);
+        $lab1 = $this->clean($data['lab1']);
+        $lab2 = $this->clean($data['lab2']);
+        $lab3 = $this->clean($data['lab3']);
+        $sch_id = $this->clean($data['sch_id']);
+        $ath = $this->clean($data['ath']);
+        $adm = $this->clean($data['adm']);
+        $dev = $this->clean($data['dev']);
+        $guid = $this->clean($data['guid']);
+        $hand = $this->clean($data['hand']);
+        $entr = $this->clean($data['entr']);
+        $reg_fe = $this->clean($data['reg_fe']);
+        $med_den = $this->clean($data['med_den']);
+        $cul = $this->clean($data['cul']);
+        $t_misfe = $this->clean($data['t_misfe']);
+        $g_tot = $this->clean($data['g_tot']);
+        // $section = $this->clean($data['section']);
+        $email = $this->clean($data['email']);
+        $gender = $this->clean($data['gender']);
+        $filename = $this->clean($data['image']);
+		$enroll_status = "irregular";
+		
+		$insert_query = "INSERT INTO enroll2024 (application_no,stu_id, stu_name, stu_sta, course, major, year_level, stud_status,curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot,image, section, email,fname,mname,lname,gender,semester,academic,enroll_status)
+		VALUES ('$application_no','$stu_id', '$stu_name', '$stu_sta', '$course', '$majorOutput1', '$year_level', '$stud_status','$curr', '$religiousOutput1', '$con_no', '$home_ad', '$civil', '$d_birth', '$p_birth', '$ele', '$ele_year', '$high', '$high_year', '$last_sc', '$last_year', '$tot_units', '$un_enrol', '$rate_per', '$total', '$lib', '$com', '$lab1', '$lab2', '$lab3', '$sch_id', '$ath', '$adm', '$dev', '$guid', '$hand', '$entr', '$reg_fe', '$med_den', '$cul', '$t_misfe', '$g_tot', '$filename', '$section', '$email','$fname', '$mname', '$lname', '$gender', '$semester', '$academic', '$enroll_status')";
+	
+			$insert_result = mysqli_query($conn, $insert_query);
+	
+		if ($insert_result) {
+	
+			$get_new_enroll = $conn->query("SELECT * FROM enroll2024 ORDER BY id DESC");
+			$fetch_new_enroll = $get_new_enroll->fetch_assoc();
+			$id = $fetch_new_enroll['id'];
 
-    $insert_result = mysqli_query($conn, $insert_query);
+			for($i = 0; $i < count($type_irregular); $i++){
+	
+				$insert_fees = $conn->query("INSERT INTO student_individual_fees(enroll_id, type, amount) VALUES($id, '".$_POST['type_irregular'][$i]."', '".$_POST['amount_irregular'][$i]."')");
+	
+			}
 
-    if ($insert_result) {
-        $get_new_enroll = $conn->query("SELECT * FROM enroll2024 ORDER BY id DESC");
-        $fetch_new_enroll = $get_new_enroll->fetch_assoc();
-        $id = $fetch_new_enroll['id'];
+			return json_encode(['status' => 1, 'enroll_id' => $id]);
 
-        for ($i = 0; $i < count($type_irregular); $i++) {
-            $conn->query("INSERT INTO student_individual_fees(enroll_id, type, amount) VALUES($id, '" . $_POST['type_irregular'][$i] . "', '" . $_POST['amount_irregular'][$i] . "')");
-        }
-
-        return json_encode(['status' => 1, 'enroll_id' => $id]);
-    }
-}
-
+		}
+	}
 
 	function save_regular()
 	{
 		extract($_POST);
 		$conn = $this->db;
-	
+
 		$enroll_id = $this->clean($_POST['id']);
 		$year_level = $this->clean($_POST['year_level']);
+		// $section = $this->clean($_POST['section']);
 		$laboratory = $this->clean($_POST['laboratory']);
 		$computer = $this->clean($_POST['computer']);
 		$academic_unit = $this->clean($_POST['academic_unit']);
 		$academic_nstp = $this->clean($_POST['academic_nstp']);
-		$type_regular = $_POST['type_regular'];
-		$amount_regular = $_POST['amount_regular'];
-	
+		$type_regular =$_POST['type_regular'];
+		$amount_regular =$_POST['amount_regular'];
+
 		$stu_id = $this->clean($_POST['stu_id']);
-		$year_level = $this->clean($_POST['year_level']);
-		$semester = $this->clean($_POST['semester']);
-		$academic = $this->clean($_POST['academic']);
-		$stud_status = $this->clean($_POST['submit']);
-	
+        $year_level = $this->clean($_POST['year_level']);
+        // $section = $this->clean($_POST['section']);
+        $semester = $this->clean($_POST['semester']);
+        $academic = $this->clean($_POST['academic']);
+        $stud_status = $this->clean($_POST['submit']);
+
+
 		$get_enroll = $conn->query("SELECT * FROM enroll2024 WHERE stu_id = '$stu_id' ORDER BY id DESC");
-		$data = $get_enroll->fetch_assoc();
-	
-		$get_academic = $conn->query("SELECT * FROM academic WHERE id = '$academic'");
-		$res_academic = $get_academic->fetch_array();
-		$curr = $this->clean($res_academic['year']);
-		$semester = $this->clean($res_academic['semester']);
-	
-		$fname = $this->clean($data['fname']);
-		$mname = $this->clean($data['mname']);
-		$lname = $this->clean($data['lname']);
-		$application_no = $this->clean($data['application_no']);
-		$stu_name = $this->clean($data['stu_name']);
-		$stu_id = $this->clean($data['stu_id']);
-		$stu_sta = $this->clean($data['stu_sta']);
-		$course = $this->clean($data['course']);
-		$majorOutput1 = $this->clean($data['major']);
-		$religiousOutput1 = $this->clean($data['reli']);
-		$con_no = $this->clean($data['con_no']);
-		$home_ad = $this->clean($data['home_ad']);
-		$civil = $this->clean($data['civil']);
-		$d_birth = $this->clean($data['d_birth']);
-		$p_birth = $this->clean($data['p_birth']);
-		$ele = $this->clean($data['ele']);
-		$ele_year = $this->clean($data['ele_year']);
-		$high = $this->clean($data['high']);
-		$high_year = $this->clean($data['high_year']);
-		$last_sc = $this->clean($data['last_sc']);
-		$last_year = $this->clean($data['last_year']);
-		$tot_units = $this->clean($data['tot_units']);
-		$un_enrol = $this->clean($data['un_enrol']);
-		$rate_per = $this->clean($data['rate_per']);
-		$total = $this->clean($data['total']);
-		$lib = $this->clean($data['lib']);
-		$com = $this->clean($data['com']);
-		$lab1 = $this->clean($data['lab1']);
-		$lab2 = $this->clean($data['lab2']);
-		$lab3 = $this->clean($data['lab3']);
-		$sch_id = $this->clean($data['sch_id']);
-		$ath = $this->clean($data['ath']);
-		$adm = $this->clean($data['adm']);
-		$dev = $this->clean($data['dev']);
-		$guid = $this->clean($data['guid']);
-		$hand = $this->clean($data['hand']);
-		$entr = $this->clean($data['entr']);
-		$reg_fe = $this->clean($data['reg_fe']);
-		$med_den = $this->clean($data['med_den']);
-		$cul = $this->clean($data['cul']);
-		$t_misfe = $this->clean($data['t_misfe']);
-		$g_tot = $this->clean($data['g_tot']);
-		$email = $this->clean($data['email']);
-		$gender = $this->clean($data['gender']);
-		$filename = $this->clean($data['image']);
+        $data = $get_enroll->fetch_assoc();
+
+        $get_academic = $conn->query("SELECT * FROM academic WHERE id = '$academic'");
+        $res_academic = $get_academic->fetch_array();
+        $curr = $this->clean($res_academic['year']);
+        $semester = $this->clean($res_academic['semester']);
+
+        $fname = $this->clean($data['fname']);
+        $mname = $this->clean($data['mname']);
+        $lname = $this->clean($data['lname']);
+        $application_no = $this->clean($data['application_no']);
+        $stu_name = $this->clean($data['stu_name']);
+        $stu_id = $this->clean($data['stu_id']);
+        $stu_sta = $this->clean($data['stu_sta']);
+        $course = $this->clean($data['course']);
+        $majorOutput1 = $this->clean($data['major']);
+        // $selectedSection1 = $this->clean($data['selectedSection1']);
+        // $curr = $this->clean($data['curr']);
+        $religiousOutput1 = $this->clean($data['reli']);
+        $con_no = $this->clean($data['con_no']);
+        $home_ad = $this->clean($data['home_ad']);
+        $civil = $this->clean($data['civil']);
+        $d_birth = $this->clean($data['d_birth']);
+        $p_birth = $this->clean($data['p_birth']);
+        $ele = $this->clean($data['ele']);
+        $ele_year = $this->clean($data['ele_year']);
+        $high = $this->clean($data['high']);
+        $high_year = $this->clean($data['high_year']);
+        $last_sc = $this->clean($data['last_sc']);
+        $last_year = $this->clean($data['last_year']);
+        $tot_units = $this->clean($data['tot_units']);
+        $un_enrol = $this->clean($data['un_enrol']);
+        $rate_per = $this->clean($data['rate_per']);
+        $total = $this->clean($data['total']);
+        $lib = $this->clean($data['lib']);
+        $com = $this->clean($data['com']);
+        $lab1 = $this->clean($data['lab1']);
+        $lab2 = $this->clean($data['lab2']);
+        $lab3 = $this->clean($data['lab3']);
+        $sch_id = $this->clean($data['sch_id']);
+        $ath = $this->clean($data['ath']);
+        $adm = $this->clean($data['adm']);
+        $dev = $this->clean($data['dev']);
+        $guid = $this->clean($data['guid']);
+        $hand = $this->clean($data['hand']);
+        $entr = $this->clean($data['entr']);
+        $reg_fe = $this->clean($data['reg_fe']);
+        $med_den = $this->clean($data['med_den']);
+        $cul = $this->clean($data['cul']);
+        $t_misfe = $this->clean($data['t_misfe']);
+        $g_tot = $this->clean($data['g_tot']);
+        // $section = $this->clean($data['section']);
+        $email = $this->clean($data['email']);
+        $gender = $this->clean($data['gender']);
+        $filename = $this->clean($data['image']);
 		$enroll_status = "regular";
 		
-		$insert_query = "INSERT INTO enroll2024 (application_no, stu_id, stu_name, stu_sta, course, major, year_level, stud_status, curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot, image, email, fname, mname, lname, gender, semester, academic, enroll_status)
-		VALUES ('$application_no', '$stu_id', '$stu_name', '$stu_sta', '$course', '$majorOutput1', '$year_level', '$stud_status', '$curr', '$religiousOutput1', '$con_no', '$home_ad', '$civil', '$d_birth', '$p_birth', '$ele', '$ele_year', '$high', '$high_year', '$last_sc', '$last_year', '$tot_units', '$un_enrol', '$rate_per', '$total', '$lib', '$com', '$lab1', '$lab2', '$lab3', '$sch_id', '$ath', '$adm', '$dev', '$guid', '$hand', '$entr', '$reg_fe', '$med_den', '$cul', '$t_misfe', '$g_tot', '$filename', '$email', '$fname', '$mname', '$lname', '$gender', '$semester', '$academic', '$enroll_status')";
-		
-		$insert_result = mysqli_query($conn, $insert_query);
+		$insert_query = "INSERT INTO enroll2024 (application_no,stu_id, stu_name, stu_sta, course, major, year_level, stud_status,curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot,image, email,fname,mname,lname,gender,semester,academic,enroll_status)
+		VALUES ('$application_no','$stu_id', '$stu_name', '$stu_sta', '$course', '$majorOutput1', '$year_level', '$stud_status','$curr', '$religiousOutput1', '$con_no', '$home_ad', '$civil', '$d_birth', '$p_birth', '$ele', '$ele_year', '$high', '$high_year', '$last_sc', '$last_year', '$tot_units', '$un_enrol', '$rate_per', '$total', '$lib', '$com', '$lab1', '$lab2', '$lab3', '$sch_id', '$ath', '$adm', '$dev', '$guid', '$hand', '$entr', '$reg_fe', '$med_den', '$cul', '$t_misfe', '$g_tot', '$filename', '$email','$fname', '$mname', '$lname', '$gender', '$semester', '$academic', '$enroll_status')";
+	
+			$insert_result = mysqli_query($conn, $insert_query);
 	
 		if ($insert_result) {
+	
 			$get_new_enroll = $conn->query("SELECT * FROM enroll2024 ORDER BY id DESC");
 			$fetch_new_enroll = $get_new_enroll->fetch_assoc();
 			$id = $fetch_new_enroll['id'];
+
+			for($i = 0; $i < count($type_regular); $i++){
 	
-			for ($i = 0; $i < count($type_regular); $i++) {
 				$insert_fees = $conn->query("INSERT INTO student_individual_fees(enroll_id, type, amount) VALUES($id, '".$_POST['type_regular'][$i]."', '".$_POST['amount_regular'][$i]."')");
+	
 			}
+
 			
 			return json_encode(['status' => 1, 'enroll_id' => $id]);
+
 		}
 	}
 	
