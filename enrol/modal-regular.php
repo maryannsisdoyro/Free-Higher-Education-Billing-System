@@ -138,7 +138,7 @@
             <table class="table table-condensed" id="fee-list-regular">
                 <thead>
                     <tr>
-                        <th width="5%"></th>
+                        <!-- <th width="5%"></th> -->
                         <th width="50%">Type</th>
                         <th width="45%">Amount</th>
                     </tr>
