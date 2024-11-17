@@ -179,7 +179,7 @@
                                                    
                                             ?>
                                                     <tr>
-                                                       <td>000<?= $count_i++ ?></td>
+                                                       <td>000<?=  $count_num = '00000' . $count_i++; ?></td>
                                                        
                                                         <td><?= $row['stu_id'] ?></td>
                                                         <td></td>
