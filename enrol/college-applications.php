@@ -181,7 +181,7 @@ $conn->close();
                         <td>".$row["application_no"]."</td>
                         <td>".$row["stu_id"]."</td>
                         <td>".$row["stu_name"]."</td>
-                        <td>".$row["stu_sta"]."</td>
+                        <td>".$row["enroll_status"] == NULL ? $row["stu_sta"] : $row["enroll_status"]."</td>
                         <td>".$row["course"]."</td>
                         <td>".$row["major"]."</td>
                         <td>".$year."</td>
