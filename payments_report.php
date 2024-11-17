@@ -170,7 +170,7 @@
                                                 <th>Total TOSF</th>
                                             </thead>
                                             <?php
-                                             $count_i = 1; // Initialize without leading zeros
+                                             $count_i = 0; // Initialize without leading zeros
                                              // Increment the count
                                              
                                              // Format the number to always have six digits
