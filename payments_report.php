@@ -174,14 +174,14 @@
                                              $count_i++; // Increment the count
                                              
                                              // Format the number to always have six digits
-                                             $formatted_count_i = str_pad($count_i, 6, '0', STR_PAD_LEFT);
+                                            
                                              
                                              
                                             // echo count($data);
                                             if (count($data) > 0) {
                                                 $count = 1;
                                                 foreach ($data as $row) {
-                                                   
+                                                    $formatted_count_i = str_pad($count_i, 6, '0', STR_PAD_LEFT);
                                             ?>
                                                     <tr>
                                                        <td>000<?= $formatted_count_i; ?></td>
