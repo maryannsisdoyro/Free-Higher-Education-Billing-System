@@ -181,8 +181,9 @@
                                             if (count($data) > 0) {
                                                 $count = 1;
                                                 foreach ($data as $row) {
-                                                    $count_i++;
+                                                   
                                                     $formatted_count_i = str_pad($count_i, 6, '0', STR_PAD_LEFT);
+                                                    $count_i++;
                                             ?>
                                                     <tr>
                                                        <td>000<?= $formatted_count_i; ?></td>
