@@ -173,17 +173,15 @@ $conn->close();
         
 
         <?php
-        $count_i = 1;
-        $count_num = '00000' . $count_i;
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 $year = $row["year_level"] ?? '0';
                 echo "<tr>
                         <td class='text-center'><input type='checkbox' class='row_checkbox' name='selected_application[]' value='".$row["id"]."'></td> <!-- Checkbox -->
-                        <td>".$count_num = '00000' . $count_i++;."</td>
+                        <td>".$row["application_no"]."</td>
                         <td>".$row["stu_id"]."</td>
                         <td>".$row["stu_name"]."</td>
-                        <td>".$row["enroll_status"] == NULL ? $row["stu_sta"] : $row["enroll_status"]."</td>
+                        <td>".$row["stu_sta"]."</td>
                         <td>".$row["course"]."</td>
                         <td>".$row["major"]."</td>
                         <td>".$year."</td>
