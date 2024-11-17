@@ -170,8 +170,13 @@
                                                 <th>Total TOSF</th>
                                             </thead>
                                             <?php
-                                             $count_i = 1;
-                                             $count_num = '00000' . $count_i;
+                                             $count_i = 1; // Initialize without leading zeros
+                                             $count_i++; // Increment the count
+                                             
+                                             // Format the number to always have six digits
+                                             $formatted_count_i = str_pad($count_i, 6, '0', STR_PAD_LEFT);
+                                             
+                                             
                                             // echo count($data);
                                             if (count($data) > 0) {
                                                 $count = 1;
@@ -179,7 +184,7 @@
                                                    
                                             ?>
                                                     <tr>
-                                                       <td>000<?=  $count_num = '00000' . $count_i++; ?></td>
+                                                       <td>000<?= $formatted_count_i; ?></td>
                                                        
                                                         <td><?= $row['stu_id'] ?></td>
                                                         <td></td>
