@@ -202,6 +202,7 @@ window._conf = function($msg='',$func='',$params = []){
             $('#login-form button[type="button"]').removeAttr('disabled').html('Login');
           },
           success: function(resp) {
+            console.log(resp);
             if (resp == 1) {
               alert_toast("Account logged in successfully", 'success');
               setTimeout(function() {
