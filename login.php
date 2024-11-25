@@ -100,32 +100,10 @@ header("location:index.php?page=home");
   </body>
   <script src="https://www.google.com/recaptcha/api.js"></script>
   <script>
-   function onSubmit(token) {
-    $('#login-form button[type="button"]').attr('disabled', true).html('Logging in...');
-    if ($(this).find('.alert-danger').length > 0) $(this).find('.alert-danger').remove();
-    $.ajax({
-      url: 'ajax.php?action=login',
-      method: 'POST',
-      data: $('#login-form').serialize(),
-      error: function(err) {
-        console.log(err);
-        $('#login-form button[type="button"]').removeAttr('disabled').html('Login');
-      },
-      success: function(resp) {
-        console.log(resp);
-        if (resp == 1) {
-          alert_toast("Account logged in successfully", 'success');
-          setTimeout(function() {
-            location.href = 'index.php?page=home';
-          }, 1500);
-        } else {
-          $('#login-form').prepend('<div class="alert alert-danger">Username or password is incorrect.</div>');
-          $('#login-form button[type="button"]').removeAttr('disabled').html('Login');
-        }
-      }
-    });
-  }
-</script>
+    function onSubmit(token) {
+      document.getElementById("login-form").submit();
+    }
+  </script>
 
   <script>
 	 window.start_load = function(){
@@ -222,8 +200,30 @@ window._conf = function($msg='',$func='',$params = []){
 
 	$('#login-form').submit(function(e){
 		e.preventDefault()
-    
-    
+
+    $('#login-form button[type="button"]').attr('disabled', true).html('Logging in...');
+    if ($(this).find('.alert-danger').length > 0) $(this).find('.alert-danger').remove();
+    $.ajax({
+      url: 'ajax.php?action=login',
+      method: 'POST',
+      data: $('#login-form').serialize(),
+      error: function(err) {
+        console.log(err);
+        $('#login-form button[type="button"]').removeAttr('disabled').html('Login');
+      },
+      success: function(resp) {
+        console.log(resp);
+        if (resp == 1) {
+          alert_toast("Account logged in successfully", 'success');
+          setTimeout(function() {
+            location.href = 'index.php?page=home';
+          }, 1500);
+        } else {
+          $('#login-form').prepend('<div class="alert alert-danger">Username or password is incorrect.</div>');
+          $('#login-form button[type="button"]').removeAttr('disabled').html('Login');
+        }
+      }
+    });
 	})
 </script>	
 
