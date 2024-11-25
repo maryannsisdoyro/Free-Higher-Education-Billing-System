@@ -42,7 +42,7 @@ class Action
 
 		// Check if reCAPTCHA token is present
 		if (empty($recaptcha_token)) {
-			return 3; // Return an error if token is missing
+			return 'token is missing'; // Return an error if token is missing
 		}
 
 		// Validate reCAPTCHA with Google's API
@@ -51,7 +51,7 @@ class Action
 
 		// Check if reCAPTCHA verification failed
 		if (intval($responseKeys["success"]) !== 1) {
-			return 3; // Return error if reCAPTCHA fails
+			return 'reCAPTCHA fails'; // Return error if reCAPTCHA fails
 		} else {
 			// Sanitize and prepare username and password
 			$username = htmlspecialchars(stripslashes(trim($_POST['username'])));
@@ -59,7 +59,7 @@ class Action
 
 			// Check if the username and password are not empty
 			if (empty($username) || empty($password)) {
-				return 2; // Return error if username or password is empty
+				return 'empty username password'; // Return error if username or password is empty
 			}
 
 			// Prepare SQL query to fetch the user
@@ -83,10 +83,10 @@ class Action
 
 					return 1; // Success: Logged in
 				} else {
-					return 3; // Incorrect password
+					return 'incorrect password'; // Incorrect password
 				}
 			} else {
-				return 3; // Username not found
+				return 'user not found'; // Username not found
 			}
 		}
 	}
