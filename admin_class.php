@@ -36,58 +36,40 @@ class Action
 
 	function login()
 	{
-		// reCAPTCHA secret key
-		$recaptcha_secret = 'your-secret-key';
-		$recaptcha_token = $_POST['recaptcha_token'];
+		// Sanitize and prepare username and password
+		$username = htmlspecialchars(stripslashes(trim($_POST['username'])));
+		$password = htmlspecialchars(stripslashes(trim($_POST['password'])));
 
-		// Check if reCAPTCHA token is present
-		if (empty($recaptcha_token)) {
-			return 'token is missing'; // Return an error if token is missing
+		// Check if the username and password are not empty
+		if (empty($username) || empty($password)) {
+			return 'empty username password'; // Return error if username or password is empty
 		}
 
-		// Validate reCAPTCHA with Google's API
-		$response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$recaptcha_secret&response=$recaptcha_token");
-		$responseKeys = json_decode($response, true);
+		// Prepare SQL query to fetch the user
+		$stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
+		$stmt->bind_param('s', $username);
+		$stmt->execute();
+		$qry = $stmt->get_result();
 
-		// Check if reCAPTCHA verification failed
-		if (intval($responseKeys["success"]) !== 1) {
-			return 'reCAPTCHA fails'; // Return error if reCAPTCHA fails
-		} else {
-			// Sanitize and prepare username and password
-			$username = htmlspecialchars(stripslashes(trim($_POST['username'])));
-			$password = htmlspecialchars(stripslashes(trim($_POST['password'])));
+		// Check if user exists
+		if ($qry->num_rows > 0) {
+			$row = $qry->fetch_assoc();
 
-			// Check if the username and password are not empty
-			if (empty($username) || empty($password)) {
-				return 'empty username password'; // Return error if username or password is empty
-			}
+			// Verify the password using password_verify
+			if (password_verify($password, $row['password'])) {
+				// Set session variables after successful login
+				$_SESSION['login_id'] = $row['id'];
+				$_SESSION['login_name'] = $row['name'];
+				$_SESSION['login_username'] = $row['username'];
+				$_SESSION['login_type'] = $row['type'];
+				$_SESSION['login_verification'] = $row['verification'];
 
-			// Prepare SQL query to fetch the user
-			$stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
-			$stmt->bind_param('s', $username);
-			$stmt->execute();
-			$qry = $stmt->get_result();
-
-			// Check if user exists
-			if ($qry->num_rows > 0) {
-				$row = $qry->fetch_assoc();
-
-				// Verify the password using password_verify
-				if (password_verify($password, $row['password'])) {
-					// Set session variables after successful login
-					$_SESSION['login_id'] = $row['id'];
-					$_SESSION['login_name'] = $row['name'];
-					$_SESSION['login_username'] = $row['username'];
-					$_SESSION['login_type'] = $row['type'];
-					$_SESSION['login_verification'] = $row['verification'];
-
-					return 1; // Success: Logged in
-				} else {
-					return 'incorrect password'; // Incorrect password
-				}
+				return 1; // Success: Logged in
 			} else {
-				return 'user not found'; // Username not found
+				return 'incorrect password'; // Incorrect password
 			}
+		} else {
+			return 'user not found'; // Username not found
 		}
 	}
 
