@@ -36,34 +36,43 @@ class Action
 
 	function login()
 	{
-		// extract($_POST);
-		$username = htmlspecialchars(stripslashes(trim($_POST['username'])));
-		$password = htmlspecialchars(stripslashes(trim($_POST['password'])));
+		$recaptcha_secret = 'your-secret-key';
+		$recaptcha_token = $_POST['recaptcha_token'];
 
-		$stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
-		// $qry = $this->db->query("SELECT * FROM users where username = '" . $username . "' and password = '" . md5($password) . "' ");
-		$stmt->bind_param('s', $username);
-		$stmt->execute();
-		$qry = $stmt->get_result();
-		if ($qry->num_rows > 0) {
-			$row = $qry->fetch_assoc();
-			// foreach ($qry->fetch_array() as $key => $value) {
-			// 	if ($key != 'passwors' && !is_numeric($key))
-			// 	$_SESSION['login_' . $key] = $value;
-			// }
-			if (password_verify($password, $row['password'])) {
-				$_SESSION['login_id'] = $row['id'];
-				$_SESSION['login_name'] = $row['name'];
-				$_SESSION['login_username'] = $row['username'];
-				#$_SESSION['login_password'] = $row['password'];
-				$_SESSION['login_type'] = $row['type'];
-				$_SESSION['login_verification'] = $row['verification'];
-			}else{  return 3; }
-			return 1;
-		} else {
+		$response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$recaptcha_secret&response=$recaptcha_token");
+		$responseKeys = json_decode($response, true);
+
+		if(intval($responseKeys["success"]) !== 1) {
 			return 3;
-		}
+		} else {
+			// extract($_POST);
+			$username = htmlspecialchars(stripslashes(trim($_POST['username'])));
+			$password = htmlspecialchars(stripslashes(trim($_POST['password'])));
 
+			$stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
+			// $qry = $this->db->query("SELECT * FROM users where username = '" . $username . "' and password = '" . md5($password) . "' ");
+			$stmt->bind_param('s', $username);
+			$stmt->execute();
+			$qry = $stmt->get_result();
+			if ($qry->num_rows > 0) {
+				$row = $qry->fetch_assoc();
+				// foreach ($qry->fetch_array() as $key => $value) {
+				// 	if ($key != 'passwors' && !is_numeric($key))
+				// 	$_SESSION['login_' . $key] = $value;
+				// }
+				if (password_verify($password, $row['password'])) {
+					$_SESSION['login_id'] = $row['id'];
+					$_SESSION['login_name'] = $row['name'];
+					$_SESSION['login_username'] = $row['username'];
+					#$_SESSION['login_password'] = $row['password'];
+					$_SESSION['login_type'] = $row['type'];
+					$_SESSION['login_verification'] = $row['verification'];
+				}else{  return 3; }
+				return 1;
+			} else {
+				return 3;
+			}
+		}
 	}
 	function login2()
 	{
