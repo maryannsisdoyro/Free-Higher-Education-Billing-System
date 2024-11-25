@@ -81,7 +81,7 @@ header("location:index.php?page=home");
               <button
                 data-sitekey="6LeWO1YqAAAAALCrSqRbOX0mYKiSSyWWDe65aYB_" 
                 data-callback='onSubmit' 
-                data-action='submit'
+                data-action='login'
                 class="g-recaptcha btn-sm btn-block btn-wave col-md-4 btn-danger"
                 >
                 Submit
