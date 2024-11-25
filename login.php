@@ -82,7 +82,7 @@ header("location:index.php?page=home");
                 data-sitekey="6LeWO1YqAAAAALCrSqRbOX0mYKiSSyWWDe65aYB_" 
                 data-callback='onSubmit' 
                 data-action='submit'
-                class="btn-sm btn-block btn-wave col-md-4 btn-danger"
+                class="g-recaptcha btn-sm btn-block btn-wave col-md-4 btn-danger"
                 >
                 Submit
             </button>
