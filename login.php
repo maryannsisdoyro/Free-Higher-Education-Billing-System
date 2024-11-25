@@ -188,11 +188,11 @@ window._conf = function($msg='',$func='',$params = []){
 	$('#login-form').submit(function(e){
 		e.preventDefault()
     grecaptcha.ready(function() {
-      grecaptcha.execute('reCAPTCHA_site_key', {action: 'submit'}).then(function(token) {
+      grecaptcha.execute('6LeWO1YqAAAAALCrSqRbOX0mYKiSSyWWDe65aYB_', {action: 'submit'}).then(function(token) {
         $('#login-form button[type="button"]').attr('disabled',true).html('Logging in...');
 
         if($(this).find('.alert-danger').length > 0 ) $(this).find('.alert-danger').remove();
-        
+
         $.ajax({
           url:'ajax.php?action=login',
           method:'POST',
