@@ -42,7 +42,7 @@ class Action
 		$response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$recaptcha_secret&response=$recaptcha_token");
 		$responseKeys = json_decode($response, true);
 
-		echo $responseKeys;
+		return intval($responseKeys["success"]);
 
 		// if(intval($responseKeys["success"]) !== 1) {
 		// 	return 3;
