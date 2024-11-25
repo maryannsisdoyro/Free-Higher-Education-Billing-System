@@ -77,14 +77,14 @@ header("location:index.php?page=home");
                             </div>
   						<div class="d-flex justify-content-between">
 						<a href="forgot-password.php">Forgot Password</a>
-						  <!-- <button class="btn-sm btn-block btn-wave col-md-4 btn-danger">Login</button> -->
-              <button
+						  <button class="btn-sm btn-block btn-wave col-md-4 btn-danger">Login</button>
+              <!-- <button
                   data-sitekey="6LeWO1YqAAAAALCrSqRbOX0mYKiSSyWWDe65aYB_" 
                   data-callback='onSubmit' 
                   data-action='submit'
                   class="g-recaptcha btn-sm btn-block btn-wave col-md-4 btn-danger">
                   Login
-              </button>
+              </button> -->
 						</div>
   					</form>
   				</div>
@@ -97,7 +97,7 @@ header("location:index.php?page=home");
 
 
   </body>
-  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <!-- <script src="https://www.google.com/recaptcha/api.js"></script>
   <script>
     function onSubmit(token) {
       $('#login-form button[type="button"]').attr('disabled',true).html('Logging in...');
@@ -125,7 +125,7 @@ header("location:index.php?page=home");
         }
 		  })
     }
-  </script>
+  </script> -->
 
   <script>
 	 window.start_load = function(){
