@@ -189,30 +189,30 @@ window._conf = function($msg='',$func='',$params = []){
 		e.preventDefault()
     grecaptcha.ready(function() {
       grecaptcha.execute('6LeWO1YqAAAAALCrSqRbOX0mYKiSSyWWDe65aYB_', {action: 'login'}).then(function(token) {
-        $('#login-form button[type="button"]').attr('disabled',true).html('Logging in...');
-
-        if($(this).find('.alert-danger').length > 0 ) $(this).find('.alert-danger').remove();
+        $('#login-form').prepend('<input type="hidden" name="recaptcha_token" value="' + token + '">');
+        $('#login-form button[type="button"]').attr('disabled', true).html('Logging in...');
+        if ($(this).find('.alert-danger').length > 0) $(this).find('.alert-danger').remove();
 
         $.ajax({
-          url:'ajax.php?action=login',
-          method:'POST',
-          data:$(this).serialize(),
-          error:err=>{
-            console.log(err)
+          url: 'ajax.php?action=login',
+          method: 'POST',
+          data: $('#login-form').serialize(),
+          error: function(err) {
+            console.log(err);
             $('#login-form button[type="button"]').removeAttr('disabled').html('Login');
           },
-          success:function(resp){
-            if(resp == 1){
-              alert_toast("Account logged in successfully",'success')
-              setTimeout(function(){
-                location.href ='index.php?page=home';
-              },1500)
-            }else{
-              $('#login-form').prepend('<div class="alert alert-danger">Username or password is incorrect.</div>')
+          success: function(resp) {
+            if (resp == 1) {
+              alert_toast("Account logged in successfully", 'success');
+              setTimeout(function() {
+                location.href = 'index.php?page=home';
+              }, 1500);
+            } else {
+              $('#login-form').prepend('<div class="alert alert-danger">Username or password is incorrect.</div>');
               $('#login-form button[type="button"]').removeAttr('disabled').html('Login');
             }
           }
-        })
+        });
       });
     });
 	})
