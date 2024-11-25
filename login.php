@@ -64,7 +64,7 @@ header("location:index.php?page=home");
   		<div id="login-center" class="row justify-content-center">
   			<div class="card col-md-4">
   				<div class="card-body">
-  					<form id="login-form" >
+  					<form id="login-form" method="POST">
 						
   						<div class="form-group">
   							<label for="username" class="control-label">Username</label>
@@ -77,7 +77,14 @@ header("location:index.php?page=home");
                             </div>
   						<div class="d-flex justify-content-between">
 						<a href="forgot-password.php">Forgot Password</a>
-						  <button class="btn-sm btn-block btn-wave col-md-4 btn-danger">Login</button>
+						  <!-- <button class="btn-sm btn-block btn-wave col-md-4 btn-danger">Login</button> -->
+              <button
+                  data-sitekey="6LeWO1YqAAAAALCrSqRbOX0mYKiSSyWWDe65aYB_" 
+                  data-callback='onSubmit' 
+                  data-action='submit'
+                  class="g-recaptcha btn-sm btn-block btn-wave col-md-4 btn-danger">
+                  Login
+              </button>
 						</div>
   					</form>
   				</div>
@@ -90,6 +97,36 @@ header("location:index.php?page=home");
 
 
   </body>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script>
+    function onSubmit(token) {
+      $('#login-form button[type="button"]').attr('disabled',true).html('Logging in...');
+
+		  if($(this).find('.alert-danger').length > 0 ) $(this).find('.alert-danger').remove();
+		
+      $.ajax({
+        url:'ajax.php?action=login',
+        method:'POST',
+        data:$(this).serialize(),
+        error:err=>{
+          console.log(err)
+          $('#login-form button[type="button"]').removeAttr('disabled').html('Login');
+        },
+        success:function(resp){
+          if(resp == 1){
+            alert_toast("Account logged in successfully",'success')
+            setTimeout(function(){
+              location.href ='index.php?page=home';
+            },1500)
+          }else{
+            $('#login-form').prepend('<div class="alert alert-danger">Username or password is incorrect.</div>')
+            $('#login-form button[type="button"]').removeAttr('disabled').html('Login');
+          }
+        }
+		  })
+    }
+  </script>
+
   <script>
 	 window.start_load = function(){
     $('body').prepend('<di id="preloader2"></di>')
