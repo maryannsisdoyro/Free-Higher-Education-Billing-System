@@ -183,7 +183,7 @@
                                                 foreach ($data as $row) {
                                                     $count_i++;
                                                     $formatted_count_i = str_pad($count_i, 6, '0', STR_PAD_LEFT);
-                                                    
+                                                    $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                                             ?>
                                                     <tr>
                                                        <td>000<?= $formatted_count_i; ?></td>
