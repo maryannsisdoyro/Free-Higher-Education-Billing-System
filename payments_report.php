@@ -186,7 +186,7 @@
                                                     $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                                             ?>
                                                     <tr>
-                                                       <td>000<?= $formatted_count_i; ?></td>
+                                                       <td>000<?= $formatted_count_i . $row['course']; ?></td>
                                                        
                                                         <td><?= $row['stu_id'] ?></td>
                                                         <td></td>
