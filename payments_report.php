@@ -42,6 +42,9 @@
     $academic_year = $res_academic['year'];
     $semester_academic = $res_academic['semester'];
 
+
+    echo $semester_academic;
+
     $i = 1;
     $data = [];
                       $total = 0;
