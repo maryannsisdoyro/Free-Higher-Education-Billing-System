@@ -60,7 +60,7 @@
                         e.lname,
                         e.semester,
                         e.gender,
-                        e.delete_status,
+                        e.delete_status as DELETE_STAT,
                         c.laboratory,
                         c.computer,
                         c.academic,
@@ -182,7 +182,7 @@
                                             if (count($data) > 0) {
                                                 $count = 1;
                                                 foreach ($data as $row) {
-                                                    if ($row['delete_status'] == 2) {
+                                                    if ($row['DELETE_STAT'] == 1) {
                                                         # code...
                                                    
                                                     $count_i++;
