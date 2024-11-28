@@ -46,7 +46,7 @@
     $data = [];
                       $total = 0;
                         $payments = $conn->query("SELECT 
-                       
+                        e.*,
                         e.stu_name, 
                         e.id AS stud_id,
                         e.stu_id, 
@@ -182,7 +182,7 @@
                                             if (count($data) > 0) {
                                                 $count = 1;
                                                 foreach ($data as $row) {
-                                                    if ($row['delete_status'] == 1) {
+                                                    if ($row['delete_status'] == 2) {
                                                         # code...
                                                    
                                                     $count_i++;
