@@ -44,6 +44,7 @@
 
     $i = 1;
     $data = [];
+    $active_stat = 1;
                       $total = 0;
                         $payments = $conn->query("SELECT 
                         e.*,
@@ -71,7 +72,7 @@
                           enroll2024 e
                       INNER JOIN 
                           courses c ON e.course = c.department
-                        WHERE e.curr = '$academic_year' AND e.semester = '$semester_academic'
+                        WHERE e.curr = '$academic_year' AND e.semester = '$semester_academic' AND e.delete_status = $active_stat
                      GROUP BY e.id ORDER BY e.course,e.lname ASC ");
 
                      
