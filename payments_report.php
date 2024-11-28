@@ -60,6 +60,7 @@
                         e.lname,
                         e.semester,
                         e.gender,
+                        e.delete_status,
                         c.laboratory,
                         c.computer,
                         c.academic,
@@ -70,7 +71,7 @@
                           enroll2024 e
                       INNER JOIN 
                           courses c ON e.course = c.department
-                        WHERE e.delete_status = 1 AND e.curr = '$academic_year' AND e.semester = '$semester_academic'
+                        WHERE e.curr = '$academic_year' AND e.semester = '$semester_academic' AND e.delete_status = 1
                      GROUP BY e.id ORDER BY e.course,e.lname ASC ");
 
                      
@@ -181,6 +182,9 @@
                                             if (count($data) > 0) {
                                                 $count = 1;
                                                 foreach ($data as $row) {
+                                                    if ($row['delete_status'] == 1) {
+                                                        # code...
+                                                   
                                                     $count_i++;
                                                     $formatted_count_i = str_pad($count_i, 6, '0', STR_PAD_LEFT);
                                                     $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
@@ -221,6 +225,7 @@
                                                        
                                                     </tr>
                                             <?php
+                                             }
                                                 }
                                             }
                                             ?>
