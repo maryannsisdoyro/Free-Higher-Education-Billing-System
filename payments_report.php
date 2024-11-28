@@ -71,7 +71,7 @@
                           enroll2024 e
                       INNER JOIN 
                           courses c ON e.course = c.department
-                        WHERE e.curr = '$academic_year' AND e.semester = '$semester_academic' AND e.delete_status = '1'
+                        WHERE e.curr = '$academic_year' AND e.semester = '$semester_academic' AND e.delete_status = 2
                      GROUP BY e.id ORDER BY e.course,e.lname ASC ");
 
                      
