@@ -182,7 +182,7 @@
                                             if (count($data) > 0) {
                                                 $count = 1;
                                                 foreach ($data as $row) {
-                                                    if ($row['delete_status'] == 1) {
+                                                    if ($row['delete_status'] == 5) {
                                                         # code...
                                                    
                                                     $count_i++;
