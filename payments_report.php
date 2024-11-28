@@ -182,7 +182,7 @@
                                             if (count($data) > 0) {
                                                 $count = 1;
                                                 foreach ($data as $row) {
-                                                    if ($row['DELETE_STAT'] == '1') {
+                                                    if ($row['DELETE_STAT'] == 2) {
                                                         # code...
                                                    
                                                     $count_i++;
