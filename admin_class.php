@@ -262,17 +262,8 @@ class Action
 			'BEED' => 'Bachelor of Elementary Education'
 		];
 
-		// $new_course = $courses[$_POST['course']];
-		// $key = $_POST['course'];
-		// $level = $_POST['level'];
-		// $laboratory = $_POST['laboratory'];
-		// $computer = $_POST['computer'];
-		// $academic = $_POST['academic'];
-		// $academic_nstp = $_POST['academic_nstp'];
-		// $total_amount = $_POST['total_amount'];
-		// $semester = $_POST['semester'];
-
-		$new_course = $courses[$_POST['course']];
+		
+		$new_course = htmlspecialchars($courses[$_POST['course']]);
 		$key = htmlspecialchars($_POST['course']);
 		$level = htmlspecialchars($_POST['level']);
 		$laboratory = htmlspecialchars($_POST['laboratory']);
