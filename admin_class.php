@@ -266,12 +266,12 @@ class Action
 		$new_course = htmlspecialchars($courses[$_POST['course']]);
 		$key = htmlspecialchars(stripslashes(trim($_POST['course'])));
 		$level = htmlspecialchars(stripslashes(trim($_POST['level'])));
-		$laboratory = htmlspecialchars($_POST['laboratory']);
-		$computer = htmlspecialchars($_POST['computer']);
-		$academic = htmlspecialchars($_POST['academic']);
-		$academic_nstp = htmlspecialchars($_POST['academic_nstp']);
-		$total_amount = htmlspecialchars($_POST['total_amount']);
-		$semester = htmlspecialchars($_POST['semester']);
+		$laboratory = htmlspecialchars(stripslashes(trim($_POST['laboratory'])));
+		$computer = htmlspecialchars(stripslashes(trim($_POST['computer'])));
+		$academic = htmlspecialchars(stripslashes(trim($_POST['academic'])));
+		$academic_nstp = htmlspecialchars(stripslashes(trim($_POST['academic_nstp'])));
+		$total_amount = htmlspecialchars(stripslashes(trim($_POST['total_amount'])));
+		$semester = htmlspecialchars(stripslashes(trim($_POST['semester'])));
 
 
 		foreach ($_POST as $k => $v) {
