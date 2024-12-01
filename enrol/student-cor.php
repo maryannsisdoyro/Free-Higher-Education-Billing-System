@@ -870,10 +870,7 @@ if ($row) {
                         <td colspan="2" style="text-transform: uppercase; font-size: smaller;" id="courseOutput"><?= $all_course[$row['course']] ?></td>
                         <td colspan="3" style="text-align: left;"><strong>Major:</strong> </td>
                         <td colspan="4" style="text-transform: uppercase;font-size: smaller;" id="majorOutput"><?= $row['major'] ?></td>
-                        <td colspan="5"><strong>Section:</strong>   <div class="form-group col-md-3">
-                            <label for="Section" class="control-label">Section</label>
-                            <?php require 'get-sections.php'; ?>
-                        </div></td>
+                        <td colspan="5"><strong>Section:</strong> <?php require 'get-sections.php'; ?></td>
 
                     </tr>
                     <tr>
