@@ -1187,7 +1187,7 @@ class Action
 	{
 		extract($_POST);
 		$section = $_GET['section'];
-		$application_id = $_GET['application_no'];
+		$id = $_GET['application_no'];
 		$update = $this->db->query("UPDATE enroll2024 SET section = '$section' where id = " . $id);
 		if ($update) {
 			return 1;
