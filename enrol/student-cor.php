@@ -1597,6 +1597,13 @@ $ftotal  , 2) ?></b></td>
 
 <script>
     const sectionSelect = document.querySelector("select[name='section']");
+  sectionSelect.addEventListener('change', function() {
+        alert("hello world")
+    });
+</script>
+
+<script>
+    
     const startButton = document.getElementById('startButton');
     const captureButton = document.getElementById('captureButton');
     const video = document.getElementById('videoElement');
@@ -1657,9 +1664,7 @@ $ftotal  , 2) ?></b></td>
         }
     });
 
-    sectionSelect.addEventListener('change', function() {
-        alert("hello world")
-    });
+  
 </script>
 
 </body>
