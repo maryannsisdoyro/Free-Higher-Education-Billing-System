@@ -176,7 +176,7 @@
 
                     <div class="text-end">
                         <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancel</button>
-                        <button type="submit" name="submit_shiftee" class="btn btn-danger">Submit</button>
+                        <button type="submit" name="submit_shiftee" class="btn btn-danger">Next</button>
                     </div>
                     </div>
 
