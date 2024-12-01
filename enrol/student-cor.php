@@ -1496,7 +1496,7 @@ $ftotal  , 2) ?></b></td>
 <p class="text-start mb-0 mt-5">This document is computer-generated.</p>
 
 </div>
-<input type="text" id="application_no" name="appli_no" value="<?= $id ?>">
+<input type="hidden" id="application_no" name="appli_no" value="<?= $id ?>">
 
 <a href="final-cor.php?application_no=<?= $id ?>" id="submit_btn" class="btn btn-danger mt-3 mx-auto d-none w-25">Submit</a>
 
