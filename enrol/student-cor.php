@@ -870,7 +870,7 @@ if ($row) {
                         <td colspan="2" style="text-transform: uppercase; font-size: smaller;" id="courseOutput"><?= $all_course[$row['course']] ?></td>
                         <td colspan="3" style="text-align: left;"><strong>Major:</strong> </td>
                         <td colspan="4" style="text-transform: uppercase;font-size: smaller;" id="majorOutput"><?= $row['major'] ?></td>
-                        <td colspan="5"><strong>Section:</strong> <span id="section"></span></td>
+                        <td colspan="5"><strong>Section:</strong> <span id="section"></span> <?= $row['section'] ?></td>
 
                     </tr>
                     <tr>
