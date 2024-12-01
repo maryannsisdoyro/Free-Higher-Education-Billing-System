@@ -1658,7 +1658,7 @@ $ftotal  , 2) ?></b></td>
     });
 
     sectionSelect.addEventListener('change', function() {
-        console.log(this.value);
+        alert("hello world")
     });
 </script>
 
