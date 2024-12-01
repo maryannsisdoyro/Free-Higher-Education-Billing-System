@@ -140,7 +140,10 @@ if($action == 'get_fees'){
 }
 
 if($action == "update_section"){
-	echo 'hello world';
+	$update_section = $crud->update_section();
+	if($get_fees){
+		echo $get_fees;
+	}
 }
 
 ob_end_flush();

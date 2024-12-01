@@ -1496,7 +1496,7 @@ $ftotal  , 2) ?></b></td>
 <p class="text-start mb-0 mt-5">This document is computer-generated.</p>
 
 </div>
-
+<input type="text" id="application_no" name="appli_no" value="<?= $id ?>">
 
 <a href="final-cor.php?application_no=<?= $id ?>" id="submit_btn" class="btn btn-danger mt-3 mx-auto d-none w-25">Submit</a>
 
@@ -1597,12 +1597,13 @@ $ftotal  , 2) ?></b></td>
 
 <script>
   const sectionSelect = document.querySelector("select[name='section']");
+  const applicationNo = document.getElementById("application_no");
 
 if (sectionSelect) {
   sectionSelect.addEventListener('change', async function() {
     try {
       // Sending the selected value as a query parameter to the server
-      const resp = await fetch(`../ajax.php?section=${this.value}&action=update_section`);
+      const resp = await fetch(`../ajax.php?section=${this.value}&action=update_section&application_no=`);
       
       // Checking if the response is okay
       if (!resp.ok) {
