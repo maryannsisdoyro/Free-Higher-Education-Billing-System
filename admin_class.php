@@ -1193,5 +1193,16 @@ class Action
 			return 1;
 		}
 	}
+
+	function update_image()
+	{
+		extract($_POST);
+		$section = $_GET['image'];
+		$id = $_GET['application_no'];
+		$update = $this->db->query("UPDATE enroll2024 SET section = '$section' where id = " . $id);
+		if ($update) {
+			return 1;
+		}
+	}
 	
 }

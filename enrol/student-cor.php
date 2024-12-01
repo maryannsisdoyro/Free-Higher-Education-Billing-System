@@ -1632,6 +1632,7 @@ if (sectionSelect) {
     const video = document.getElementById('videoElement');
     const canvas = document.getElementById('canvas');
     const preview = document.getElementById('preview');
+    const applicationNo = document.getElementById("application_no");
 
     startButton.addEventListener('click', () => {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -1667,24 +1668,24 @@ if (sectionSelect) {
         video.srcObject.getTracks().forEach(track => track.stop());
         document.getElementById("to_subjects").classList.remove("d-none")
 
-         // Send the image data to the server
         try {
-            const response = await fetch('../ajax.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `image=${encodeURIComponent(dataUrl)}`
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to update the image in the database.');
-            }
-
-            console.log('Image updated in the database.');
-        } catch (error) {
-            console.error(error);
+        // Sending the selected value as a query parameter to the server
+        const resp = await fetch(`../ajax.php?image=${encodeURIComponent(dataUrl)}&action=update_image&application_no=${applicationNo.value}`);
+        
+        // Checking if the response is okay
+        if (!resp.ok) {
+            throw new Error('Network response was not ok');
         }
+
+        // Parsing the response as JSON (adjust depending on your response type)
+        const data = await resp.json();
+
+        // Log or handle the fetched data here
+        console.log(data);
+        } catch (error) {
+        console.error("There was an error fetching the data:", error);
+        }
+
     });
 
   
