@@ -352,8 +352,8 @@ class Action
 	function get_fees(){
 		
 		extract($_POST);
-		$course = htmlspecialchars($_POST['course_id']);
-		$year_level = htmlspecialchars($_POST['year_level']);
+		$course = $_POST['course_id'];
+		$year_level = $_POST['year_level'];
 
 		$get_course = $this->db->query("SELECT * FROM courses WHERE department = '$course' AND level = '$year_level'");
 		$course_data = $get_course->fetch_assoc();
