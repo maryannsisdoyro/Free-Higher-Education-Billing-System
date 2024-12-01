@@ -263,15 +263,15 @@ class Action
 		];
 
 		
-		$new_course = htmlspecialchars($courses[$_POST['course']]);
-		$key = htmlspecialchars(stripslashes(trim($_POST['course'])));
-		$level = htmlspecialchars(stripslashes(trim($_POST['level'])));
-		$laboratory = htmlspecialchars(stripslashes(trim($_POST['laboratory'])));
-		$computer = htmlspecialchars(stripslashes(trim($_POST['computer'])));
-		$academic = htmlspecialchars(stripslashes(trim($_POST['academic'])));
-		$academic_nstp = htmlspecialchars(stripslashes(trim($_POST['academic_nstp'])));
-		$total_amount = htmlspecialchars(stripslashes(trim($_POST['total_amount'])));
-		$semester = htmlspecialchars(stripslashes(trim($_POST['semester'])));
+		$new_course = $this->clean($courses[$_POST['course']]);
+		$key = $this->clean($_POST['course']);
+		$level = $this->clean($_POST['level']);
+		$laboratory = $this->clean($_POST['laboratory']);
+		$computer = $this->clean($_POST['computer']);
+		$academic = $this->clean($_POST['academic']);
+		$academic_nstp = $this->clean($_POST['academic_nstp']);
+		$total_amount = $this->clean($_POST['total_amount']);
+		$semester = $this->clean($_POST['semester']);
 
 
 		foreach ($_POST as $k => $v) {
