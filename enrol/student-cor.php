@@ -1657,10 +1657,9 @@ $ftotal  , 2) ?></b></td>
         }
     });
 
-    sectionSelect.onchange(function(){
+    sectionSelect.addEventListener('change', function() {
         console.log(this.value);
-        
-    })
+    });
 </script>
 
 </body>
