@@ -1596,6 +1596,7 @@ $ftotal  , 2) ?></b></td>
 </script>
 
 <script>
+    const sectionSelect = document.querySelector("select[name='section']");
     const startButton = document.getElementById('startButton');
     const captureButton = document.getElementById('captureButton');
     const video = document.getElementById('videoElement');
@@ -1655,6 +1656,11 @@ $ftotal  , 2) ?></b></td>
             console.error(error);
         }
     });
+
+    sectionSelect.onchange(function(){
+        console.log(this.value);
+        
+    })
 </script>
 
 </body>
