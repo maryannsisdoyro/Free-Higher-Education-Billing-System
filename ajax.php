@@ -141,8 +141,8 @@ if($action == 'get_fees'){
 
 if($action == "update_section"){
 	$update_section = $crud->update_section();
-	if($get_fees){
-		echo $get_fees;
+	if($update_section){
+		echo $update_section;
 	}
 }
 
