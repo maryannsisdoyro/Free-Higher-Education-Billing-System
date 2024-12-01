@@ -139,11 +139,9 @@ if($action == 'get_fees'){
 	}
 }
 
-// if($action == "new_enroll"){
-// 	$new = $crud->newEnroll();
-// 	if($new)
-// 		echo $new;
-// }
+if($action == "update_section"){
+	echo 'hello world';
+}
 
 ob_end_flush();
 ?>

@@ -1596,10 +1596,32 @@ $ftotal  , 2) ?></b></td>
 </script>
 
 <script>
-    const sectionSelect = document.querySelector("select[name='section']");
-  sectionSelect.addEventListener('change', function() {
-        alert(this.value)
-    });
+  const sectionSelect = document.querySelector("select[name='section']");
+
+if (sectionSelect) {
+  sectionSelect.addEventListener('change', async function() {
+    try {
+      // Sending the selected value as a query parameter to the server
+      const resp = await fetch(`../ajax.php?section=${this.value}&action=update_section`);
+      
+      // Checking if the response is okay
+      if (!resp.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      // Parsing the response as JSON (adjust depending on your response type)
+      const data = await resp.json();
+
+      // Log or handle the fetched data here
+      console.log(data);
+    } catch (error) {
+      console.error("There was an error fetching the data:", error);
+    }
+  });
+} else {
+  console.error("Section select element not found");
+}
+
 </script>
 
 <script>
