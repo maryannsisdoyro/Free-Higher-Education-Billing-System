@@ -264,8 +264,8 @@ class Action
 
 		
 		$new_course = htmlspecialchars($courses[$_POST['course']]);
-		$key = htmlspecialchars($_POST['course']);
-		$level = htmlspecialchars($_POST['level']);
+		$key = htmlspecialchars(stripslashes(trim($_POST['course'])));
+		$level = htmlspecialchars(stripslashes(trim($_POST['level'])));
 		$laboratory = htmlspecialchars($_POST['laboratory']);
 		$computer = htmlspecialchars($_POST['computer']);
 		$academic = htmlspecialchars($_POST['academic']);
