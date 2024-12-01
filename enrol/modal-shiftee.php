@@ -398,4 +398,4 @@ $("#course_shift").change(function() {
     });
 });
 
-</script>
+</script> 
