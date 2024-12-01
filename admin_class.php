@@ -1197,9 +1197,12 @@ class Action
 	function update_image()
 	{
 		extract($_POST);
-		$section = $_GET['image'];
+		$filename = $_FILES['fileInput']['name'];
+        $tmp_name = $_FILES['fileInput']['tmp_name'];
+        $folder = "./upload/" . $filename;
+		$image = $_GET['image'];
 		$id = $_GET['application_no'];
-		$update = $this->db->query("UPDATE enroll2024 SET section = '$section' where id = " . $id);
+		$update = $this->db->query("UPDATE enroll2024 SET image = '$image' where id = " . $id);
 		if ($update) {
 			return 1;
 		}

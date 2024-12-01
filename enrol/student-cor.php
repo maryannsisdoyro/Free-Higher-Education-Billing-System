@@ -149,8 +149,8 @@ if ($row) {
             <video id="videoElement" autoplay class="hidden"></video>
             <canvas id="canvas" class="hidden"></canvas>
             <br>
-            <button class="btn btn-warning" id="startButton">Take Photo</button>
-            <button class="btn btn-danger hidden" id="captureButton">Capture</button>
+            <!-- <button class="btn btn-warning" id="startButton">Take Photo</button>
+            <button class="btn btn-danger hidden" id="captureButton">Capture</button> -->
           
             <a href="../index.php?page=college-application" class="btn btn-secondary">Cancel</a>
 
@@ -972,7 +972,7 @@ if ($row) {
 
 
                 <p style="margin-top: 20px;">I hereby enroll the following for <u><strong><span id="selectedSemester"><?= $row['semester'] ?> semester,</span></strong></u> A.Y. <u><?= $row['curr'] ?>.</u></p>
-                <a href="#subjects_table" class="btn btn-danger mb-3 d-none" id="to_subjects" onclick="document.getElementById('to_assessment').classList.remove('d-none'); this.classList.add('d-none')">Next</a>
+                <a href="#subjects_table" class="btn btn-danger mb-3" id="to_subjects" onclick="document.getElementById('to_assessment').classList.remove('d-none'); this.classList.add('d-none')">Next</a>
                 <style>
                     body {
                         font-family: Arial, sans-serif;
@@ -1632,7 +1632,6 @@ if (sectionSelect) {
     const video = document.getElementById('videoElement');
     const canvas = document.getElementById('canvas');
     const preview = document.getElementById('preview');
-    const applicationNo = document.getElementById("application_no");
 
     startButton.addEventListener('click', () => {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -1668,24 +1667,24 @@ if (sectionSelect) {
         video.srcObject.getTracks().forEach(track => track.stop());
         document.getElementById("to_subjects").classList.remove("d-none")
 
+         // Send the image data to the server
         try {
-        // Sending the selected value as a query parameter to the server
-        const resp = await fetch(`../ajax.php?image=${encodeURIComponent(dataUrl)}&action=update_image&application_no=${applicationNo.value}`);
-        
-        // Checking if the response is okay
-        if (!resp.ok) {
-            throw new Error('Network response was not ok');
-        }
+            const response = await fetch('../ajax.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `image=${encodeURIComponent(dataUrl)}`
+            });
 
-        // Parsing the response as JSON (adjust depending on your response type)
-        const data = await resp.json();
+            if (!response.ok) {
+                throw new Error('Failed to update the image in the database.');
+            }
 
-        // Log or handle the fetched data here
-        console.log(data);
+            console.log('Image updated in the database.');
         } catch (error) {
-        console.error("There was an error fetching the data:", error);
+            console.error(error);
         }
-
     });
 
   

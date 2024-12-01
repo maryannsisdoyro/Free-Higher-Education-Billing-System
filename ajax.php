@@ -146,5 +146,13 @@ if($action == "update_section"){
 	}
 }
 
+// if($action == "update_image"){
+// 	$update_image = $crud->update_image();
+// 	if($update_image){
+// 		echo $update_image;
+// 	}
+// }
+
+
 ob_end_flush();
 ?>
