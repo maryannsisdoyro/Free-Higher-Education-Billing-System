@@ -263,9 +263,9 @@ class Action
 		];
 
 		
-		$new_course = $courses[$_POST['course']];
-		$key = $_POST['course'];
-		$level = $_POST['level'];
+		$new_course = htmlspecialchars($courses[$_POST['course']]);
+		$key = htmlspecialchars($_POST['course']);
+		$level = htmlspecialchars($_POST['level']);
 		$laboratory = htmlspecialchars($_POST['laboratory']);
 		$computer = htmlspecialchars($_POST['computer']);
 		$academic = htmlspecialchars($_POST['academic']);
@@ -352,8 +352,8 @@ class Action
 	function get_fees(){
 		
 		extract($_POST);
-		$course = $_POST['course_id'];
-		$year_level = $_POST['year_level'];
+		$course = htmlspecialchars($_POST['course_id']);
+		$year_level = htmlspecialchars($_POST['year_level']);
 
 		$get_course = $this->db->query("SELECT * FROM courses WHERE department = '$course' AND level = '$year_level'");
 		$course_data = $get_course->fetch_assoc();
