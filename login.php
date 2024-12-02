@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
+include('./common.php');
+
 session_start();
 //echo password_hash("maryannlawan@123456", PASSWORD_DEFAULT);
 // echo session_status();
