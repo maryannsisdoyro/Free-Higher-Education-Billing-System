@@ -865,7 +865,7 @@ if ($row) {
                 
 				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND level = '". $y_level ."' AND semester = '". $semester ."' ");
                 
-              
+              echo $row['course'];
                 
                 if ($get_course->num_rows > 0) {
                     $fetch_course = $get_course->fetch_assoc();
