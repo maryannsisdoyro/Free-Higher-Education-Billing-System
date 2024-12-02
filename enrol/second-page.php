@@ -847,8 +847,8 @@ if ($row) {
         </style>
 
         <div class="college-application">
-
-                <a href="#subjects_table" class="btn btn-danger mb-3" id="to_subjects" onclick="document.getElementById('to_assessment').classList.remove('d-none'); this.classList.add('d-none')">Next</a>
+            <br>
+            <br>
                 <style>
                     body {
                         font-family: Arial, sans-serif;
@@ -940,7 +940,7 @@ if ($row) {
                 </div>
             </div>
 
-            <a href="#assessment_table" class="btn btn-danger mb-3 d-none" onclick="document.getElementById('final_process').classList.remove('d-none'); this.classList.add('d-none')" id="to_assessment">Next</a>
+            <a href="last-page.php?application_no=<?= $id ?>" class="btn btn-danger mb-3" onclick="document.getElementById('final_process').classList.remove('d-none'); this.classList.add('d-none')" id="to_assessment">Next</a>
 
             <!-- Include jQuery and DataTables JS files -->
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -1268,104 +1268,7 @@ if ($row) {
 
 </html>
 
-
-
-<div style="margin-top: 20px;" class="" id="assessment_table">
-
-			<table id="example2" class="table table-bordered table-hover">
-				<thead>
-					<th colspan="11" style="text-align: center;">Assessment</th>
-				</thead>
-				<tr>
-					<td colspan="5"></td>
-					<td colspan="2">Units Enrolled</td>
-					<td colspan="2">Rate per Unit</td>
-					<td colspan="3">Total</td>
-				</tr>
-				<?php
-                
-				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND level = '". $y_level ."' AND semester = '". $semester ."' ");
-                
-              
-                
-                if ($get_course->num_rows > 0) {
-                    $fetch_course = $get_course->fetch_assoc();
-                    $total_units = $fetch_course['laboratory'] + $fetch_course['computer'] + $fetch_course['academic'] + $fetch_course['academic_nstp'];
-                    $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
-                    $ftotal = 0;
-
-                    $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND year = '" . $fetch_course['level'] . "'");
-
-                    $subjects = $query_subjects->fetch_all(MYSQLI_ASSOC); // Fetch as associative array
-                    $total_units = 0;
-                    
-                    // Calculate total units
-                    foreach ($subjects as $subject) {
-                        $total_units += $subject['units'];
-                    }
-
-                    $tuition_based = 'Tuition Fee based on enrolled academic units (credit and non-credit courses)';
-                    $rate = 229.17;    
-                    // $subject_count = count($subjects);
-
-                    $subject_total = $total_units * $rate;
-
-                    while ($row = $cfees->fetch_assoc()) {
-                        $ftotal += $row['amount'];
-                        
-                    ?>
-    
-    
-                    <tr>
-                        <td colspan="2"><?= $row['description'] ?></td>
-                        <td colspan="5" style="text-align: center;">
-                            <?php
-                                if ($row['description'] == $tuition_based && $total_units != null) {
-                                   echo $total_units;
-                                }else{
-                                    echo '-';
-                                }
-                            ?>
-                        </td>
-                        <td colspan="2" style="text-align: center;">
-                        <?php
-                                if ($row['description'] == $tuition_based && $total_units != null) {
-                                   echo $rate;
-                                }else{
-                                    echo '-';
-                                }
-                            ?>
-                        </td>
-                        <td colspan="3" style="text-align: center;">
-                        <?php
-                                if ($row['description'] == $tuition_based && $total_units != null) {
-                                   echo $subject_total;
-                                }else{
-                                    echo $row['amount'];
-                                }
-                            ?>
-                        </td>
-                    </tr>
-    
-                    <?php
-                    }
-                    ?>
-                    <tr>
-                        <td colspan="2">Grand Total</td>
-                        <td colspan="5" style="text-align: center;"></td>
-                        <td colspan="2" style="text-align: center;"></td>
-                        <td colspan="3" class="text-right"><b><?php echo number_format($subject_total +
-$ftotal  , 2) ?></b></td>
-                    </tr>
-                    <?php
-                }
-                ?>
-				
-				
-			</table>
-</div>
-
-<a href="#submit_btn" class="btn btn-danger d-none" id="final_process" onclick="document.getElementById('submit_btn').classList.replace('d-none', 'd-block'); this.classList.add('d-none')">Next</a>
+<a href="last-page.php?application_no=<?= $id ?>" class="btn btn-danger" id="final_process" onclick="document.getElementById('submit_btn').classList.replace('d-none', 'd-block'); this.classList.add('d-none')">Next</a>
 
 <img src="n2.jpg" alt="MCC Logo" style="height: 90px; width: 800px;">
 
