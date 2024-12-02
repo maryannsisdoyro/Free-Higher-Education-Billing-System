@@ -947,7 +947,7 @@ $ftotal  , 2) ?></b></td>
 </div>
 <input type="hidden" id="application_no" name="appli_no" value="<?= $id ?>">
 
-<a href="final-cor.php?application_no=<?= $id ?>" id="submit_btn" class="btn btn-danger mt-3 mx-auto w-25">Submit</a>
+<a href="final-cor.php?application_no=<?= $id ?>" id="submit_btn" class="btn btn-danger my-3 mx-auto w-25 d-block">Submit</a>
 
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
