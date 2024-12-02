@@ -1268,14 +1268,6 @@ if ($row) {
 
 </html>
 
-<a href="last-page.php?application_no=<?= $id ?>" class="btn btn-danger" id="final_process" onclick="document.getElementById('submit_btn').classList.replace('d-none', 'd-block'); this.classList.add('d-none')">Next</a>
-
-<img src="n2.jpg" alt="MCC Logo" style="height: 90px; width: 800px;">
-
-<p class="text-start mb-0 mt-5">This document is computer-generated.</p>
-
-</div>
-<input type="hidden" id="application_no" name="appli_no" value="<?= $id ?>">
 
 <a href="final-cor.php?application_no=<?= $id ?>" id="submit_btn" class="btn btn-danger mt-3 mx-auto d-none w-25">Submit</a>
 
