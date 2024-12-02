@@ -846,7 +846,7 @@ if ($row) {
             }
         </style>
 
-        <div class="college-application">
+        <div class="college-application mt-5">
             <br>
             <br>
                 <style>
