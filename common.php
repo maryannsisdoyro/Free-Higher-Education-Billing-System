@@ -8,5 +8,5 @@ header("Content-Security-Policy:
     script-src 'self'; 
     object-src 'self'; 
     base-uri 'self';");
-
+exit;
 ?>
