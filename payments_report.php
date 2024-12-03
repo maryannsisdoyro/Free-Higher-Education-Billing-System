@@ -158,7 +158,8 @@
                                                 <th>Academic Units Enrolled(credit and non-credit courses)</th>
                                                 <th>Academic Units of NSTP Enrolled(credit and non-credit courses)</th>
                                                 <?php
-                                                   $cfees = $conn->query("SELECT * FROM student_individual_fees WHERE id = 1 ORDER BY id DESC LIMIT 1");
+                                                    $dat = $data->fetch_assoc();
+                                                   $cfees = $conn->query("SELECT * FROM student_individual_fees WHERE enroll_id = '".$dat['id']."' ORDER BY id DESC LIMIT 1");
                                                    $ftotal = 0;
                                                    while ($row2 = $cfees->fetch_assoc()) {
                                                    ?>
