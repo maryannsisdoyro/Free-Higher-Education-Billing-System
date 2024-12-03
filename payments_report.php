@@ -167,7 +167,7 @@
                                                         <th><b><?php echo $row2['type'] ?></b></th>
                                                     <?php
                                                     }
-                                                    exit;
+                                                    
                                                 }
                                                 ?>
                                                 <th>Total TOSF</th>
