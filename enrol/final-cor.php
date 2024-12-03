@@ -1529,7 +1529,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND level = '". $y_level ."' AND semester = '". $semester ."' ");
                 
               
-                var_dump($row['course']);
+                var_dump($y_level);
                 if ($get_course->num_rows > 0) {
                     $fetch_course = $get_course->fetch_assoc();
                     $fetch_course['department'] = $fetch_course['department'] == 'BSHM' ? 'BS-HM' : $fetch_course['department'];
