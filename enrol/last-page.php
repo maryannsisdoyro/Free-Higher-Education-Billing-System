@@ -949,7 +949,7 @@ $ftotal  , 2) ?></b></td>
 
 
 
-<div class="w-100 d-flex align-items-center my-3 justify-content-center container" style="column-gap: 20px; padding-right: 120px;">
+<div class="w-100 d-flex align-items-center my-3 justify-content-end container" style="column-gap: 20px; padding-right: 120px;">
 <a href="final-cor.php?application_no=<?= $id ?>" id="submit_btn" class="btn btn-danger d-block" style="width: 100px;">Submit</a>
     <a href="student-cor.php?application_no=<?= $id ?>" class="btn btn-secondary" style="width: 100px;">Previous</a>
 </div>
