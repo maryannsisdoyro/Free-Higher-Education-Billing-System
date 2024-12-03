@@ -1552,6 +1552,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                     }
 
                     $tuition_based = 'Tuition Fee based on enrolled academic units (credit and non-credit courses)';
+                    $tuition_based2 = 'Tuition Fee based on enrolled academic units (credits non-credit courses)';
                     $rate = 229.17;    
                     // $subject_count = count($subjects);
 
@@ -1567,7 +1568,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                         <td colspan="2"><?= $row['description'] ?></td>
                         <td colspan="5" style="text-align: center;">
                             <?php
-                                if ($row['description'] == $tuition_based) {
+                                if ($row['description'] == $tuition_based || $row['description'] == $tuition_based2) {
                                    echo number_format($totalUnits);
                                 }else{
                                     echo '-';
@@ -1576,7 +1577,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                         </td>
                         <td colspan="2" style="text-align: center;">
                         <?php
-                                if ($row['description'] == $tuition_based) {
+                                if ($row['description'] == $tuition_based || $row['description'] == $tuition_based2) {
                                    echo $rate;
                                 }else{
                                     echo '-';
