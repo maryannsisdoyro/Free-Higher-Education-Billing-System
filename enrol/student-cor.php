@@ -972,7 +972,12 @@ if ($row) {
 
 
                 <p style="margin-top: 20px;">I hereby enroll the following for <u><strong><span id="selectedSemester"><?= $row['semester'] ?> semester,</span></strong></u> A.Y. <u><?= $row['curr'] ?>.</u></p>
-                <a href="second-page.php?application_no=<?= $id ?>" class="btn btn-danger mb-3" id="to_subjects" onclick="document.getElementById('to_assessment').classList.remove('d-none'); this.classList.add('d-none')">Next</a>
+                
+                
+                <div class="w-100 d-flex align-items-center my-3 justify-content-end container" style="column-gap: 20px; padding-right: 120px;">
+                    <a href="second-page.php?application_no=<?= $id ?>" class="btn btn-danger mb-3" id="to_subjects" onclick="document.getElementById('to_assessment').classList.remove('d-none'); this.classList.add('d-none')">Next</a>
+                    <!-- <a href="student-cor.php?application_no=<?= $id ?>" class="btn btn-secondary" style="width: 100px;">Previous</a> -->
+                </div>
                 <style>
                     body {
                         font-family: Arial, sans-serif;
