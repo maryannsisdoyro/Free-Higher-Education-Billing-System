@@ -1555,7 +1555,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                     $rate = 229.17;    
                     // $subject_count = count($subjects);
 
-                    $subject_total = $total_units * $rate;
+                    $subject_total = $totalUnits * $rate;
 
                     while ($row = $cfees->fetch_assoc()) {
                         $ftotal += $row['amount'];
