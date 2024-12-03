@@ -1534,6 +1534,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                 
               
                 // var_dump($get_course);
+                echo $get_course->num_rows;
                 if ($get_course->num_rows > 0) {
                     $fetch_course = $get_course->fetch_assoc();
                     $fetch_course['department'] = $fetch_course['department'] == 'BSHM' ? 'BS-HM' : $fetch_course['department'];
