@@ -96,8 +96,6 @@
                         'BSED' => 'Bachelor of Secondary Education',
                         'BEED' => 'Bachelor of Elementary Education'
                    ];
-
-                   $count = 1;
 ?>
 <style>
     table th{
@@ -160,15 +158,15 @@
                                                 <th>Academic Units Enrolled(credit and non-credit courses)</th>
                                                 <th>Academic Units of NSTP Enrolled(credit and non-credit courses)</th>
                                                 <?php
-                                                  foreach ($data as $row1) {
+                                                  foreach ($data as $row) {
                                              
-                                                    $cfees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '". $row1['id'] ."' ORDER BY id DESC LIMIT 1");
-                                                    $ftotal = 0;
-                                                    while ($row2 = $cfees->fetch_assoc()) {
+                                                    // $cfees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '". $row1['id'] ."' ORDER BY id DESC LIMIT 1");
+                                                    // $ftotal = 0;
+                                                    // while ($row2 = $cfees->fetch_assoc()) {
                                                     ?>
-                                                        <th><b><?php echo $row2['type'] ?></b></th>
+                                                        <th><b><?php echo $row['type'] ?></b></th>
                                                     <?php
-                                                    }
+                                                    // }
                                                 }
                                                 ?>
                                                 <th>Total TOSF</th>
@@ -183,7 +181,7 @@
                                              
                                             // echo count($data);
                                             if (count($data) > 0) {
-                                              
+                                                $count = 1;
                                                 foreach ($data as $row) {
                                                     if ($row['DELETE_STAT'] == 1) {
                                                         # code...
