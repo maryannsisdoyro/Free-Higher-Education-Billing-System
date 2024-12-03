@@ -1525,7 +1525,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 					<td colspan="3">Total</td>
 				</tr>
 				<?php
-                // $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
+                $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND level = '". $y_level ."' AND semester = '". $semester ."' ");
                 
               
