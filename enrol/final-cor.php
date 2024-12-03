@@ -640,7 +640,7 @@ if ($row) {
         }
     </style>
 
-    <div id="outprint" style="font-size: smaller;">
+    <div id="outprint" class="container" style="font-size: smaller;">
 
         <style>
             img {
