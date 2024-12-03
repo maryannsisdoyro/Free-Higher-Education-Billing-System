@@ -1545,7 +1545,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                     $subjects = $query_subjects->fetch_all(); // Fetch as associative array
                     $total_units = 0;
 
-                    var_dump($query_subjects);
+                    var_dump($subjects);
                     
                     // Calculate total units
                     foreach ($subjects as $subject) {
