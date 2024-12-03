@@ -1542,8 +1542,10 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                     $query_subjects = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$fetch_course['department']."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
                     
 
-                    $subjects = $query_subjects->fetch_all(MYSQLI_ASSOC); // Fetch as associative array
+                    $subjects = $query_subjects->fetch_all(); // Fetch as associative array
                     $total_units = 0;
+
+                    var_dump($query_subjects);
                     
                     // Calculate total units
                     foreach ($subjects as $subject) {
