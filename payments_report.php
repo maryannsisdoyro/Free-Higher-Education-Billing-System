@@ -158,8 +158,6 @@
                                                 <th>Academic Units Enrolled(credit and non-credit courses)</th>
                                                 <th>Academic Units of NSTP Enrolled(credit and non-credit courses)</th>
                                                 <?php
-                                                  foreach ($data as $row1) {
-                                             
                                                     $cfees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '4769' ORDER BY id DESC");
                                                     $ftotal = 0;
                                                     while ($row2 = $cfees->fetch_assoc()) {
@@ -167,8 +165,6 @@
                                                         <th><b><?php echo $row2['type'] ?></b></th>
                                                     <?php
                                                     }
-                                                    
-                                                }
                                                 ?>
                                                 <th>Total TOSF</th>
                                             </thead>
