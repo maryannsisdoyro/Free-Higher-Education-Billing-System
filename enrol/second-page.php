@@ -940,8 +940,8 @@ if ($row) {
                 </div>
             </div>
 
-            <div class="w-100 text-end">
-            <a href="last-page.php?application_no=<?= $id ?>" class="btn btn-danger my-3 mx-auto d-block" style="width: 100px;" onclick="document.getElementById('final_process').classList.remove('d-none'); this.classList.add('d-none')" id="to_assessment">Next</a>
+            <div class="w-100 text-end d-flex align-items-center gap-2 my-3">
+            <a href="last-page.php?application_no=<?= $id ?>" class="btn btn-danger d-block" style="width: 100px;" onclick="document.getElementById('final_process').classList.remove('d-none'); this.classList.add('d-none')" id="to_assessment">Next</a>
             <a href="../index.php?page=college-application" class="btn btn-secondary" style="width: 100px;">Cancel</a>
             </div>
             <!-- Include jQuery and DataTables JS files -->
