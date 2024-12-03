@@ -1538,7 +1538,6 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                     $ftotal = 0;
 
                     // $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND  ");
-                    echo number_format($totalUnits);
 
                     $query_subjects = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$fetch_course['department']."' AND sem = '".$row['semester']."' AND year = '". $fetch_course['level'] ."'");
                     
@@ -1546,8 +1545,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                     $subjects = $query_subjects->fetch_all(); // Fetch as associative array
                     $total_units = 0;
 
-                    var_dump($subjects);
-                    
+
                     // Calculate total units
                     foreach ($subjects as $subject) {
                         $total_units += $subject['units'];
@@ -1570,7 +1568,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                         <td colspan="5" style="text-align: center;">
                             <?php
                                 if ($row['description'] == $tuition_based && $total_units != null) {
-                                   echo $total_units;
+                                   echo number_format($totalUnits);
                                 }else{
                                     echo '-';
                                 }
