@@ -1539,8 +1539,8 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 
                     // $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND  ");
 
-                    $query_subjects = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$fetch_course['department']."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
-                    echo $row['year_level'];
+                    $query_subjects = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$fetch_course['department']."' AND sem = '".$row['semester']."' AND year = '". $y_level ."'");
+                    
 
                     $subjects = $query_subjects->fetch_all(); // Fetch as associative array
                     $total_units = 0;
