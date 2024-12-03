@@ -1537,7 +1537,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                     $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
                     $ftotal = 0;
 
-                    $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND year = '" . $fetch_course['level'] . "'");
+                    $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' ");
 
                     $subjects = $query_subjects->fetch_all(MYSQLI_ASSOC); // Fetch as associative array
                     $total_units = 0;
