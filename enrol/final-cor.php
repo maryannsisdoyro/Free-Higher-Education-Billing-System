@@ -1,5 +1,7 @@
 <?php
 session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include('db.php'); // Assuming config.php contains database connection settings
 // Redirect to login page if user is not logged in
 if (empty($_SESSION['alogin'])) {
@@ -59,6 +61,7 @@ $all_course = [
     'BSED' => 'Bachelor of Secondary Education',
     'BSIT' => 'Bachelor of Science in Information Technology',
     'BSHM' => 'Bachelor of Science in Hotel Management',
+    'BS-HM' => 'Bachelor of Science in Hotel Management',
     'BSBA' => 'Bachelor of Science in Business Administration'
 ];
 
@@ -1019,7 +1022,8 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
             <?php
             // Assuming $conn is your database connection
             $totalUnits = 0;
-            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$row['course']."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
+            $cou = $row['course'] == 'BSHM' ? 'BS-HM' : $row['course'];
+            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$cou."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
 
             foreach ($query as $row) :
                 $totalUnits += $row['units'];
@@ -1524,18 +1528,22 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 					<td colspan="3">Total</td>
 				</tr>
 				<?php
-                
+                $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
+                echo $row['course'];
 				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND level = '". $y_level ."' AND semester = '". $semester ."' ");
                 
               
-                
+                // var_dump($get_course);
+                echo $get_course->num_rows;
                 if ($get_course->num_rows > 0) {
                     $fetch_course = $get_course->fetch_assoc();
+                    $fetch_course['department'] = $fetch_course['department'] == 'BSHM' ? 'BS-HM' : $fetch_course['department'];
+                    
                     $total_units = $fetch_course['laboratory'] + $fetch_course['computer'] + $fetch_course['academic'] + $fetch_course['academic_nstp'];
                     $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
                     $ftotal = 0;
 
-                    $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND year = '" . $fetch_course['level'] . "'");
+                    $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $row['course'] . "' AND sem = '" . $fetch_course['semester'] . "' AND year = '" . $fetch_course['level'] . "'");
 
                     $subjects = $query_subjects->fetch_all(MYSQLI_ASSOC); // Fetch as associative array
                     $total_units = 0;
