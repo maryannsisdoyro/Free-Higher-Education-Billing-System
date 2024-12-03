@@ -1019,7 +1019,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
             <?php
             // Assuming $conn is your database connection
             $totalUnits = 0;
-            $cou = $row['course'] == 'BSHM' ? 'BS-HM' : 'BSHM';
+            $cou = $row['course'] == 'BSHM' ? 'BS-HM' : $row['course'];
             $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$cou."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
 
             foreach ($query as $row) :
