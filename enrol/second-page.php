@@ -941,8 +941,8 @@ if ($row) {
             </div>
 
             <div class="w-100 d-flex align-items-center my-3 justify-content-end container" style="column-gap: 20px; padding-right: 120px;">
-            <a href="last-page.php?application_no=<?= $id ?>" class="btn btn-danger d-block" style="width: 100px;" onclick="document.getElementById('final_process').classList.remove('d-none'); this.classList.add('d-none')" id="to_assessment">Next</a>
-            <a href="student-cor.php?application_no=<?= $id ?>" class="btn btn-secondary" style="width: 100px;">Cancel</a>
+                <a href="last-page.php?application_no=<?= $id ?>" class="btn btn-danger d-block" style="width: 100px;" onclick="document.getElementById('final_process').classList.remove('d-none'); this.classList.add('d-none')" id="to_assessment">Next</a>
+                <a href="student-cor.php?application_no=<?= $id ?>" class="btn btn-secondary" style="width: 100px;">Previous</a>
             </div>
             <!-- Include jQuery and DataTables JS files -->
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

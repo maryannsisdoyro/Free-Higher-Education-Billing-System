@@ -947,7 +947,12 @@ $ftotal  , 2) ?></b></td>
 </div>
 <input type="hidden" id="application_no" name="appli_no" value="<?= $id ?>">
 
+
+
+<div class="w-100 d-flex align-items-center my-3 justify-content-end container" style="column-gap: 20px; padding-right: 120px;">
 <a href="final-cor.php?application_no=<?= $id ?>" id="submit_btn" class="btn btn-danger my-3 mx-auto w-25 d-block">Submit</a>
+    <a href="student-cor.php?application_no=<?= $id ?>" class="btn btn-secondary" style="width: 100px;">Previous</a>
+</div>
 
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
