@@ -849,7 +849,7 @@ if ($row) {
 
 
 
-<div style="margin-top: 20px;" class="" id="assessment_table">
+<div style="margin-top: 20px;" class="container" id="assessment_table">
 
 			<table id="example2" class="table table-bordered table-hover">
 				<thead>

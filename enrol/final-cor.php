@@ -1047,7 +1047,7 @@ if ($row) {
                 <td class="ins-column" style="text-align: center;"><strong></strong></td>
             </tr>
         </tfoot>
-        </table>
+</table>
                     <!--   <div class="center-images">
        <img src="r2.jpg" alt="MCC Logo" style="height: 90px; width: 800px;">
     </div> -->
@@ -1511,7 +1511,7 @@ if ($row) {
         </tr>
     </tbody>
 </table> -->
-<div style="margin-top: 20px;" class="container">
+<div style="margin-top: 20px;" class="">
 
 			<table id="example2" class="table table-bordered table-hover">
 				<thead>
