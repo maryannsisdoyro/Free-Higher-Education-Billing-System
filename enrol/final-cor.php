@@ -640,7 +640,7 @@ if ($row) {
         }
     </style>
 
-    <div id="outprint" class="container" style="font-size: smaller;">
+    <div id="outprint" style="font-size: smaller;">
 
         <style>
             img {
@@ -1047,7 +1047,7 @@ if ($row) {
                 <td class="ins-column" style="text-align: center;"><strong></strong></td>
             </tr>
         </tfoot>
-</table>
+        </table>
                     <!--   <div class="center-images">
        <img src="r2.jpg" alt="MCC Logo" style="height: 90px; width: 800px;">
     </div> -->
@@ -1511,7 +1511,7 @@ if ($row) {
         </tr>
     </tbody>
 </table> -->
-<div style="margin-top: 20px;" class="">
+<div style="margin-top: 20px;" class="container">
 
 			<table id="example2" class="table table-bordered table-hover">
 				<thead>
