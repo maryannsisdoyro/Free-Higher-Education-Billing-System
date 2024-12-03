@@ -1522,7 +1522,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 					<td colspan="5"></td>
 					<td colspan="2">Units Enrolled</td>
 					<td colspan="2">Rate per Unit</td>
-					<!-- <td colspan="3">Total</td> -->
+					<td colspan="3">Total</td>
 				</tr>
 				<?php
                 
