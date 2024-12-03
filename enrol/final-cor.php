@@ -1529,7 +1529,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND level = '". $y_level ."' AND semester = '". $semester ."' ");
                 
               
-                echo $y_level . ' / '. $semester;
+                
                 if ($get_course->num_rows > 0) {
                     $fetch_course = $get_course->fetch_assoc();
                     $fetch_course['department'] = $fetch_course['department'] == 'BSHM' ? 'BS-HM' : $fetch_course['department'];
@@ -1537,7 +1537,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                     $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
                     $ftotal = 0;
 
-                    $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "'");
+                    $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND year = '" . $fetch_course['level'] . "'");
 
                     $subjects = $query_subjects->fetch_all(MYSQLI_ASSOC); // Fetch as associative array
                     $total_units = 0;
