@@ -1525,14 +1525,13 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 					<td colspan="3">Total</td>
 				</tr>
 				<?php
-                $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
+                $row['course'] = $row['course'] == 'BSHM' ? 'BS-HM' : $row['course'];
 				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND level = '". $y_level ."' AND semester = '". $semester ."' ");
                 
               
                 
                 if ($get_course->num_rows > 0) {
                     $fetch_course = $get_course->fetch_assoc();
-                    $fetch_course['department'] == 'BSHM' ? 'BS-HM' : $fetch_course['department'];
                     $total_units = $fetch_course['laboratory'] + $fetch_course['computer'] + $fetch_course['academic'] + $fetch_course['academic_nstp'];
                     $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
                     $ftotal = 0;
