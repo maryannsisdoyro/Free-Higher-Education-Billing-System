@@ -96,6 +96,8 @@
                         'BSED' => 'Bachelor of Secondary Education',
                         'BEED' => 'Bachelor of Elementary Education'
                    ];
+
+                   $count = 1;
 ?>
 <style>
     table th{
@@ -181,7 +183,7 @@
                                              
                                             // echo count($data);
                                             if (count($data) > 0) {
-                                                $count = 1;
+                                              
                                                 foreach ($data as $row) {
                                                     if ($row['DELETE_STAT'] == 1) {
                                                         # code...
