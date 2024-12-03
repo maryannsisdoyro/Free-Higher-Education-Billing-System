@@ -227,7 +227,7 @@
                 corButton.addEventListener('click', function() {
                     Swal.close();
                     // Redirect to the COR page
-                    window.location.href = "enrol/student-cor.php?application_no=" + application_no;
+                    window.location.href = "enrol/final-cor.php?application_no=" + application_no;
                 });
 
                 // Create custom "Edit" button
