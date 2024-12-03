@@ -1019,8 +1019,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
             <?php
             // Assuming $conn is your database connection
             $totalUnits = 0;
-            $cou = $row['course'] == 'BSHM' ? 'BS-HM' : 'BSHM';
-            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$cou."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
+            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$row['course']."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
 
             foreach ($query as $row) :
                 $totalUnits += $row['units'];
@@ -1525,19 +1524,18 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 					<td colspan="3">Total</td>
 				</tr>
 				<?php
-                $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
+                
 				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND level = '". $y_level ."' AND semester = '". $semester ."' ");
                 
               
-                var_dump($row['course']);
+                
                 if ($get_course->num_rows > 0) {
                     $fetch_course = $get_course->fetch_assoc();
-                    $fetch_course['department'] = $fetch_course['department'] == 'BSHM' ? 'BS-HM' : $fetch_course['department'];
                     $total_units = $fetch_course['laboratory'] + $fetch_course['computer'] + $fetch_course['academic'] + $fetch_course['academic_nstp'];
                     $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
                     $ftotal = 0;
 
-                    $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "'");
+                    $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND year = '" . $fetch_course['level'] . "'");
 
                     $subjects = $query_subjects->fetch_all(MYSQLI_ASSOC); // Fetch as associative array
                     $total_units = 0;
