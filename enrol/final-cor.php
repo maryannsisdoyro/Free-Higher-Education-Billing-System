@@ -1533,7 +1533,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                 
                 if ($get_course->num_rows > 0) {
                     $fetch_course = $get_course->fetch_assoc();
-                    $fetch_course['department'] = $fetch_course['department'] == 'BSHM' ? 'BS-HM' : $fetch_course['department'];
+                    $fetch_course['department'] = $fetch_course['department'] == 'BSHM' ? $fetch_course['department'] : $fetch_course['department'];
                     $total_units = $fetch_course['laboratory'] + $fetch_course['computer'] + $fetch_course['academic'] + $fetch_course['academic_nstp'];
                     $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
                     $ftotal = 0;
