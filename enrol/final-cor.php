@@ -105,7 +105,7 @@ if ($row) {
    
 }
 
-
+$row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
