@@ -160,7 +160,7 @@
                                                 <?php
                                                   foreach ($data as $row1) {
                                              
-                                                    $cfees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '". $row1['id'] ."' ORDER BY id DESC LIMIT 1");
+                                                    $cfees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '". $row1['id'] ."' ORDER BY id DESC");
                                                     $ftotal = 0;
                                                     while ($row2 = $cfees->fetch_assoc()) {
                                                     ?>
