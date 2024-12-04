@@ -33,7 +33,7 @@ ob_end_flush();
 
 
 if(isset($_SESSION['login_id']))
-header("location:index.php?page=home");
+header("location:index?page=home");
 
 ?>
 
@@ -78,7 +78,7 @@ header("location:index.php?page=home");
                              <i class="bx bx-show fs-4" style="cursor: pointer; position: absolute; top: 0; right: 0; margin: 12px 10px 0 0; font-size: 15px;" id="show-pass1"></i>
                             </div>
   						<div class="d-flex justify-content-between">
-						<a href="forgot-password.php">Forgot Password</a>
+						<a href="forgot-password">Forgot Password</a>
 						  <button type="submit" class="btn-sm btn-block btn-wave col-md-4 btn-danger">Login</button>
               <!-- <button
                 data-sitekey="6LeWO1YqAAAAALCrSqRbOX0mYKiSSyWWDe65aYB_" 
