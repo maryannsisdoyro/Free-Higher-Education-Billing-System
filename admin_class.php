@@ -1337,10 +1337,10 @@ class Action
 			if ($stmt->rowCount() > 0) {
 				return 1; // Success
 			} else {
-				die("No record updated. Please check the application number.");
+				return 0;
 			}
 		} catch (PDOException $e) {
-			die("Database error: " . $e->getMessage());
+			return 0;
 		}
 	}
 	
