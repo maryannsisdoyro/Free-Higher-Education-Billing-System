@@ -111,36 +111,86 @@ class Action
 
 	function save_user()
 	{
+		// Extract POST data securely
 		extract($_POST);
-		$data = " name = '$name' ";
-		$data .= ", username = '$username' ";
-		if (!empty($password))
-			$data .= ", password = '" . md5($password) . "' ";
-		$data .= ", type = '$type' ";
-		// if($type == 1)
-		$chk = $this->db->query("Select * from users where username = '$username'")->num_rows;
-		// if($chk > 0){
-		// 	return 2;
-		// 	exit;
-		// }
-		if (empty($id)) {
-			$save = $this->db->query("INSERT INTO users set " . $data);
-		} else {
-			if ($chk > 0) {
-				$id = $_SESSION['login_id'];
-				$save = $this->db->query("UPDATE users set " . $data . " where id = " . $id);
+
+		// Sanitize inputs
+		$name = htmlspecialchars(trim($name));
+		$username = htmlspecialchars(trim($username));
+		$password = !empty($password) ? trim($password) : null;
+		$type = intval($type); // Ensure 'type' is an integer
+
+		try {
+			// Check if the username already exists
+			$stmt = $this->db->prepare("SELECT id FROM users WHERE username = :username");
+			$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+			$stmt->execute();
+			$existing_user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			if (empty($id)) { // New user
+				if ($existing_user) {
+					return 2; // Username already exists
+				}
+
+				// Hash the password securely
+				$hashed_password = $password ? password_hash($password, PASSWORD_DEFAULT) : null;
+
+				// Insert new user
+				$stmt = $this->db->prepare("INSERT INTO users (name, username, password, type) VALUES (:name, :username, :password, :type)");
+				$stmt->bindParam(':name', $name, PDO::PARAM_STR);
+				$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+				$stmt->bindParam(':password', $hashed_password, PDO::PARAM_STR);
+				$stmt->bindParam(':type', $type, PDO::PARAM_INT);
+
+			} else { // Update existing user
+				$id = intval($id); // Ensure 'id' is an integer
+
+				if ($existing_user && $existing_user['id'] != $id) {
+					return 2; // Username already exists
+				}
+
+				// Update user data
+				$update_query = "UPDATE users SET name = :name, username = :username, type = :type";
+				if (!empty($password)) {
+					$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+					$update_query .= ", password = :password";
+				}
+				$update_query .= " WHERE id = :id";
+
+				$stmt = $this->db->prepare($update_query);
+				$stmt->bindParam(':name', $name, PDO::PARAM_STR);
+				$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+				$stmt->bindParam(':type', $type, PDO::PARAM_INT);
+				if (!empty($password)) {
+					$stmt->bindParam(':password', $hashed_password, PDO::PARAM_STR);
+				}
+				$stmt->bindParam(':id', $id, PDO::PARAM_INT);
 			}
-		}
-		if ($save) {
-			return 1;
+
+			// Execute the query
+			if ($stmt->execute()) {
+				return 1; // Success
+			}
+
+		} catch (PDOException $e) {
+			// Log error and return a failure response
+			error_log("Database error: " . $e->getMessage());
+			return 0; // General failure
 		}
 	}
+
 	function delete_user()
 	{
-		extract($_POST);
-		$delete = $this->db->query("DELETE FROM users where id = " . $id);
-		if ($delete)
-			return 1;
+		if (!isset($_POST['id']) || !is_numeric($_POST['id'])) {
+			return 0;
+		}
+	
+		$id = intval($_POST['id']);
+	
+		$stmt = $this->db->prepare("DELETE FROM users WHERE id = :id");
+		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+	
+		return $stmt->execute() ? 1 : 0;
 	}
 	function signup()
 	{
@@ -174,48 +224,49 @@ class Action
 			}
 		}
 	}
+
 	function update_account()
 	{
-
-		extract($_POST);
-		$data = " name = '$name' ";
-		$data .= ", username = '$username' ";
-		if (!empty($password))
-			$data .= ", password = '" . md5($password) . "' ";
-		// $chk = $this->db->query("SELECT * FROM users where username = '$email' and id != '{$_SESSION['login_id']}' ")->num_rows;
-		// if($chk > 0){
-		// 	return 2;
-		// 	exit;
-		// }
-		$save = $this->db->query("UPDATE users set $data where id = '{$_SESSION['login_id']}' ");
-		if ($save) {
-			$data = '';
-			return 1;
-			// foreach($_POST as $k => $v){
-			// 	if($k =='password')
-			// 		continue;
-			// 	if(empty($data) && !is_numeric($k) )
-			// 		$data = " $k = '$v' ";
-			// 	else
-			// 		$data .= ", $k = '$v' ";
-			// }
-			// if($_FILES['img']['tmp_name'] != ''){
-			// 				$fname = strtotime(date('y-m-d H:i')).'_'.$_FILES['img']['name'];
-			// 				$move = move_uploaded_file($_FILES['img']['tmp_name'],'assets/uploads/'. $fname);
-			// 				$data .= ", avatar = '$fname' ";
-
-			// }
-			// $save_alumni = $this->db->query("UPDATE alumnus_bio set $data where id = '{$_SESSION['bio']['id']}' ");
-			// if($data){
-			// 	foreach ($_SESSION as $key => $value) {
-			// 		unset($_SESSION[$key]);
-			// 	}
-			// 	$login = $this->login2();
-			// 	if($login)
-			// 	return 1;
-			// }
+		if (!isset($_POST['name'], $_POST['username'])) {
+			return json_encode($_POST);
 		}
 
+		$name = htmlspecialchars(trim($_POST['name']));
+		$username = htmlspecialchars(trim($_POST['username']));
+		$password = isset($_POST['password']) ? $_POST['password'] : '';
+	
+		$data = [];
+		$data['name'] = $name;
+		$data['username'] = $username;
+	
+		if (!empty($password)) {
+			$data['password'] = md5($password);
+		}
+	
+		$user_id = $_SESSION['login_id'];
+	
+		$sql = "UPDATE users SET name = :name, username = :username";
+		
+		if (isset($data['password'])) {
+			$sql .= ", password = :password";
+		}
+	
+		$sql .= " WHERE id = :id";
+	
+		$stmt = $this->db->prepare($sql);
+		$stmt->bindParam(':name', $data['name']);
+		$stmt->bindParam(':username', $data['username']);
+
+		if (isset($data['password'])) {
+			$stmt->bindParam(':password', $data['password']);
+		}
+
+		$stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
+	
+		if ($stmt->execute()) {
+			return 1;
+		}
+	
 		return json_encode($_POST);
 	}
 
@@ -401,11 +452,14 @@ class Action
 	}
 	function delete_student()
 	{
-		extract($_POST);
-		$delete = $this->db->query("DELETE FROM student where id = " . $id);
-		if ($delete) {
-			return 1;
+		if (!isset($_POST['id']) || !is_numeric($_POST['id'])) {
+			return 0;
 		}
+
+		$id = intval($_POST['id']);
+		$stmt = $this->db->prepare("DELETE FROM student WHERE id = :id");
+		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		return $stmt->execute() ? 1 : 0;
 	}
 	function save_fees()
 	{
@@ -438,11 +492,14 @@ class Action
 	}
 	function delete_fees()
 	{
-		extract($_POST);
-		$delete = $this->db->query("DELETE FROM student_ef_list where id = " . $id);
-		if ($delete) {
-			return 1;
+		if (!isset($_POST['id']) || !is_numeric($_POST['id'])) {
+			return 0;
 		}
+	
+		$id = intval($_POST['id']);
+		$stmt = $this->db->prepare("DELETE FROM student_ef_list WHERE id = :id");
+		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		return $stmt->execute() ? 1 : 0;
 	}
 	function save_payment()
 	{
@@ -470,79 +527,130 @@ class Action
 		if ($save)
 			return json_encode(array('ef_id' => $ef_id, 'pid' => $id, 'status' => 1));
 	}
+
 	function delete_payment()
 	{
-		extract($_POST);
-		$delete = $this->db->query("DELETE FROM payments where id = " . $id);
-		if ($delete) {
-			return 1;
+		try {
+			if (!isset($_POST['id'])) {
+				return 0;
+			}
+			
+			$id = intval($_POST['id']);
+
+			if ($id <= 0) {
+				return 0;
+			}
+
+			$stmt = $this->db->prepare("DELETE FROM payments WHERE id = :id");
+			$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+			if ($stmt->execute()) {
+				return 1;
+			} else {
+				return 0;
+			}
+		} catch (PDOException $e) {
+			return 0;
 		}
 	}
 
 	function forgotPassword()
 	{
-		extract($_POST);
-		$email = $_POST['email'];
-		$check = $this->db->query("SELECT * FROM users WHERE email = '$email'");
-		if ($check->num_rows > 0) {
-			$verification = uniqid();
-
-			$update = $this->db->query("UPDATE users SET verification = '$verification'");
-			if ($update) {
-				$mail = new PHPMailer(true);
-				$mail->SMTPDebug = 0;
-				$mail->isSMTP();
-				$mail->Host = 'smtp.gmail.com';
-				$mail->SMTPAuth = true;
-				$mail->Username = 'sisdoyromaryannlawan20@gmail.com';
-				$mail->Password = 'ggeurvotkedugblo';
-				$mail->Port = 587;
-
-				$mail->SMTPOptions = array(
-					'ssl' => array(
-						'verify_peer' => false,
-						'verify_peer_name' => false,
-						'allow_self_signed' => true
-					)
-				);
-
-				$mail->setFrom('mccfhebilling@gmail.com', 'MCC Free Higher Education');
-
-				$mail->addAddress($email);
-				$mail->Subject = "Reset Password Verification Code";
-				$mail->Body = "This is your verification code: " . $verification;
-
-				$mail->send();
+		try {
+			$email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+	
+			if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+				return 2;
 			}
-
-			return 1;
-		} else {
+	
+			$stmt = $this->db->prepare("SELECT id FROM users WHERE email = :email");
+			$stmt->bindParam(':email', $email, PDO::PARAM_STR);
+			$stmt->execute();
+	
+			if ($stmt->rowCount() > 0) {
+				$verification = uniqid();
+	
+				$update_stmt = $this->db->prepare("UPDATE users SET verification = :verification WHERE email = :email");
+				$update_stmt->bindParam(':verification', $verification, PDO::PARAM_STR);
+				$update_stmt->bindParam(':email', $email, PDO::PARAM_STR);
+	
+				if ($update_stmt->execute()) {
+					$mail = new PHPMailer(true);
+	
+					$mail->isSMTP();
+					$mail->Host = 'smtp.gmail.com';
+					$mail->SMTPAuth = true;
+					$mail->Username = 'sisdoyromaryannlawan20@gmail.com';
+					$mail->Password = 'ggeurvotkedugblo';
+					$mail->Port = 587;
+	
+					$mail->setFrom('mccfhebilling@gmail.com', 'MCC Free Higher Education');
+					$mail->addAddress($email);
+					$mail->Subject = "Reset Password Verification Code";
+					$mail->Body = "Here is your verification code: " . $verification;
+	
+					$mail->SMTPOptions = [
+						'ssl' => [
+							'verify_peer' => true,
+							'verify_peer_name' => true,
+							'allow_self_signed' => false,
+						],
+					];
+	
+					if ($mail->send()) {
+						return 1;
+					} else {
+						return 2;
+					}
+				} else {
+					return 2;
+				}
+			} else {
+				return 2;
+			}
+		} catch (Exception $e) {
 			return 2;
 		}
 	}
 
 	function resetPassword()
 	{
-		extract($_POST);
-		$verification = $_POST['verification'];
-		$new = $_POST['new'];
-		$confirm = $_POST['confirm'];
-
-		if ($new !== $confirm) {
-			return 2;
-		} else {
-			$check = $this->db->query("SELECT * FROM users WHERE verification = '$verification'");
-			if ($check->num_rows > 0) {
-				$hashed = md5($new);
-
-				$update = $this->db->query("UPDATE users SET password = '$hashed' WHERE verification = '$verification'");
-
-				if ($update) {
+		try {
+			$verification = htmlspecialchars(trim($_POST['verification']));
+			$new = $_POST['new'];
+			$confirm = $_POST['confirm'];
+	
+			if (empty($verification) || empty($new) || empty($confirm)) {
+				return 3;
+			}
+	
+			if ($new !== $confirm) {
+				return 2;
+			}
+	
+			// Use prepared statements to securely query the database
+			$stmt = $this->db->prepare("SELECT id FROM users WHERE verification = :verification");
+			$stmt->bindParam(':verification', $verification, PDO::PARAM_STR);
+			$stmt->execute();
+	
+			if ($stmt->rowCount() > 0) {
+				$hashed_password = md5($new);
+	
+				// Update the password securely
+				$update_stmt = $this->db->prepare("UPDATE users SET password = :password WHERE verification = :verification");
+				$update_stmt->bindParam(':password', $hashed_password, PDO::PARAM_STR);
+				$update_stmt->bindParam(':verification', $verification, PDO::PARAM_STR);
+	
+				if ($update_stmt->execute()) {
 					return 1;
+				} else {
+					return 3;
 				}
 			} else {
 				return 3;
 			}
+		} catch (PDOException $e) {
+			return 3;
 		}
 	}
 
@@ -1185,12 +1293,29 @@ class Action
 
 	function update_section()
 	{
-		extract($_POST);
-		$section = $_GET['section'];
-		$id = $_GET['application_no'];
-		$update = $this->db->query("UPDATE enroll2024 SET section = '$section' where id = " . $id);
-		if ($update) {
-			return 1;
+		try {
+			if (!isset($_GET['section']) || !isset($_GET['application_no'])) {
+				die("Required parameters are missing.");
+			}
+	
+			$section = htmlspecialchars(trim($_GET['section']));
+			$id = intval($_GET['application_no']);
+	
+			if (empty($section) || $id <= 0) {
+				die("Invalid input data.");
+			}
+
+			$stmt = $this->db->prepare("UPDATE enroll2024 SET section = :section WHERE id = :id");
+			$stmt->bindParam(':section', $section, PDO::PARAM_STR);
+			$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+	
+			if ($stmt->execute()) {
+				return 1;
+			} else {
+				return 0;
+			}
+		} catch (PDOException $e) {
+			return 0;
 		}
 	}
 
@@ -1202,9 +1327,20 @@ class Action
         $folder = "./upload/" . $filename;
 		$image = $_GET['image'];
 		$id = $_GET['application_no'];
-		$update = $this->db->query("UPDATE enroll2024 SET image = '$image' where id = " . $id);
-		if ($update) {
-			return 1;
+
+		try {
+			$stmt = $this->db->prepare("UPDATE enroll2024 SET image = :image WHERE id = :id");
+			$stmt->bindParam(':image', $image, PDO::PARAM_STR);
+			$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+			$stmt->execute();
+	
+			if ($stmt->rowCount() > 0) {
+				return 1; // Success
+			} else {
+				die("No record updated. Please check the application number.");
+			}
+		} catch (PDOException $e) {
+			die("Database error: " . $e->getMessage());
 		}
 	}
 	
