@@ -1,19 +1,18 @@
-#Script for URL rewriting
-#The line below may exist.
+# Enable the Rewrite Engine
 RewriteEngine On
-#Rewrite all the rules, with / as the base, not requesting any other file or folder.
+
+# Set the base URL for all rewrite rules
 RewriteBase /
+
+# Rule to rewrite URLs like /page to /page.php if the corresponding PHP file exists
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^([a-z]+)\/?$ $1.php [NC]
+RewriteRule ^([a-zA-Z0-9_-]+)\/?$ $1.php [NC,L]
 
-
-RewriteEngine On
-
-# Remove .php extension from URLs
+# Rule to remove the .php extension from URLs if the PHP file exists
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^([^/]+)/?$ $1.php [L]
 
-# Optional: Redirect from .php URLs to clean URLs
+# Optional: Redirect from .php URLs to clean URLs (remove .php extension)
 RewriteCond %{THE_REQUEST} \s/([^.]+)\.php[?\s] [NC]
 RewriteRule ^ %1 [R=301,L]
