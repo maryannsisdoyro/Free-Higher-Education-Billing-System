@@ -6,12 +6,12 @@ RewriteBase /
 
 # Rule to rewrite URLs like /page to /page.php if the corresponding PHP file exists
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^([a-zA-Z0-9_-]+)\/?$ $1.php [NC,L]
-
-# Rule to remove the .php extension from URLs if the PHP file exists
 RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^([^/]+)/?$ $1.php [L]
+RewriteRule ^([a-zA-Z0-9_-]+)\/?$ $1.php [L]
+
+# Rule to remove the .php extension from URLs (internal rewrite, no redirect)
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^/]+)/?$ $1 [L]
 
 # Optional: Redirect from .php URLs to clean URLs (remove .php extension)
 RewriteCond %{THE_REQUEST} \s/([^.]+)\.php[?\s] [NC]
