@@ -7,6 +7,8 @@ if (empty($_SESSION['alogin'])) {
     // exit(); // Stop further execution
 }
 
+echo "HELLO WORLD";
+
 // Check if form data is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Sanitize and store form data into session variables
