@@ -3,7 +3,6 @@
 <?php 
 include('./common.php');
 
-echo "hello world";
 
 session_start();
 //echo password_hash("maryannlawan@123456", PASSWORD_DEFAULT);

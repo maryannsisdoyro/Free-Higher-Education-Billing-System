@@ -1,6 +1,9 @@
 <?php 
   // - add this line to the top of the file
   include('./common.php');
+
+  
+echo "hello world";
      
   if (str_contains($_SERVER['REQUEST_URI'], "page=college-application")) {
     include 'db_connect.php';
