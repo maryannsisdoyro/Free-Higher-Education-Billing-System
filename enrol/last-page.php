@@ -158,6 +158,97 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-lg-12">
+            <h5><b>Fee Details</b></h5>
+            <hr>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="ft" class="control-label">Fee Type</label>
+                        <input type="text" id="ft_shiftee" class="form-control-sm">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="" class="control-label">Amount</label>
+                        <input type="number" step="any" min="0" id="amount_shiftee" class="form-control-sm text-right">
+                    </div>
+                </div>
+                 <div class="form-group pt-1">
+                    <label for="" class="control-label">&nbsp;</label>
+                    <button class="btn btn-danger btn-sm" type="button" id="add_fee_shiftee">Add to List</button>
+                </div>
+            </div>
+            <hr>
+            <table class="table table-condensed" id="fee-list-shiftee">
+                <thead>
+                    <tr>
+                        <th width="5%"></th>
+                        <th width="50%">Type</th>
+                        <th width="45%">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        if(isset($id)):
+                        $fees = $conn->query("SELECT * FROM fees where course_id = $id");
+                        $total = 0;
+                        while($row=$fees->fetch_assoc()): 
+                            $total += $row['amount'];
+                    ?>
+                        <tr>
+                            <td class="text-center"><button class="btn-sm btn-outline-danger" type="button" onclick="rem_list($(this))" ><i class="fa fa-times"></i></button></td>
+                            <td>
+                                <input type="hidden" name="fid_shiftee[]" value="<?php echo $row['id'] ?>">
+                                <input type="hidden" name="type_shiftee[]" value="<?php echo $row['description'] ?>">
+                                <p><small><b class="ftype_shiftee"><?php echo $row['description'] ?></b></small></p>
+                            </td>
+                            <td>
+                                <input type="hidden" name="amount_shiftee[]" value="<?php echo $row['amount'] ?>">
+                                <p class="text-right"><small><b class="famount_shiftee"><?php echo number_format($row['amount']) ?></b></small></p>
+                            </td>
+                        </tr>
+                    <?php
+                        endwhile; 
+                        endif; 
+                    ?>
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="2" class="text-center">Total</th>
+                        <th class="text-right">
+                            <input type="hidden" name="total_amount_shiftee" value="<?php echo isset($total) ? $total : 0 ?>">
+                            <span class="tamount_shiftee"><?php echo isset($total) ? number_format($total,2) : '0.00' ?></span>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="col-12">
+        <div id="fee_clone_shiftee" style="display: none">
+            <table >
+                    <tr>
+                        <td class="text-center"><button class="btn-sm btn-outline-danger" type="button" onclick="rem_list($(this))" ><i class="fa fa-times"></i></button></td>
+                        <td>
+                            <input type="hidden" name="fid_shiftee[]">
+                            <input type="hidden" name="type_shiftee[]">
+                            <p><small><b class="ftype_shiftee"></b></small></p>
+                        </td>
+                        <td>
+                            <input type="hidden" name="amount_shiftee[]">
+                            <p class="text-right"><small><b class="famount_shiftee"></b></small></p>
+                        </td>
+                    </tr>
+            </table>    
+        </div>
+        </div>
+
+        </div>
+
+
 
     <!-- Include SweetAlert2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.3/dist/sweetalert2.min.css">
