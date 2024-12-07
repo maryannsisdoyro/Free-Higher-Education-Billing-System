@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-include('./common.php');
+// include('./common.php');
 
 echo "HELLO WORLD";
 
