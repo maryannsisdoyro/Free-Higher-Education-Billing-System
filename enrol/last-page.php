@@ -751,7 +751,7 @@ $ftotal  , 2) ?></b></td>
 
 <div class="w-100 d-flex align-items-center my-3 justify-content-end container" style="column-gap: 20px; padding-right: ;">
     <a href="student-cor.php?application_no=<?= $id ?>" class="btn btn-secondary" style="width: 100px;">Previous</a>
-<a href="" id="submit_btn" class="btn btn-danger d-block" style="width: 100px;">Submit</a>
+<a href="#" id="submit_btn" class="btn btn-danger d-block" style="width: 100px;">Submit</a>
 </div>
 
 <script>
