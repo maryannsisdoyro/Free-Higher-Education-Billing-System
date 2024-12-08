@@ -953,7 +953,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                     <tr>
                         <td colspan="2"><strong>Last School Attended:</strong></td>
                         <td colspan="3" style="text-transform: uppercase;">
-                            <center><?php echo $semester == '2nd' || $y_level == '2nd' || $y_level == '3rd' || $y_level == '4th' ? $shs : $mcc ; ?></center>
+                            <center><?php echo $semester == '2nd' || $y_level == '2nd' || $y_level == '3rd' || $y_level == '4th' ? $mcc : $shs ; ?></center>
                         </td>
                         <td colspan="5" style="text-align: center;"><strong>S.Y.</strong></td>
                         <td colspan="5" style="text-align: center;">
