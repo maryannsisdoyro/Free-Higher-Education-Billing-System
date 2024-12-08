@@ -2,6 +2,10 @@
 
 
 //MySQL server and database
+//$dbhost = 'mysql';
+//$dbuser = 'testuser';
+//$dbpass = 'testpassword';
+//$dbname = 'testdb';
 $dbhost = 'localhost';
 $dbuser = 'u510162695_fhebilling';
 $dbpass = '1Fhebilling';
@@ -81,6 +85,11 @@ function backup_tables($host, $user, $pass, $dbname, $tables = '*') {
             }
         }
         $return.="\n\n\n";
+    }
+
+    if ($_GET['test'] == '1') {
+        echo "<pre>{$return}</pre>";
+        echo $return;
     }
 
     //save file
