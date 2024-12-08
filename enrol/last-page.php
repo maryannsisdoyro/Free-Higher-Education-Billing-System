@@ -674,9 +674,9 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 
 
         // Calculate total units
-        foreach ($subjects as $subject) {
-            $total_units += $subject['units'];
-        }
+        // foreach ($subjects as $subject) {
+        //     $total_units += $subject['units'];
+        // }
 
         $tuition_based = 'Tuition Fee based on enrolled academic units (credit and non-credit courses)';
         $tuition_based2 = 'Tuition Fee based on enrolled academic units (credits non-credit courses)';
