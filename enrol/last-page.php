@@ -761,7 +761,7 @@ $ftotal  , 2) ?></b></td>
         icon: "success",
         title: "Student officially enrolled",
         showConfirmButton: false,
-        timer: 1500
+        timer:3000
         }).then(() => {
             
         });
