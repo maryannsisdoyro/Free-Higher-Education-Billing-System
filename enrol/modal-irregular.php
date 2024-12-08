@@ -248,11 +248,7 @@
                 
                 const result = JSON.parse(resp)
                 if(result.status==1){
-                    alert_toast("Student officially enrolled",'success')
-                        setTimeout(function(){
-                           console.log(result.enroll_id);
-                           location.href = "student-cor.php?application_no=" + result.enroll_id
-                        },2000)
+                        location.href = "student-cor.php?application_no=" + result.enroll_id
                 }else if(resp == 2){
                 $('#msg').html('<div class="alert alert-danger mx-2">Course Name & Level already exist.</div>')
                 end_load()

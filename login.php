@@ -1,7 +1,5 @@
 <?php
 include('./common.php');
-
-echo "hekllo world";
 ?>
 
 <!DOCTYPE html>
