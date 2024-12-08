@@ -207,7 +207,7 @@
                                                         <td><?= $row['academic_nstp'] ?></td>
                                                         <?php
                                                      
-                                                        $cfees2 = $conn->query("SELECT * FROM student_individual_fees WHERE enroll_id = '".$row['id']."'");
+                                                        $cfees2 = $conn->query("SELECT * FROM student_individual_fees WHERE enroll_id = 4769");
                                                         $ftotal = 0;
                                                             while ($row2 = $cfees2->fetch_assoc()) {
                                                                 $ftotal += $row2['amount'];
