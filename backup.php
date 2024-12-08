@@ -72,7 +72,7 @@ function backup_tables($host, $user, $pass, $dbname, $tables = '*') {
                 {
                     $row[$j] = addslashes($row[$j]);
                     $row[$j] = str_replace("\n","\\n",$row[$j]);
-                    if (isset($row[$j])) { $return.= strlen($input) < 9 && is_numeric($row[$j]) ? $row[$j] : '"'.$row[$j].'"' ; } else { $return.= 'NULL'; }
+                    if (isset($row[$j])) { $return.= strlen($row[$j]) < 9 && is_numeric($row[$j]) ? $row[$j] : '"'.$row[$j].'"' ; } else { $return.= 'NULL'; }
                     if ($j<($num_fields-1)) { $return.= ','; }
                 }
 
