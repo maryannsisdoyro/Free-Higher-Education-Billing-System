@@ -686,7 +686,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
             <td colspan="5" style="text-align: center;">
                 <?php
                     if ($row['description'] == $tuition_based || $row['description'] == $tuition_based2) {
-                       echo number_format($totalUnits);
+                       echo number_format($total_units);
                     }else{
                         echo '-';
                     }
