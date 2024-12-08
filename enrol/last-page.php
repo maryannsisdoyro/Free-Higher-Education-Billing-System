@@ -761,7 +761,7 @@ $ftotal  , 2) ?></b></td>
         icon: "success",
         title: "Student officially enrolled",
         showConfirmButton: false,
-        timer: 5000
+        timer: 3000
         }).then(() => {
             window.location.href = "final-cor.php?application_no=<?= $id ?>"
         });
