@@ -642,6 +642,16 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
         <td colspan="3">Total</td>
     </tr>
     <?php
+    // Assuming $conn is your database connection
+    $totalUnits = 0;
+    $cou = $row['course'] == 'BSHM' ? 'BS-HM' : $row['course'];
+    $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$cou."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
+
+    foreach ($query as $row) :
+        $totalUnits += $row['units'];
+    endforeach;
+
+
     $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
     $get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND semester = '". $semester ."' ");
     
@@ -673,7 +683,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
         $rate = 229.17;    
         // $subject_count = count($subjects);
 
-        $subject_total = $total_units * $rate;
+        $subject_total = $totalUnits * $rate;
 
         while ($row = $cfees->fetch_assoc()) {
             $ftotal += $row['amount'];
@@ -686,7 +696,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
             <td colspan="5" style="text-align: center;">
                 <?php
                     if ($row['description'] == $tuition_based || $row['description'] == $tuition_based2) {
-                       echo number_format($total_units);
+                       echo number_format($totalUnits);
                     }else{
                         echo '-';
                     }
