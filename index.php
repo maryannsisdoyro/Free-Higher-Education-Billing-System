@@ -1,9 +1,6 @@
 <?php 
-  // - add this line to the top of the file
+  // - add this line to the top of every page
   include('./common.php');
-
-  
-echo "hello world";
      
   if (str_contains($_SERVER['REQUEST_URI'], "page=college-application")) {
     include 'db_connect.php';
@@ -72,8 +69,6 @@ echo "hello world";
 ?>
 <!DOCTYPE html>
 <html lang="en">
-	
-<?php session_start(); ?>
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -82,9 +77,6 @@ echo "hello world";
  <link rel="icon" type="image/x-icon" href="assets/logo.png">	
 
 <?php
-  if(!isset($_SESSION['login_id']))
-	
-    header("location: login");
  include('./header.php'); 
  // include('./auth.php'); 
  ?>

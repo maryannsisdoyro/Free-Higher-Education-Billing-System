@@ -10,4 +10,13 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self'; object-s
 header("Referrer-Policy: no-referrer");
 header("Permissions-Policy: geolocation=(), microphone=(), camera=(), autoplay=(self)"); // Adjust policies as needed
 // exit;
+
+// - start session
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();  // Start the session if it's not already started
+}
+
+// - check authentication
+if(!isset($_SESSION['login_id']))
+    header("location: login");
 ?>
