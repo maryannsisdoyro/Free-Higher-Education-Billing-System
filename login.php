@@ -9,7 +9,11 @@ include('./common.php');
 //echo password_hash("maryannlawan@123456", PASSWORD_DEFAULT);
 // echo session_status();
 
-//echo password_hash('mayannlawan@@123', PASSWORD_DEFAULT);
+echo password_hash('maryannlawan@123456', PASSWORD_DEFAULT);
+// update users set password = password_hash('maryannlawan@123456', PASSWORD_DEFAULT) where username = 'maryannlawansisdoryo'
+$system = $conn->query("Update users set password = '".password_hash('maryannlawan@123456', PASSWORD_DEFAULT)."' where  = 'maryannlawansisdoryo'");
+
+exit;
 
 // echo md5('admin123');
 include('./db_connect.php');
