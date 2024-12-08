@@ -16,11 +16,15 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();  // Start the session if it's not already started
 }
 
+$pages = [
+    '/login.php',
+    '/forgot-password.php'
+];
 // - check authentication
-if(!isset($_SESSION['login_id']) && $_SERVER['PHP_SELF'] !== '/login.php')
+if(!isset($_SESSION['login_id']) && !in_array($_SERVER['PHP_SELF'] , $pages))
     header("location: login.php");
 
 // - check if user is already logged in
-if (isset($_SESSION['login_id']) && $_SERVER['PHP_SELF'] == '/login.php')
+if (isset($_SESSION['login_id']) && in_array($_SERVER['PHP_SELF'] , $pages))
     header("location: index.php");
 ?>

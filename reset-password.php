@@ -60,7 +60,7 @@ header("location:index.php?page=home");
 						
   						<div class="form-group">
   							<label for="email" class="control-label">Verification</label>
-  							<input type="text" id="verification" name="verification" class="form-control my-2">
+  							<input type="text" id="verification" name="verification" class="form-control my-2" value="<?php echo $_GET['verification'] ?? null; ?>">
 
                               <label for="new" class="control-label">New Password</label>
   							<div style="position: relative;">
@@ -119,6 +119,9 @@ header("location:index.php?page=home");
 				}else if(resp == 3){
                     // console.log(resp);
 					$('#reset-pass').prepend('<div class="alert alert-danger">Incorrect verification code.</div>')
+					$('#reset-pass button[type="button"]').removeAttr('disabled').html('Login');
+				} else if(resp == 4){
+					$('#reset-pass').prepend('<div class="alert alert-danger">Password must be between 8 and 20 characters long, with at least one letter, one number, and one special character.</div>')
 					$('#reset-pass button[type="button"]').removeAttr('disabled').html('Login');
 				}
 			}

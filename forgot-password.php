@@ -1,8 +1,9 @@
+<?php 
+include 'common.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
-<?php 
-session_start();
-
+<?php
 // echo md5('admin123');
 include('./db_connect.php');
 ob_start();

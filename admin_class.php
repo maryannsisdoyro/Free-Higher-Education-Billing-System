@@ -633,7 +633,42 @@ class Action
 					$mail->setFrom('mccfhebilling@gmail.com', 'MCC Free Higher Education');
 					$mail->addAddress($email);
 					$mail->Subject = "Reset Password Verification Code";
-					$mail->Body = "Here is your verification code: " . $verification;
+					$mail->isHTML(true);
+					$mail->Body = "
+						<html>
+						<head>
+							<style>
+								body {
+									font-family: Arial, sans-serif;
+									font-size: 14px;
+									color: #333;
+								}
+								.content {
+									padding: 20px;
+									background-color: #f4f4f4;
+									border-radius: 5px;
+									box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+								}
+								h2 {
+									color: #5a5a5a;
+								}
+								a {
+									color: #1e90ff;
+									text-decoration: none;
+								}
+							</style>
+						</head>
+						<body>
+							<div class='content'>
+								<h2>Reset Password Verification</h2>
+								<p>Here is your verification code: <strong>$verification</strong></p>
+								<p>You can also click the link below to reset your password:</p>
+								<p><a href='http://localhost/reset-password.php?verification=$verification'>Reset Password</a></p>
+								<p>If you did not request this change, please ignore this email.</p>
+							</div>
+						</body>
+						</html>
+					";
 	
 					$mail->SMTPOptions = [
 						'ssl' => [
@@ -672,6 +707,10 @@ class Action
 	
 			if ($new !== $confirm) {
 				return 2;
+			}
+
+			if (!$this->validatePassword($new)) {
+				return 4;
 			}
 	
 			// Prepare the query to check if the verification code exists
