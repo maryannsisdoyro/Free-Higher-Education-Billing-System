@@ -1,6 +1,4 @@
 <?php
-
-session_start();
 ini_set('display_errors', 1);
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -118,14 +116,26 @@ class Action
 		$name = htmlspecialchars(trim($name));
 		$username = htmlspecialchars(trim($username));
 		$password = !empty($password) ? trim($password) : null;
+		$confirm = !empty($confirm) ? trim($confirm) : null;
 		$type = intval($type); // Ensure 'type' is an integer
+
+		if ($password) {
+			if (!$this->validatePassword($password)) {
+				return 3; // Password does not meet the criteria
+			}
+
+			if ($password !== $confirm) {
+				return 4; // Passwords do not match
+			}
+		}
 
 		try {
 			// Check if the username already exists
-			$stmt = $this->db->prepare("SELECT id FROM users WHERE username = :username");
-			$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+			$stmt = $this->db->prepare("SELECT id FROM users WHERE username = ?");
+			$stmt->bind_param('s', $username);
 			$stmt->execute();
-			$existing_user = $stmt->fetch(PDO::FETCH_ASSOC);
+			$result = $stmt->get_result();
+			$existing_user = $result->fetch_assoc();
 
 			if (empty($id)) { // New user
 				if ($existing_user) {
@@ -136,11 +146,8 @@ class Action
 				$hashed_password = $password ? password_hash($password, PASSWORD_DEFAULT) : null;
 
 				// Insert new user
-				$stmt = $this->db->prepare("INSERT INTO users (name, username, password, type) VALUES (:name, :username, :password, :type)");
-				$stmt->bindParam(':name', $name, PDO::PARAM_STR);
-				$stmt->bindParam(':username', $username, PDO::PARAM_STR);
-				$stmt->bindParam(':password', $hashed_password, PDO::PARAM_STR);
-				$stmt->bindParam(':type', $type, PDO::PARAM_INT);
+				$stmt = $this->db->prepare("INSERT INTO users (name, username, password, type) VALUES (?, ?, ?, ?)");
+				$stmt->bind_param('ssss', $name, $username, $hashed_password, $type); // 'ssss' indicates that all four parameters are strings
 
 			} else { // Update existing user
 				$id = intval($id); // Ensure 'id' is an integer
@@ -150,32 +157,46 @@ class Action
 				}
 
 				// Update user data
-				$update_query = "UPDATE users SET name = :name, username = :username, type = :type";
+				$update_query = "UPDATE users SET name = ?, username = ?, type = ?";
 				if (!empty($password)) {
 					$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-					$update_query .= ", password = :password";
+					$update_query .= ", password = ?";
 				}
-				$update_query .= " WHERE id = :id";
+				$update_query .= " WHERE id = ?";
 
 				$stmt = $this->db->prepare($update_query);
-				$stmt->bindParam(':name', $name, PDO::PARAM_STR);
-				$stmt->bindParam(':username', $username, PDO::PARAM_STR);
-				$stmt->bindParam(':type', $type, PDO::PARAM_INT);
+				// Bind parameters
 				if (!empty($password)) {
-					$stmt->bindParam(':password', $hashed_password, PDO::PARAM_STR);
+					// 'ssss' for name, username, password (if provided), and type (integer)
+					$stmt->bind_param('ssisi', $name, $username, $type, $hashed_password, $id);
+				} else {
+					// 'sssi' for name, username, type (integer), and id
+					$stmt->bind_param('ssii', $name, $username, $type, $id);
 				}
-				$stmt->bindParam(':id', $id, PDO::PARAM_INT);
 			}
 
 			// Execute the query
 			if ($stmt->execute()) {
 				return 1; // Success
+			} else {
+				return 0; // Query execution failed
 			}
 
-		} catch (PDOException $e) {
+		} catch (mysqli_sql_exception $e) {
 			// Log error and return a failure response
-			error_log("Database error: " . $e->getMessage());
+			//error_log("Database error: " . $e->getMessage());
 			return 0; // General failure
+		}
+	}
+
+	function validatePassword($password) {
+		// Check if password matches the criteria
+		$pattern = '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,20}$/';
+		
+		if (preg_match($pattern, $password)) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 

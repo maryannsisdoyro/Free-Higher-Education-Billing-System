@@ -18,5 +18,9 @@ if (session_status() == PHP_SESSION_NONE) {
 
 // - check authentication
 if(!isset($_SESSION['login_id']) && $_SERVER['PHP_SELF'] !== '/login.php')
-    header("location: login");
+    header("location: login.php");
+
+// - check if user is already logged in
+if (isset($_SESSION['login_id']) && $_SERVER['PHP_SELF'] == '/login.php')
+    header("location: index.php");
 ?>

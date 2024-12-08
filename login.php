@@ -29,15 +29,7 @@ ob_end_flush();
   <title><?php echo $_SESSION['system']['name'] ?></title>
 	<link rel="icon" type="image/x-icon" href="<?= htmlspecialchars('assets/logo.png') ?>">
  	
-
 <?php include('./header.php'); ?>
-<?php 
-
-
-if(isset($_SESSION['login_id']))
-header("location:index?page=home");
-
-?>
 
 </head>
 <style>

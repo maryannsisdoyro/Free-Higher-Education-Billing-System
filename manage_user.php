@@ -68,9 +68,15 @@ foreach($user->fetch_array() as $k =>$v){
 					setTimeout(function(){
 						location.reload()
 					},1500)
-				}else{
-					$('#msg').html('<div class="alert alert-danger">Username already exist</div>')
-					end_load()
+				} else if(resp == 3) {
+					$('#msg').html('<div class="alert alert-danger">Password must be between 8 and 20 characters long, with at least one letter, one number, and one special character.</div>');
+					end_load();
+				} else if(resp == 4) {
+					$('#msg').html('<div class="alert alert-danger">Passwords do not match</div>');
+					end_load();
+				} else{
+					$('#msg').html('<div class="alert alert-danger">Username already exist</div>');
+					end_load();
 				}
 			}
 		})
