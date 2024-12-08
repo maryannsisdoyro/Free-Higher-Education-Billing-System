@@ -1,5 +1,5 @@
 <?php
-echo "hwllor";
+// echo "hwllor";
 
 session_start();
 include('db.php'); // Assuming config.php contains database connection settings
