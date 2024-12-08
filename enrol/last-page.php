@@ -164,27 +164,6 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
         </div>
     </div>
 
-        <div class="col-12">
-        <div id="fee_clone_shiftee" style="display: none">
-            <table >
-                    <tr>
-                        <td class="text-center"><button class="btn-sm btn-outline-danger" type="button" onclick="rem_list($(this))" ><i class="fa fa-times"></i></button></td>
-                        <td>
-                            <input type="hidden" name="fid_shiftee[]">
-                            <input type="hidden" name="type_shiftee[]">
-                            <p><small><b class="ftype_shiftee"></b></small></p>
-                        </td>
-                        <td>
-                            <input type="hidden" name="amount_shiftee[]">
-                            <p class="text-right"><small><b class="famount_shiftee"></b></small></p>
-                        </td>
-                    </tr>
-            </table>    
-        </div>
-        </div>
-
-        </div>
-
 
 
     <!-- Include SweetAlert2 CSS -->
