@@ -99,6 +99,7 @@ if ($row) {
     $complete_name  = $row["stu_name"];
     
     $date_signed  = date('Y-m-d', strtotime($row["date_signed"]));
+    $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
     $course_to_be_enrolled  = $all_course[$row["course"]];
     $y_level = $row['year_level'];
     $semester = $row['semester'];
@@ -142,9 +143,12 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
             }
         }
     </style>
+
 </head>
 
 <body>
+
+
     <div class="container dont-print" style="font-size: smaller;">
         <div class="callout border-primary col-md-15 ">
             <video id="videoElement" autoplay class="hidden"></video>
@@ -1045,6 +1049,22 @@ $ftotal  , 2) ?></b></td>
     <a href="student-cor.php?application_no=<?= $id ?>" class="btn btn-secondary" style="width: 100px;">Previous</a>
 <a href="final-cor.php?application_no=<?= $id ?>" id="submit_btn" class="btn btn-danger d-block" style="width: 100px;">Submit</a>
 </div>
+
+<script>
+    document.getElementById("submit_btn").addEventListener("click", function(){
+        Swal.fire({
+        position: "middle",
+        icon: "success",
+        title: "Student officially enrolled",
+        showConfirmButton: false,
+        timer: 1500
+        }).then(() => {
+            
+        });
+    })
+  
+  
+</script>
 
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
