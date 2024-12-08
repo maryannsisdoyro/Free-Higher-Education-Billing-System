@@ -15,6 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['receiptrange'] = $_POST['receiptrange'];
 }
 
+$mcc = "Madridejos Community College";
+$mccaddress = "Bunakan, Madridejos, Cebu City";
+
 // Step 1: Retrieve the latest student ID from the database
 $query36 = mysqli_query($conn, "SELECT * FROM enroll2024");
 $row36 = mysqli_fetch_assoc($query36);
@@ -98,6 +101,7 @@ if ($row) {
     $complete_name  = $row["stu_name"];
     
     $date_signed  = date('Y-m-d', strtotime($row["date_signed"]));
+    $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
     $course_to_be_enrolled  = $all_course[$row["course"]];
     $y_level = $row['year_level'];
     $semester = $row['semester'];
@@ -144,6 +148,10 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 </head>
 
 <body>
+<div class="toast" id="alert_toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-body text-white">
+    </div>
+  </div>
     <div class="container dont-print" style="font-size: smaller;">
         <div class="callout border-primary col-md-15 ">
             <video id="videoElement" autoplay class="hidden"></video>
@@ -164,6 +172,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Include SweetAlert2 for feedback -->
 
     <script>
+         
         document.getElementById('print').addEventListener('click', function() {
             var formData = new FormData(document.getElementById('Subjectform')); // Replace 'Subjectform' with your form ID
 
@@ -947,7 +956,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                     <tr>
                         <td colspan="2"><strong>Last School Attended:</strong></td>
                         <td colspan="3" style="text-transform: uppercase;">
-                            <center><?php echo $shs; ?></center>
+                            <center><?php echo $semester == '2nd' ? $shs : $mcc ; ?></center>
                         </td>
                         <td colspan="5" style="text-align: center;"><strong>S.Y.</strong></td>
                         <td colspan="5" style="text-align: center;">
@@ -1658,7 +1667,18 @@ $ftotal  , 2) ?></b></td>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
+   Swal.fire({
+    position: "middle",
+    icon: "success",
+    title: "Student officially enrolled",
+    showConfirmButton: false,
+    timer: 1500
+    });
+  
+</script>
+<script>
     $(document).ready(function() {
+
         $('#filter').submit(function(e) {
             e.preventDefault();
             location.href = 'student-student.php?' + $(this).serialize();

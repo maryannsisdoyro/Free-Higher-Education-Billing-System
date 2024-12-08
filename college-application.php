@@ -33,16 +33,28 @@
         <a href="javascript:void(0);" class="btn btn-danger" id="import"> Import CSV</a>
         </div>
         
-        <div class="my-4" >
+        <div class="my-4 d-flex align-items-center" style="gap: 5px; ">
             <button type="button" class="btn btn-info" onclick="RestartoPrint()">0</button>
             <button type="button" class="btn btn-danger" onclick="RestartoUnprint()">1</button>
-            <a href="index.php?page=college-application&export=csv" class="btn btn-success">Export to CSV</a>
+           
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle btn btn-success" data-toggle="dropdown">Export CSV</a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-item">
+                    <a href="index.php?page=college-application&export=csv&semester=1st" class="btn btn-success">1st Semester</a>
+                    </li>
+                    <li class="dropdown-item">
+                    <a href="index.php?page=college-application&export=csv&semester=2nd" class="btn btn-success">2nd Semester</a>
+                    </li>
+                </ul>
+            </div>
+
             <a href="javascript:void(0);" onclick="printTable()" class="btn btn-primary">Print</a> 
             <button class="btn btn-primary" type="button" onclick="location.href='enrol/home.php?page=subjects'">Subject</button>
             <br>
             <br/>
-            <a href="#" id="delete-all-btn" class="btn btn-danger mt-2 delete-all-btn">Delete All</a>
-            <a href="#" id="recover-all-btn" class="btn btn-success mt-2 recover-all-btn">Recover All</a>
+            <a href="#" id="delete-all-btn" class="btn btn-danger delete-all-btn">Delete All</a>
+            <a href="#" id="recover-all-btn" class="btn btn-success recover-all-btn">Recover All</a>
             <!-- <a href="#" id="delete-all-btn" class="btn btn-danger mt-2 clean-all-btn">Empty Trash</a> -->
             <!-- <button class="btn btn-primary" type="button" onclick="location.href='students.php'">Students</button> -->
             <!--
@@ -50,7 +62,7 @@
         </div>
         </div>
         <div class="table-responsive">
-           <table id="table" class="table table-condensed table-bordered table-hover">
+           <table id="table-college-application" class="table table-condensed table-bordered table-hover">
     <thead>
       
         <tr>
@@ -110,7 +122,7 @@
                 $year = $row["year_level"] ?? '0';
                 if($row['curr'] == $academic_year && $row['semester'] == $semester_academic)
                 echo "<tr>
-                        <td class='text-center'><input type='checkbox' class='row_checkbox' name='selected_application[]' value='".$row["id"]."' data='".$row["stu_id"]."'></td> <!-- Checkbox -->
+                        <td class='text-center'><input type='checkbox' class='row_checkbox' name='selected_application[]' value='".$row["id"]."' data='".$row["stu_id"]."' data-application='".$row["application_no"]."'></td> <!-- Checkbox -->
                         <td>".$row["application_no"]."</td>
                         <td>".$row["stu_id"]."</td>
                         <td>".$row["stu_name"]."</td>
@@ -195,8 +207,8 @@
 		
 	})
         $(document).ready(function(){
-		$('table').dataTable({
-            aaSorting: [[0, "asc"]]
+		$('#table-college-application').dataTable({
+            aaSorting: [[5, "asc"], [7, "asc"]]
         })
 	})
     </script>
@@ -207,43 +219,54 @@
         allSelect.forEach(select => {
     select.onclick = () => {
         var application_no = select.value;
+        var app_id =  select.getAttribute('data-application');
         var stu_id = select.getAttribute('data');
         
         Swal.fire({
-            title: 'STUDENTS ENROLLMENT',
-            text: 'Records Information',
-            icon: 'info',
-            showCancelButton: true,
-            showDenyButton: true,    // Show the "Delete" button
-            confirmButtonText: 'Print',    // Text for the "Print" button
-            denyButtonText: 'Delete',      // Text for the "Delete" button
-            cancelButtonText: 'Cancel',
-            didRender: function() {
-                // Create custom "COR" button
-                const corButton = Swal.getConfirmButton().cloneNode();
-                corButton.style.backgroundColor = 'green';
-                corButton.innerText = 'COR';
-                corButton.classList.add('swal2-confirm', 'swal2-styled');
-                corButton.addEventListener('click', function() {
-                    Swal.close();
-                    // Redirect to the COR page
-                    window.location.href = "enrol/final-cor.php?application_no=" + application_no;
-                });
+    title: 'STUDENTS ENROLLMENT',
+    text: 'Records Information',
+    icon: 'info',
+    showCancelButton: true,
+    showDenyButton: true,    // Show the "Delete" button
+    confirmButtonText: 'Print',    // Text for the "Print" button
+    denyButtonText: 'Delete',      // Text for the "Delete" button
+    cancelButtonText: 'Cancel',
+    didRender: function() {
+        // Create custom "COR" button
+        const corButton = Swal.getConfirmButton().cloneNode();
+        corButton.style.backgroundColor = 'green';
+        corButton.innerText = 'COR';
+        corButton.classList.add('swal2-confirm', 'swal2-styled');
+        corButton.addEventListener('click', function() {
+            Swal.close();
+            // Redirect to the COR page
+            window.location.href = "enrol/final-cor.php?application_no=" + application_no;
+        });
 
-                // Create custom "Edit" button
-                const editButton = Swal.getConfirmButton().cloneNode();
-                editButton.innerText = 'Edit';
-                editButton.classList.add('swal2-confirm', 'swal2-styled');
-                editButton.addEventListener('click', function() {
-                    Swal.close();
-                    // Redirect to the Edit page
-                    window.location.href = "enrol/edit-enroll.php?id=" + application_no;
-                });
+        // Create custom "Edit" button
+        const editButton = Swal.getConfirmButton().cloneNode();
+        editButton.innerText = 'Edit';
+        editButton.classList.add('swal2-confirm', 'swal2-styled');
+        editButton.addEventListener('click', function() {
+            Swal.close();
+            // Redirect to the Edit page
+            window.location.href = "enrol/edit-enroll.php?id=" + application_no;
+        });
 
-                // Prepend custom buttons to Swal actions
-                Swal.getActions().prepend(corButton, editButton);
-            }
-        }).then((result) => {
+        // Create custom "Update Gender" button
+        const updateGenderButton = Swal.getConfirmButton().cloneNode();
+        updateGenderButton.innerText = 'Update Gender';
+        updateGenderButton.classList.add('swal2-confirm', 'swal2-styled');
+        updateGenderButton.addEventListener('click', function() {
+            Swal.close();
+            // Redirect to the Update Gender page
+            window.location.href = "enrol/update-gender.php?application_no=" + app_id;
+        });
+
+        // Prepend custom buttons to Swal actions
+        Swal.getActions().prepend(corButton, editButton, updateGenderButton);
+    }
+}).then((result) => {
             if (result.isConfirmed) {
                 // Open print page in a new tab when "Print" is clicked
                 window.open("enrol/print-college-enrol.php?application_no=" + application_no, "_blank");
