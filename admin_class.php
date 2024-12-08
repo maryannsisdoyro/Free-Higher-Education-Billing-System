@@ -207,9 +207,10 @@ class Action
 		}
 	
 		$id = intval($_POST['id']);
-	
-		$stmt = $this->db->prepare("DELETE FROM users WHERE id = :id");
-		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		
+		// Prepare the SQL query
+		$stmt = $this->db->prepare("DELETE FROM users WHERE id = ?");
+		$stmt->bind_param('i', $id);
 	
 		return $stmt->execute() ? 1 : 0;
 	}
@@ -266,23 +267,26 @@ class Action
 	
 		$user_id = $_SESSION['login_id'];
 	
-		$sql = "UPDATE users SET name = :name, username = :username";
-		
+		// Base query
+		$sql = "UPDATE users SET name = ?, username = ?";
+	
+		// If password is provided, add it to the query
 		if (isset($data['password'])) {
-			$sql .= ", password = :password";
+			$sql .= ", password = ?";
 		}
 	
-		$sql .= " WHERE id = :id";
+		// Add WHERE condition
+		$sql .= " WHERE id = ?";
 	
+		// Prepare the statement
 		$stmt = $this->db->prepare($sql);
-		$stmt->bindParam(':name', $data['name']);
-		$stmt->bindParam(':username', $data['username']);
-
+	
+		// Bind the parameters
 		if (isset($data['password'])) {
-			$stmt->bindParam(':password', $data['password']);
+			$stmt->bind_param('sssi', $data['name'], $data['username'], $data['password'], $user_id); // 'ssss' for 3 strings and 1 integer
+		} else {
+			$stmt->bind_param('ssi', $data['name'], $data['username'], $user_id); // 'sss' for 2 strings and 1 integer
 		}
-
-		$stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
 	
 		if ($stmt->execute()) {
 			return 1;
@@ -414,13 +418,31 @@ class Action
 	}
 	function delete_course()
 	{
-		extract($_POST);
-		$delete = $this->db->query("DELETE FROM courses where id = " . $id);
-		$delete2 = $this->db->query("DELETE FROM fees where course_id = " . $id);
-		if ($delete && $delete2) {
-			return 1;
+		if (isset($_POST['id'])) {
+			$id = intval($_POST['id']);  // Ensure id is an integer
+
+			if ($id <= 0) {
+				return 0;  // Invalid ID
+			}
+
+			$stmt1 = $this->db->prepare("DELETE FROM courses WHERE id = ?");
+			$stmt1->bind_param('i', $id);
+			$delete1 = $stmt1->execute();
+
+			$stmt2 = $this->db->prepare("DELETE FROM fees WHERE course_id = ?");
+			$stmt2->bind_param('i', $id);
+			$delete2 = $stmt2->execute();
+
+			if ($delete1 && $delete2) {
+				return 1;
+			} else {
+				return 0;
+			}
 		}
+
+		return 0;  // ID not set or invalid
 	}
+
 	function get_fees(){
 		
 		extract($_POST);
@@ -473,13 +495,14 @@ class Action
 	}
 	function delete_student()
 	{
+		// Check if 'id' is set and is numeric
 		if (!isset($_POST['id']) || !is_numeric($_POST['id'])) {
 			return 0;
 		}
 
 		$id = intval($_POST['id']);
-		$stmt = $this->db->prepare("DELETE FROM student WHERE id = :id");
-		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		$stmt = $this->db->prepare("DELETE FROM student WHERE id = ?");
+		$stmt->bind_param('i', $id);
 		return $stmt->execute() ? 1 : 0;
 	}
 	function save_fees()
@@ -518,8 +541,8 @@ class Action
 		}
 	
 		$id = intval($_POST['id']);
-		$stmt = $this->db->prepare("DELETE FROM student_ef_list WHERE id = :id");
-		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		$stmt = $this->db->prepare("DELETE FROM student_ef_list WHERE id = ?");
+		$stmt->bind_param('i', $id);
 		return $stmt->execute() ? 1 : 0;
 	}
 	function save_payment()
@@ -562,15 +585,15 @@ class Action
 				return 0;
 			}
 
-			$stmt = $this->db->prepare("DELETE FROM payments WHERE id = :id");
-			$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+			$stmt = $this->db->prepare("DELETE FROM payments WHERE id = ?");
+			$stmt->bind_param('i', $id);
 
 			if ($stmt->execute()) {
 				return 1;
 			} else {
 				return 0;
 			}
-		} catch (PDOException $e) {
+		} catch (mysqli_sql_exception $e) {
 			return 0;
 		}
 	}
@@ -584,16 +607,18 @@ class Action
 				return 2;
 			}
 	
-			$stmt = $this->db->prepare("SELECT id FROM users WHERE email = :email");
-			$stmt->bindParam(':email', $email, PDO::PARAM_STR);
+			// Prepare the query to check if email exists
+			$stmt = $this->db->prepare("SELECT id FROM users WHERE email = ?");
+			$stmt->bind_param('s', $email);  // 's' indicates the type is string
 			$stmt->execute();
+			$stmt->store_result();
 	
-			if ($stmt->rowCount() > 0) {
+			if ($stmt->num_rows > 0) {
 				$verification = uniqid();
 	
-				$update_stmt = $this->db->prepare("UPDATE users SET verification = :verification WHERE email = :email");
-				$update_stmt->bindParam(':verification', $verification, PDO::PARAM_STR);
-				$update_stmt->bindParam(':email', $email, PDO::PARAM_STR);
+				// Prepare the update statement to store the verification code
+				$update_stmt = $this->db->prepare("UPDATE users SET verification = ? WHERE email = ?");
+				$update_stmt->bind_param('ss', $verification, $email);  // 'ss' indicates two string parameters
 	
 				if ($update_stmt->execute()) {
 					$mail = new PHPMailer(true);
@@ -649,18 +674,18 @@ class Action
 				return 2;
 			}
 	
-			// Use prepared statements to securely query the database
-			$stmt = $this->db->prepare("SELECT id FROM users WHERE verification = :verification");
-			$stmt->bindParam(':verification', $verification, PDO::PARAM_STR);
+			// Prepare the query to check if the verification code exists
+			$stmt = $this->db->prepare("SELECT id FROM users WHERE verification = ?");
+			$stmt->bind_param('s', $verification);
 			$stmt->execute();
+			$stmt->store_result();
 	
-			if ($stmt->rowCount() > 0) {
-				$hashed_password = md5($new);
+			if ($stmt->num_rows > 0) {
+				$hashed_password = password_hash($new, PASSWORD_DEFAULT);
 	
-				// Update the password securely
-				$update_stmt = $this->db->prepare("UPDATE users SET password = :password WHERE verification = :verification");
-				$update_stmt->bindParam(':password', $hashed_password, PDO::PARAM_STR);
-				$update_stmt->bindParam(':verification', $verification, PDO::PARAM_STR);
+				// Prepare the query to update the password
+				$update_stmt = $this->db->prepare("UPDATE users SET password = ? WHERE verification = ?");
+				$update_stmt->bind_param('ss', $hashed_password, $verification);
 	
 				if ($update_stmt->execute()) {
 					return 1;
@@ -670,7 +695,7 @@ class Action
 			} else {
 				return 3;
 			}
-		} catch (PDOException $e) {
+		} catch (Exception $e) {
 			return 3;
 		}
 	}
@@ -1326,16 +1351,14 @@ class Action
 				die("Invalid input data.");
 			}
 
-			$stmt = $this->db->prepare("UPDATE enroll2024 SET section = :section WHERE id = :id");
-			$stmt->bindParam(':section', $section, PDO::PARAM_STR);
-			$stmt->bindParam(':id', $id, PDO::PARAM_INT);
-	
+			$stmt = $this->db->prepare("UPDATE enroll2024 SET section = ? WHERE id = ?");
+			$stmt->bind_param('si', $section, $id);
 			if ($stmt->execute()) {
 				return 1;
 			} else {
 				return 0;
 			}
-		} catch (PDOException $e) {
+		} catch (Exception $e) {
 			return 0;
 		}
 	}
@@ -1344,23 +1367,23 @@ class Action
 	{
 		extract($_POST);
 		$filename = $_FILES['fileInput']['name'];
-        $tmp_name = $_FILES['fileInput']['tmp_name'];
-        $folder = "./upload/" . $filename;
+		$tmp_name = $_FILES['fileInput']['tmp_name'];
+		$folder = "./upload/" . $filename;
 		$image = $_GET['image'];
 		$id = $_GET['application_no'];
 
 		try {
-			$stmt = $this->db->prepare("UPDATE enroll2024 SET image = :image WHERE id = :id");
-			$stmt->bindParam(':image', $image, PDO::PARAM_STR);
-			$stmt->bindParam(':id', $id, PDO::PARAM_INT);
-			$stmt->execute();
-	
-			if ($stmt->rowCount() > 0) {
+			// Prepare the query
+			$stmt = $this->db->prepare("UPDATE enroll2024 SET image = ? WHERE id = ?");
+			$stmt->bind_param('si', $image, $id); // 's' for string, 'i' for integer
+
+			// Execute the query and check if successful
+			if ($stmt->execute()) {
 				return 1; // Success
 			} else {
 				return 0;
 			}
-		} catch (PDOException $e) {
+		} catch (Exception $e) {
 			return 0;
 		}
 	}
