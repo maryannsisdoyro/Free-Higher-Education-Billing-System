@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(2);
 include('db.php'); // Assuming config.php contains database connection settings
 // Redirect to login page if user is not logged in
 if (empty($_SESSION['alogin'])) {
