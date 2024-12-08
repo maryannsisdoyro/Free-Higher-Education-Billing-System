@@ -1,5 +1,6 @@
 <?php
 include('./common.php');
+exit;
 ?>
 
 <!DOCTYPE html>
@@ -205,7 +206,7 @@ window._conf = function($msg='',$func='',$params = []){
         $('#login-form button[type="button"]').attr('disabled', true).html('Logging in...');
         if ($(this).find('.alert-danger').length > 0) $(this).find('.alert-danger').remove();
         $.ajax({
-          url: 'ajax.php?action=login',
+          url: '/ajax?action=login',
           method: 'POST',
           data: $('#login-form').serialize(),
           error: function(err) {
