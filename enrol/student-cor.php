@@ -9,6 +9,9 @@ if (empty($_SESSION['alogin'])) {
     // exit(); // Stop further execution
 }
 
+$mcc = "Madridejos Community College";
+$mccaddress = "Bunakan, Madridejos, Cebu City";
+
 // Check if form data is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Sanitize and store form data into session variables
@@ -100,6 +103,7 @@ if ($row) {
     $complete_name  = $row["stu_name"];
     
     $date_signed  = date('Y-m-d', strtotime($row["date_signed"]));
+    $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
     $course_to_be_enrolled  = $all_course[$row["course"]];
     $y_level = $row['year_level'];
     $semester = $row['semester'];
@@ -107,7 +111,7 @@ if ($row) {
    
 }
 
-
+$row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -949,7 +953,7 @@ if ($row) {
                     <tr>
                         <td colspan="2"><strong>Last School Attended:</strong></td>
                         <td colspan="3" style="text-transform: uppercase;">
-                            <center><?php echo $shs; ?></center>
+                            <center><?php echo $semester == '2nd' || $y_level == '2nd' || $y_level == '3rd' || $y_level == '4th' ? $shs : $mcc ; ?></center>
                         </td>
                         <td colspan="5" style="text-align: center;"><strong>S.Y.</strong></td>
                         <td colspan="5" style="text-align: center;">

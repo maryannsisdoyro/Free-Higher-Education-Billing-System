@@ -159,7 +159,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
         </div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-lg-12">
             <h5><b>Fee Details</b></h5>
             <hr>
@@ -226,7 +226,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                     </tr>
                 </tfoot>
             </table>
-        </div>
+        </div> -->
 
         <div class="col-12">
         <div id="fee_clone_shiftee" style="display: none">
