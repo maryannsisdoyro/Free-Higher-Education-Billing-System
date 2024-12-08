@@ -1,15 +1,15 @@
+<?php
+include('./common.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-// include('./common.php');
 
-echo "HELLO WORLD";
-
-session_start();
 //echo password_hash("maryannlawan@123456", PASSWORD_DEFAULT);
 // echo session_status();
 
-echo password_hash('mayannlawan@@123', PASSWORD_DEFAULT);
+//echo password_hash('mayannlawan@@123', PASSWORD_DEFAULT);
 
 // echo md5('admin123');
 include('./db_connect.php');
@@ -69,7 +69,6 @@ header("location:index?page=home");
   			<div class="card col-md-4">
   				<div class="card-body">
   					<form id="login-form" method="POST">
-						sdsdsdsddsdsd
   						<div class="form-group">
   							<label for="username" class="control-label">Username</label>
   							<input type="text" id="username" name="username" class="form-control">
