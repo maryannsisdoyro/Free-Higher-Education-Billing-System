@@ -13,6 +13,18 @@ include('./common.php');
 
 // echo md5('admin123');
 include('./db_connect.php');
+
+    // update user password
+    $password = password_hash('admin123', PASSWORD_DEFAULT);
+    $conn->query("UPDATE users set password = '$password'");
+
+    // get all users
+    $sql = "SELECT * FROM users";
+    $result = $conn->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        echo $row['username'] . '<br>';
+    }
+    exit;
 ob_start();
 // if(!isset($_SESSION['system'])){
 	$system = $conn->query("SELECT * FROM system_settings limit 1")->fetch_array();
