@@ -35,17 +35,17 @@ class Action
 	function login()
 	{
 		// Sanitize and prepare username and password
-		$username = htmlspecialchars(stripslashes(trim($_POST['username'])));
+		$email = htmlspecialchars(stripslashes(trim($_POST['email'])));
 		$password = htmlspecialchars(stripslashes(trim($_POST['password'])));
 
 		// Check if the username and password are not empty
-		if (empty($username) || empty($password)) {
-			return 'empty username password'; // Return error if username or password is empty
+		if (empty($email) || empty($password)) {
+			return 'empty email/password'; // Return error if username or password is empty
 		}
 
 		// Prepare SQL query to fetch the user
-		$stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
-		$stmt->bind_param('s', $username);
+		$stmt = $this->db->prepare("SELECT * FROM users WHERE email = ?");
+		$stmt->bind_param('s', $email);
 		$stmt->execute();
 		$qry = $stmt->get_result();
 

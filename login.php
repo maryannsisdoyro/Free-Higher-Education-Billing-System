@@ -62,7 +62,7 @@ ob_end_flush();
   				<div class="card-body">
   					<form id="login-form" method="POST">
   						<div class="form-group">
-  							<label for="username" class="control-label">Username</label>
+  							<label for="username" class="control-label">Email</label>
   							<input type="text" id="username" name="username" class="form-control">
   						</div>
 						  <label for="password" class="control-label">Password</label>
