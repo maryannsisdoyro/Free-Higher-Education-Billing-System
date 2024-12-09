@@ -22,7 +22,8 @@ include('./db_connect.php');
     $sql = "SELECT * FROM users";
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
-        echo $row['username'] . '<br>';
+        echo "<pre>";
+        print_r($row);
     }
     exit;
 ob_start();
