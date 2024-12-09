@@ -115,6 +115,7 @@ class Action
 		// Sanitize inputs
 		$name = htmlspecialchars(trim($name));
 		$username = htmlspecialchars(trim($username));
+		$email = htmlspecialchars(trim($email));
 		$password = !empty($password) ? trim($password) : null;
 		$confirm = !empty($confirm) ? trim($confirm) : null;
 		$type = intval($type); // Ensure 'type' is an integer
@@ -146,8 +147,8 @@ class Action
 				$hashed_password = $password ? password_hash($password, PASSWORD_DEFAULT) : null;
 
 				// Insert new user
-				$stmt = $this->db->prepare("INSERT INTO users (name, username, password, type) VALUES (?, ?, ?, ?)");
-				$stmt->bind_param('ssss', $name, $username, $hashed_password, $type); // 'ssss' indicates that all four parameters are strings
+				$stmt = $this->db->prepare("INSERT INTO users (name, email, username, password, type) VALUES (?, ?, ?, ?)");
+				$stmt->bind_param('sssss', $name, $email, $username, $hashed_password, $type); // 'ssss' indicates that all four parameters are strings
 
 			} else { // Update existing user
 				$id = intval($id); // Ensure 'id' is an integer
@@ -157,7 +158,7 @@ class Action
 				}
 
 				// Update user data
-				$update_query = "UPDATE users SET name = ?, username = ?, type = ?";
+				$update_query = "UPDATE users SET name = ?, email = ?, username = ?, type = ?";
 				if (!empty($password)) {
 					$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 					$update_query .= ", password = ?";
@@ -168,10 +169,10 @@ class Action
 				// Bind parameters
 				if (!empty($password)) {
 					// 'ssss' for name, username, password (if provided), and type (integer)
-					$stmt->bind_param('ssisi', $name, $username, $type, $hashed_password, $id);
+					$stmt->bind_param('ssisi', $name, $email, $username, $type, $hashed_password, $id);
 				} else {
 					// 'sssi' for name, username, type (integer), and id
-					$stmt->bind_param('ssii', $name, $username, $type, $id);
+					$stmt->bind_param('ssii', $name, $email, $username, $type, $id);
 				}
 			}
 

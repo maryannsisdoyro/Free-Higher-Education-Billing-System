@@ -22,6 +22,10 @@ foreach($user->fetch_array() as $k =>$v){
 			<input type="text" name="username" id="username" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
 		</div>
 		<div class="form-group">
+			<label for="username">Email</label>
+			<input type="text" name="email" id="email" class="form-control" value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>" required  autocomplete="off">
+		</div>
+		<div class="form-group">
 			<label for="password">New Password</label>
 			<input type="password" name="password" id="password" class="form-control" value="" autocomplete="off">
 			<?php if(isset($meta['id'])): ?>
