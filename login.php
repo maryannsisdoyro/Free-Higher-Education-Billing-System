@@ -76,7 +76,7 @@ ob_end_flush();
   					<form id="login-form" method="POST">
   						<div class="form-group">
   							<label for="username" class="control-label">Email</label>
-  							<input type="text" id="username" name="username" class="form-control">
+  							<input type="text" id="username" name="email" class="form-control">
   						</div>
 						  <label for="password" class="control-label">Password</label>
   							<div style="position: relative;">
@@ -225,7 +225,7 @@ window._conf = function($msg='',$func='',$params = []){
                 location.href = 'index.php?page=home';
               }, 1500);
             } else {
-              $('#login-form').prepend('<div class="alert alert-danger">Username or password is incorrect.</div>');
+              $('#login-form').prepend('<div class="alert alert-danger">Email or password is incorrect.</div>');
               $('#login-form button[type="button"]').removeAttr('disabled').html('Login');
             }
           }
