@@ -169,10 +169,10 @@ class Action
 				// Bind parameters
 				if (!empty($password)) {
 					// 'ssss' for name, username, password (if provided), and type (integer)
-					$stmt->bind_param('ssisi', $name, $email, $username, $type, $hashed_password, $id);
+					$stmt->bind_param('sssisi', $name, $email, $username, $type, $hashed_password, $id);
 				} else {
 					// 'sssi' for name, username, type (integer), and id
-					$stmt->bind_param('ssii', $name, $email, $username, $type, $id);
+					$stmt->bind_param('sssii', $name, $email, $username, $type, $id);
 				}
 			}
 
