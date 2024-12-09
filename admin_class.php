@@ -130,9 +130,9 @@ class Action
 		}
 
 		try {
-			// Check if the username already exists
-			$stmt = $this->db->prepare("SELECT id FROM users WHERE username = ?");
-			$stmt->bind_param('s', $username);
+			// Check if the username already exists or email already exists
+			$stmt = $this->db->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
+			$stmt->bind_param('ss', $username, $email);
 			$stmt->execute();
 			$result = $stmt->get_result();
 			$existing_user = $result->fetch_assoc();
@@ -698,8 +698,8 @@ class Action
 	{
 		try {
 			$verification = htmlspecialchars(trim($_POST['verification']));
-			$new = $_POST['new'];
-			$confirm = $_POST['confirm'];
+			$new = trim($_POST['new']);
+			$confirm = trim($_POST['confirm']);
 	
 			if (empty($verification) || empty($new) || empty($confirm)) {
 				return 3;
