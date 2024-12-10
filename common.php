@@ -27,4 +27,13 @@ if(!isset($_SESSION['login_id']) && !in_array($_SERVER['PHP_SELF'] , $pages))
 // - check if user is already logged in
 if (isset($_SESSION['login_id']) && in_array($_SERVER['PHP_SELF'] , $pages))
     header("location: index.php");
+
+
+if (!isset($_SESSION['user_token']) && !in_array($_SERVER['PHP_SELF'] , $pages)) {
+    session_destroy();
+    foreach ($_SESSION as $key => $value) {
+        unset($_SESSION[$key]);
+    }
+    header("location:login.php");
+}
 ?>
