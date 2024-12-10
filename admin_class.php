@@ -55,12 +55,33 @@ class Action
 
 			// Verify the password using password_verify
 			if (password_verify($password, $row['password'])) {
+				$sessionToken = bin2hex(random_bytes(32)); // Generate a secure session token
+				$userAgent = $_SERVER['HTTP_USER_AGENT']; // Get the browser's User-Agent
+
+				// Prepare an SQL statement
+				$stmtSession = $this->db->prepare("INSERT INTO user_sessions (user_id, session_token, user_agent) VALUES (?, ?, ?)");
+
+				// Bind parameters (i = integer, s = string)
+				$stmtSession->bind_param("iss", $row['id'], $sessionToken, $userAgent);
+
+				// Execute the statement
+				$stmtSession->execute();
+				foreach ($_SESSION as $key => $value) {
+					unset($_SESSION[$key]);
+				}
+				session_destroy();
+
+				// Start a new session
+				session_id($sessionToken);
+				session_start();
+				
 				// Set session variables after successful login
 				$_SESSION['login_id'] = $row['id'];
 				$_SESSION['login_name'] = $row['name'];
 				$_SESSION['login_username'] = $row['username'];
 				$_SESSION['login_type'] = $row['type'];
 				$_SESSION['login_verification'] = $row['verification'];
+				$_SESSION['user_token'] = $sessionToken;
 
 				return 1; // Success: Logged in
 			} else {
@@ -86,12 +107,78 @@ class Action
 			return 3;
 		}
 	}
+
+	function switch_user() {
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$sessionToken = session_id(); // Current session token
+			$userAgent = $_SERVER['HTTP_USER_AGENT']; // Current user agent
+			$selectedUserId = intval($_POST['user_id'] ?? 0); // User ID to switch to
+		
+			if ($selectedUserId > 0) {
+				// Check if the selected user has a session on this browser
+				$stmt = $conn->prepare("
+					SELECT * 
+					FROM user_sessions 
+					WHERE user_id = ? AND session_token = ? AND user_agent = ?
+				");
+				$stmt->bind_param('iss', $selectedUserId, $sessionToken, $userAgent);
+				$stmt->execute();
+				$result = $stmt->get_result();
+		
+				if ($result->num_rows > 0) {
+					// Clear current session
+					session_unset();
+					session_destroy();
+					foreach ($_SESSION as $key => $value) {
+						unset($_SESSION[$key]);
+					}
+		
+					// Start a new session for the selected user
+					session_id($sessionToken); // Reuse the session token
+					session_start();
+					
+					// Prepare an SQL statement
+					$stmtSession = $conn->prepare("SELECT * FROM users WHERE id = ?");
+
+					// Bind parameters (i = integer, s = string)
+					$stmtSession->bind_param("i", $selectedUserId);
+
+					// Execute the statement
+					$stmtSession->execute();
+					session_id($sessionToken);
+					
+					// Set session variables after successful login
+					$_SESSION['login_id'] = $row['id'];
+					$_SESSION['login_name'] = $row['name'];
+					$_SESSION['login_username'] = $row['username'];
+					$_SESSION['login_type'] = $row['type'];
+					$_SESSION['login_verification'] = $row['verification'];
+		
+					return 1;
+				} else {
+					return 0;
+				}
+			} else {
+				return 0;
+			}
+		} else {
+			return 0;
+		}
+	}
+
 	function logout()
 	{
+		$user_id = $_SESSION['login_id'];
 		session_destroy();
 		foreach ($_SESSION as $key => $value) {
 			unset($_SESSION[$key]);
 		}
+
+		// delete user session
+		$stmt = $this->db->prepare("DELETE FROM user_sessions WHERE user_id = ?");
+		$stmt->bind_param('s', $user_id);
+		$stmt->execute();
+
 		header("location:login.php");
 	}
 	function logout2()
@@ -147,7 +234,7 @@ class Action
 				$hashed_password = $password ? password_hash($password, PASSWORD_DEFAULT) : null;
 
 				// Insert new user
-				$stmt = $this->db->prepare("INSERT INTO users (name, email, username, password, type) VALUES (?, ?, ?, ?)");
+				$stmt = $this->db->prepare("INSERT INTO users (name, email, username, password, type) VALUES (?, ?, ?, ?, ?)");
 				$stmt->bind_param('sssss', $name, $email, $username, $hashed_password, $type); // 'ssss' indicates that all four parameters are strings
 
 			} else { // Update existing user
