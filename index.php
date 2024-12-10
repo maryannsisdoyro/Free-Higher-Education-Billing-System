@@ -5,8 +5,8 @@
 
   if (isset($_SESSION['user_token'])) {
     // Prepare SQL query to fetch the user
-		$stmt = $conn->prepare("SELECT id FROM user_sessions WHERE session_token = ?");
-		$stmt->bind_param('s', $_SESSION['user_token']);
+		$stmt = $conn->prepare("SELECT id FROM user_sessions WHERE session_token = ? AND user_id = ?");
+		$stmt->bind_param('ss', $_SESSION['user_token'], $_SESSION['login_id']);
 		$stmt->execute();
 		$qry = $stmt->get_result();
 
