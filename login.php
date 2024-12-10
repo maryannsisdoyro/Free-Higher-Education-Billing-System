@@ -9,7 +9,7 @@ include('./common.php');
 //echo password_hash("maryannlawan@123456", PASSWORD_DEFAULT);
 // echo session_status();
 
-//echo password_hash('mayannlawan@@123', PASSWORD_DEFAULT);
+echo password_hash('mayannlawan@@123', PASSWORD_DEFAULT);
 
 // echo md5('admin123');
 include('./db_connect.php');
