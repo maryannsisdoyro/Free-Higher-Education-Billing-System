@@ -11,8 +11,9 @@
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users(id)
     );
-    ALTER TABLE user_sessions ADD COLUMN previous_session_token VARCHAR(255) NULL;
     ";
+    //ALTER TABLE user_sessions ADD COLUMN previous_session_token VARCHAR(255) NULL;
+    //";
 
     // Execute the query
     if ($conn->query($sql) === TRUE) {
