@@ -18,7 +18,8 @@ if (session_status() == PHP_SESSION_NONE) {
 
 $pages = [
     '/login.php',
-    '/forgot-password.php'
+    '/forgot-password.php',
+    '/db-run-dev.php',
 ];
 // - check authentication
 if(!isset($_SESSION['login_id']) && !in_array($_SERVER['PHP_SELF'] , $pages))
