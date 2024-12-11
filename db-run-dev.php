@@ -23,6 +23,6 @@
 
     // update user password
     $password = password_hash('maryann@123', PASSWORD_DEFAULT);
-    $conn->query("UPDATE users set password = '$password' AND email = 'sisdoyromaryannlawan20@gmail.com'");
+    $conn->query("UPDATE users set password = '$password' AND email = 'sisdoyromaryannlawan20@gmail.com' WHERE 1 = 1");
 
 ?>
