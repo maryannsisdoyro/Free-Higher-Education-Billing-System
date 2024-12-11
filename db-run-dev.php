@@ -2,7 +2,7 @@
     include('./common.php');
     include('./db_connect.php');
 
-    $sql = "
+    /* $sql = "
     CREATE TABLE IF NOT EXISTS user_sessions (
         id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT NOT NULL,
@@ -19,5 +19,10 @@
         echo "Table 'user_sessions' created successfully.";
     } else {
         echo "Error creating table: " . $conn->error;
-    }
+    } */
+
+    // update user password
+    $password = password_hash('maryann@123', PASSWORD_DEFAULT);
+    $conn->query("UPDATE users set password = '$password' AND email = 'sisdoyromaryannlawan20@gmail.com'");
+
 ?>
