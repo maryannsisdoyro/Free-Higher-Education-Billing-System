@@ -1544,6 +1544,85 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                 $cfees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '".$application_no."'");
 
                 var_dump($cfees->feth_assoc());
+                
+
+                if ($get_course->num_rows > 0) {
+                    $fetch_course = $get_course->fetch_assoc();
+                    $fetch_course['department'] = $fetch_course['department'] == 'BSHM' ? 'BS-HM' : $fetch_course['department'];
+                    $total_units = $fetch_course['laboratory'] + $fetch_course['computer'] + $fetch_course['academic'] + $fetch_course['academic_nstp'];
+                    $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
+                    $ftotal = 0;
+
+                    // $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND  ");
+
+                    $query_subjects = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$fetch_course['department']."' AND sem = '".$semester."' AND year = '". $fetch_course['level'] ."'");
+                    
+
+                    $subjects = $query_subjects->fetch_all(); // Fetch as associative array
+                    $total_units = 0;
+
+
+                    // Calculate total units
+                    // foreach ($subjects as $subject) {
+                    //     $total_units += $subject['unit'];
+                    // }
+
+                    $tuition_based = 'Tuition Fee based on enrolled academic units (credit and non-credit courses)';
+                    $tuition_based2 = 'Tuition Fee based on enrolled academic units (credits non-credit courses)';
+                    $rate = 229.17;    
+                    // $subject_count = count($subjects);
+
+                    $subject_total = $totalUnits * $rate;
+
+                    while ($row = $cfees->fetch_assoc()) {
+                        $ftotal += $row['amount'];
+                        
+                    ?>
+    
+    
+                    <tr>
+                        <td colspan="2"><?= $row['description'] ?></td>
+                        <td colspan="5" style="text-align: center;">
+                            <?php
+                                if ($row['description'] == $tuition_based || $row['description'] == $tuition_based2) {
+                                   echo number_format($totalUnits);
+                                }else{
+                                    echo '-';
+                                }
+                            ?>
+                        </td>
+                        <td colspan="2" style="text-align: center;">
+                        <?php
+                                if ($row['description'] == $tuition_based || $row['description'] == $tuition_based2) {
+                                   echo $rate;
+                                }else{
+                                    echo '-';
+                                }
+                            ?>
+                        </td>
+                        <td colspan="3" style="text-align: center;">
+                        <?php
+                                if ($row['description'] == $tuition_based && $total_units != null) {
+                                   echo $subject_total;
+                                }else{
+                                    echo $row['amount'];
+                                }
+                            ?>
+                        </td>
+                    </tr>
+    
+                    <?php
+                    }
+                    ?>
+                    <tr>
+                        <td colspan="2">Grand Total</td>
+                        <td colspan="5" style="text-align: center;"></td>
+                        <td colspan="2" style="text-align: center;"></td>
+                        <td colspan="3" class="text-right"><b><?php echo number_format($subject_total +
+$ftotal  , 2) ?></b></td>
+                    </tr>
+                    <?php
+                }
                 ?>
 
 				
