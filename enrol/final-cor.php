@@ -92,6 +92,7 @@ if ($row) {
     $place_of_birth  = $row["p_birth"];
     $civil_status  = $row["civil"];
     $elementary  = $row["ele"];
+    $enroll_status  = $row["enroll_status"];
     $elementary_year_graduated  = $row["ele_year"];
     $high_school  = $row["high"];
     $high_school_year_graduated  = $row["high_year"];
@@ -109,6 +110,7 @@ if ($row) {
    
 }
 
+echo $enroll_status;
 $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 ?>
 <!DOCTYPE html>
