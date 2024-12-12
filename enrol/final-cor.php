@@ -1543,7 +1543,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                 echo $application_no;
                 $cfees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '".$application_no."'");
 
-                var_dump($cfees);
+                var_dump($cfees->feth_assoc());
                 ?>
 
 				
