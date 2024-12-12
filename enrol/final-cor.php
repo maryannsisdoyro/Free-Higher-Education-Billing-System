@@ -1539,7 +1539,6 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                 
             //   echo $totalUnits;
 
-                var_dump($row);
 
                 echo $application_no;
                 
