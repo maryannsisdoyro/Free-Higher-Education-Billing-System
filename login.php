@@ -5,7 +5,7 @@ include('./common.php');
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-echo "test";
+
 //echo password_hash("maryannlawan@123456", PASSWORD_DEFAULT);
 // echo session_status();
 
