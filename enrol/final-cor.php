@@ -1534,14 +1534,14 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 					<td colspan="3">Total</td>
 				</tr>
 				<?php
-                $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
-				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND semester = '". $semester ."' ");
+                // $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
+				// $get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND semester = '". $semester ."' ");
                 
             //   echo $totalUnits;
 
 
                 echo $application_no;
-                $cfees = $conn->query("SELECT * FROM student_individual_fees where application_no = '".$application_no."'");
+                $cfees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '".$application_no."'");
 
                 var_dump($cfees);
                 ?>
