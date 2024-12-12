@@ -92,7 +92,6 @@ if ($row) {
     $place_of_birth  = $row["p_birth"];
     $civil_status  = $row["civil"];
     $elementary  = $row["ele"];
-    $enroll_status  = $row["enroll_status"];
     $elementary_year_graduated  = $row["ele_year"];
     $high_school  = $row["high"];
     $high_school_year_graduated  = $row["high_year"];
@@ -109,6 +108,7 @@ if ($row) {
     
    
 }
+
 $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 ?>
 <!DOCTYPE html>
@@ -1398,6 +1398,129 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 </body>
 
 </html>
+
+
+<!-- <table class="table table-bordered table-hover" style="font-size: small;">
+    <thead>
+        <tr>
+            <th colspan="7">
+                <center>
+                    <h4 style="font-size: 15px;"><strong>ASSESSMENT</strong></h4>
+                </center>
+            </th>
+        </tr>
+    </thead>
+    <tbody id="feeDetails">
+        <tr>
+            <td colspan="4" class="no-border"></td>
+            <td class="no-border" style="text-align: center;">Units Enrolled</td>
+            <td class="no-border" style="text-align: center;">Rate per Unit</td>
+            <td style="text-align: center;">Total</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="no-border"><strong>Tuition Fee Due for the Semester</strong></td>
+            <td class="no-border" style="text-align: center;"><?php echo number_format($totalUnits); ?></td>
+            <td style="text-align: right;">229.17</td>
+            <td style="text-align: right;">229.17</td>
+        </tr>
+        <tr style="text-align: center;">
+            <td colspan="4" class="no-border"><strong>Miscellaneous Fees Applicable:</strong></td>
+            <td class="no-border"></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="4" class="no-border">Library Fees</td>
+            <td></td>
+            <td></td>
+            <td style="text-align: right;">150.00</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="no-border">Computer Fees</td>
+            <td></td>
+            <td></td>
+            <td style="text-align: right;">0.00</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="no-border">Laboratory Fees</td>
+            <td style="text-align: center;">0.00</td>
+            <td style="text-align: right;">150.00</td>
+            <td style="text-align: right;">0.00</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="no-border">School ID Fees</td>
+            <td></td>
+            <td></td>
+            <td style="text-align: right;">0.00</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="no-border">Athletic Fees</td>
+            <td></td>
+            <td></td>
+            <td style="text-align: right;">150.00</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="no-border">Admission Fees</td>
+            <td></td>
+            <td></td>
+            <td style="text-align: right;">0.00</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="no-border">Development Fees</td>
+            <td></td>
+            <td></td>
+            <td style="text-align: right;">250.00</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="no-border">Guidance Fees</td>
+            <td></td>
+            <td></td>
+            <td style="text-align: right;">100.00</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="no-border">Handbook Fees</td>
+            <td></td>
+            <td></td>
+            <td style="text-align: right;">0.00</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="no-border">Entrance Fees</td>
+            <td></td>
+            <td></td>
+            <td style="text-align: right;">200.00</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="no-border">Registration Fees</td>
+            <td></td>
+            <td></td>
+            <td style="text-align: right;">300.00</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="no-border">Medical and Dental Fees</td>
+            <td></td>
+            <td></td>
+            <td style="text-align: right;">300.00</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="no-border">Cultural Fees</td>
+            <td></td>
+            <td></td>
+            <td style="text-align: right;">200.00</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="total"><strong>Total Miscellaneous Fees</strong></td>
+            <td></td>
+            <td></td>
+            <td class="total" style="text-align: right;">1,650.00</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="grand-total"><strong>Grand Total</strong></td>
+            <td></td>
+            <td></td>
+            <td class="grand-total" style="text-align: right;">7,608.42</td>
+        </tr>
+    </tbody>
+</table> -->
 <div style="margin-top: 20px;" class="">
 
 			<table id="example2" class="table table-bordered table-hover">
@@ -1411,105 +1534,90 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 					<td colspan="3">Total</td>
 				</tr>
 				<?php
-                echo $enroll_status;
+                $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
+				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND semester = '". $semester ."' ");
+                
+            //   echo $totalUnits;
+                
+                if ($get_course->num_rows > 0) {
+                    $fetch_course = $get_course->fetch_assoc();
+                    $fetch_course['department'] = $fetch_course['department'] == 'BSHM' ? 'BS-HM' : $fetch_course['department'];
+                    $total_units = $fetch_course['laboratory'] + $fetch_course['computer'] + $fetch_course['academic'] + $fetch_course['academic_nstp'];
+                    $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
+                    $ftotal = 0;
 
-                if ($enroll_status == 'shiftee') {
-                    $cfees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '".$application_no."'");
+                    // $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND  ");
 
-                    if ($cfees->num_rows > 0) {
+                    $query_subjects = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$fetch_course['department']."' AND sem = '".$semester."' AND year = '". $fetch_course['level'] ."'");
+                    
+
+                    $subjects = $query_subjects->fetch_all(); // Fetch as associative array
+                    $total_units = 0;
+
+
+                    // Calculate total units
+                    // foreach ($subjects as $subject) {
+                    //     $total_units += $subject['unit'];
+                    // }
+
+                    $tuition_based = 'Tuition Fee based on enrolled academic units (credit and non-credit courses)';
+                    $tuition_based2 = 'Tuition Fee based on enrolled academic units (credits non-credit courses)';
+                    $rate = 229.17;    
+                    // $subject_count = count($subjects);
+
+                    $subject_total = $totalUnits * $rate;
+
+                    while ($row = $cfees->fetch_assoc()) {
+                        $ftotal += $row['amount'];
+                        
+                    ?>
+    
+    
+                    <tr>
+                        <td colspan="2"><?= $row['description'] ?></td>
+                        <td colspan="5" style="text-align: center;">
+                            <?php
+                                if ($row['description'] == $tuition_based || $row['description'] == $tuition_based2) {
+                                   echo number_format($totalUnits);
+                                }else{
+                                    echo '-';
+                                }
+                            ?>
+                        </td>
+                        <td colspan="2" style="text-align: center;">
+                        <?php
+                                if ($row['description'] == $tuition_based || $row['description'] == $tuition_based2) {
+                                   echo $rate;
+                                }else{
+                                    echo '-';
+                                }
+                            ?>
+                        </td>
+                        <td colspan="3" style="text-align: center;">
+                        <?php
+                                if ($row['description'] == $tuition_based && $total_units != null) {
+                                   echo $subject_total;
+                                }else{
+                                    echo $row['amount'];
+                                }
+                            ?>
+                        </td>
+                    </tr>
+    
+                    <?php
+                    }
                     ?>
                     <tr>
-                        <td>1</td>
+                        <td colspan="2">Grand Total</td>
+                        <td colspan="5" style="text-align: center;"></td>
+                        <td colspan="2" style="text-align: center;"></td>
+                        <td colspan="3" class="text-right"><b><?php echo number_format($subject_total +
+$ftotal  , 2) ?></b></td>
                     </tr>
-                    <?php 
-                    }
-                    
-                }else{
-                    $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
-                    $get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND semester = '". $semester ."' ");
-    
-                    if ($get_course->num_rows > 0) {
-                        $fetch_course = $get_course->fetch_assoc();
-                        $fetch_course['department'] = $fetch_course['department'] == 'BSHM' ? 'BS-HM' : $fetch_course['department'];
-                        $total_units = $fetch_course['laboratory'] + $fetch_course['computer'] + $fetch_course['academic'] + $fetch_course['academic_nstp'];
-                        $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
-                        $ftotal = 0;
-    
-                        // $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND  ");
-    
-                        $query_subjects = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$fetch_course['department']."' AND sem = '".$semester."' AND year = '". $fetch_course['level'] ."'");
-                        
-    
-                        $subjects = $query_subjects->fetch_all(); // Fetch as associative array
-                        $total_units = 0;
-    
-    
-                        // Calculate total units
-                        // foreach ($subjects as $subject) {
-                        //     $total_units += $subject['unit'];
-                        // }
-    
-                        $tuition_based = 'Tuition Fee based on enrolled academic units (credit and non-credit courses)';
-                        $tuition_based2 = 'Tuition Fee based on enrolled academic units (credits non-credit courses)';
-                        $rate = 229.17;    
-                        // $subject_count = count($subjects);
-    
-                        $subject_total = $totalUnits * $rate;
-    
-                        while ($row = $cfees->fetch_assoc()) {
-                            $ftotal += $row['amount'];
-                            
-                        ?>
-        
-        
-                        <tr>
-                            <td colspan="2"><?= $row['description'] ?></td>
-                            <td colspan="5" style="text-align: center;">
-                                <?php
-                                    if ($row['description'] == $tuition_based || $row['description'] == $tuition_based2) {
-                                       echo number_format($totalUnits);
-                                    }else{
-                                        echo '-';
-                                    }
-                                ?>
-                            </td>
-                            <td colspan="2" style="text-align: center;">
-                            <?php
-                                    if ($row['description'] == $tuition_based || $row['description'] == $tuition_based2) {
-                                       echo $rate;
-                                    }else{
-                                        echo '-';
-                                    }
-                                ?>
-                            </td>
-                            <td colspan="3" style="text-align: center;">
-                            <?php
-                                    if ($row['description'] == $tuition_based && $total_units != null) {
-                                       echo $subject_total;
-                                    }else{
-                                        echo $row['amount'];
-                                    }
-                                ?>
-                            </td>
-                        </tr>
-        
-                        <?php
-                        }
-                        ?>
-                        <tr>
-                            <td colspan="2">Grand Total</td>
-                            <td colspan="5" style="text-align: center;"></td>
-                            <td colspan="2" style="text-align: center;"></td>
-                            <td colspan="3" class="text-right"><b><?php echo number_format($subject_total +
-    $ftotal  , 2) ?></b></td>
-                        </tr>
-                        <?php
-                    }
-                    
+                    <?php
                 }
-
                 ?>
-
+				
 				
 			</table>
 </div>
