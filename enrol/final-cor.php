@@ -1417,10 +1417,10 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
             //   echo $totalUnits;
 
 
-                echo $application_no;
-                $cfees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '".$application_no."'");
+                // echo $application_no;
+                // $cfees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '".$application_no."'");
 
-                var_dump($cfees->feth_assoc());
+                // var_dump($cfees->feth_assoc());
                 
 
                 if ($get_course->num_rows > 0) {
