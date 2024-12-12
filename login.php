@@ -236,7 +236,7 @@ window._conf = function($msg='',$func='',$params = []){
               Swal.fire({
                 icon: 'success',
                 title: 'Account logged in successfully',
-                showConfirmButton: false,
+                //showConfirmButton: false,
                 timer: 1500
               });
               //alert_toast("Account logged in successfully", 'success');
@@ -248,7 +248,7 @@ window._conf = function($msg='',$func='',$params = []){
               swal.fire({
                 icon: 'error',
                 title: 'Email or password is incorrect.',
-                showConfirmButton: false,
+                //showConfirmButton: false,
                 timer: 1500
               });
               $('#login-form button[type="button"]').removeAttr('disabled').html('Login');
