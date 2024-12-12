@@ -104,7 +104,7 @@ ob_end_flush();
               </div>
               <div class="form-group">
                   <input type="checkbox" id="terms-checkbox">
-                  <label for="terms-checkbox"> I agree to the <a href="#" id="showTerms">Terms and Conditions</a></label>
+                  <label for="terms-checkbox"> I agree to the <a href="javascript:void(0);" id="showTerms">Terms and Conditions</a></label>
               </div>
               <div class="d-flex justify-content-between">
                   <a href="forgot-password.php">Forgot Password</a>
