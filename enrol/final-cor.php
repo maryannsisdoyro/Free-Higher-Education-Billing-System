@@ -1414,10 +1414,11 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                 echo $enroll_status;
 
                 if ($enroll_status == 'shiftee') {
-                    echo "hello";
-                }
+                    $cfees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '".$application_no."'");
 
-                if ($enroll_status == 'shiftee') {
+                    if ($cfees->num_rows > 0) {
+                    echo 1;
+                    }
                     
                 }else{
                     $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
