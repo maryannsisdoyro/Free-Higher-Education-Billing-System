@@ -73,7 +73,7 @@
                       INNER JOIN 
                           courses c ON e.course = c.department
                         WHERE e.curr = '$academic_year' AND e.semester = '$semester_academic' AND e.delete_status = $active_stat
-                     GROUP BY e.id ORDER BY e.course,e.lname ASC GROUP BY e.fname,e.lname");
+                     GROUP BY e.id ORDER BY e.course,e.lname ASC");
 
                      
                    
