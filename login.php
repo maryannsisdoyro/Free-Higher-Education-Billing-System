@@ -120,7 +120,7 @@ ob_end_flush();
 
   </body>
   <script src="https://www.google.com/recaptcha/api.js?render=6LeWO1YqAAAAALCrSqRbOX0mYKiSSyWWDe65aYB_"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
   <script>
 	 window.start_load = function(){
@@ -233,12 +233,24 @@ window._conf = function($msg='',$func='',$params = []){
           success: function(resp) {
             console.log(resp);
             if (resp == 1) {
-              alert_toast("Account logged in successfully", 'success');
+              Swal.fire({
+                icon: 'success',
+                title: 'Account logged in successfully',
+                showConfirmButton: false,
+                timer: 1500
+              });
+              //alert_toast("Account logged in successfully", 'success');
               setTimeout(function() {
                 location.href = 'index.php?page=home';
               }, 1500);
             } else {
-              $('#login-form').prepend('<div class="alert alert-danger">Email or password is incorrect.</div>');
+              //$('#login-form').prepend('<div class="alert alert-danger">Email or password is incorrect.</div>');
+              swal.fire({
+                icon: 'error',
+                title: 'Email or password is incorrect.',
+                showConfirmButton: false,
+                timer: 1500
+              });
               $('#login-form button[type="button"]').removeAttr('disabled').html('Login');
             }
           }
