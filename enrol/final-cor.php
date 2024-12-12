@@ -1418,6 +1418,8 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                 }
 
                 if ($enroll_status == 'shiftee') {
+                    
+                }else{
                     $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                     $get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND semester = '". $semester ."' ");
     
@@ -1499,10 +1501,6 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                         <?php
                     }
                     
-                }else{
-                    ?>
-                    dhfhsdhkjsh
-                    <?php 
                 }
 
                 ?>
