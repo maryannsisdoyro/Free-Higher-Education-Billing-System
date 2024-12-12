@@ -83,9 +83,12 @@ ob_end_flush();
                                 <input type="password" id="password" name="password" class="form-control my-2">
                              <i class="bx bx-show fs-4" style="cursor: pointer; position: absolute; top: 0; right: 0; margin: 12px 10px 0 0; font-size: 15px;" id="show-pass1"></i>
                             </div>
-  						<div class="d-flex justify-content-between">
-						  <a href="forgot-password.php">Forgot Password</a>
-						  <button type="submit" class="btn-sm btn-block btn-wave col-md-4 btn-danger">Login</button>
+  						<div class="">
+                <a href="terms.php" target="_blank">Terms and Conditions</a>
+              </div>
+              <div class="d-flex justify-content-between">
+                <a href="forgot-password.php">Forgot Password</a>
+                <button type="submit" class="btn-sm btn-block btn-wave col-md-4 btn-danger">Login</button>
               <!-- <button
                 data-sitekey="6LeWO1YqAAAAALCrSqRbOX0mYKiSSyWWDe65aYB_" 
                 data-callback='onSubmit' 
