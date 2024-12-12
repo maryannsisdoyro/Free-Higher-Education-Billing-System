@@ -1417,7 +1417,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                     $cfees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '".$application_no."'");
 
                     if ($cfees->num_rows > 0) {
-                    echo 1;
+                    echo "hello world";
                     }
                     
                 }else{
