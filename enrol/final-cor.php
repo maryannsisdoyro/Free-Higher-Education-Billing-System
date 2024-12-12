@@ -1539,13 +1539,13 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                 
             //   echo $totalUnits;
 
-            echo $row['id'];
+            echo $row['application_no	'];
                 
                 if ($get_course->num_rows > 0) {
                     $fetch_course = $get_course->fetch_assoc();
                     $fetch_course['department'] = $fetch_course['department'] == 'BSHM' ? 'BS-HM' : $fetch_course['department'];
                     $total_units = $fetch_course['laboratory'] + $fetch_course['computer'] + $fetch_course['academic'] + $fetch_course['academic_nstp'];
-                    $cfees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '".$row['id']."'");
+                    $cfees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '".$row['application_no	']."'");
                     $ftotal = 0;
 
                     // $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND  ");
