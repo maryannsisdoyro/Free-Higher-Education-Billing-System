@@ -57,6 +57,23 @@ ob_end_flush();
 		height: 100vh;
 		display: flex;
 	}
+  section {
+    padding: 0;
+    overflow: hidden;
+  }
+  #termsModal h1 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  #termsModal h2 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  #termsModal h3 {
+    font-size: 18px;
+    font-weight: bold;
+  }
 
 </style>
 
@@ -87,7 +104,7 @@ ob_end_flush();
               </div>
               <div class="form-group">
                   <input type="checkbox" id="terms-checkbox">
-                  <label for="terms-checkbox"> I agree to the <a href="/terms.php" target="_blank">Terms and Conditions</a></label>
+                  <label for="terms-checkbox"> I agree to the <a href="#" id="showTerms">Terms and Conditions</a></label>
               </div>
               <div class="d-flex justify-content-between">
                   <a href="forgot-password.php">Forgot Password</a>
@@ -117,12 +134,71 @@ ob_end_flush();
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
+    <!-- Modal -->
+    <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container mt-3">
+                        <h1 class="text-center">Terms and Conditions for MCC Free Higher Education Billing System</h1>
+                        <section>
+                            <h2>1. Eligibility Verification</h2>
+                            <p>The administration is responsible for verifying the eligibility of students applying for free tuition under applicable programs.</p>
+                            <p>Required documents (e.g., proof of residency, income certificate, academic records) must be reviewed and approved before granting benefits.</p>
+                        </section>
+                        <section>
+                            <h2>2. Data Privacy</h2>
+                            <p>All personal information collected during enrollment will be protected in accordance with applicable data privacy laws.</p>
+                            <p>Information will only be used for academic and administrative purposes.</p>
+                        </section>
+                        <section>
+                            <h2>3. Fee Coverage and Exclusions</h2>
+                            <p>Ensure that free tuition benefits cover only tuition fees, as per program guidelines.</p>
+                            <p>Miscellaneous fees (e.g., lab fees, activity fees) should be clearly itemized and billed separately to students.</p>
+                        </section>
+                        <section>
+                            <h2>4. Record Management</h2>
+                            <p>Maintain accurate records of enrolled students and their eligibility status for auditing and reporting purposes.</p>
+                            <p>Safeguard all personal data in compliance with applicable data privacy laws.</p>
+                        </section>
+                        <section>
+                            <h2>5. Compliance with Regulations</h2>
+                            <p>Adhere to government guidelines for free tuition programs, including reporting requirements and benefit limits.</p>
+                            <p>Conduct regular reviews to ensure compliance with both internal and external policies.</p>
+                        </section>
+                        <section>
+                            <h2>6. Communication with Students</h2>
+                            <p>Clearly communicate the terms of the free tuition program and billing system to students during enrollment.</p>
+                            <p>Notify students promptly of any changes to fees, or any program policies.</p>
+                        </section>
+                        <section>
+                            <h2>7. Policy Updates</h2>
+                            <p>Any changes to the terms and conditions must be approved by the university administration and communicated to students in advance.</p>
+                        </section>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
   </body>
   <script src="https://www.google.com/recaptcha/api.js?render=6LeWO1YqAAAAALCrSqRbOX0mYKiSSyWWDe65aYB_"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
   <script>
+    $("#showTerms").click(function() {
+        $("#termsModal").modal('show');
+    });
 	 window.start_load = function(){
     $('body').prepend('<di id="preloader2"></di>')
   }
