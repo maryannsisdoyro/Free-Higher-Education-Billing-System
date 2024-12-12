@@ -1412,6 +1412,11 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 				</tr>
 				<?php
                 echo $enroll_status;
+
+                if ($enroll_status == 'shiftee') {
+                    echo "hello";
+                }
+
                 if ($enroll_status != 'shiftee' || $enroll_status != 'SHIFTEE') {
                     $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                     $get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND semester = '". $semester ."' ");
