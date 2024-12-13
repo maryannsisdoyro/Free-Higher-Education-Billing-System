@@ -530,15 +530,15 @@ if ($row) {
                     'inst' => $value['inst']
                 ];
                     ?>
-                    <!-- <script>
+                    <script>
                         window.location.href = "second-page.php?application_no=<?= $_GET['application_no'] ?>
-                    </script> -->
+                    </script>
                     <?php 
             }
 
-            echo "<pre>";
-            var_dump($_SESSION['STUDENT_SUBJECT']);
-            echo "</pre>";
+            // echo "<pre>";
+            // var_dump($_SESSION['STUDENT_SUBJECT']);
+            // echo "</pre>";
 
             foreach($_SESSION['STUDENT_SUBJECT'] as $stud_sub):
                 $totalUnits += $stud_sub['units'];
