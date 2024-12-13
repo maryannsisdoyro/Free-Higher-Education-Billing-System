@@ -459,7 +459,7 @@ if ($row) {
                     }
                 </style>
                 <div class="table-responsive table-responsive-data2" id="subjects_table">
-                <form class="d-flex gap-2 g-2 mb-3" style="gap: 10px; flex-wrap: wrap;">
+                <form method="POST" class="d-flex gap-2 g-2 mb-3" style="gap: 10px; flex-wrap: wrap;">
                     <input type="hidden" name="id" value="<?= isset($_SESSION['STUDENT_SUBJECT']) ? $_SESSION['STUDENT_SUBJECT']['id'] + 1 : 1 ?>">
                     <input type="text" name="time" class="form-control" style="width: 49%;" placeholder="Time">
                     <input type="text" name="day" class="form-control" style="width: 49%;" placeholder="Day">
@@ -474,7 +474,12 @@ if ($row) {
                 <?php 
                     if (isset($_POST['time'])) {
                         foreach ($_POST as $key => $value) {
-                            var_dump($_POST);
+                            echo $key . "\n" . $value;
+                            if ($value != NULL) {
+                                $_SESSION['STUDENT_SUBJECT'][] = [
+                                    $key => $value
+                                ];
+                            }
                         }
                     }
                 ?>
