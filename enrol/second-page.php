@@ -524,8 +524,9 @@ if ($row) {
             $totalUnits = 0;
             $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$row['course']."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
             $subject_count = 1;
+            $_SESSION['STUDENT_SUBJECT'] = [];
             if (!isset($_SESSION['STUDENT_SUBJECT'])) {
-                $_SESSION['STUDENT_SUBJECT'] = [];
+               
                 foreach ($query as $row) :
                     $_SESSION['STUDENT_SUBJECT'][] = [
                         'id' => $subject_count++,
