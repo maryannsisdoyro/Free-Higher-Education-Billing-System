@@ -487,6 +487,7 @@ if ($row) {
         </thead>
         <tbody>
             <?php
+                  unset($_SESSION['STUDENT_SUBJECT']);
             foreach ($_SESSION['STUDENT_SUBJECT'] as $key => $value) {
                 if (isset($_GET['remove'])) {
                     if ($value['id'] == $_GET['remove']) {
@@ -515,7 +516,7 @@ if ($row) {
                     ];
                 endforeach;
             }
-
+       
             if (isset($_POST['time'])) {
                 $last = end($_SESSION['STUDENT_SUBJECT']);
                 $next_id = isset($last['id']) ? (int)$last['id'] + 1 : 1;
@@ -567,13 +568,6 @@ if ($row) {
             </tr>
         </tfoot>
 </table>
-
-<?php 
-
- 
-                // unset($_SESSION['STUDENT_SUBJECT']);
-
-                ?>
                     <!--   <div class="center-images">
        <img src="r2.jpg" alt="MCC Logo" style="height: 90px; width: 800px;">
     </div> -->
