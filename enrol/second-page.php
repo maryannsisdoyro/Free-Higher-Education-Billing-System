@@ -507,10 +507,6 @@ if ($row) {
 
             foreach($_SESSION['STUDENT_SUBJECT'] as $stud_sub):
                 $totalUnits += $stud_sub['units'];
-
-              
-                
-
             ?>
                 <tr>
                     <td class="text-center"><?php echo htmlentities($stud_sub['time']); ?></td>
