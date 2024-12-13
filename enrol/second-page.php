@@ -478,7 +478,14 @@ if ($row) {
                             echo $key . "\n" . $value;
                             if ($value != NULL) {
                                 $_SESSION['STUDENT_SUBJECT'][] = [
-                                    $key => $value,
+                                    'id' => $value['id']
+                                    'time' => $value['time']
+                                    'day' => $value['day']
+                                    'subjectcode' => $value['subjectcode']
+                                    'subdes' => $value['subdes']
+                                    'units' => $value['units']
+                                    'room' => $value['room']
+                                    'inst' => $value['inst']
                                 ];
                             }
                         }
