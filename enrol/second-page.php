@@ -105,12 +105,43 @@ if ($row) {
 }
 
 if (isset($_GET['next'])) {
+    // Assuming you have already connected to the database in $conn
 
-   foreach ($_SESSION['STUDENT_SUBJECT'] as $stud) {
-        echo $stud['id'] . "\n";
-   }
+    // Loop through each subject in the session
+    foreach ($_SESSION['STUDENT_SUBJECT'] as $stud) {
+        // Prepare the SQL query to insert the data into the subject_individual table
+        $stmt = $conn->prepare("INSERT INTO subject_individual (sem, year, course, tbl_time, tbl_day, subjectcode, subdes, prerequi, units, room, inst) 
+                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    // $stmt = $conn->query("INSERT INTO subject_individual()");  
+        // Bind the parameters to the prepared statement
+        $stmt->bind_param("sssssssssss", 
+            $stud['sem'],       // sem
+            $stud['year'],      // year
+            $stud['course'],    // course
+            $stud['time'],      // tbl_time
+            $stud['day'],       // tbl_day
+            $stud['subjectcode'], // subjectcode
+            $stud['subdes'],    // subdes
+            $stud['prerequi'] ?? '', // prerequi, assuming it's optional
+            $stud['units'],     // units
+            $stud['room'],      // room
+            $stud['inst']       // inst
+        );
+
+        // Execute the query
+        if ($stmt->execute()) {
+            echo "Subject added successfully.<br>";
+        } else {
+            echo "Error adding subject: " . $stmt->error . "<br>";
+        }
+    }
+
+    // Optional: Redirect after processing
+   ?>
+   <script>
+    window.location.href = "last-page.php?application_no=<?= $_GET['application_no'] ?>"
+   </script>
+   <?php 
 }
 
 ?>
