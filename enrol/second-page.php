@@ -492,6 +492,11 @@ if ($row) {
                 if (isset($_GET['remove'])) {
                     if ($value['id'] == $_GET['remove']) {
                         unset($_SESSION['STUDENT_SUBJECT'][$key]);
+                        ?>
+                        <script>
+                            window.location.href = "second-page.php?application_no=<?= $_GET['application_no'] ?>
+                        </script>
+                        <?php 
                     }
                 }
             }
