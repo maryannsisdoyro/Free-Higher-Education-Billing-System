@@ -459,6 +459,17 @@ if ($row) {
                     }
                 </style>
                 <div class="table-responsive table-responsive-data2" id="subjects_table">
+
+                <form class="d-flex gap-2 g-2">
+                    <input type="text" name="time" class="form-control" placeholder="Time">
+                    <input type="text" name="day" class="form-control" placeholder="Day">
+                    <input type="text" name="subcode" class="form-control" placeholder="Subject Code">
+                    <input type="text" name="subdesc" class="form-control" placeholder="Sucject Description">
+                    <input type="text" name="units" class="form-control" placeholder="Units">
+                    <input type="text" name="room" class="form-control" placeholder="Room">
+                    <input type="text" name="instructor" class="form-control" placeholder="Instructor">
+                    <button type="submit" class="btn btn-danger">Add</button>
+                </form>
                 <table id="example2" class="table table-bordered table-hover" style="font-size: small;">
         <thead>
             <tr>
