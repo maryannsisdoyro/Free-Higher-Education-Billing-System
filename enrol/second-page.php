@@ -460,8 +460,11 @@ if ($row) {
                 </style>
                 <div class="table-responsive table-responsive-data2" id="subjects_table">
                 <form method="POST" class="d-flex gap-2 g-2 mb-3" style="gap: 10px; flex-wrap: wrap;">
-                    <?php $last = end($_SESSION['STUDENT_SUBJECT']); ?>
-                    <input type="hidden" name="id" value="<?= isset($_SESSION['STUDENT_SUBJECT']) ? $last + 1 : 1 ?>">
+                    <?php
+                    $last = end($_SESSION['STUDENT_SUBJECT']); // Get the last subject
+                    $next_id = isset($last['id']) ? $last['id'] + 1 : 1;
+                    ?>
+                    <input type="hidden" name="id" value="<?= $next_id ?>">
                     <input type="text" name="time" class="form-control" style="width: 49%;" placeholder="Time">
                     <input type="text" name="day" class="form-control" style="width: 49%;" placeholder="Day">
                     <input type="text" name="subjectcode" class="form-control" style="width: 49%;" placeholder="Subject Code">
