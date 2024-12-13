@@ -110,8 +110,8 @@ if (isset($_GET['next'])) {
     // Loop through each subject in the session
     foreach ($_SESSION['STUDENT_SUBJECT'] as $stud) {
         // Prepare the SQL query to insert the data into the subject_individual table
-        $stmt = $conn->prepare("INSERT INTO subject_individual (sem, year, course, tbl_time, tbl_day, subjectcode, subdes, prerequi, units, room, inst) 
-                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO subject_individual (sem, year, course, tbl_time, tbl_day, subjectcode, subdes, units, room, inst) 
+                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         // Bind the parameters to the prepared statement
         $stmt->bind_param("sssssssssss", 
@@ -122,7 +122,6 @@ if (isset($_GET['next'])) {
             $stud['day'],       // tbl_day
             $stud['subjectcode'], // subjectcode
             $stud['subdes'],    // subdes
-            $stud['prerequi'] ?? '', // prerequi, assuming it's optional
             $stud['units'],     // units
             $stud['room'],      // room
             $stud['inst']       // inst
