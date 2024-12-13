@@ -520,7 +520,7 @@ if ($row) {
                 $last = end($_SESSION['STUDENT_SUBJECT']);
                 $next_id = isset($last['id']) ? (int)$last['id'] + 1 : 1;
                 $_SESSION['STUDENT_SUBJECT'][] = [
-                    'id' => 20,
+                    'id' => $next_id,
                     'time' => $value['time'],
                     'day' => $value['day'],
                     'subjectcode' => $value['subjectcode'],
@@ -535,6 +535,10 @@ if ($row) {
                     </script>
                     <?php 
             }
+
+            echo "<pre>";
+            var_dump($_SESSION['STUDENT_SUBJECT']);
+            echo "</pre>";
 
             foreach($_SESSION['STUDENT_SUBJECT'] as $stud_sub):
                 $totalUnits += $stud_sub['units'];
