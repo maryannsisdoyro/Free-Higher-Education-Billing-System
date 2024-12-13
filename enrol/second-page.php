@@ -460,11 +460,6 @@ if ($row) {
                 </style>
                 <div class="table-responsive table-responsive-data2" id="subjects_table">
                 <form method="POST" class="d-flex gap-2 g-2 mb-3" style="gap: 10px; flex-wrap: wrap;">
-                    <?php
-                    $last = end($_SESSION['STUDENT_SUBJECT']);
-                    $next_id = isset($last['id']) ? (int)$last['id'] + 1 : 1;
-                    ?>
-                    <input type="hidden" name="id" value="<?= $next_id ?>">
                     <input type="text" name="time" class="form-control" style="width: 49%;" placeholder="Time">
                     <input type="text" name="day" class="form-control" style="width: 49%;" placeholder="Day">
                     <input type="text" name="subjectcode" class="form-control" style="width: 49%;" placeholder="Subject Code">
@@ -551,13 +546,16 @@ if ($row) {
 </table>
 
 <?php 
+
+ 
                 // unset($_SESSION['STUDENT_SUBJECT']);
                     if (isset($_POST['time'])) {
+                        $last = end($_SESSION['STUDENT_SUBJECT']);
+                        $next_id = isset($last['id']) ? (int)$last['id'] + 1 : 1;
                         foreach ($_POST as $key => $value) {
-                            echo $key . "\n" . $value;
                             if ($value != NULL) {
                                 $_SESSION['STUDENT_SUBJECT'][] = [
-                                    'id' => $value['id'],
+                                    'id' => $next_id
                                     'time' => $value['time'],
                                     'day' => $value['day'],
                                     'subjectcode' => $value['subjectcode'],
