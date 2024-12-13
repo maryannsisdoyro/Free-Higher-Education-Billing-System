@@ -463,7 +463,7 @@ if ($row) {
                     <input type="text" name="time" class="form-control" style="width: 49%;" placeholder="Time">
                     <input type="text" name="day" class="form-control" style="width: 49%;" placeholder="Day">
                     <input type="text" name="subjectcode" class="form-control" style="width: 49%;" placeholder="Subject Code">
-                    <input type="text" name="subdes" class="form-control" style="width: 49%;" placeholder="Sucject Description">
+                    <input type="text" name="subdes" class="form-control" style="width: 49%;" placeholder="Subject Description">
                     <input type="number" name="units" class="form-control" style="width: 49%;" placeholder="Units">
                     <input type="text" name="room" class="form-control" style="width: 49%;" placeholder="Room">
                     <input type="text" name="inst" class="form-control" style="width: 49%;" placeholder="Instructor">
