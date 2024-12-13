@@ -90,7 +90,7 @@ ob_end_flush();
   		<div id="login-center" class="row justify-content-center">
   			<div class="card col-md-4">
   				<div class="card-body">
-            <form id="login-form" method="POST">
+<!--             <form id="login-form" method="POST">
 		    <p id="error-message" style="color: red; display: none;">Invalid credentials. Attempts left: <span id="attempts-left"></span></p>
               <div class="form-group">
                   <label for="username" class="control-label">Email</label>
@@ -110,8 +110,28 @@ ob_end_flush();
               <div class="d-flex justify-content-between">
                   <a href="forgot-password.php">Forgot Password</a>
                   <button type="submit" class="btn-sm btn-block btn-wave col-md-4 btn-danger" id="login-button" disabled>Login</button>
-              </div>
-
+              </div> -->
+<form id="login-form" method="POST">
+  <p id="error-message" style="color: red; display: none;">Invalid credentials. Attempts left: <span id="attempts-left"></span></p>
+  <div class="form-group">
+    <label for="username" class="control-label">Email</label>
+    <input type="text" id="username" name="email" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="password" class="control-label">Password</label>
+    <div style="position: relative;">
+      <input type="password" id="password" name="password" class="form-control my-2">
+      <i class="bx bx-show fs-4" style="cursor: pointer; position: absolute; top: 0; right: 0; margin: 12px 10px 0 0; font-size: 15px;" id="show-pass1"></i>
+    </div>
+  </div>
+  <div class="form-group">
+    <input type="checkbox" id="terms-checkbox">
+    <label for="terms-checkbox"> I agree to the <a href="javascript:void(0);" id="showTerms">Terms and Conditions</a></label>
+  </div>
+  <div class="d-flex justify-content-between">
+    <a href="forgot-password.php">Forgot Password</a>
+    <button type="submit" class="btn-sm btn-block btn-wave col-md-4 btn-danger" id="login-button">Login</button>
+  </div>
               <script>
                   document.getElementById('terms-checkbox').addEventListener('change', function() {
                       document.getElementById('login-button').disabled = !this.checked;
@@ -369,16 +389,17 @@ window._conf = function($msg='',$func='',$params = []){
   <p id="error-message" style="color: red; display: none;">Invalid credentials. Attempts left: <span id="attempts-left"></span></p>
 </form>
 
+
 <script>
   const maxAttempts = 3;
   let attempts = maxAttempts;
-  let lockDuration = 180; // Lock duration in seconds
+  let lockDuration = 30; // Lock duration in seconds
   let isLocked = false;
 
   const loginForm = document.getElementById('login-form');
   const errorMessage = document.getElementById('error-message');
   const attemptsLeft = document.getElementById('attempts-left');
-  const loginButton = document.getElementById('login-btn');
+  const loginButton = document.getElementById('login-button');
 
   attemptsLeft.textContent = attempts;
 
@@ -410,7 +431,6 @@ window._conf = function($msg='',$func='',$params = []){
     errorMessage.textContent = `Too many invalid attempts. Please try again in ${lockDuration} seconds.`;
     errorMessage.style.display = 'block';
     loginButton.disabled = true;
-    loginButton.textContent = 'Locked';
 
     const timer = setInterval(() => {
       lockDuration--;
@@ -426,10 +446,9 @@ window._conf = function($msg='',$func='',$params = []){
   function resetForm() {
     isLocked = false;
     attempts = maxAttempts;
-    lockDuration = 180;
+    lockDuration = 30;
     errorMessage.style.display = 'none';
     loginButton.disabled = false;
-    loginButton.textContent = 'Login';
     attemptsLeft.textContent = attempts;
   }
 
@@ -447,5 +466,6 @@ window._conf = function($msg='',$func='',$params = []){
     }
   });
 </script>
+
 
 </html>
