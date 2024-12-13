@@ -521,13 +521,13 @@ if ($row) {
                 $next_id = isset($last['id']) ? (int)$last['id'] + 1 : 1;
                 $_SESSION['STUDENT_SUBJECT'][] = [
                     'id' => $next_id,
-                    'time' => $value['time'],
-                    'day' => $value['day'],
-                    'subjectcode' => $value['subjectcode'],
-                    'subdes' => $value['subdes'],
-                    'units' => $value['units'],
-                    'room' => $value['room'],
-                    'inst' => $value['inst']
+                    'time' => $_POST['time'],
+                    'day' => $_POST['day'],
+                    'subjectcode' => $_POST['subjectcode'],
+                    'subdes' => $_POST['subdes'],
+                    'units' => $_POST['units'],
+                    'room' => $_POST['room'],
+                    'inst' => $_POST['inst']
                 ];
                     ?>
                     <script>
