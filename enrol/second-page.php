@@ -460,7 +460,7 @@ if ($row) {
                 </style>
                 <div class="table-responsive table-responsive-data2" id="subjects_table">
 
-                <form class="d-flex gap-2 g-2">
+                <form class="d-flex gap-2 g-2 mb-3" style="gap: 10px; flex-wrap: wrap;">
                     <input type="text" name="time" class="form-control" placeholder="Time">
                     <input type="text" name="day" class="form-control" placeholder="Day">
                     <input type="text" name="subcode" class="form-control" placeholder="Subject Code">
