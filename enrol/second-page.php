@@ -462,7 +462,7 @@ if ($row) {
                 <form method="POST" class="d-flex gap-2 g-2 mb-3" style="gap: 10px; flex-wrap: wrap;">
                     <?php
                     $last = end($_SESSION['STUDENT_SUBJECT']);
-                    $next_id = isset($last['id']) ? $last['id'] + 1 : 1;
+                    $next_id = isset($last['id']) ? (int)$last['id'] + 1 : 1;
                     ?>
                     <input type="hidden" name="id" value="<?= $next_id ?>">
                     <input type="text" name="time" class="form-control" style="width: 49%;" placeholder="Time">
