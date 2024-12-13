@@ -496,27 +496,6 @@ if ($row) {
                 }
             }
 
-
-            // Assuming $conn is your database connection
-            $totalUnits = 0;
-            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$row['course']."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
-            $subject_count = 1;
-            if (!isset($_SESSION['STUDENT_SUBJECT'])) {
-                $_SESSION['STUDENT_SUBJECT'] = [];
-                foreach ($query as $row) :
-                    $_SESSION['STUDENT_SUBJECT'][] = [
-                        'id' => $subject_count++,
-                        'time' => $row['tbl_time'],
-                        'day' => $row['tbl_day'],
-                        'subjectcode' => $row['subjectcode'],
-                        'subdes' => $row['subdes'],
-                        'units' => $row['units'],
-                        'room' => $row['room'],
-                        'inst' => $row['inst']
-                    ];
-                endforeach;
-            }
-       
             if (isset($_POST['time'])) {
                 $last = end($_SESSION['STUDENT_SUBJECT']);
                 $next_id = isset($last['id']) ? (int)$last['id'] + 1 : 1;
@@ -538,6 +517,27 @@ if ($row) {
                         window.location.href = "second-page.php?application_no=<?= $_GET['application_no'] ?>
                     </script>
                     <?php 
+            }
+
+
+            // Assuming $conn is your database connection
+            $totalUnits = 0;
+            $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$row['course']."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
+            $subject_count = 1;
+            if (!isset($_SESSION['STUDENT_SUBJECT'])) {
+                $_SESSION['STUDENT_SUBJECT'] = [];
+                foreach ($query as $row) :
+                    $_SESSION['STUDENT_SUBJECT'][] = [
+                        'id' => $subject_count++,
+                        'time' => $row['tbl_time'],
+                        'day' => $row['tbl_day'],
+                        'subjectcode' => $row['subjectcode'],
+                        'subdes' => $row['subdes'],
+                        'units' => $row['units'],
+                        'room' => $row['room'],
+                        'inst' => $row['inst']
+                    ];
+                endforeach;
             }
 
             foreach($_SESSION['STUDENT_SUBJECT'] as $stud_sub):
