@@ -505,7 +505,7 @@ if ($row) {
                 endforeach;
             }
 
-            foreach($_SESSION['STUDENT_SUBJECT'] as $key => $stud_sub):
+            foreach($_SESSION['STUDENT_SUBJECT'] as $stud_sub):
                 $totalUnits += $stud_sub['units'];
 
               
