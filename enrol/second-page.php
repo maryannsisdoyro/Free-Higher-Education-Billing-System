@@ -494,7 +494,7 @@ if ($row) {
                         unset($_SESSION['STUDENT_SUBJECT'][$key]);
                         ?>
                         <script>
-                            window.location.href = "second-page.php?application_no=<?= $_GET['application_no'] ?>
+                            window.location.href = "second-page.php?application_no=<?= $_GET['application_no'] ?>"
                         </script>
                         <?php 
                     }
@@ -536,7 +536,7 @@ if ($row) {
                 ];
                     ?>
                     <script>
-                        window.location.href = "second-page.php?application_no=<?= $_GET['application_no'] ?>
+                        window.location.href = "second-page.php?application_no=<?= $_GET['application_no'] ?>"
                     </script>
                     <?php 
             }
