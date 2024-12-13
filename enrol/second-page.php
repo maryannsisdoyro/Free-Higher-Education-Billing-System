@@ -530,9 +530,9 @@ if ($row) {
                     'inst' => $value['inst']
                 ];
                     ?>
-                    <script>
+                    <!-- <script>
                         window.location.href = "second-page.php?application_no=<?= $_GET['application_no'] ?>
-                    </script>
+                    </script> -->
                     <?php 
             }
 
