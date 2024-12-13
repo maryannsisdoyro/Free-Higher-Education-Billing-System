@@ -371,24 +371,6 @@ window._conf = function($msg='',$func='',$params = []){
         }
     }
 </script>
-
-<!-- <form id="login-form" method="POST">
-  <div class="form-group">
-    <label for="username" class="control-label">Email</label>
-    <input type="text" id="username" name="email" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="password" class="control-label">Password</label>
-    <div style="position: relative;">
-      <input type="password" id="password" name="password" class="form-control my-2">
-      <i class="bx bx-show fs-4" style="cursor: pointer; position: absolute; top: 0; right: 0; margin: 12px 10px 0 0; font-size: 15px;" id="show-pass1"></i>
-    </div>
-  </div>
-  <div class="form-group">
-    <button type="submit" id="login-btn" class="btn btn-primary">Login</button>
-  </div>
-  <p id="error-message" style="color: red; display: none;">Invalid credentials. Attempts left: <span id="attempts-left"></span></p>
-</form> -->
 <script>
   const maxAttempts = 3;
   let attempts = maxAttempts;
