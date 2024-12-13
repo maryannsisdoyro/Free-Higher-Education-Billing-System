@@ -474,6 +474,17 @@ if ($row) {
         </thead>
         <tbody>
             <?php
+            foreach ($_SESSION['STUDENT_SUBJECT'] as $key => $value) {
+                if (isset($_GET['remove'])) {
+                    if ($value['id'] == $_GET['remove']) {
+                        unset($_SESSION['STUDENT_SUBJECT'][$key]);
+    
+                        echo "hello";
+                    }
+                }
+            }
+
+
             // Assuming $conn is your database connection
             $totalUnits = 0;
             $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$row['course']."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
@@ -497,13 +508,7 @@ if ($row) {
             foreach($_SESSION['STUDENT_SUBJECT'] as $key => $stud_sub):
                 $totalUnits += $stud_sub['units'];
 
-                if (isset($_GET['remove'])) {
-                    if ($stud_sub['id'] == $_GET['remove']) {
-                        unset($_SESSION['STUDENT_SUBJECT'][$key]);
-
-                        echo "hello";
-                    }
-                }
+              
                 
 
             ?>
