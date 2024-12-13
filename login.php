@@ -451,19 +451,6 @@ window._conf = function($msg='',$func='',$params = []){
     loginButton.disabled = false;
     attemptsLeft.textContent = attempts;
   }
-
-  // Optional: Toggle password visibility
-  const togglePassword = document.getElementById('show-pass1');
-  const passwordField = document.getElementById('password');
-
-  togglePassword.addEventListener('click', () => {
-    if (passwordField.type === 'password') {
-      passwordField.type = 'text';
-      togglePassword.classList.replace('bx-show', 'bx-hide');
-    } else {
-      passwordField.type = 'password';
-      togglePassword.classList.replace('bx-hide', 'bx-show');
-    }
   });
 </script>
 
