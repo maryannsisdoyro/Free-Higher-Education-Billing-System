@@ -90,7 +90,7 @@ ob_end_flush();
   		<div id="login-center" class="row justify-content-center">
   			<div class="card col-md-4">
   				<div class="card-body">
-<!--             <form id="login-form" method="POST">
+            <form id="login-form" method="POST">
 		    <p id="error-message" style="color: red; display: none;">Invalid credentials. Attempts left: <span id="attempts-left"></span></p>
               <div class="form-group">
                   <label for="username" class="control-label">Email</label>
@@ -110,9 +110,9 @@ ob_end_flush();
               <div class="d-flex justify-content-between">
                   <a href="forgot-password.php">Forgot Password</a>
                   <button type="submit" class="btn-sm btn-block btn-wave col-md-4 btn-danger" id="login-button" disabled>Login</button>
-              </div> -->
+              </div>
 <form id="login-form" method="POST">
-  <p id="error-message" style="color: red; display: none;">Invalid credentials. Attempts left: <span id="attempts-left"></span></p>
+<!--   <p id="error-message" style="color: red; display: none;">Invalid credentials. Attempts left: <span id="attempts-left"></span></p>
   <div class="form-group">
     <label for="username" class="control-label">Email</label>
     <input type="text" id="username" name="email" class="form-control">
@@ -131,7 +131,7 @@ ob_end_flush();
   <div class="d-flex justify-content-between">
     <a href="forgot-password.php">Forgot Password</a>
     <button type="submit" class="btn-sm btn-block btn-wave col-md-4 btn-danger" id="login-button">Login</button>
-  </div>
+  </div> -->
               <script>
                   document.getElementById('terms-checkbox').addEventListener('change', function() {
                       document.getElementById('login-button').disabled = !this.checked;
