@@ -479,8 +479,6 @@ if ($row) {
             $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$row['course']."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
             $subject_count = 1;
             foreach ($query as $row) :
-             
-
                 $_SESSION['STUDENT_SUBJECT'] = [
                     'id' => $subject_count++,
                     'time' => $row['tbl_time'],
