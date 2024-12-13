@@ -479,7 +479,7 @@ if ($row) {
             $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$row['course']."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
             $subject_count = 1;
             foreach ($query as $row) :
-                $totalUnits += $row['units'];
+             
 
                 $_SESSION['STUDENT_SUBJECT'] = [
                     'id' => $subject_count++,
@@ -494,10 +494,11 @@ if ($row) {
             endforeach;
 
             foreach($_SESSION['STUDENT_SUBJECT'] as $stud_sub):
+                $totalUnits += $stud_sub['units'];
             ?>
                 <tr>
-                    <td class="text-center"><?php echo htmlentities($stud_sub['tbl_time']); ?></td>
-                    <td class="text-center"><?php echo htmlentities($stud_sub['tbl_day']); ?></td>
+                    <td class="text-center"><?php echo htmlentities($stud_sub['time']); ?></td>
+                    <td class="text-center"><?php echo htmlentities($stud_sub['day']); ?></td>
                     <td class="text-center sub-column"><?php echo htmlentities($stud_sub['subjectcode']); ?></td>
                     <td class="text-center des-column"><?php echo htmlentities($stud_sub['subdes']); ?></td>
                     <td class="text-center units-column"><?php echo htmlentities($stud_sub['units']); ?></td>
