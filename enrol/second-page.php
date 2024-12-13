@@ -556,23 +556,22 @@ if ($row) {
                         var_dump($_POST);
 
                         foreach ($_POST as $key => $value) {
-                            if ($value != NULL) {
-                                $_SESSION['STUDENT_SUBJECT'][] = [
-                                    'id' => $next_id,
-                                    'time' => $value['time'],
-                                    'day' => $value['day'],
-                                    'subjectcode' => $value['subjectcode'],
-                                    'subdes' => $value['subdes'],
-                                    'units' => $value['units'],
-                                    'room' => $value['room'],
-                                    'inst' => $value['inst'],
-                                ];
+                            $_SESSION['STUDENT_SUBJECT'][] = [
+                                'id' => $next_id,
+                                'time' => $value['time'],
+                                'day' => $value['day'],
+                                'subjectcode' => $value['subjectcode'],
+                                'subdes' => $value['subdes'],
+                                'units' => $value['units'],
+                                'room' => $value['room'],
+                                'inst' => $value['inst'],
+                            ];
                                 ?>
                                 <script>
                                     window.location = "second-page?application_no=<?= $_GET['application_no'] ?>
                                 </script>
                                 <?php 
-                            }
+                            
                         }
                     }
                 ?>
