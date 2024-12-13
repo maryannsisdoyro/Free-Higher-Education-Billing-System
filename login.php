@@ -6,61 +6,35 @@ include('./common.php');
 <html lang="en">
 <?php 
 
+//echo password_hash("maryannlawan@123456", PASSWORD_DEFAULT);
+// echo session_status();
+
+//echo password_hash('mayannlawan@@123', PASSWORD_DEFAULT);
+
+// echo md5('admin123');
 include('./db_connect.php');
 
-session_start();
+    // update user password
+/*     $password = password_hash('admin123', PASSWORD_DEFAULT);
+    $conn->query("UPDATE users set password = '$password'"); */
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Check if the user is locked out
-    if (isset($_SESSION['lockout_time']) && time() < $_SESSION['lockout_time']) {
-        $remaining_time = $_SESSION['lockout_time'] - time();
-        echo "Too many failed attempts. Please try again in $remaining_time seconds.";
-        exit;
+    // get all users
+/*     $sql = "SELECT * FROM users";
+    $result = $conn->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        echo "<pre>";
+        print_r($row);
     }
-
-    // Initialize or increment attempt counter
-    if (!isset($_SESSION['attempts'])) {
-        $_SESSION['attempts'] = 0;
-    }
-
-    // Check login attempts
-    if ($_SESSION['attempts'] < 3) {
-        // Query database for user
-        $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $user = $result->fetch_assoc();
-
-            // Verify password
-            if (password_verify($password, $user['password'])) {
-                $_SESSION['user'] = $user;
-                echo "Login successful!";
-                $_SESSION['attempts'] = 0; // Reset attempts on success
-                unset($_SESSION['lockout_time']); // Clear lockout time if it exists
-            } else {
-                $_SESSION['attempts']++;
-                echo "Invalid password. Attempt " . $_SESSION['attempts'] . " of 3.";
-            }
-        } else {
-            $_SESSION['attempts']++;
-            echo "User not found. Attempt " . $_SESSION['attempts'] . " of 3.";
-        }
-    }
-
-    // Lock out after 3 failed attempts
-    if ($_SESSION['attempts'] >= 3) {
-        echo "Too many failed attempts. You are locked out for 1 minute.";
-        $_SESSION['lockout_time'] = time() + 60; // Set lockout time to 1 minute from now
-    }
-}
+    exit; */
+ob_start();
+// if(!isset($_SESSION['system'])){
+	$system = $conn->query("SELECT * FROM system_settings limit 1")->fetch_array();
+	foreach($system as $k => $v){
+		$_SESSION['system'][$k] = $v;
+	}
+// }
+ob_end_flush();
 ?>
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
