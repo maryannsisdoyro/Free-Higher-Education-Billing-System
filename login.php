@@ -380,7 +380,7 @@ window._conf = function($msg='',$func='',$params = []){
   const loginForm = document.getElementById('login-form');
   const errorMessage = document.getElementById('error-message');
   const attemptsLeft = document.getElementById('attempts-left');
-  const loginButton = document.getElementById('login-button');
+  const loginButton = document.getElementById('login-btn'); // Corrected ID reference for button
 
   attemptsLeft.textContent = attempts;
 
@@ -393,17 +393,21 @@ window._conf = function($msg='',$func='',$params = []){
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    if (username !== 'correctEmail@example.com' || password !== 'correctPassword') {
+    if (username === 'correctEmail@example.com' && password === 'correctPassword') {
+      // Correct credentials
+      alert('Login successful!');
+      errorMessage.style.display = 'none'; // Hide error message
+      attempts = maxAttempts; // Reset attempts
+      loginForm.submit(); // Submit the form if credentials are correct
+    } else {
+      // Incorrect credentials
       attempts--;
       if (attempts > 0) {
         errorMessage.style.display = 'block';
-        attemptsLeft.textContent = attempts;
+        errorMessage.textContent = `Invalid credentials. Attempts left: ${attempts}`;
       } else {
         lockForm();
       }
-    } else {
-      alert('Login successful!');
-      loginForm.submit(); // Submit the form if credentials are correct
     }
   });
 
