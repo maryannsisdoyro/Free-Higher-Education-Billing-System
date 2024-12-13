@@ -474,6 +474,7 @@ if ($row) {
                 <?php 
                     if (isset($_POST['time'])) {
                         foreach ($_POST as $key => $value) {
+                            echo $key . "\n" . $value;
                             if ($value != NULL) {
                                 $_SESSION['STUDENT_SUBJECT'][] = [
                                     $key => $value
