@@ -90,7 +90,7 @@ ob_end_flush();
   		<div id="login-center" class="row justify-content-center">
   			<div class="card col-md-4">
   				<div class="card-body">
-            <form id="login-form" method="POST">
+<!--             <form id="login-form" method="POST">
 		    <p id="error-message" style="color: red; display: none;">Invalid credentials. Attempts left: <span id="attempts-left"></span></p>
               <div class="form-group">
                   <label for="username" class="control-label">Email</label>
@@ -110,7 +110,28 @@ ob_end_flush();
               <div class="d-flex justify-content-between">
                   <a href="forgot-password.php">Forgot Password</a>
                   <button type="submit" class="btn-sm btn-block btn-wave col-md-4 btn-danger" id="login-button" disabled>Login</button>
-              </div>
+              </div> -->
+		<form id="login-form" method="POST">
+  <p id="error-message" style="color: red; display: none;">Invalid credentials. Attempts left: <span id="attempts-left"></span></p>
+  <div class="form-group">
+    <label for="username" class="control-label">Email</label>
+    <input type="text" id="username" name="email" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="password" class="control-label">Password</label>
+    <div style="position: relative;">
+      <input type="password" id="password" name="password" class="form-control my-2">
+      <i class="bx bx-show fs-4" style="cursor: pointer; position: absolute; top: 0; right: 0; margin: 12px 10px 0 0; font-size: 15px;" id="show-pass1"></i>
+    </div>
+  </div>
+  <div class="form-group">
+    <input type="checkbox" id="terms-checkbox">
+    <label for="terms-checkbox"> I agree to the <a href="javascript:void(0);" id="showTerms">Terms and Conditions</a></label>
+  </div>
+  <div class="d-flex justify-content-between">
+    <a href="forgot-password.php">Forgot Password</a>
+    <button type="submit" class="btn-sm btn-block btn-wave col-md-4 btn-danger" id="login-button" disabled>Login</button>
+  </div>
 		    
               <script>
                   document.getElementById('terms-checkbox').addEventListener('change', function() {
@@ -351,7 +372,7 @@ window._conf = function($msg='',$func='',$params = []){
     }
 </script>
 
-<form id="login-form" method="POST">
+<!-- <form id="login-form" method="POST">
   <div class="form-group">
     <label for="username" class="control-label">Email</label>
     <input type="text" id="username" name="email" class="form-control">
@@ -367,7 +388,7 @@ window._conf = function($msg='',$func='',$params = []){
     <button type="submit" id="login-btn" class="btn btn-primary">Login</button>
   </div>
   <p id="error-message" style="color: red; display: none;">Invalid credentials. Attempts left: <span id="attempts-left"></span></p>
-</form>
+</form> -->
 
 <script>
   const maxAttempts = 3;
