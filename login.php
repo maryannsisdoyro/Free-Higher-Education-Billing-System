@@ -91,6 +91,7 @@ ob_end_flush();
   			<div class="card col-md-4">
   				<div class="card-body">
             <form id="login-form" method="POST">
+		    <p id="error-message" style="color: red; display: none;">Invalid credentials. Attempts left: <span id="attempts-left"></span></p>
               <div class="form-group">
                   <label for="username" class="control-label">Email</label>
                   <input type="text" id="username" name="email" class="form-control">
@@ -350,5 +351,71 @@ window._conf = function($msg='',$func='',$params = []){
     }
 </script>
 
+<form id="login-form" method="POST">
+  <div class="form-group">
+    <label for="username" class="control-label">Email</label>
+    <input type="text" id="username" name="email" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="password" class="control-label">Password</label>
+    <div style="position: relative;">
+      <input type="password" id="password" name="password" class="form-control my-2">
+      <i class="bx bx-show fs-4" style="cursor: pointer; position: absolute; top: 0; right: 0; margin: 12px 10px 0 0; font-size: 15px;" id="show-pass1"></i>
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" id="login-btn" class="btn btn-primary">Login</button>
+  </div>
+  <p id="error-message" style="color: red; display: none;">Invalid credentials. Attempts left: <span id="attempts-left"></span></p>
+</form>
+
+<script>
+  const maxAttempts = 3;
+  let attempts = maxAttempts;
+
+  const loginForm = document.getElementById('login-form');
+  const errorMessage = document.getElementById('error-message');
+  const attemptsLeft = document.getElementById('attempts-left');
+  const loginButton = document.getElementById('login-btn');
+
+  attemptsLeft.textContent = attempts;
+
+  loginForm.addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Simulate login validation (replace with actual validation logic)
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (username !== 'correctEmail@example.com' || password !== 'correctPassword') {
+      attempts--;
+      if (attempts > 0) {
+        errorMessage.style.display = 'block';
+        attemptsLeft.textContent = attempts;
+      } else {
+        errorMessage.textContent = 'Too many invalid attempts. Please try again later.';
+        loginButton.disabled = true;
+        loginButton.textContent = 'Locked';
+      }
+    } else {
+      alert('Login successful!');
+      loginForm.submit(); // Submit the form if credentials are correct
+    }
+  });
+
+  // Optional: Toggle password visibility
+  const togglePassword = document.getElementById('show-pass1');
+  const passwordField = document.getElementById('password');
+
+  togglePassword.addEventListener('click', () => {
+    if (passwordField.type === 'password') {
+      passwordField.type = 'text';
+      togglePassword.classList.replace('bx-show', 'bx-hide');
+    } else {
+      passwordField.type = 'password';
+      togglePassword.classList.replace('bx-hide', 'bx-show');
+    }
+  });
+</script>
 
 </html>
