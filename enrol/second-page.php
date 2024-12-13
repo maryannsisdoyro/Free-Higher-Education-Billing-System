@@ -106,11 +106,11 @@ if ($row) {
 
 if (isset($_GET['next'])) {
 
-    for ($i=0; $i <= count($_SESSION['STUDENT_SUBJECT']); $i++) { 
-       echo $_SESSION['STUDENT_SUBJECT'][$i];
-    }
+   foreach ($_SESSION['STUDENT_SUBJECT'] as $key => $value) {
+        echo $value . "\n";
+   }
 
-    $stmt = $conn->query("INSERT INTO subject_individual()");  
+    // $stmt = $conn->query("INSERT INTO subject_individual()");  
 }
 
 ?>
