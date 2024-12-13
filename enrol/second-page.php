@@ -472,7 +472,7 @@ if ($row) {
                 </form>
 
                 <?php 
-                unset($_SESSION['STUDENT_SUBJECT']);
+                // unset($_SESSION['STUDENT_SUBJECT']);
                     if (isset($_POST['time'])) {
                         foreach ($_POST as $key => $value) {
                             echo $key . "\n" . $value;
