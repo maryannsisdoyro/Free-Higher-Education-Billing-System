@@ -493,6 +493,8 @@ if ($row) {
                 ];
             endforeach;
 
+            var_dump($_SESSION['STUDENT_SUBJECT']);
+
             foreach($_SESSION['STUDENT_SUBJECT'] as $stud_sub):
                 $totalUnits += $stud_sub['units'];
             ?>
