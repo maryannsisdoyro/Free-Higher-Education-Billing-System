@@ -525,8 +525,8 @@ if ($row) {
                 echo $next_id;
                 $_SESSION['STUDENT_SUBJECT'][] = [
                     'id' => $next_id,
-                    'time' => $value['tbl_time'],
-                    'day' => $value['tbl_day'],
+                    'time' => $value['time'],
+                    'day' => $value['day'],
                     'subjectcode' => $value['subjectcode'],
                     'subdes' => $value['subdes'],
                     'units' => $value['units'],
@@ -535,7 +535,7 @@ if ($row) {
                 ];
                     ?>
                     <script>
-                        window.location = "second-page?application_no=<?= $_GET['application_no'] ?>
+                        window.location.href = "second-page.php?application_no=<?= $_GET['application_no'] ?>
                     </script>
                     <?php 
             }
