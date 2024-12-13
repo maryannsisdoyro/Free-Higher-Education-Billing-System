@@ -459,17 +459,29 @@ if ($row) {
                     }
                 </style>
                 <div class="table-responsive table-responsive-data2" id="subjects_table">
-
                 <form class="d-flex gap-2 g-2 mb-3" style="gap: 10px; flex-wrap: wrap;">
                     <input type="text" name="time" class="form-control" style="width: 49%;" placeholder="Time">
                     <input type="text" name="day" class="form-control" style="width: 49%;" placeholder="Day">
-                    <input type="text" name="subcode" class="form-control" style="width: 49%;" placeholder="Subject Code">
-                    <input type="text" name="subdesc" class="form-control" style="width: 49%;" placeholder="Sucject Description">
+                    <input type="text" name="subjectcode" class="form-control" style="width: 49%;" placeholder="Subject Code">
+                    <input type="text" name="subdes" class="form-control" style="width: 49%;" placeholder="Sucject Description">
                     <input type="text" name="units" class="form-control" style="width: 49%;" placeholder="Units">
                     <input type="text" name="room" class="form-control" style="width: 49%;" placeholder="Room">
-                    <input type="text" name="instructor" class="form-control" style="width: 49%;" placeholder="Instructor">
+                    <input type="text" name="inst" class="form-control" style="width: 49%;" placeholder="Instructor">
                     <button type="submit" class="btn btn-danger">Add</button>
                 </form>
+
+                <?php 
+                    if (isset($_POST['time'])) {
+                        foreach ($_POST as $key => $value) {
+                            if ($value != NULL) {
+                                $_SESSION['STUDENT_SUBJECT'][] = [
+                                    $key => $value
+                                ];
+                            }
+                        }
+                    }
+                ?>
+
                 <table id="example2" class="table table-bordered table-hover" style="font-size: small;">
         <thead>
             <tr>
