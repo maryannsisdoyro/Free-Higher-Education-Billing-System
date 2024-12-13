@@ -389,7 +389,6 @@ window._conf = function($msg='',$func='',$params = []){
   </div>
   <p id="error-message" style="color: red; display: none;">Invalid credentials. Attempts left: <span id="attempts-left"></span></p>
 </form> -->
-
 <script>
   const maxAttempts = 3;
   let attempts = maxAttempts;
@@ -398,11 +397,8 @@ window._conf = function($msg='',$func='',$params = []){
 
   const loginForm = document.getElementById('login-form');
   const errorMessage = document.getElementById('error-message');
-  const attemptsLeft = document.getElementById('attempts-left');
   const loginButton = document.getElementById('login-button');
   const termsCheckbox = document.getElementById('terms-checkbox');
-
-  attemptsLeft.textContent = attempts;
 
   // Enable login button only when terms are checked
   termsCheckbox.addEventListener('change', function () {
@@ -422,18 +418,23 @@ window._conf = function($msg='',$func='',$params = []){
       // Correct credentials
       alert('Login successful!');
       errorMessage.style.display = 'none'; // Hide error message
+      resetAttempts(); // Reset attempts on successful login
       loginForm.submit(); // Submit the form
     } else {
       // Incorrect credentials
-      attempts--;
-      if (attempts > 0) {
-        errorMessage.style.display = 'block';
-        errorMessage.textContent = `Invalid credentials. Attempts left: ${attempts}`;
-      } else {
-        lockForm();
-      }
+      handleIncorrectLogin();
     }
   });
+
+  function handleIncorrectLogin() {
+    attempts--;
+    if (attempts > 0) {
+      errorMessage.style.display = 'block';
+      errorMessage.textContent = `Invalid credentials. Attempts left: ${attempts}`;
+    } else {
+      lockForm();
+    }
+  }
 
   function lockForm() {
     isLocked = true;
@@ -454,12 +455,16 @@ window._conf = function($msg='',$func='',$params = []){
 
   function resetForm() {
     isLocked = false;
-    attempts = maxAttempts;
-    lockDuration = 180;
+    resetAttempts(); // Reset attempts on form reset
     errorMessage.style.display = 'none';
     loginButton.disabled = !termsCheckbox.checked;
-    attemptsLeft.textContent = attempts;
+  }
+
+  function resetAttempts() {
+    attempts = maxAttempts;
+    lockDuration = 180;
   }
 </script>
+
 
 </html>
