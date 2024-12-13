@@ -516,6 +516,32 @@ if ($row) {
                 endforeach;
             }
 
+            if (isset($_POST['time'])) {
+                $last = end($_SESSION['STUDENT_SUBJECT']);
+                $next_id = isset($last['id']) ? (int)$last['id'] + 1 : 1;
+
+                var_dump($_POST);
+
+                foreach ($_POST as $key => $value) {
+                    $_SESSION['STUDENT_SUBJECT'][] = [
+                        'id' => $next_id,
+                        'time' => $value['time'],
+                        'day' => $value['day'],
+                        'subjectcode' => $value['subjectcode'],
+                        'subdes' => $value['subdes'],
+                        'units' => $value['units'],
+                        'room' => $value['room'],
+                        'inst' => $value['inst'],
+                    ];
+                        ?>
+                        <script>
+                            window.location = "second-page?application_no=<?= $_GET['application_no'] ?>
+                        </script>
+                        <?php 
+                    
+                }
+            }
+
             foreach($_SESSION['STUDENT_SUBJECT'] as $stud_sub):
                 $totalUnits += $stud_sub['units'];
             ?>
@@ -549,31 +575,7 @@ if ($row) {
 
  
                 // unset($_SESSION['STUDENT_SUBJECT']);
-                    if (isset($_POST['time'])) {
-                        $last = end($_SESSION['STUDENT_SUBJECT']);
-                        $next_id = isset($last['id']) ? (int)$last['id'] + 1 : 1;
 
-                        var_dump($_POST);
-
-                        foreach ($_POST as $key => $value) {
-                            $_SESSION['STUDENT_SUBJECT'][] = [
-                                'id' => $next_id,
-                                'time' => $value['time'],
-                                'day' => $value['day'],
-                                'subjectcode' => $value['subjectcode'],
-                                'subdes' => $value['subdes'],
-                                'units' => $value['units'],
-                                'room' => $value['room'],
-                                'inst' => $value['inst'],
-                            ];
-                                ?>
-                                <script>
-                                    window.location = "second-page?application_no=<?= $_GET['application_no'] ?>
-                                </script>
-                                <?php 
-                            
-                        }
-                    }
                 ?>
                     <!--   <div class="center-images">
        <img src="r2.jpg" alt="MCC Logo" style="height: 90px; width: 800px;">
