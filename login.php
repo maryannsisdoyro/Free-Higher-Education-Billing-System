@@ -298,6 +298,9 @@ window._conf = function($msg='',$func='',$params = []){
     grecaptcha.ready(function() {
       grecaptcha.execute('6LeWO1YqAAAAALCrSqRbOX0mYKiSSyWWDe65aYB_', {action: 'login'}).then(function(token) {
         $('#login-form button[type="button"]').attr('disabled', true).html('Logging in...');
+	if ($('#error-message').is(':visible')) {
+                $('#error-message').hide(); // Hide error message on new login attempt
+            }
         if ($(this).find('.alert-danger').length > 0) $(this).find('.alert-danger').remove();
         $.ajax({
           url: 'ajax.php?action=login',
