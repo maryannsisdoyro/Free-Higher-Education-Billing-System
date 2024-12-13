@@ -476,7 +476,7 @@ if ($row) {
                         foreach ($_POST as $key => $value) {
                             echo $key . "\n" . $value;
                             if ($value != NULL) {
-                                $_SESSION['STUDENT_SUBJECT'] = [
+                                $_SESSION['STUDENT_SUBJECT'][] = [
                                     $key => $value
                                 ];
                             }
