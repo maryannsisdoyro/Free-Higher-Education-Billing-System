@@ -494,7 +494,7 @@ if ($row) {
             endforeach;
 
             foreach($_SESSION['STUDENT_SUBJECT'] as $stud_sub):
-                var_dump($stud_sub);
+                var_dump($stud_sub['id']);
 
                 $totalUnits += $stud_sub['units'];
             ?>
