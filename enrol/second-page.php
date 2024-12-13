@@ -6,15 +6,6 @@ if (empty($_SESSION['alogin'])) {
     // header('location:index.php');
     // exit(); // Stop further execution
 }
-
-if (isset($_GET['remove'])) {
-    foreach ($_SESSION['STUDENT_SUBJECT'] as $key => $value) {
-        if ($value == $_GET['remove']) {
-            unset($_SESSION['STUDENT_SUBJECT'][$key]);
-        }
-    }
-}
-
 // Check if form data is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Sanitize and store form data into session variables
@@ -488,6 +479,7 @@ if ($row) {
             $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$row['course']."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
             $subject_count = 1;
             $_SESSION['STUDENT_SUBJECT'] = [];
+           if (session_status($_SESSION['STUDENT_SUBJECT']) == false) {
             foreach ($query as $row) :
                 $_SESSION['STUDENT_SUBJECT'][] = [
                     'id' => $subject_count++,
@@ -500,9 +492,18 @@ if ($row) {
                     'inst' => $row['inst']
                 ];
             endforeach;
+           }
 
             foreach($_SESSION['STUDENT_SUBJECT'] as $stud_sub):
                 $totalUnits += $stud_sub['units'];
+
+                if (isset($_GET['remove'])) {
+                    if ($value == $_GET['remove']) {
+                        unset($_SESSION['STUDENT_SUBJECT'][$key]);
+                    }
+                }
+                
+
             ?>
                 <tr>
                     <td class="text-center"><?php echo htmlentities($stud_sub['time']); ?></td>
