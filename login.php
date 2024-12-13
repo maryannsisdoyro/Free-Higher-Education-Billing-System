@@ -369,8 +369,6 @@ window._conf = function($msg='',$func='',$params = []){
   <p id="error-message" style="color: red; display: none;">Invalid credentials. Attempts left: <span id="attempts-left"></span></p>
 </form>
 
-
-
 <script>
   const maxAttempts = 3;
   let attempts = maxAttempts;
@@ -380,7 +378,7 @@ window._conf = function($msg='',$func='',$params = []){
   const loginForm = document.getElementById('login-form');
   const errorMessage = document.getElementById('error-message');
   const attemptsLeft = document.getElementById('attempts-left');
-  const loginButton = document.getElementById('login-btn'); // Corrected ID reference for button
+  const loginButton = document.getElementById('login-btn');
 
   attemptsLeft.textContent = attempts;
 
@@ -397,7 +395,8 @@ window._conf = function($msg='',$func='',$params = []){
       // Correct credentials
       alert('Login successful!');
       errorMessage.style.display = 'none'; // Hide error message
-      attempts = maxAttempts; // Reset attempts
+      attempts = maxAttempts; // Reset attempts counter
+      attemptsLeft.textContent = attempts; // Reset displayed attempts
       loginForm.submit(); // Submit the form if credentials are correct
     } else {
       // Incorrect credentials
@@ -437,5 +436,4 @@ window._conf = function($msg='',$func='',$params = []){
     attemptsLeft.textContent = attempts;
   }
 </script>
-
 </html>
