@@ -115,9 +115,9 @@ if (isset($_GET['next'])) {
 
         // Bind the parameters to the prepared statement
         $stmt->bind_param("sssssssssss", 
-            $stud['sem'],       // sem
-            $stud['year'],      // year
-            $stud['course'],    // course
+            $semester,       // sem
+            $y_level,      // year
+            $course_to_be_enrolled,    // course
             $stud['time'],      // tbl_time
             $stud['day'],       // tbl_day
             $stud['subjectcode'], // subjectcode
