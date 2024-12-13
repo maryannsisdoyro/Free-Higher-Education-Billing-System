@@ -464,7 +464,7 @@ if ($row) {
                     <input type="text" name="day" class="form-control" style="width: 49%;" placeholder="Day">
                     <input type="text" name="subjectcode" class="form-control" style="width: 49%;" placeholder="Subject Code">
                     <input type="text" name="subdes" class="form-control" style="width: 49%;" placeholder="Sucject Description">
-                    <input type="text" name="units" class="form-control" style="width: 49%;" placeholder="Units">
+                    <input type="number" name="units" class="form-control" style="width: 49%;" placeholder="Units">
                     <input type="text" name="room" class="form-control" style="width: 49%;" placeholder="Room">
                     <input type="text" name="inst" class="form-control" style="width: 49%;" placeholder="Instructor">
                     <button type="submit" class="btn btn-danger">Add</button>
@@ -509,7 +509,7 @@ if ($row) {
                         'day' => $row['tbl_day'],
                         'subjectcode' => $row['subjectcode'],
                         'subdes' => $row['subdes'],
-                        'units' => $row['units'],
+                        'units' => (int)$row['units'],
                         'room' => $row['room'],
                         'inst' => $row['inst']
                     ];
