@@ -461,7 +461,7 @@ if ($row) {
                 <div class="table-responsive table-responsive-data2" id="subjects_table">
                 <form method="POST" class="d-flex gap-2 g-2 mb-3" style="gap: 10px; flex-wrap: wrap;">
                     <?php
-                    $last = end($_SESSION['STUDENT_SUBJECT']); // Get the last subject
+                    $last = end($_SESSION['STUDENT_SUBJECT']);
                     $next_id = isset($last['id']) ? $last['id'] + 1 : 1;
                     ?>
                     <input type="hidden" name="id" value="<?= $next_id ?>">
