@@ -500,6 +500,8 @@ if ($row) {
                 if (isset($_GET['remove'])) {
                     if ($stud_sub['id'] == $_GET['remove']) {
                         unset($_SESSION['STUDENT_SUBJECT'][$key]);
+
+                        echo "hello";
                     }
                 }
                 
