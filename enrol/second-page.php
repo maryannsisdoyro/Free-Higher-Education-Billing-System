@@ -107,7 +107,7 @@ if ($row) {
 if (isset($_GET['next'])) {
 
     for ($i=0; $i <= count($_SESSION['STUDENT_SUBJECT']); $i++) { 
-       echo $_SESSION['STUDENT_SUBJECT']['id'][$i];
+       echo $_SESSION['STUDENT_SUBJECT'][$i];
     }
 
     $stmt = $conn->query("INSERT INTO subject_individual()");  
