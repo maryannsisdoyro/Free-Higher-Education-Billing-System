@@ -1398,129 +1398,6 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 </body>
 
 </html>
-
-
-<!-- <table class="table table-bordered table-hover" style="font-size: small;">
-    <thead>
-        <tr>
-            <th colspan="7">
-                <center>
-                    <h4 style="font-size: 15px;"><strong>ASSESSMENT</strong></h4>
-                </center>
-            </th>
-        </tr>
-    </thead>
-    <tbody id="feeDetails">
-        <tr>
-            <td colspan="4" class="no-border"></td>
-            <td class="no-border" style="text-align: center;">Units Enrolled</td>
-            <td class="no-border" style="text-align: center;">Rate per Unit</td>
-            <td style="text-align: center;">Total</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border"><strong>Tuition Fee Due for the Semester</strong></td>
-            <td class="no-border" style="text-align: center;"><?php echo number_format($totalUnits); ?></td>
-            <td style="text-align: right;">229.17</td>
-            <td style="text-align: right;">229.17</td>
-        </tr>
-        <tr style="text-align: center;">
-            <td colspan="4" class="no-border"><strong>Miscellaneous Fees Applicable:</strong></td>
-            <td class="no-border"></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Library Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">150.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Computer Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">0.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Laboratory Fees</td>
-            <td style="text-align: center;">0.00</td>
-            <td style="text-align: right;">150.00</td>
-            <td style="text-align: right;">0.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">School ID Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">0.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Athletic Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">150.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Admission Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">0.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Development Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">250.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Guidance Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">100.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Handbook Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">0.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Entrance Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">200.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Registration Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">300.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Medical and Dental Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">300.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="no-border">Cultural Fees</td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;">200.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="total"><strong>Total Miscellaneous Fees</strong></td>
-            <td></td>
-            <td></td>
-            <td class="total" style="text-align: right;">1,650.00</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="grand-total"><strong>Grand Total</strong></td>
-            <td></td>
-            <td></td>
-            <td class="grand-total" style="text-align: right;">7,608.42</td>
-        </tr>
-    </tbody>
-</table> -->
 <div style="margin-top: 20px;" class="">
 
 			<table id="example2" class="table table-bordered table-hover">
@@ -1548,7 +1425,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 
                     // $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND  ");
 
-                    $query_subjects = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$fetch_course['department']."' AND sem = '".$semester."' AND year = '". $fetch_course['level'] ."'");
+                    $query_subjects = mysqli_query($conn, "SELECT * FROM subject_individual WHERE enroll_id = '". $_GET['application_no'] ."'");
                     
 
                     $subjects = $query_subjects->fetch_all(); // Fetch as associative array
