@@ -478,21 +478,22 @@ if ($row) {
             $totalUnits = 0;
             $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$row['course']."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
             $subject_count = 1;
-            $_SESSION['STUDENT_SUBJECT'] = [];
-           if (!isset($_SESSION['STUDENT_SUBJECT'])) {
-            foreach ($query as $row) :
-                $_SESSION['STUDENT_SUBJECT'][] = [
-                    'id' => $subject_count++,
-                    'time' => $row['tbl_time'],
-                    'day' => $row['tbl_day'],
-                    'subjectcode' => $row['subjectcode'],
-                    'subdes' => $row['subdes'],
-                    'units' => $row['units'],
-                    'room' => $row['room'],
-                    'inst' => $row['inst']
-                ];
-            endforeach;
-           }
+           
+            if (!isset($_SESSION['STUDENT_SUBJECT'])) {
+                $_SESSION['STUDENT_SUBJECT'] = [];
+                foreach ($query as $row) :
+                    $_SESSION['STUDENT_SUBJECT'][] = [
+                        'id' => $subject_count++,
+                        'time' => $row['tbl_time'],
+                        'day' => $row['tbl_day'],
+                        'subjectcode' => $row['subjectcode'],
+                        'subdes' => $row['subdes'],
+                        'units' => $row['units'],
+                        'room' => $row['room'],
+                        'inst' => $row['inst']
+                    ];
+                endforeach;
+            }
 
             foreach($_SESSION['STUDENT_SUBJECT'] as $stud_sub):
                 $totalUnits += $stud_sub['units'];
