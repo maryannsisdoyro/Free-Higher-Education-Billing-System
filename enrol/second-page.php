@@ -522,24 +522,21 @@ if ($row) {
 
                 var_dump($_POST);
                 echo $next_id;
-
-                foreach ($_POST as $key => $value) {
-                    $_SESSION['STUDENT_SUBJECT'][] = [
-                        'id' => $next_id,
-                        'time' => $value['tbl_time'],
-                        'day' => $value['tbl_day'],
-                        'subjectcode' => $value['subjectcode'],
-                        'subdes' => $value['subdes'],
-                        'units' => $value['units'],
-                        'room' => $value['room'],
-                        'inst' => $value['inst']
-                    ];
-                        ?>
-                        <script>
-                            window.location = "second-page?application_no=<?= $_GET['application_no'] ?>
-                        </script>
-                        <?php 
-                }
+                $_SESSION['STUDENT_SUBJECT'][] = [
+                    'id' => $next_id,
+                    'time' => $value['tbl_time'],
+                    'day' => $value['tbl_day'],
+                    'subjectcode' => $value['subjectcode'],
+                    'subdes' => $value['subdes'],
+                    'units' => $value['units'],
+                    'room' => $value['room'],
+                    'inst' => $value['inst']
+                ];
+                    ?>
+                    <script>
+                        window.location = "second-page?application_no=<?= $_GET['application_no'] ?>
+                    </script>
+                    <?php 
             }
 
             foreach($_SESSION['STUDENT_SUBJECT'] as $stud_sub):
