@@ -498,7 +498,7 @@ if ($row) {
                 $totalUnits += $stud_sub['units'];
 
                 if (isset($_GET['remove'])) {
-                    if ($value == $_GET['remove']) {
+                    if ($stud_sub['id'] == $_GET['remove']) {
                         unset($_SESSION['STUDENT_SUBJECT'][$key]);
                     }
                 }
