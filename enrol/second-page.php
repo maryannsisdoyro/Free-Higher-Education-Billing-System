@@ -104,6 +104,14 @@ if ($row) {
    
 }
 
+if (isset($_GET['next'])) {
+
+    for ($i=0; $i <= count($_SESSION['STUDENT_SUBJECT']); $i++) { 
+       echo $_SESSION['STUDENT_SUBJECT']['id'][$i];
+    }
+
+    $stmt = $conn->query("INSERT INTO subject_individual()");  
+}
 
 ?>
 <!DOCTYPE html>
@@ -590,7 +598,7 @@ if ($row) {
 
             <div class="w-100 d-flex align-items-center my-3 justify-content-end container" style="column-gap: 20px; padding-right: 120px;">
                 <a href="student-cor.php?application_no=<?= $id ?>" class="btn btn-secondary" style="width: 100px;">Previous</a>
-                <a href="last-page.php?application_no=<?= $id ?>" class="btn btn-danger d-block" style="width: 100px;" onclick="document.getElementById('final_process').classList.remove('d-none'); this.classList.add('d-none')" id="to_assessment">Next</a>
+                <a href="second-page.php?application_no=<?= $id ?>&next" class="btn btn-danger d-block" style="width: 100px;" id="to_assessment">Next</a>
             </div>
             <!-- Include jQuery and DataTables JS files -->
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
