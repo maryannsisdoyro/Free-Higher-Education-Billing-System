@@ -399,9 +399,15 @@ window._conf = function($msg='',$func='',$params = []){
   const loginForm = document.getElementById('login-form');
   const errorMessage = document.getElementById('error-message');
   const attemptsLeft = document.getElementById('attempts-left');
-  const loginButton = document.getElementById('login-btn');
+  const loginButton = document.getElementById('login-button');
+  const termsCheckbox = document.getElementById('terms-checkbox');
 
   attemptsLeft.textContent = attempts;
+
+  // Enable login button only when terms are checked
+  termsCheckbox.addEventListener('change', function () {
+    loginButton.disabled = !termsCheckbox.checked;
+  });
 
   loginForm.addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent form submission
@@ -416,9 +422,7 @@ window._conf = function($msg='',$func='',$params = []){
       // Correct credentials
       alert('Login successful!');
       errorMessage.style.display = 'none'; // Hide error message
-      attempts = maxAttempts; // Reset attempts counter
-      attemptsLeft.textContent = attempts; // Reset displayed attempts
-      loginForm.submit(); // Submit the form if credentials are correct
+      loginForm.submit(); // Submit the form
     } else {
       // Incorrect credentials
       attempts--;
@@ -453,8 +457,9 @@ window._conf = function($msg='',$func='',$params = []){
     attempts = maxAttempts;
     lockDuration = 180;
     errorMessage.style.display = 'none';
-    loginButton.disabled = false;
+    loginButton.disabled = !termsCheckbox.checked;
     attemptsLeft.textContent = attempts;
   }
 </script>
+
 </html>
