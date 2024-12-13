@@ -487,7 +487,7 @@ if ($row) {
         </thead>
         <tbody>
             <?php
-                  unset($_SESSION['STUDENT_SUBJECT']);
+                //   unset($_SESSION['STUDENT_SUBJECT']);
             foreach ($_SESSION['STUDENT_SUBJECT'] as $key => $value) {
                 if (isset($_GET['remove'])) {
                     if ($value['id'] == $_GET['remove']) {
