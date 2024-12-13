@@ -521,6 +521,7 @@ if ($row) {
                 $next_id = isset($last['id']) ? (int)$last['id'] + 1 : 1;
 
                 var_dump($_POST);
+                echo $next_id;
 
                 foreach ($_POST as $key => $value) {
                     $_SESSION['STUDENT_SUBJECT'][] = [
