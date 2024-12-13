@@ -114,7 +114,7 @@ if (isset($_GET['next'])) {
                                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         // Bind the parameters to the prepared statement
-        $stmt->bind_param("sssssssssss", 
+        $stmt->bind_param("ssssssssss", 
             $semester,       // sem
             $y_level,      // year
             $course_to_be_enrolled,    // course
