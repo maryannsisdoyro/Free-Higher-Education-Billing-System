@@ -525,14 +525,7 @@ if ($row) {
 
                 foreach ($_POST as $key => $value) {
                     $_SESSION['STUDENT_SUBJECT'][] = [
-                        'id' => $next_id,
-                        'time' => $value['time'],
-                        'day' => $value['day'],
-                        'subjectcode' => $value['subjectcode'],
-                        'subdes' => $value['subdes'],
-                        'units' => $value['units'],
-                        'room' => $value['room'],
-                        'inst' => $value['inst'],
+                        $value;
                     ];
                         ?>
                         <script>
