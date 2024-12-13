@@ -478,7 +478,7 @@ if ($row) {
                             echo $key . "\n" . $value;
                             if ($value != NULL) {
                                 $_SESSION['STUDENT_SUBJECT'][] = [
-                                    $key => $value
+                                    $key => $value,
                                 ];
                             }
                         }
