@@ -504,7 +504,7 @@ if ($row) {
                     <td class="text-center units-column"><?php echo htmlentities($stud_sub['units']); ?></td>
                     <td class="text-center"><?php echo htmlentities($stud_sub['room']); ?></td>
                     <td class="text-center ins-column"><?php echo htmlentities($stud_sub['inst']); ?></td>
-                    <td class="text-center"><a href="?remove=<?= htmlentities($stud_sub['id']) ?>"><i class="fa fa-xmark"></i></a></td>
+                    <td class="text-center"><a href="?remove=<?= htmlentities($stud_sub['id']) ?>">x</td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
