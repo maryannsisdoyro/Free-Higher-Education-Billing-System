@@ -477,18 +477,33 @@ if ($row) {
             // Assuming $conn is your database connection
             $totalUnits = 0;
             $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$row['course']."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
-
+            $subject_count = 1;
             foreach ($query as $row) :
                 $totalUnits += $row['units'];
+
+
+                $_SESSION['STUDENT_SUBJECT'] = [
+                    'id' => $subject_count++,
+                    'time' => $row['tbl_time'],
+                    'day' => $row['tbl_day'],
+                    'subjectcode' => $row['subjectcode'],
+                    'subdes' => $row['subdes'],
+                    'units' => $row['units'],
+                    'room' => $row['room'],
+                    'inst' => $row['inst']
+                ];
+            endforeach;
+
+            foreach($_SESSION['STUDENT_SUBJECT'] $stud_sub):
             ?>
                 <tr>
-                    <td class="text-center"><?php echo htmlentities($row['tbl_time']); ?></td>
-                    <td class="text-center"><?php echo htmlentities($row['tbl_day']); ?></td>
-                    <td class="text-center sub-column"><?php echo htmlentities($row['subjectcode']); ?></td>
-                    <td class="text-center des-column"><?php echo htmlentities($row['subdes']); ?></td>
-                    <td class="text-center units-column"><?php echo htmlentities($row['units']); ?></td>
-                    <td class="text-center"><?php echo htmlentities($row['room']); ?></td>
-                    <td class="text-center ins-column"><?php echo htmlentities($row['inst']); ?></td>
+                    <td class="text-center"><?php echo htmlentities($stud_sub['tbl_time']); ?></td>
+                    <td class="text-center"><?php echo htmlentities($stud_sub['tbl_day']); ?></td>
+                    <td class="text-center sub-column"><?php echo htmlentities($stud_sub['subjectcode']); ?></td>
+                    <td class="text-center des-column"><?php echo htmlentities($stud_sub['subdes']); ?></td>
+                    <td class="text-center units-column"><?php echo htmlentities($stud_sub['units']); ?></td>
+                    <td class="text-center"><?php echo htmlentities($stud_sub['room']); ?></td>
+                    <td class="text-center ins-column"><?php echo htmlentities($stud_sub['inst']); ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
