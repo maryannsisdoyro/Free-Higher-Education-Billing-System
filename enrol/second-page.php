@@ -7,6 +7,14 @@ if (empty($_SESSION['alogin'])) {
     // exit(); // Stop further execution
 }
 
+if (isset($_GET['remove'])) {
+    foreach ($_SESSION['STUDENT_SUBJECT'] as $key => $value) {
+        if ($value == $_GET['remove']) {
+            unset($_SESSION['STUDENT_SUBJECT'][$key]);
+        }
+    }
+}
+
 // Check if form data is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Sanitize and store form data into session variables
