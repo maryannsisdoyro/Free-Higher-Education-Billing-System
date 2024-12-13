@@ -567,6 +567,11 @@ if ($row) {
                                     'room' => $value['room'],
                                     'inst' => $value['inst'],
                                 ];
+                                ?>
+                                <script>
+                                    window.location = "second-page?application_no=<?= $_GET['application_no'] ?>
+                                </script>
+                                <?php 
                             }
                         }
                     }
