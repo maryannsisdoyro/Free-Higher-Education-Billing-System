@@ -475,26 +475,7 @@ if ($row) {
                     <button type="submit" class="btn btn-danger">Add</button>
                 </form>
 
-                <?php 
-                // unset($_SESSION['STUDENT_SUBJECT']);
-                    if (isset($_POST['time'])) {
-                        foreach ($_POST as $key => $value) {
-                            echo $key . "\n" . $value;
-                            if ($value != NULL) {
-                                $_SESSION['STUDENT_SUBJECT'][] = [
-                                    'id' => $value['id'],
-                                    'time' => $value['time'],
-                                    'day' => $value['day'],
-                                    'subjectcode' => $value['subjectcode'],
-                                    'subdes' => $value['subdes'],
-                                    'units' => $value['units'],
-                                    'room' => $value['room'],
-                                    'inst' => $value['inst'],
-                                ];
-                            }
-                        }
-                    }
-                ?>
+               
 
                 <table id="example2" class="table table-bordered table-hover" style="font-size: small;">
         <thead>
@@ -515,8 +496,6 @@ if ($row) {
                 if (isset($_GET['remove'])) {
                     if ($value['id'] == $_GET['remove']) {
                         unset($_SESSION['STUDENT_SUBJECT'][$key]);
-    
-                        echo "hello";
                     }
                 }
             }
@@ -570,6 +549,27 @@ if ($row) {
             </tr>
         </tfoot>
 </table>
+
+<?php 
+                // unset($_SESSION['STUDENT_SUBJECT']);
+                    if (isset($_POST['time'])) {
+                        foreach ($_POST as $key => $value) {
+                            echo $key . "\n" . $value;
+                            if ($value != NULL) {
+                                $_SESSION['STUDENT_SUBJECT'][] = [
+                                    'id' => $value['id'],
+                                    'time' => $value['time'],
+                                    'day' => $value['day'],
+                                    'subjectcode' => $value['subjectcode'],
+                                    'subdes' => $value['subdes'],
+                                    'units' => $value['units'],
+                                    'room' => $value['room'],
+                                    'inst' => $value['inst'],
+                                ];
+                            }
+                        }
+                    }
+                ?>
                     <!--   <div class="center-images">
        <img src="r2.jpg" alt="MCC Logo" style="height: 90px; width: 800px;">
     </div> -->
