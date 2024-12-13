@@ -525,7 +525,14 @@ if ($row) {
 
                 foreach ($_POST as $key => $value) {
                     $_SESSION['STUDENT_SUBJECT'][] = [
-                        $value;
+                        'id' => $next_id,
+                        'time' => $value['tbl_time'],
+                        'day' => $value['tbl_day'],
+                        'subjectcode' => $value['subjectcode'],
+                        'subdes' => $value['subdes'],
+                        'units' => $value['units'],
+                        'room' => $value['room'],
+                        'inst' => $value['inst']
                     ];
                         ?>
                         <script>
