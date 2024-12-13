@@ -106,8 +106,8 @@ if ($row) {
 
 if (isset($_GET['next'])) {
 
-   foreach ($_SESSION['STUDENT_SUBJECT'] as $key => $value) {
-        echo $value . "\n";
+   foreach ($_SESSION['STUDENT_SUBJECT'] as $stud) {
+        echo $value['id'] . "\n";
    }
 
     // $stmt = $conn->query("INSERT INTO subject_individual()");  
