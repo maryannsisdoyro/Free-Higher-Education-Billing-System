@@ -481,7 +481,6 @@ if ($row) {
             foreach ($query as $row) :
                 $totalUnits += $row['units'];
 
-
                 $_SESSION['STUDENT_SUBJECT'] = [
                     'id' => $subject_count++,
                     'time' => $row['tbl_time'],
@@ -494,7 +493,7 @@ if ($row) {
                 ];
             endforeach;
 
-            foreach($_SESSION['STUDENT_SUBJECT'] $stud_sub):
+            foreach($_SESSION['STUDENT_SUBJECT'] as $stud_sub):
             ?>
                 <tr>
                     <td class="text-center"><?php echo htmlentities($stud_sub['tbl_time']); ?></td>
