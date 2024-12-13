@@ -372,6 +372,8 @@ window._conf = function($msg='',$func='',$params = []){
 <script>
   const maxAttempts = 3;
   let attempts = maxAttempts;
+  let lockDuration = 180; // Lock duration in seconds
+  let isLocked = false;
 
   const loginForm = document.getElementById('login-form');
   const errorMessage = document.getElementById('error-message');
@@ -383,6 +385,8 @@ window._conf = function($msg='',$func='',$params = []){
   loginForm.addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent form submission
 
+    if (isLocked) return;
+
     // Simulate login validation (replace with actual validation logic)
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -393,15 +397,41 @@ window._conf = function($msg='',$func='',$params = []){
         errorMessage.style.display = 'block';
         attemptsLeft.textContent = attempts;
       } else {
-        errorMessage.textContent = 'Too many invalid attempts. Please try again later.';
-        loginButton.disabled = true;
-        loginButton.textContent = 'Locked';
+        lockForm();
       }
     } else {
       alert('Login successful!');
       loginForm.submit(); // Submit the form if credentials are correct
     }
   });
+
+  function lockForm() {
+    isLocked = true;
+    errorMessage.textContent = `Too many invalid attempts. Please try again in ${lockDuration} seconds.`;
+    errorMessage.style.display = 'block';
+    loginButton.disabled = true;
+    loginButton.textContent = 'Locked';
+
+    const timer = setInterval(() => {
+      lockDuration--;
+      if (lockDuration > 0) {
+        errorMessage.textContent = `Too many invalid attempts. Please try again in ${lockDuration} seconds.`;
+      } else {
+        clearInterval(timer);
+        resetForm();
+      }
+    }, 1000);
+  }
+
+  function resetForm() {
+    isLocked = false;
+    attempts = maxAttempts;
+    lockDuration = 180;
+    errorMessage.style.display = 'none';
+    loginButton.disabled = false;
+    loginButton.textContent = 'Login';
+    attemptsLeft.textContent = attempts;
+  }
 
   // Optional: Toggle password visibility
   const togglePassword = document.getElementById('show-pass1');
