@@ -552,6 +552,9 @@ if ($row) {
                     if (isset($_POST['time'])) {
                         $last = end($_SESSION['STUDENT_SUBJECT']);
                         $next_id = isset($last['id']) ? (int)$last['id'] + 1 : 1;
+
+                        var_dump($_POST);
+
                         foreach ($_POST as $key => $value) {
                             if ($value != NULL) {
                                 $_SESSION['STUDENT_SUBJECT'][] = [
