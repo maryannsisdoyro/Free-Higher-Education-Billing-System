@@ -685,7 +685,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 
         $subject_total = $totalUnits * $rate;
 
-        echo $subject_total;
+        // echo $subject_total;
 
         
 
