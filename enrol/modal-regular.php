@@ -280,6 +280,7 @@
                 // Loop through each fee in the response and add it to the list
                 result.forEach(data => {
                     var tr = $('#fee_clone_regular tr').clone();
+                    tr.find('[name="fid_regular[]"]').val(data[0]);
                     tr.find('[name="type_regular[]"]').val(data[1]); // Set the fee description
                     tr.find('.ftype_regular').text(data[1]);         // Display the fee description
                     tr.find('[name="amount_regular[]"]').val(data[2]);    // Set the fee amount
