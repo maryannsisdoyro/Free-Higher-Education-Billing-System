@@ -123,7 +123,7 @@ if (isset($_GET['next'])) {
             $_GET['application_no'],          // enroll_id
             $semester,                        // sem
             $y_level,                         // year
-            $course_to_be_enrolled,           // course
+            $row["course"],           // course
             $stud['time'],                    // tbl_time
             $stud['day'],                     // tbl_day
             $stud['subjectcode'],             // subjectcode
