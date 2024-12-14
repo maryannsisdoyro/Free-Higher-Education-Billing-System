@@ -691,7 +691,9 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 
         while ($row = $cfees->fetch_assoc()) {
             $ftotal[] = $row['amount'];
-            
+            $array[] = $row['amount'];
+
+            var_dump($array);
         ?>
 
 
