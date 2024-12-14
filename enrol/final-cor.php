@@ -1534,6 +1534,12 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 					<td colspan="3">Total</td>
 				</tr>
 				<?php
+
+                $stud_fees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '". $_GET['application_no'] ."'");
+                $ftotal = 0;
+
+                var_dump($stud_fees);
+
                 $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND semester = '". $semester ."' ");
                 
