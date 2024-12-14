@@ -77,7 +77,7 @@ $numb = mysqli_num_rows($query);
 if ($row) {
    
     // Retrieve data from the fetched row
-    $application_no  = $row["application_no"];
+    $application_no  = $_GET["application_no"];
     //    $last_name  = $row["last_name"];
     //    $first_name  = $row["first_name"];
     //    $middle_name  = $row["middle_name"];
