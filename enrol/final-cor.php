@@ -1538,7 +1538,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                 $stud_fees = $conn->query("SELECT * FROM student_individual_fees where enroll_id = '". $_GET['application_no'] ."'");
                 $ftotal = 0;
 
-                var_dump($stud_fees);
+                // var_dump($stud_fees);
 
                 $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 				$get_course = $conn->query("SELECT * FROM courses WHERE department = '".$row["course"]."' AND semester = '". $semester ."' ");
@@ -1562,8 +1562,8 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 
 
                     // Calculate total units
-                    foreach ($subjects as $subject) {
-                        $total_units += $subject['units'];
+                    foreach ($subjects as $subjectt) {
+                        $total_units += $subjectt['units'];
                     }
 
                     $tuition_based = 'Tuition Fee based on enrolled academic units (credit and non-credit courses)';
