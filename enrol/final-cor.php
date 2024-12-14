@@ -1601,6 +1601,8 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                         <?php
                                 if ($row['type'] == $tuition_based && $total_units != null) {
                                    echo $subject_total;
+                                }else{
+                                    echo $row['amount'];
                                 }
                             ?>
                         </td>
