@@ -1539,7 +1539,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                 
             //   echo $totalUnits;
                 
-                if ($get_course->num_rows > 0) {
+                // if ($get_course->num_rows > 0) {
                     $fetch_course = $get_course->fetch_assoc();
                     $fetch_course['department'] = $fetch_course['department'] == 'BSHM' ? 'BS-HM' : $fetch_course['department'];
                     $total_units = $fetch_course['laboratory'] + $fetch_course['computer'] + $fetch_course['academic'] + $fetch_course['academic_nstp'];
@@ -1615,7 +1615,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 $ftotal  , 2) ?></b></td>
                     </tr>
                     <?php
-                }
+                // }
                 ?>
 				
 				
