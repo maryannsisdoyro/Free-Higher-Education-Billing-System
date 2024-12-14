@@ -1554,17 +1554,17 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 
                     // $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND  ");
 
-                    // $query_subjects = mysqli_query($conn, "SELECT * FROM subject_individual WHERE enroll_id = '". $_GET['application_no'] ."'");
+                    $query_subjects = mysqli_query($conn, "SELECT * FROM subject_individual WHERE enroll_id = '". $_GET['application_no'] ."'");
                     
 
-                    // $subjects = $query_subjects->fetch_all(); // Fetch as associative array
-                    // $total_units = 0;
+                    $subjects = $query_subjects->fetch_all(); // Fetch as associative array
+                    $total_units = 0;
 
 
                     // Calculate total units
-                    // foreach ($subjects as $subject) {
-                    //     $total_units += $subject['unit'];
-                    // }
+                    foreach ($subjects as $subject) {
+                        $total_units += $subject['unit'];
+                    }
 
                     $tuition_based = 'Tuition Fee based on enrolled academic units (credit and non-credit courses)';
                     $tuition_based2 = 'Tuition Fee based on enrolled academic units (credits non-credit courses)';
