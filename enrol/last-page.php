@@ -662,7 +662,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
         $fetch_course['department'] = $fetch_course['department'] == 'BSHM' ? 'BS-HM' : $fetch_course['department'];
         $total_units = $fetch_course['laboratory'] + $fetch_course['computer'] + $fetch_course['academic'] + $fetch_course['academic_nstp'];
         $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
-        $ftotal = 0;
+        $ftotal = [];
 
         // $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND  ");
 
@@ -687,8 +687,10 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 
         echo $subject_total;
 
+        
+
         while ($row = $cfees->fetch_assoc()) {
-            $ftotal += $row['amount'];
+            $ftotal[] = $row['amount'];
             
         ?>
 
