@@ -1556,13 +1556,11 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 
                     $query_subjects = mysqli_query($conn, "SELECT * FROM subject_individual WHERE enroll_id = '". $_GET['application_no'] ."'");
                     
-
-                    $subjects = $query_subjects->fetch_all(); // Fetch as associative array
+                    // $subjects = $query_subjects->fetch_all(); // Fetch as associative array
                     $total_units = 0;
 
-
                     // Calculate total units
-                    foreach ($subjects as $subjectt) {
+                    foreach ($query_subjects as $subjectt) {
                         $total_units += $subjectt['units'];
                     }
 
