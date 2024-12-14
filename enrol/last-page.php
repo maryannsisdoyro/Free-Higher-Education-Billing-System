@@ -734,7 +734,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
             <td colspan="5" style="text-align: center;"></td>
             <td colspan="2" style="text-align: center;"></td>
             <td colspan="3" class="text-right"><b><?php echo number_format($subject_total +
-$ftotal  , 2) ?></b></td>
+array_sum($ftotal)  , 2) ?></b></td>
         </tr>
         <?php
     }
