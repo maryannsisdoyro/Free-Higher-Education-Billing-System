@@ -496,6 +496,9 @@ if (isset($_GET['next'])) {
                     }
                 </style>
                 <div class="table-responsive table-responsive-data2" id="subjects_table">
+                <?php 
+                     if (strtoupper($row['enroll_status']) != 'REGULAR') {
+                        ?>
                 <form method="POST" class="d-flex gap-2 g-2 mb-3" style="gap: 10px; flex-wrap: wrap;">
                     <input type="text" name="time" class="form-control" style="width: 49%;" placeholder="Time">
                     <input type="text" name="day" class="form-control" style="width: 49%;" placeholder="Day">
@@ -506,13 +509,20 @@ if (isset($_GET['next'])) {
                     <input type="text" name="inst" class="form-control" style="width: 49%;" placeholder="Instructor">
                     <button type="submit" class="btn btn-danger">Add</button>
                 </form>
+                <?php } ?>
 
                
 
                 <table id="example2" class="table table-bordered table-hover" style="font-size: small;">
         <thead>
             <tr>
-                <th></th>
+                <?php 
+                     if (strtoupper($row['enroll_status']) != 'REGULAR') {
+                        ?>
+                     <th></th>
+                        <?php 
+                     }
+                ?>
                 <th class="text-center">Time</th>
                 <th class="text-center">Day</th>
                 <th class="text-center">Subject Code</th>
@@ -586,7 +596,13 @@ if (isset($_GET['next'])) {
                 $totalUnits += $stud_sub['units'];
             ?>
                 <tr>
-                    <td class="text-center"><a class="text-danger mx-1 py-0 my-auto btn btn-outline-danger" href="?application_no=<?= $_GET['application_no'] ?>&remove=<?= htmlentities($stud_sub['id']) ?>">x</td>
+                    <?php 
+                        if (strtoupper($row['enroll_status']) != 'REGULAR') {
+                            ?>
+                              <td class="text-center"><a class="text-danger mx-1 py-0 my-auto btn btn-outline-danger" href="?application_no=<?= $_GET['application_no'] ?>&remove=<?= htmlentities($stud_sub['id']) ?>">x</td>
+                            <?php 
+                        }
+                    ?>
                     <td class="text-center"><?php echo htmlentities($stud_sub['time']); ?></td>
                     <td class="text-center"><?php echo htmlentities($stud_sub['day']); ?></td>
                     <td class="text-center sub-column"><?php echo htmlentities($stud_sub['subjectcode']); ?></td>
