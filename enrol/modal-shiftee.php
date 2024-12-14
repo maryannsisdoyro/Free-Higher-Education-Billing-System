@@ -373,6 +373,7 @@ $("#course_shift").change(function() {
                 // Loop through each fee in the response and add it to the list
                 result.forEach(data => {
                     var tr = $('#fee_clone_shiftee tr').clone();
+                    tr.find('[name="fid_shiftee[]"]').val(data[0]);
                     tr.find('[name="type_shiftee[]"]').val(data[1]); // Set the fee description
                     tr.find('.ftype_shiftee').text(data[1]);         // Display the fee description
                     tr.find('[name="amount_shiftee[]"]').val(data[2]);    // Set the fee amount
