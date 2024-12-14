@@ -645,7 +645,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
     // Assuming $conn is your database connection
     $totalUnits = 0;
     $cou = $row['course'] == 'BSHM' ? 'BS-HM' : $row['course'];
-    $query = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$cou."' AND sem = '".$row['semester']."' AND year = '". $row['year_level'] ."'");
+    $query = mysqli_query($conn, "SELECT * FROM subject_individual WHERE enroll_id = '". $_GET['application_no'] ."'");
 
     foreach ($query as $row) :
         $totalUnits += $row['units'];
@@ -666,7 +666,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 
         // $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND  ");
 
-        $query_subjects = mysqli_query($conn, "SELECT * FROM subject WHERE course = '".$fetch_course['department']."' AND sem = '".$semester."' AND year = '". $fetch_course['level'] ."'");
+        $query_subjects = mysqli_query($conn, "SELECT * FROM subject_individual WHERE enroll_id = '". $_GET['application_no'] ."'");
         
 
         $subjects = $query_subjects->fetch_all(); // Fetch as associative array
