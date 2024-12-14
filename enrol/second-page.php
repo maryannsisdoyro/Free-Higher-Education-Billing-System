@@ -130,14 +130,16 @@ if (isset($_GET['next'])) {
 
         // Execute the query
         if ($stmt->execute()) {
-            // unset($_SESSION['STUDENT_SUBJECT']);
+           
         }
     }
 
+    unset($_SESSION['STUDENT_SUBJECT']);
     ?>
-    <!-- <script>
+   
+    <script>
      window.location.href = "last-page.php?application_no=<?= $_GET['application_no']; ?>"
-    </script> -->
+    </script>
     <?php 
     // Optional: Redirect after processing
 }
