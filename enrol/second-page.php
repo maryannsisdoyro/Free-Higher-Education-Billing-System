@@ -130,9 +130,7 @@ if (isset($_GET['next'])) {
 
         // Execute the query
         if ($stmt->execute()) {
-            echo "Subject added successfully.<br>";
-        } else {
-            echo "Error adding subject: " . $stmt->error . "<br>";
+            unset($_SESSION['STUDENT_SUBJECT']);
         }
     }
 
