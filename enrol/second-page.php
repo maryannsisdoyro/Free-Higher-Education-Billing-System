@@ -153,6 +153,13 @@ if (isset($_GET['next'])) {
     
     // Unset the session data if needed
     unset($_SESSION['STUDENT_SUBJECT']);
+
+    ?>
+   
+    <script>
+     window.location.href = "last-page.php?application_no=<?= $_GET['application_no']; ?>"
+    </script>
+    <?php 
    
     // Optional: Redirect after processing
 }
