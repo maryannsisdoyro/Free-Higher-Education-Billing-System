@@ -221,7 +221,7 @@
             return false;
         }
         $.ajax({
-            url:'../ajax?action=save_regular',
+            url:'../ajax.php?action=save_regular',
             data: new FormData($(this)[0]),
             cache: false,
             contentType: false,
@@ -232,7 +232,7 @@
                 const result = JSON.parse(resp)
                 if(result.status==1){
                    
-                           location.href = "student-cor?application_no=" + result.enroll_id
+                           location.href = "student-cor.php?application_no=" + result.enroll_id
                        
                 }else if(resp == 2){
                 $('#msg').html('<div class="alert alert-danger mx-2">Course Name & Level already exist.</div>')
@@ -262,7 +262,7 @@
 
     // Perform AJAX call to get fees based on course and year level
     $.ajax({
-        url: '../ajax?action=get_fees',
+        url: '../ajax.php?action=get_fees',
         data: { course_id: selectCourse, year_level: selectYearLevel },
         cache: false,
         method: 'POST',
