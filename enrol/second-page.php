@@ -593,7 +593,7 @@ if (isset($_GET['next'])) {
                     <td class="text-center units-column"><?php echo htmlentities($stud_sub['units']); ?></td>
                     <td class="text-center"><?php echo htmlentities($stud_sub['room']); ?></td>
                     <td class="text-center ins-column"><?php echo htmlentities($stud_sub['inst']); ?></td>
-                    <td class="text-center"><a class="btn btn-outline-danger p-1" href="?application_no=<?= $_GET['application_no'] ?>&remove=<?= htmlentities($stud_sub['id']) ?>">x</td>
+                    <td class="text-center"><a class="btn btn-outline-danger p-1 py-0" href="?application_no=<?= $_GET['application_no'] ?>&remove=<?= htmlentities($stud_sub['id']) ?>">x</td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
