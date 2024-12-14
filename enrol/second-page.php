@@ -134,7 +134,7 @@ if (isset($_GET['next'])) {
         }
     }
 
-    unset($_SESSION['STUDENT_SUBJECT']);
+    // unset($_SESSION['STUDENT_SUBJECT']);
     ?>
    
     <script>
