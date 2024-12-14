@@ -683,7 +683,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
         $rate = 229.17;    
         // $subject_count = count($subjects);
 
-        $subject_total = $totalUnits * $rate;
+        // $subject_total = $totalUnits * $rate;
 
         // echo $subject_total;
 
