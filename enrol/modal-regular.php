@@ -104,19 +104,20 @@
                         if(isset($id)):
                         $fees = $conn->query("SELECT * FROM fees where course_id = $id");
                         $total = 0;
-                        while($rows=$fees->fetch_assoc()): 
-                            $total += $rows['amount'];
+                        while($row=$fees->fetch_assoc()): 
+                            $total += $row['amount'];
                     ?>
                         <tr>
                             <td class="text-center"><button class="btn-sm btn-outline-danger" type="button" onclick="rem_list_regular($(this))" ><i class="fa fa-times"></i></button></td>
                             <td>
-                                <input type="text" name="fid_regular[]" value="<?php echo $rows['id'] ?>">
-                                <input type="text" name="type_regular[]" value="<?php echo $rows['description'] ?>">
-                                <p><small><b class="ftype_regular"><?php echo $rows['description'] ?></b></small></p>
+                                <input type="text" name="fid_regular[]" value="<?php echo $row['id'] ?>">
+                                <p><?php var_dump($row) ?></p>
+                                <input type="text" name="type_regular[]" value="<?php echo $row['description'] ?>">
+                                <p><small><b class="ftype_regular"><?php echo $row['description'] ?></b></small></p>
                             </td>
                             <td>
-                                <input type="hidden" name="amount_regular[]" value="<?php echo $rows['amount'] ?>">
-                                <p class="text-right"><small><b class="famount_regular"><?php echo number_format($rows['amount']) ?></b></small></p>
+                                <input type="hidden" name="amount_regular[]" value="<?php echo $row['amount'] ?>">
+                                <p class="text-right"><small><b class="famount_regular"><?php echo number_format($row['amount']) ?></b></small></p>
                             </td>
                         </tr>
                     <?php
