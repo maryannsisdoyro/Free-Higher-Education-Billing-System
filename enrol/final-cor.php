@@ -1029,7 +1029,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
             // Assuming $conn is your database connection
             $totalUnits = 0;
             $cou = $row['course'] == 'BSHM' ? 'BS-HM' : $row['course'];
-            $query = mysqli_query($conn, "SELECT * FROM student_individual_fees where enroll_id = '".$application_no."'");
+            $query = mysqli_query($conn, "SELECT * FROM student_individual_fees where enroll_id = '$application_no'");
 
             foreach ($query as $row) :
                 $totalUnits += $row['units'];
