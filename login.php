@@ -313,8 +313,6 @@ window._conf = function($msg='',$func='',$params = []){
     width: "100%"
   })
 
-  let sucRes = [];
-
 	$('#login-form').submit(function(e){
 		e.preventDefault()
 
@@ -333,7 +331,6 @@ window._conf = function($msg='',$func='',$params = []){
           success: function(resp) {
             console.log(resp);
             if (resp == 1) {
-             
               Swal.fire({
                 icon: 'success',
                 title: 'Account logged in successfully',
@@ -345,7 +342,6 @@ window._conf = function($msg='',$func='',$params = []){
                 location.href = 'index.php?page=home';
               }, 1500);
             } else {
-              sucRes.push(1);
               //$('#login-form').prepend('<div class="alert alert-danger">Email or password is incorrect.</div>');
               swal.fire({
                 icon: 'error',
@@ -376,10 +372,6 @@ window._conf = function($msg='',$func='',$params = []){
     }
 </script>
 <script>
-
-  console.log(sucRes);
-  
-
   const maxAttempts = 3;
   let attempts = maxAttempts;
   let lockDuration = 180; // Lock duration in seconds
