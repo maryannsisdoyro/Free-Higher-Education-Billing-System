@@ -102,7 +102,7 @@
                 <tbody>
                     <?php
                         if(isset($id)):
-                        $fees = $conn->query("SELECT * FROM fees where course_id = $id");
+                        $fees = $conn->query("SELECT *, id as IDS FROM fees where course_id = $id");
                         $total = 0;
                         while($row=$fees->fetch_assoc()): 
                             $total += $row['amount'];
@@ -110,8 +110,7 @@
                         <tr>
                             <td class="text-center"><button class="btn-sm btn-outline-danger" type="button" onclick="rem_list_regular($(this))" ><i class="fa fa-times"></i></button></td>
                             <td>
-                                <input type="text" name="fid_regular[]" value="<?php echo $row['id'] ?>">
-                                <p><?php var_dump($row) ?></p>
+                                <input type="text" name="fid_regular[]" value="<?php echo $row['IDS'] ?>">
                                 <input type="text" name="type_regular[]" value="<?php echo $row['description'] ?>">
                                 <p><small><b class="ftype_regular"><?php echo $row['description'] ?></b></small></p>
                             </td>
