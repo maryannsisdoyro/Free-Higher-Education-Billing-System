@@ -1546,19 +1546,19 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
             //   echo $totalUnits;
                 
                 // if ($get_course->num_rows > 0) {
-                    $fetch_course = $get_course->fetch_assoc();
-                    $fetch_course['department'] = $fetch_course['department'] == 'BSHM' ? 'BS-HM' : $fetch_course['department'];
-                    $total_units = $fetch_course['laboratory'] + $fetch_course['computer'] + $fetch_course['academic'] + $fetch_course['academic_nstp'];
-                    $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
-                    $ftotal = 0;
+                    // $fetch_course = $get_course->fetch_assoc();
+                    // $fetch_course['department'] = $fetch_course['department'] == 'BSHM' ? 'BS-HM' : $fetch_course['department'];
+                    // $total_units = $fetch_course['laboratory'] + $fetch_course['computer'] + $fetch_course['academic'] + $fetch_course['academic_nstp'];
+                    // $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
+                    // $ftotal = 0;
 
                     // $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND  ");
 
-                    $query_subjects = mysqli_query($conn, "SELECT * FROM subject_individual WHERE enroll_id = '". $_GET['application_no'] ."'");
+                    // $query_subjects = mysqli_query($conn, "SELECT * FROM subject_individual WHERE enroll_id = '". $_GET['application_no'] ."'");
                     
 
-                    $subjects = $query_subjects->fetch_all(); // Fetch as associative array
-                    $total_units = 0;
+                    // $subjects = $query_subjects->fetch_all(); // Fetch as associative array
+                    // $total_units = 0;
 
 
                     // Calculate total units
@@ -1573,7 +1573,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 
                     $subject_total = $totalUnits * $rate;
 
-                    while ($row = $cfees->fetch_assoc()) {
+                    while ($row = $stud_fees->fetch_assoc()) {
                         $ftotal += $row['amount'];
                         
                     ?>
