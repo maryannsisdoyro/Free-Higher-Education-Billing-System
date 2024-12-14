@@ -1615,7 +1615,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                         <td colspan="2">Grand Total</td>
                         <td colspan="5" style="text-align: center;"></td>
                         <td colspan="2" style="text-align: center;"></td>
-                        <td colspan="3" class="text-right"><b><?php echo number_format(round(abs($subject_total - ($subject_total + $ftotal))), 2), 2);) ?></b></td>
+                        <td colspan="3" class="text-right"><b><?php echo number_format(round($subject_total - ($subject_total + $ftotal), 2);) ?></b></td>
                     </tr>
                     <?php
                 // }
