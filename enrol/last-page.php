@@ -662,7 +662,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
         $fetch_course['department'] = $fetch_course['department'] == 'BSHM' ? 'BS-HM' : $fetch_course['department'];
         $total_units = $fetch_course['laboratory'] + $fetch_course['computer'] + $fetch_course['academic'] + $fetch_course['academic_nstp'];
         $cfees = $conn->query("SELECT * FROM fees where course_id = '". $fetch_course['id'] ."'");
-        $ftotal = [];
+        $ftotal = 0;
 
         // $query_subjects = $conn->query("SELECT * FROM subject WHERE course = '" . $fetch_course['department'] . "' AND sem = '" . $fetch_course['semester'] . "' AND  ");
 
@@ -683,17 +683,15 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
         $rate = 229.17;    
         // $subject_count = count($subjects);
 
-        // $subject_total = $totalUnits * $rate;
+        $subject_total = $totalUnits * $rate;
 
-        // echo $subject_total;
+        echo $subject_total;
 
         
 
         while ($row = $cfees->fetch_assoc()) {
-            $ftotal[] = $row['amount'];
-            $array[] = $row['amount'];
-            echo $row['amount'];
-            // var_dump($array);
+            $ftotal += $row['amount'];
+            
         ?>
 
 
@@ -736,7 +734,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
             <td colspan="5" style="text-align: center;"></td>
             <td colspan="2" style="text-align: center;"></td>
             <td colspan="3" class="text-right"><b><?php echo number_format($subject_total +
-array_sum($ftotal)  , 2) ?></b></td>
+$ftotal  , 2) ?></b></td>
         </tr>
         <?php
     }
@@ -749,6 +747,8 @@ array_sum($ftotal)  , 2) ?></b></td>
 
 </div>
 <input type="hidden" id="application_no" name="appli_no" value="<?= $id ?>">
+
+<?= $ftotal ?>
 
 <div class="w-100 d-flex align-items-center my-3 justify-content-end container" style="column-gap: 20px; padding-right: ;">
     <a href="student-cor.php?application_no=<?= $id ?>" class="btn btn-secondary" style="width: 100px;">Previous</a>
