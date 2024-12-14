@@ -689,19 +689,19 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 
         
 
-        while ($row = $cfees->fetch_assoc()) {
-            $ftotal[] = $row['amount'];
-            $array[] = $row['amount'];
-            echo $row['amount'];
+        while ($rows = $cfees->fetch_assoc()) {
+            $ftotal[] = $rows['amount'];
+            $array[] = $rows['amount'];
+            echo $rows['amount'];
             // var_dump($array);
         ?>
 
 
         <tr>
-            <td colspan="2"><?= $row['description'] ?></td>
+            <td colspan="2"><?= $rows['description'] ?></td>
             <td colspan="5" style="text-align: center;">
                 <?php
-                    if ($row['description'] == $tuition_based || $row['description'] == $tuition_based2) {
+                    if ($rows['description'] == $tuition_based || $rows['description'] == $tuition_based2) {
                        echo number_format($totalUnits);
                     }else{
                         echo '-';
@@ -710,7 +710,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
             </td>
             <td colspan="2" style="text-align: center;">
             <?php
-                    if ($row['description'] == $tuition_based || $row['description'] == $tuition_based2) {
+                    if ($rows['description'] == $tuition_based || $rows['description'] == $tuition_based2) {
                        echo $rate;
                     }else{
                         echo '-';
@@ -719,10 +719,10 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
             </td>
             <td colspan="3" style="text-align: center;">
             <?php
-                    if ($row['description'] == $tuition_based && $total_units != null) {
+                    if ($rows['description'] == $tuition_based && $total_units != null) {
                        echo $subject_total;
                     }else{
-                        echo $row['amount'];
+                        echo $rows['amount'];
                     }
                 ?>
             </td>
