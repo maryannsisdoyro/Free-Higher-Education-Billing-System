@@ -139,13 +139,13 @@ if (isset($_GET['next'])) {
         // }
     
         // // Execute the query
-        // if ($stmt->execute()) {
-        //     // Optionally handle success
-        //     // echo "Record successfully inserted.";
-        // } else {
-        //     // Log or handle error on failure
-        //     echo "Error inserting record: " . $stmt->error;
-        // }
+        if ($stmt->execute()) {
+            // Optionally handle success
+            // echo "Record successfully inserted.";
+        } else {
+            // Log or handle error on failure
+            echo "Error inserting record: " . $stmt->error;
+        }
         
         // Free the statement after execution
         // $stmt->close();
