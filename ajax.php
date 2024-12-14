@@ -131,7 +131,7 @@ if($action == 'save_regular'){
 	// 	echo $save_regular;
 	// }
 
-	echo json_encode(extract($_POST));
+	echo json_encode($_POST);
 }
 
 if($action == 'get_fees'){
