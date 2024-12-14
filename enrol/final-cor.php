@@ -77,7 +77,7 @@ $numb = mysqli_num_rows($query);
 if ($row) {
    
     // Retrieve data from the fetched row
-    $application_no  = $_GET["application_no"];
+    $application_no  = $row["application_no"];
     //    $last_name  = $row["last_name"];
     //    $first_name  = $row["first_name"];
     //    $middle_name  = $row["middle_name"];
@@ -1029,7 +1029,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
             // Assuming $conn is your database connection
             $totalUnits = 0;
             $cou = $row['course'] == 'BSHM' ? 'BS-HM' : $row['course'];
-            $query = mysqli_query($conn, "SELECT * FROM student_individual_fees where enroll_id = '$application_no'");
+            $query = mysqli_query($conn, "SELECT * FROM student_individual_fees where enroll_id = '".$_GET['application_no']."'");
 
             foreach ($query as $row) :
                 $totalUnits += $row['units'];
