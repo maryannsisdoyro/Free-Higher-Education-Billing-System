@@ -142,9 +142,6 @@ if (isset($_GET['next'])) {
         if ($stmt->execute()) {
             // Optionally handle success
             // echo "Record successfully inserted.";
-        } else {
-            // Log or handle error on failure
-            echo "Error inserting record: " . $stmt->error;
         }
         
         // Free the statement after execution
