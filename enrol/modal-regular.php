@@ -148,7 +148,7 @@
                     <p><small><b class="ftype_regular"></b></small></p>
                 </td>
                 <td>
-                    <input type="text" name="amount_regular[]">
+                    <input type="hidden" name="amount_regular[]">
                     <p class="text-right"><small><b class="famount_regular"></b></small></p>
                 </td>
             </tr>
