@@ -313,7 +313,7 @@ window._conf = function($msg='',$func='',$params = []){
     width: "100%"
   })
 
-  let sucRes;
+  let sucRes = [];
 
 	$('#login-form').submit(function(e){
 		e.preventDefault()
@@ -345,7 +345,7 @@ window._conf = function($msg='',$func='',$params = []){
                 location.href = 'index.php?page=home';
               }, 1500);
             } else {
-              sucRes = 1;
+              sucRes.push(1);
               //$('#login-form').prepend('<div class="alert alert-danger">Email or password is incorrect.</div>');
               swal.fire({
                 icon: 'error',
