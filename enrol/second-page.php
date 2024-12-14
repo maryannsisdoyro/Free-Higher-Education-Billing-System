@@ -119,19 +119,19 @@ if (isset($_GET['next'])) {
         // }
     
         // // Bind the parameters to the prepared statement
-        // $stmt->bind_param("sssssssssss", 
-        //     $_GET['application_no'],          // enroll_id
-        //     $semester,                        // sem
-        //     $y_level,                         // year
-        //     $course_to_be_enrolled,           // course
-        //     $stud['time'],                    // tbl_time
-        //     $stud['day'],                     // tbl_day
-        //     $stud['subjectcode'],             // subjectcode
-        //     $stud['subdes'],                  // subdes
-        //     $stud['units'],                   // units
-        //     $stud['room'],                    // room
-        //     $stud['inst']                     // inst
-        // );
+        $stmt->bind_param("sssssssssss", 
+            $_GET['application_no'],          // enroll_id
+            $semester,                        // sem
+            $y_level,                         // year
+            $course_to_be_enrolled,           // course
+            $stud['time'],                    // tbl_time
+            $stud['day'],                     // tbl_day
+            $stud['subjectcode'],             // subjectcode
+            $stud['subdes'],                  // subdes
+            $stud['units'],                   // units
+            $stud['room'],                    // room
+            $stud['inst']                     // inst
+        );
     
         // // Check if bind_param worked
         // if ($stmt->errno) {
