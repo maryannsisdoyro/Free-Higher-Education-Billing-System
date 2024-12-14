@@ -221,7 +221,7 @@
             return false;
         }
         let data = new FormData($(this)[0])
-        console.log(data);
+        console.log(data['type_regular']);
         
         // $.ajax({
         //     url:'../ajax.php?action=save_regular',
