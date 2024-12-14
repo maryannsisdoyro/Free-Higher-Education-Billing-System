@@ -600,7 +600,7 @@ if (isset($_GET['next'])) {
         <tfoot>
             <tr>
                 
-                <td class="sub-column" colspan="2" style="text-align: right;"><strong>Numbers of Units Applied: </strong></td>
+                <td class="sub-column" colspan="3" style="text-align: right;"><strong>Numbers of Units Applied: </strong></td>
                   <td class="units-column" style="text-align: center;"><strong> <?php echo number_format($totalUnits); ?></strong></td>
               
                 <td class="des-column" style="text-align: right;"><strong>Approved Units: </strong></td>
