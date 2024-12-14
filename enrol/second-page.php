@@ -512,6 +512,7 @@ if (isset($_GET['next'])) {
                 <table id="example2" class="table table-bordered table-hover" style="font-size: small;">
         <thead>
             <tr>
+                <th></th>
                 <th class="text-center">Time</th>
                 <th class="text-center">Day</th>
                 <th class="text-center">Subject Code</th>
@@ -519,7 +520,6 @@ if (isset($_GET['next'])) {
                 <th class="text-center">Units</th>
                 <th class="text-center">Room</th>
                 <th class="text-center">Instructor</th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -586,6 +586,7 @@ if (isset($_GET['next'])) {
                 $totalUnits += $stud_sub['units'];
             ?>
                 <tr>
+                    <td class="text-center"><a class="text-danger mx-1 py-0 my-auto btn btn-outline-danger" href="?application_no=<?= $_GET['application_no'] ?>&remove=<?= htmlentities($stud_sub['id']) ?>">x</td>
                     <td class="text-center"><?php echo htmlentities($stud_sub['time']); ?></td>
                     <td class="text-center"><?php echo htmlentities($stud_sub['day']); ?></td>
                     <td class="text-center sub-column"><?php echo htmlentities($stud_sub['subjectcode']); ?></td>
@@ -593,7 +594,6 @@ if (isset($_GET['next'])) {
                     <td class="text-center units-column"><?php echo htmlentities($stud_sub['units']); ?></td>
                     <td class="text-center"><?php echo htmlentities($stud_sub['room']); ?></td>
                     <td class="text-center ins-column"><?php echo htmlentities($stud_sub['inst']); ?></td>
-                    <td class="text-center"><a class="text-danger mx-1 py-0 my-auto btn btn-outline-danger" href="?application_no=<?= $_GET['application_no'] ?>&remove=<?= htmlentities($stud_sub['id']) ?>">x</td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
