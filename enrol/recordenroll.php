@@ -111,7 +111,7 @@ if (isset($_POST['search'])) {
         <div class="mt-3 mb-5 ">
             <!-- <a href="?export=csv" class="btn btn-success">Export to CSV</a> -->
             <!-- <a href="college-applications.php" class="btn btn-primary">Back</a> -->
-            <form method="post" action="home?page=enrol" class="d-flex align-items-center mx-auto" style="gap: 10px; width: 500px;">
+            <form method="post" class="d-flex align-items-center mx-auto" style="gap: 10px; width: 500px;">
                 <input type="search" class="form-control my-2" name="search" placeholder="Student ID">
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
