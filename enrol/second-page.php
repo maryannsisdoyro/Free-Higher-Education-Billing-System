@@ -130,7 +130,7 @@ if (isset($_GET['next'])) {
 
         // Execute the query
         if ($stmt->execute()) {
-            unset($_SESSION['STUDENT_SUBJECT']);
+            // unset($_SESSION['STUDENT_SUBJECT']);
         }
     }
 
