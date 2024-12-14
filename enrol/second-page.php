@@ -113,42 +113,42 @@ if (isset($_GET['next'])) {
         $stmt = $conn->prepare("INSERT INTO subject_individual (enroll_id, sem, year, course, tbl_time, tbl_day, subjectcode, subdes, units, room, inst) 
                                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     
-        if ($stmt === false) {
-            // Check for prepare statement failure
-            die('MySQL prepare error: ' . $conn->error);
-        }
+        // if ($stmt === false) {
+        //     // Check for prepare statement failure
+        //     die('MySQL prepare error: ' . $conn->error);
+        // }
     
-        // Bind the parameters to the prepared statement
-        $stmt->bind_param("sssssssssss", 
-            $_GET['application_no'],          // enroll_id
-            $semester,                        // sem
-            $y_level,                         // year
-            $course_to_be_enrolled,           // course
-            $stud['time'],                    // tbl_time
-            $stud['day'],                     // tbl_day
-            $stud['subjectcode'],             // subjectcode
-            $stud['subdes'],                  // subdes
-            $stud['units'],                   // units
-            $stud['room'],                    // room
-            $stud['inst']                     // inst
-        );
+        // // Bind the parameters to the prepared statement
+        // $stmt->bind_param("sssssssssss", 
+        //     $_GET['application_no'],          // enroll_id
+        //     $semester,                        // sem
+        //     $y_level,                         // year
+        //     $course_to_be_enrolled,           // course
+        //     $stud['time'],                    // tbl_time
+        //     $stud['day'],                     // tbl_day
+        //     $stud['subjectcode'],             // subjectcode
+        //     $stud['subdes'],                  // subdes
+        //     $stud['units'],                   // units
+        //     $stud['room'],                    // room
+        //     $stud['inst']                     // inst
+        // );
     
-        // Check if bind_param worked
-        if ($stmt->errno) {
-            die('MySQL bind_param error: ' . $stmt->error);
-        }
+        // // Check if bind_param worked
+        // if ($stmt->errno) {
+        //     die('MySQL bind_param error: ' . $stmt->error);
+        // }
     
-        // Execute the query
-        if ($stmt->execute()) {
-            // Optionally handle success
-            // echo "Record successfully inserted.";
-        } else {
-            // Log or handle error on failure
-            echo "Error inserting record: " . $stmt->error;
-        }
+        // // Execute the query
+        // if ($stmt->execute()) {
+        //     // Optionally handle success
+        //     // echo "Record successfully inserted.";
+        // } else {
+        //     // Log or handle error on failure
+        //     echo "Error inserting record: " . $stmt->error;
+        // }
         
         // Free the statement after execution
-        $stmt->close();
+        // $stmt->close();
     }
     
     // Unset the session data if needed
