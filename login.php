@@ -333,7 +333,7 @@ window._conf = function($msg='',$func='',$params = []){
           success: function(resp) {
             console.log(resp);
             if (resp == 1) {
-              sucRes = 1;
+             
               Swal.fire({
                 icon: 'success',
                 title: 'Account logged in successfully',
@@ -345,6 +345,7 @@ window._conf = function($msg='',$func='',$params = []){
                 location.href = 'index.php?page=home';
               }, 1500);
             } else {
+              sucRes = 1;
               //$('#login-form').prepend('<div class="alert alert-danger">Email or password is incorrect.</div>');
               swal.fire({
                 icon: 'error',
