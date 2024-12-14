@@ -126,12 +126,10 @@ if($action == 'save_irregular'){
 }
 
 if($action == 'save_regular'){
-	// $save_regular = $crud->save_regular();
-	// if($save_regular){
-	// 	echo $save_regular;
-	// }
-
-	echo json_encode($_POST);
+	$save_regular = $crud->save_regular();
+	if($save_regular){
+		echo $save_regular;
+	}
 }
 
 if($action == 'get_fees'){

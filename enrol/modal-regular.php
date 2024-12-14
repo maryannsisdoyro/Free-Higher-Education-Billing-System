@@ -102,7 +102,7 @@
                 <tbody>
                     <?php
                         if(isset($id)):
-                        $fees = $conn->query("SELECT *, id as IDS FROM fees where course_id = $id");
+                        $fees = $conn->query("SELECT * FROM fees where course_id = $id");
                         $total = 0;
                         while($row=$fees->fetch_assoc()): 
                             $total += $row['amount'];
@@ -110,8 +110,8 @@
                         <tr>
                             <td class="text-center"><button class="btn-sm btn-outline-danger" type="button" onclick="rem_list_regular($(this))" ><i class="fa fa-times"></i></button></td>
                             <td>
-                                <input type="text" name="fid_regular[]" value="<?php echo 1 ?>">
-                                <input type="text" name="type_regular[]" value="<?php echo $row['description'] ?>">
+                                <input type="hidden" name="fid_regular[]" value="<?php echo $row['id'] ?>">
+                                <input type="hidden" name="type_regular[]" value="<?php echo $row['description'] ?>">
                                 <p><small><b class="ftype_regular"><?php echo $row['description'] ?></b></small></p>
                             </td>
                             <td>
@@ -143,8 +143,8 @@
             <tr>
                 <!-- <td class="text-center"><button class="btn-sm btn-outline-danger" type="button" onclick="rem_list_regular($(this))" ><i class="fa fa-times"></i></button></td> -->
                 <td>
-                    <input type="text" name="fid_regular[]">
-                    <input type="text" name="type_regular[]">
+                    <input type="hidden" name="fid_regular[]">
+                    <input type="hidden" name="type_regular[]">
                     <p><small><b class="ftype_regular"></b></small></p>
                 </td>
                 <td>
@@ -230,16 +230,16 @@
             type: 'POST',
             success:function(resp){
                 const result = JSON.parse(resp)
-                // if(result.status==1){
+                if(result.status==1){
                    
-                //            location.href = "student-cor.php?application_no=" + result.enroll_id
+                           location.href = "student-cor.php?application_no=" + result.enroll_id
                        
-                // }else if(resp == 2){
-                // $('#msg').html('<div class="alert alert-danger mx-2">Course Name & Level already exist.</div>')
-                // end_load()
-                // } 
+                }else if(resp == 2){
+                $('#msg').html('<div class="alert alert-danger mx-2">Course Name & Level already exist.</div>')
+                end_load()
+                } 
                 
-                console.log(result);
+                // console.log(result);
                 
             }
         })
