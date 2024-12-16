@@ -10,8 +10,6 @@
 include 'db.php';
 
 
-var_dump($_POST);
-
 // Check if form is submitted with POST method
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Sanitize and validate input data (you should add more validation as per your application's requirements)
