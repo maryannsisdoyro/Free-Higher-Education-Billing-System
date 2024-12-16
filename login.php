@@ -331,6 +331,7 @@ window._conf = function($msg='',$func='',$params = []){
           success: function(resp) {
             console.log(resp);
             if (resp == 1) {
+              $("#error-message").hide();
               Swal.fire({
                 icon: 'success',
                 title: 'Account logged in successfully',
