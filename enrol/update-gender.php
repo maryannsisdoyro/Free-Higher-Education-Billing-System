@@ -113,7 +113,7 @@ $conn->close();
     <main class="container p-3" id="view-panel">
         <div class="form-container">
             <h2>EDIT INFORMATION<br>COLLEGE APPLICATION FORM <br>2024-2025</h2>
-           <form action="update-gender.php?application_no=<?= $_GET['application_no'] ?>" method="POST">
+           <form action="update-student-gender.php" method="POST">
             <input type="hidden" name="application_no" value="<?php echo $application_no; ?>">
                 <div class="form-group">
                     <label for="last_name">Last Name:</label>
