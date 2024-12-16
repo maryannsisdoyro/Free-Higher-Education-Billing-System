@@ -1671,6 +1671,40 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+<?php 
+    if (isset($_GET['print'])) {
+        ?>
+        <script>
+             start_loader();
+            var _p = $('#outprint').clone();
+            var _h = $('head').clone();
+            var _el = $('<div>');
+            var course = $('#course').val(); // Get the course abbreviation
+            _h.find("title").text(
+                "<?php echo strtoupper($last_name); ?>," +
+                "<?php echo strtoupper($first_name); ?> " +
+                "<?php echo strtoupper($middle_name); ?>-<?php echo $formatted_studentid; ?>-" +
+                course
+            );
+            _p.find('tr.text-light').removeClass('text-light bg-gradient-purple');
+            _el.append(_h);
+            _el.append(_p);
+            var nw = window.open("", "_blank", "width=1000,height=900,left=300,top=50");
+            nw.document.write(_el.html());
+            nw.document.close();
+            setTimeout(() => {
+                setPrintStyle(nw.document);
+                nw.print();
+                setTimeout(() => {
+                    nw.close();
+                    end_loader();
+                }, 300);
+            }, 750);
+        </script>
+        <?php 
+    }
+?>
+
 <script>
     $(document).ready(function() {
 
