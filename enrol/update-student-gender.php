@@ -17,8 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Add more fields as needed
 
     // Prepare SQL update statement
-    $sql = "UPDATE enroll2024 SET 
-     gender= '$sex' WHERE application_no = '$application_no'";
+    $sql = "UPDATE enroll2024 SET gender= '$sex' WHERE application_no = '$application_no'";
 
     // Execute SQL query
     if ($conn->query($sql) === TRUE) {
