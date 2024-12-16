@@ -1757,6 +1757,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
                 setTimeout(() => {
                     nw.close();
                     end_loader();
+                    window.location.href = "../?page=college-application"
                 }, 300);
             }, 750);
         </script>
