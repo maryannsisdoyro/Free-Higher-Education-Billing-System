@@ -351,29 +351,8 @@ window._conf = function($msg='',$func='',$params = []){
                 timer: 1500
               });
               $('#login-form button[type="button"]').removeAttr('disabled').html('Login');
-            }
-          }
-        });
-      });
-    });
-	})
-</script>	
 
-<script>
-     let showPass1 = document.getElementById('show-pass1');
-    showPass1.onclick = () => {
-        let passwordInp = document.forms['login-form']['password'];
-        if (passwordInp.getAttribute('type') == 'password') {
-            showPass1.classList.replace('bx-show', 'bx-low-vision')
-            passwordInp.setAttribute('type', 'text')
-        } else {
-            showPass1.classList.replace('bx-low-vision', 'bx-show')
-            passwordInp.setAttribute('type', 'password')
-        }
-    }
-</script>
-<script>
-  const maxAttempts = 3;
+              const maxAttempts = 3;
   let attempts = maxAttempts;
   let lockDuration = 180; // Lock duration in seconds
   let isLocked = false;
@@ -447,6 +426,29 @@ window._conf = function($msg='',$func='',$params = []){
     attempts = maxAttempts;
     lockDuration = 180;
   }
+            }
+          }
+        });
+      });
+    });
+	})
+</script>	
+
+<script>
+     let showPass1 = document.getElementById('show-pass1');
+    showPass1.onclick = () => {
+        let passwordInp = document.forms['login-form']['password'];
+        if (passwordInp.getAttribute('type') == 'password') {
+            showPass1.classList.replace('bx-show', 'bx-low-vision')
+            passwordInp.setAttribute('type', 'text')
+        } else {
+            showPass1.classList.replace('bx-low-vision', 'bx-show')
+            passwordInp.setAttribute('type', 'password')
+        }
+    }
+</script>
+<script>
+  
 </script>
 
 
