@@ -158,7 +158,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body text-center">
-                        
+                        <h1 class="border-bottom pb-3"> 
                         <?php 
                            echo $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female'")->num_rows;
                         ?>
@@ -173,7 +173,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body text-center">
-                        
+                        <h1 class="border-bottom pb-3">
                         <?php 
                            echo $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male'")->num_rows;
                         ?>
