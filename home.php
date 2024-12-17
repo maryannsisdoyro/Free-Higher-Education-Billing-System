@@ -155,6 +155,37 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 </div>
             </div>
 
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="border-bottom pb-3"><img src="assets/icons/BEED.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
+                        <?php 
+                            $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female'")
+                        ?>
+                    </h1>
+                        <div style="text-align: center;">
+                        <h5 class="mb-0">Female Students</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="border-bottom pb-3"><img src="assets/icons/BEED.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
+                        <?php 
+                            
+                            echo $get_beed->num_rows + $get_bsba->num_rows + $get_bsit->num_rows + $get_bshm->num_rows + $get_bsed->num_rows + $get_bs_hm->num_rows;
+                        ?>
+                    </h1>
+                        <div style="text-align: center;">
+                        <h5 class="mb-0">Male Students</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
