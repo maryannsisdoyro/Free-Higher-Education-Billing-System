@@ -157,8 +157,8 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 
             <div class="col-lg-6">
                 <div class="card">
-                    <div class="card-body">
-                        <h1 class="border-bottom pb-3"><img src="assets/icons/BEED.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
+                    <div class="card-body text-center">
+                        
                         <?php 
                            echo $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female'")->num_rows;
                         ?>
@@ -172,8 +172,8 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 
             <div class="col-lg-6">
                 <div class="card">
-                    <div class="card-body">
-                        <h1 class="border-bottom pb-3"><img src="assets/icons/BEED.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
+                    <div class="card-body text-center">
+                        
                         <?php 
                            echo $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male'")->num_rows;
                         ?>
