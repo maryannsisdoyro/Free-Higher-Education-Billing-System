@@ -117,7 +117,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $row['stu_id'] . " ". ucfirst($row['fname']) . " " . ucfirst($row['lname']) . " " . $row['course'] . " " . $row['year_level'] . "-". $row['section']?></title>
+    <title><?= $row['stu_id'] . " ". strtolower($row['fname']) . " " . strtolower($row['lname']) . " " . $row['course'] . " " . $row['year_level'] . "-". $row['section']?></title>
     <link rel="icon" type="image/x-icon" href="../assets/logo.png">	
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="sweetalerts/sweetalert2.min.css" rel="stylesheet">
