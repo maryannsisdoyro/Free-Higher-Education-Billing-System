@@ -1208,8 +1208,9 @@ if (sectionSelect) {
 
 <script>
     $(document).ready(function() {
-        $("select[name='section']").on('change', function() {
-            console.log($(this).val());
+        var selectOption = $("select[name='section']");
+        selectOption.on('change', function() {
+            console.log(selectOption.val()));
         });
     });
 </script>
