@@ -1209,11 +1209,24 @@ if (sectionSelect) {
 <script>
     $(document).ready(function() {
         var selectOption = $("select[name='section']");
+        var update_section = true;
         selectOption.on('change', function() {
-            console.log(selectOption.val());
+            var selectedValue = selectOption.val(); // Get the selected value
+            $.ajax({
+                url: 'ajax.php', // URL of the server-side script
+                type: 'POST',    // HTTP method
+                data: { section: selectedValue, action: update_section }, // Data to send
+                success: function(response) {
+                    console.log('Server response:', response); // Log server's response
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('AJAX error:', textStatus, errorThrown); // Log errors
+                }
+            });
         });
     });
 </script>
+
 
 
 </body>
