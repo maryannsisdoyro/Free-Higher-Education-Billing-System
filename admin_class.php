@@ -1470,7 +1470,7 @@ class Action
 				die("Required parameters are missing.");
 			}
 	
-			$section = htmlspecialchars(trim($_GET['section']));
+			$section = $_GET['section'];
 			$id = intval($_GET['application_no']);
 	
 			if (empty($section) || $id <= 0) {
@@ -1480,7 +1480,7 @@ class Action
 			$stmt = $this->db->prepare("UPDATE enroll2024 SET section = ? WHERE id = ?");
 			$stmt->bind_param('si', $section, $id);
 			if ($stmt->execute()) {
-				return 1;
+				return $section;
 			} else {
 				return 0;
 			}
