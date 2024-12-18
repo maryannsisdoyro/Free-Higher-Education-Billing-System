@@ -1207,10 +1207,13 @@ if (sectionSelect) {
 
 
 <script>
-    $("select[name='section']").on('change', function(){
-        console.log("hellow");
-    })
+    $(document).ready(function() {
+        $("select[name='section']").on('change', function() {
+            console.log("hello");
+        });
+    });
 </script>
+
 
 </body>
 
