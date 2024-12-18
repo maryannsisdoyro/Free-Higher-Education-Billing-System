@@ -1470,7 +1470,7 @@ class Action
 				die("Required parameters are missing.");
 			}
 	
-			$section = $_GET['section'];
+			$section = htmlspecialchars(trim($_GET['section']));
 			$id = intval($_GET['application_no']);
 	
 			if (empty($section) || $id <= 0) {
