@@ -1129,7 +1129,7 @@ if (sectionSelect) {
       const data = await resp.json();
 
       // Log or handle the fetched data here
-      console.log(data);
+      alert(data);
     } catch (error) {
       console.error("There was an error fetching the data:", error);
     }
