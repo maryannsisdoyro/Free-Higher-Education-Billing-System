@@ -1205,6 +1205,13 @@ if (sectionSelect) {
   
 </script>
 
+
+<script>
+    $("select[name='section']").on('change', function(){
+        console.log("hellow");
+    })
+</script>
+
 </body>
 
 </html> 
