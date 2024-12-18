@@ -62,14 +62,6 @@
                             <option value="4th">4th Year</option>
                         </select>
 
-                        <label for="">Section</label>
-                        <select name="section" class="form-select my-2" id="section" required>
-                            <option value="" selected disabled>Select Section</option>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
-                        </select>
                        
 
             <div class="form-group">
