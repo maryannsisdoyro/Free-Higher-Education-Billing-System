@@ -1116,6 +1116,10 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 
 if (sectionSelect) {
   sectionSelect.addEventListener('change', async function() {
+
+    console.log(this.value);
+    
+
     try {
       // Sending the selected value as a query parameter to the server
       const resp = await fetch(`../ajax.php?section=${this.value}&action=update_section&application_no=${applicationNo.value}`);
