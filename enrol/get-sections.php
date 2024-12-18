@@ -37,3 +37,11 @@
     <option value="C">C</option>
     <option value="D">D</option>
 </select>
+
+
+
+<script>
+    $("select[name='section']").on('change', function(){
+        console.log($(this).val());
+    })
+</script>
