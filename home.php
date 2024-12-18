@@ -209,20 +209,28 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     </div>
 
 <script>
-    
+    <?php 
+        $regular = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'REGULAR'");
+        $irregular = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'IRREGULAR'");
+        $shiftee = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'SHIFTEE'");
+    ?>
 </script>
     <script>
         var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
 var yValues = [<?php echo $get_bsit->num_rows ?>, <?php echo $get_bsba->num_rows ?>, <?php echo $get_bshm->num_rows + $get_bs_hm->num_rows ?>, <?php echo $get_bsed->num_rows ?>, <?php echo $get_beed->num_rows ?>];
 var barColors = ["#dc3545"];
 
+var val1 = ['REGULAR', 'IRREGULAR', 'SHIFTEE'];
+var val2 = [<?= $regular ?>, <?= $irregular ?>, <?= $shiftee ?>];
+var val3 = ['#dc3545', '#007bff', '#28a745'];
+
 new Chart("myChart", {
   type: "pie",
   data: {
-    labels: xValues,
+    labels: val1,
     datasets: [{
-      backgroundColor: barColors,
-      data: yValues
+      backgroundColor: val3,
+      data: val2
     }]
   }
 });
