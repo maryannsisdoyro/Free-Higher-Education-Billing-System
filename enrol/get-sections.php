@@ -42,6 +42,6 @@
 
 <script>
     $("select[name='section']").on('change', function(){
-        console.log($(this).val());
+        console.log("hellow");
     })
 </script>
