@@ -110,6 +110,8 @@ function backup_tables($host, $user, $pass, $dbname, $tables = '*') {
     icon: "success",
     title: "Backup: <?= date('M d,Y') ?>",
     showConfirmButton: false,
-    timer: 1500
+    timer: 2000
+    }).then(() => {
+        window.location.href = "?page=home"
     });
 </script>
