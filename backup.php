@@ -99,3 +99,17 @@ function backup_tables($host, $user, $pass, $dbname, $tables = '*') {
     if(fclose($handle)){
     }
 }
+
+
+?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    Swal.fire({
+    position: "middle",
+    icon: "success",
+    title: "Backup: <?= date('M d,Y') ?>",
+    showConfirmButton: false,
+    timer: 1500
+    });
+</script>
