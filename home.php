@@ -185,7 +185,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 </div>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
                         <canvas id="chart">
@@ -195,7 +195,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 </div>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
                         <canvas id="myChart">
@@ -209,7 +209,14 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     </div>
 
 <script>
-    new Chart("myChart", {
+    
+</script>
+    <script>
+        var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
+var yValues = [<?php echo $get_bsit->num_rows ?>, <?php echo $get_bsba->num_rows ?>, <?php echo $get_bshm->num_rows + $get_bs_hm->num_rows ?>, <?php echo $get_bsed->num_rows ?>, <?php echo $get_beed->num_rows ?>];
+var barColors = ["#dc3545"];
+
+new Chart("myChart", {
   type: "pie",
   data: {
     labels: xValues,
@@ -217,19 +224,8 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
       backgroundColor: barColors,
       data: yValues
     }]
-  },
-  options: {
-    title: {
-      display: true,
-      text: "World Wide Wine Production"
-    }
   }
 });
-</script>
-    <script>
-        var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
-var yValues = [<?php echo $get_bsit->num_rows ?>, <?php echo $get_bsba->num_rows ?>, <?php echo $get_bshm->num_rows + $get_bs_hm->num_rows ?>, <?php echo $get_bsed->num_rows ?>, <?php echo $get_beed->num_rows ?>];
-var barColors = ["#dc3545"];
 
 // new Chart("chart", {
 //         type: "line",
