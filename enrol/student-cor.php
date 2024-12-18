@@ -1209,7 +1209,7 @@ if (sectionSelect) {
 <script>
     $(document).ready(function() {
         $("select[name='section']").on('change', function() {
-            console.log("hello");
+            console.log($(this).val());
         });
     });
 </script>
