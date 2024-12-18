@@ -163,7 +163,7 @@ $row['course'] = $row['course'] == 'BS-HM' ? 'BSHM' : $row['course'];
 
         </div>
     </div>
-<input type="hidden" id="application_no" value="<?= $application_no ?>">
+<input type="hidden" id="application_no" value="<?= $_GET['application_no'] ?>">
 
     <!-- Include SweetAlert2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.3/dist/sweetalert2.min.css">
