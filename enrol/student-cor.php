@@ -1210,7 +1210,7 @@ if (sectionSelect) {
     $(document).ready(function() {
         var selectOption = $("select[name='section']");
         selectOption.on('change', function() {
-            console.log(selectOption.val()));
+            console.log(selectOption.val());
         });
     });
 </script>
