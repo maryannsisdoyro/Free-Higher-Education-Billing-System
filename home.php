@@ -221,7 +221,7 @@ var yValues = [<?php echo $get_bsit->num_rows ?>, <?php echo $get_bsba->num_rows
 var barColors = ["#dc3545"];
 
 var val1 = ['REGULAR', 'IRREGULAR', 'SHIFTEE'];
-var val2 = [<?= $regular ?>, <?= $irregular ?>, <?= $shiftee ?>];
+var val2 = [<?= $regular->num_rows ?>, <?= $irregular->num_rows ?>, <?= $shiftee->num_rows ?>];
 var val3 = ['#dc3545', '#007bff', '#28a745'];
 
 new Chart("myChart", {
