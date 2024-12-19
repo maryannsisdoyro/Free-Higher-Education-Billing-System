@@ -273,14 +273,14 @@ new Chart("genderchart", {
         datasets: [
             {
                 label: 'Male', // Dataset for males
-                backgroundColor: genderColors[0], // Male color
+                backgroundColor: Array(xValues.length).fill(genderColors[0]), // Fill with red for all bars
                 data: genderValues.map(val => val[0]), // Extract male data
                 borderColor: genderColors[0],
                 borderWidth: 1
             },
             {
                 label: 'Female', // Dataset for females
-                backgroundColor: genderColors[1], // Female color
+                backgroundColor: Array(xValues.length).fill(genderColors[1]), // Fill with blue for all bars
                 data: genderValues.map(val => val[1]), // Extract female data
                 borderColor: genderColors[1],
                 borderWidth: 1
@@ -301,7 +301,7 @@ new Chart("genderchart", {
             y: {
                 beginAtZero: true, // Ensure the bars start from 0
                 ticks: {
-                    stepSize: 2, // Optional: step size for the Y axis ticks
+                    stepSize: 5, // Optional: step size for the Y axis ticks
                 }
             }
         }
