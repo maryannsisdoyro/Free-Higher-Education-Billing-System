@@ -258,71 +258,56 @@ new Chart("myChart", {
 });
 
 var genderValues = [
-    [<?= $bsit_male->num_rows ?>, <?= $bsit_female->num_rows ?>]
+    [10, 20], // First department: [male, female]
+    [20, 10], // Second department: [male, female]
+    [15, 18], // Third department: [male, female]
+    [12, 25], // Fourth department: [male, female]
+    [30, 15]  // Fifth department: [male, female]
 ];
-var genderColors = ['#dc3545', '#007bff'];
+var genderColors = ['#dc3545', '#007bff']; // Colors for male and female
 
 new Chart("genderchart", {
     type: "bar",
     data: {
-        labels: xValues,
-        datasets: [{
-            backgroundColor: genderColors,
-            borderColor: genderColors, // Added to show the line color
-            fill: false, // Change to true if you want the area under the line to be filled
-            data: genderValues
-        }]
+        labels: xValues, // Departments on the X axis
+        datasets: [
+            {
+                label: 'Male', // Dataset for males
+                backgroundColor: genderColors[0], // Male color
+                data: genderValues.map(val => val[0]), // Extract male data
+                borderColor: genderColors[0],
+                borderWidth: 1
+            },
+            {
+                label: 'Female', // Dataset for females
+                backgroundColor: genderColors[1], // Female color
+                data: genderValues.map(val => val[1]), // Extract female data
+                borderColor: genderColors[1],
+                borderWidth: 1
+            }
+        ]
     },
     options: {
         responsive: true, // Make the chart responsive
-        legend: { display: false },
+        legend: { display: true }, // Display legend for male and female
         title: {
             display: true,
             text: "Male and Female Students By Department"
         },
         scales: {
-        yAxes: [{
-            ticks: {
-                beginAtZero:true
+            x: {
+                beginAtZero: true, // Ensure the bars start from 0
+            },
+            y: {
+                beginAtZero: true, // Ensure the bars start from 0
+                ticks: {
+                    stepSize: 5, // Optional: step size for the Y axis ticks
+                }
             }
-        }]
         }
     }
 });
 
-// new Chart("chart", {
-//         type: "line",
-//         data: {
-//             labels: xValues,
-//             datasets: [{
-//             backgroundColor: barColors,
-//             data: yValues
-//             }]
-//         },
-//         options: {
-//             legend: {display: false},
-//             title: {
-//             display: true,
-//             text: "Academic School Year Semester"
-//             }
-//         },
-//         scales: {
-//             x: { // Updated to use the new scales API
-//                 title: {
-//                     display: true,
-//                     text: 'Month'
-//                 }
-//             },
-//             y: {
-//                 beginAtZero: true,
-//                 ticks: {
-//                     steps: 10,
-//                     stepSize: 5,
-//                     max: 100
-//                 }
-//             }
-//         }
-// });
 
 new Chart("chart", {
     type: "line",
