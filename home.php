@@ -303,7 +303,7 @@ new Chart("genderchart", {
                 ticks: {
                     stepSize: 5, // Optional: step size for the Y axis ticks
                 },
-                min: 1
+                min: 5
             }
         }
     }
