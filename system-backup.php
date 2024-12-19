@@ -57,9 +57,8 @@
 									<td class="text-center"><?php echo $i++ ?></td>
 									<td><?= $modificationTime ?></td>
 									<td class="text-center">
-										<button class="btn btn-sm btn-outline-primary edit_course" type="button" data-id="<?php echo $row['id'] ?>" >Edit</button>
-										<button class="btn btn-sm btn-outline-danger delete_course" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
-										<button class="btn btn-sm btn-outline-dark view_students_fees" type="button" data-id="<?php echo $row['id'] ?>">Print Students</button>
+										
+										<a href="<?= $file ?>" class="btn btn-sm btn-outline-danger delete_course" download><i class="fa fa-download"></i> Download</a>
 									</td>
 								</tr>
 								<?php 
