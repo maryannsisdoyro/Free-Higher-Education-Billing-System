@@ -45,7 +45,7 @@
 							<tbody>
                             <?php
                                 $folderPath = 'backup';
-
+                                $i = 1;
                                 if (is_dir($folderPath)) {
                                     if ($handle = opendir($folderPath)) {
                                         while (false !== ($file = readdir($handle))) {
