@@ -28,7 +28,7 @@
 				<div class="card">
 					<div class="card-header">
 						<b>List of Courses and Fees</b>
-						<span class="float:right"><a class="btn btn-danger btn-block btn-sm col-sm-2 float-right" href="backup.php" id="new_course">
+						<span class="float:right"><a class="btn btn-danger btn-block btn-sm col-sm-2 float-right" href="?page=backup" id="new_course">
 					<i class="fa fa-plus"></i> New Backup
 				</a></span>
 					
