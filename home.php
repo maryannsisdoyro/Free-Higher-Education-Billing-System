@@ -246,7 +246,7 @@ new Chart("myChart", {
 });
 
 new Chart("genderchart", {
-    type: "line",
+    type: "bar",
     data: {
         labels: xValues,
         datasets: [{
