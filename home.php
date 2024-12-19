@@ -206,9 +206,9 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 
     <?php 
     // TOTAL GENDER
-        $regular = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'REGULAR'");
-        $irregular = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'IRREGULAR'");
-        $shiftee = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'SHIFTEE'");
+        $regular = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'REGULAR' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
+        $irregular = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'IRREGULAR' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
+        $shiftee = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'SHIFTEE' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
     ?>
 
     <?php 
