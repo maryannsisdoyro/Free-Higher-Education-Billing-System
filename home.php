@@ -245,74 +245,80 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     ?>
 
 
-    <script>
-        // Department names
+<script>
+    // Department names
     var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
 
-// Male and Female data (PHP values embedded in JS)
-var genderValues = [
-    [<?= $bsit_male->num_rows ?>, <?= $bsit_female->num_rows ?>], 
-    [<?= $bsba_male->num_rows ?>, <?= $bsba_female->num_rows ?>], 
-    [<?= $bshm_male->num_rows ?>, <?= $bshm_female->num_rows ?>], 
-    [<?= $bsed_male->num_rows ?>, <?= $bsed_female->num_rows ?>], 
-    [<?= $beed_male->num_rows ?>, <?= $beed_female->num_rows ?>]
-];
+    // Male and Female data (PHP values embedded in JS)
+    var genderValues = [
+        [<?= $bsit_male->num_rows ?>, <?= $bsit_female->num_rows ?>], 
+        [<?= $bsba_male->num_rows ?>, <?= $bsba_female->num_rows ?>], 
+        [<?= $bshm_male->num_rows ?>, <?= $bshm_female->num_rows ?>], 
+        [<?= $bsed_male->num_rows ?>, <?= $bsed_female->num_rows ?>], 
+        [<?= $beed_male->num_rows ?>, <?= $beed_female->num_rows ?>]
+    ];
 
-// Chart colors
-var genderColors = ['#dc3545', '#007bff']; // Male and Female colors
+    // Chart colors
+    var genderColors = ['#dc3545', '#007bff']; // Male and Female colors
 
-// ApexChart options
-var options = {
-    chart: {
-        type: 'bar',
-        height: 350
-    },
-    plotOptions: {
-        bar: {
-            columnWidth: '50%' // Adjust column width
-        }
-    },
-    dataLabels: {
-        enabled: true, // Enable data labels
-        style: {
-            colors: ['#fff'], // Text color for data labels
-            fontSize: '12px', // Font size
-            fontWeight: 'bold' // Font weight
+    // ApexChart options
+    var options = {
+        chart: {
+            type: 'bar',
+            height: 350
         },
-        offsetY: -10, // Position the data labels above the columns
-        background: {
-            enabled: false, // Don't show background for labels
-        }
-    },
-    series: [{
-        name: 'Male',
-        data: genderValues.map(function(val) { return val[0]; }) // Male data for each department
-    },
-    {
-        name: 'Female',
-        data: genderValues.map(function(val) { return val[1]; }) // Female data for each department
-    }],
-    xaxis: {
-        categories: xValues, // X-axis labels (departments)
-    },
-    yaxis: {
-        min: 0, // Set minimum value of Y-axis to 0
-        labels: {
-            formatter: function(val) {
-                return val.toFixed(0); // Format Y-axis labels as integers
+        plotOptions: {
+            bar: {
+                columnWidth: '50%' // Adjust column width
             }
+        },
+        dataLabels: {
+            enabled: true, // Enable data labels
+            style: {
+                colors: ['#000'], // Text color for data labels (change to black or any color you want)
+                fontSize: '12px', // Font size
+                fontWeight: 'bold' // Font weight
+            },
+            offsetY: -10, // Position the data labels above the columns
+            background: {
+                enabled: false, // Don't show background for labels
+            },
+            // Adjust vertical alignment to be above the bars
+            verticalAlign: 'bottom', // Align the label at the bottom of the label's position
+            formatter: function(val) {
+                return val.toFixed(0); // Format data labels as integers
+            }
+        },
+        series: [{
+            name: 'Male',
+            data: genderValues.map(function(val) { return val[0]; }) // Male data for each department
+        },
+        {
+            name: 'Female',
+            data: genderValues.map(function(val) { return val[1]; }) // Female data for each department
+        }],
+        xaxis: {
+            categories: xValues, // X-axis labels (departments)
+        },
+        yaxis: {
+            min: 0, // Set minimum value of Y-axis to 0
+            labels: {
+                formatter: function(val) {
+                    return val.toFixed(0); // Format Y-axis labels as integers
+                }
+            }
+        },
+        title: {
+            text: 'Male and Female Students by Department',
+            align: 'center'
         }
-    },
-    title: {
-        text: 'Male and Female Students by Department',
-        align: 'center'
-    }
-};
+    };
 
-// Render the chart
-var chart = new ApexCharts(document.querySelector("#genderchart"), options);
-chart.render();
-    </script>
+    // Render the chart
+    var chart = new ApexCharts(document.querySelector("#genderchart"), options);
+    chart.render();
+</script>
+
 
     <script>
         var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
