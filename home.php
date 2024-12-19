@@ -257,13 +257,12 @@ new Chart("myChart", {
   }
 });
 
-var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
 var genderValues = [
     [10, 20], // First department: [male, female]
-    [20, 10], // Second department: [male, female]
-    [15, 18], // Third department: [male, female]
-    [12, 25], // Fourth department: [male, female]
-    [30, 15]  // Fifth department: [male, female]
+    [10, 10], // Second department: [male, female]
+    [10, 18], // Third department: [male, female]
+    [10, 25], // Fourth department: [male, female]
+    [10, 15]  // Fifth department: [male, female]
 ];
 var genderColors = ['#dc3545', '#007bff']; // Colors for male and female
 
@@ -274,14 +273,14 @@ new Chart("genderchart", {
         datasets: [
             {
                 label: 'Male', // Dataset for males
-                backgroundColor: Array(xValues.length).fill(genderColors[0]), // Fill with red for all bars
+                backgroundColor: genderColors[0], // Male color
                 data: genderValues.map(val => val[0]), // Extract male data
                 borderColor: genderColors[0],
                 borderWidth: 1
             },
             {
                 label: 'Female', // Dataset for females
-                backgroundColor: Array(xValues.length).fill(genderColors[1]), // Fill with blue for all bars
+                backgroundColor: genderColors[1], // Female color
                 data: genderValues.map(val => val[1]), // Extract female data
                 borderColor: genderColors[1],
                 borderWidth: 1
@@ -302,13 +301,12 @@ new Chart("genderchart", {
             y: {
                 beginAtZero: true, // Ensure the bars start from 0
                 ticks: {
-                    stepSize: 5, // Optional: step size for the Y axis ticks
+                    stepSize: 2, // Optional: step size for the Y axis ticks
                 }
             }
         }
     }
 });
-
 
 
 new Chart("chart", {
