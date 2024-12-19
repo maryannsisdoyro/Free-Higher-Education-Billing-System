@@ -337,7 +337,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
         chart.render();
 
 
-        new Chart("myChart", {
+        new Chart("genderTotal", {
             type: "pie",
             data: {
                 labels: val1,
