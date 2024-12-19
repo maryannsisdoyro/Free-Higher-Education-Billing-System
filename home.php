@@ -312,7 +312,7 @@ new Chart("genderchart", {
         },
         plugins: {
             datalabels: {
-                display: true, // Display data labels
+                display: true, // Display data labels (Always visible)
                 color: 'black', // Color of the text
                 font: {
                     weight: 'bold',
@@ -320,7 +320,10 @@ new Chart("genderchart", {
                 },
                 anchor: 'end', // Anchor position for labels
                 align: 'top', // Position the labels above the bars
-                formatter: (value) => value // Display the value as is
+                offset: 10, // Add some space above the bars
+                formatter: function(value) {
+                    return value; // Format the value, here it shows as is
+                }
             }
         }
     }
