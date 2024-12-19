@@ -259,10 +259,10 @@ new Chart("myChart", {
 
 var genderValues = [
     [10, 20], // First department: [male, female]
-    [10, 10], // Second department: [male, female]
-    [10, 18], // Third department: [male, female]
-    [10, 25], // Fourth department: [male, female]
-    [10, 15]  // Fifth department: [male, female]
+    [20, 10], // Second department: [male, female]
+    [15, 18], // Third department: [male, female]
+    [12, 25], // Fourth department: [male, female]
+    [30, 15]  // Fifth department: [male, female]
 ];
 var genderColors = ['#dc3545', '#007bff']; // Colors for male and female
 
@@ -297,12 +297,6 @@ new Chart("genderchart", {
         scales: {
             x: {
                 beginAtZero: true, // Ensure the bars start from 0
-            },
-            y: {
-                beginAtZero: true, // Ensure the bars start from 0
-                ticks: {
-                    stepSize: 2, // Optional: step size for the Y axis ticks
-                }
             }
         }
     }
