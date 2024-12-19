@@ -65,7 +65,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom pb-3" ><img src="assets/icons/BSIT.png" alt="icon" style="width: 50px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
-                            $get_bsit = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSIT' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
+                            $get_bsit = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSIT' AND curr = '$academic_year' AND semester = '$semester_academic'");
                             echo $get_bsit->num_rows;
                         ?>
                         </h1>
@@ -81,7 +81,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom pb-3"><img src="assets/icons/bsba.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
-                            $get_bsba = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSBA' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
+                            $get_bsba = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSBA' AND curr = '$academic_year' AND semester = '$semester_academic'");
                             echo $get_bsba->num_rows;
                         ?>
                     </h1>
@@ -97,8 +97,8 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom pb-3"><img src="assets/icons/BSHM.png" alt="icon" style="width: 50px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
-                            $get_bshm = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSHM' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
-                            $get_bs_hm = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BS-HM' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
+                            $get_bshm = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSHM' AND curr = '$academic_year' AND semester = '$semester_academic'");
+                            $get_bs_hm = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BS-HM' AND curr = '$academic_year' AND semester = '$semester_academic'");
                             echo $get_bshm->num_rows + $get_bs_hm->num_rows;
                         ?>
                     </h1>
@@ -114,7 +114,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom pb-3"><img src="assets/icons/BSED.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
-                            $get_bsed = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSED' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
+                            $get_bsed = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BSED' AND curr = '$academic_year' AND semester = '$semester_academic'");
                             echo $get_bsed->num_rows;
                         ?>
                     </h1>
@@ -130,7 +130,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div class="card-body">
                         <h1 class="border-bottom pb-3"><img src="assets/icons/BEED.png" alt="icon" style="width: 40px; filter: drop-shadow(5px 5px 2px #dc3545);"> : 
                         <?php 
-                            $get_beed = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BEED' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
+                            $get_beed = $conn->query("SELECT * FROM enroll2024 WHERE course = 'BEED' AND curr = '$academic_year' AND semester = '$semester_academic'");
                             echo $get_beed->num_rows;
                         ?>
                     </h1>
@@ -206,22 +206,22 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 
     <?php 
     // TOTAL GENDER
-        $regular = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'REGULAR' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
-        $irregular = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'IRREGULAR' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
-        $shiftee = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'SHIFTEE' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
+        $regular = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'REGULAR' AND curr = '$academic_year' AND semester = '$semester_academic'");
+        $irregular = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'IRREGULAR' AND curr = '$academic_year' AND semester = '$semester_academic'");
+        $shiftee = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'SHIFTEE' AND curr = '$academic_year' AND semester = '$semester_academic'");
     ?>
 
     <?php 
-        $bsit_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BSIT' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
-        $bsit_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'female' AND course = 'BSIT' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
-        $bsba_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BSBA' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
-        $bsba_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female' AND course = 'BSBA' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
-        $bshm_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BSHM' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
-        $bshm_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female' AND course = 'BSHM' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
-        $bsed_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BSED' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
-        $bsed_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female' AND course = 'BSED' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
-        $beed_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BEED' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
-        $beed_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female' AND course = 'BEED' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
+        $bsit_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BSIT' AND curr = '$academic_year' AND semester = '$semester_academic'");
+        $bsit_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'female' AND course = 'BSIT' AND curr = '$academic_year' AND semester = '$semester_academic'");
+        $bsba_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BSBA' AND curr = '$academic_year' AND semester = '$semester_academic'");
+        $bsba_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female' AND course = 'BSBA' AND curr = '$academic_year' AND semester = '$semester_academic'");
+        $bshm_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BSHM' AND curr = '$academic_year' AND semester = '$semester_academic'");
+        $bshm_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female' AND course = 'BSHM' AND curr = '$academic_year' AND semester = '$semester_academic'");
+        $bsed_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BSED' AND curr = '$academic_year' AND semester = '$semester_academic'");
+        $bsed_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female' AND course = 'BSED' AND curr = '$academic_year' AND semester = '$semester_academic'");
+        $beed_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BEED' AND curr = '$academic_year' AND semester = '$semester_academic'");
+        $beed_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female' AND course = 'BEED' AND curr = '$academic_year' AND semester = '$semester_academic'");
     ?>
 
 
