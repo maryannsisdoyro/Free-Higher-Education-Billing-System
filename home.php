@@ -264,7 +264,7 @@ var genderValues = [
     [12, 25], // Fourth department: [male, female]
     [30, 15]  // Fifth department: [male, female]
 ];
-var genderColors = ['#dc3545', '#007bff', '#dc3545', '#007bff', '#dc3545', '#007bff', '#dc3545', '#007bff', '#dc3545', '#007bff']; // Colors for male and female
+var genderColors = ['#dc3545', '#007bff']; // Colors for male and female
 
 new Chart("genderchart", {
     type: "bar",
