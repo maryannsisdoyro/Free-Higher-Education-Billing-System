@@ -198,6 +198,16 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
+                        <canvas id="genderchart">
+
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
                         <canvas id="myChart">
 
                         </canvas>
@@ -233,6 +243,34 @@ new Chart("myChart", {
       data: val2
     }]
   }
+});
+
+new Chart("genderchart", {
+    type: "line",
+    data: {
+        labels: xValues,
+        datasets: [{
+            backgroundColor: barColors,
+            borderColor: barColors, // Added to show the line color
+            fill: false, // Change to true if you want the area under the line to be filled
+            data: yValues
+        }]
+    },
+    options: {
+        responsive: true, // Make the chart responsive
+        legend: { display: false },
+        title: {
+            display: true,
+            text: "Academic School Year  <?= $res_academic['year'] ?>  |  <?= $res_academic['semester'] ?> Semester"
+        },
+        scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero:true
+            }
+        }]
+        }
+    }
 });
 
 // new Chart("chart", {
@@ -296,6 +334,8 @@ new Chart("chart", {
         }
     }
 });
+
+
 
     </script>
 <script>
