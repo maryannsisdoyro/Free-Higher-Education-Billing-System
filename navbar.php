@@ -45,7 +45,7 @@
 				<!-- <a href="index.php?page=site_settings" class="nav-item nav-site_settings"><span class='icon-field'><i class="fa fa-cogs"></i></span> System Settings</a> -->
 				<?php endif; ?>
 			<a href="./enrol/home.php?page=settings" class="nav-item nav-settings"><span class='icon-field mr-2'><i class="fa fa-wrench"></i></span> Settings</a>
-			<a href="?page=system-backup" class="nav-item nav-settings"><span class='icon-field mr-2'><i class="fa fa-box"></i></span> Backup</a>
+			<a href="?page=system-backup" class="nav-item nav-system-backup"><span class='icon-field mr-2'><i class="fa fa-box"></i></span> Backup</a>
 		</div>
 
 </nav>
