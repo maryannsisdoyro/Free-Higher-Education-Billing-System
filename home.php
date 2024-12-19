@@ -302,7 +302,8 @@ new Chart("genderchart", {
                 beginAtZero: true, // Ensure the bars start from 0
                 ticks: {
                     stepSize: 5, // Optional: step size for the Y axis ticks
-                }
+                },
+                min: 0
             }
         }
     }
