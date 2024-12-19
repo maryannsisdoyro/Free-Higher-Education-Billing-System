@@ -218,6 +218,9 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
         
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+
     <?php 
     // TOTAL GENDER
         $regular = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'REGULAR'");
@@ -303,6 +306,19 @@ new Chart("genderchart", {
                 ticks: {
                     stepSize: 1, // Optional: step size for the Y axis ticks
                 }
+            }
+        },
+        plugins: {
+            datalabels: {
+                display: true, // Display data labels
+                color: 'black', // Color of the text
+                font: {
+                    weight: 'bold',
+                    size: 12
+                },
+                anchor: 'end', // Anchor position for labels
+                align: 'top', // Position the labels above the bars
+                formatter: (value) => value // You can use this to format the labels, if needed
             }
         }
     }
