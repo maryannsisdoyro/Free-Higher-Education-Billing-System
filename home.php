@@ -218,13 +218,25 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
         
     </div>
 
-<script>
     <?php 
+    // TOTAL GENDER
         $regular = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'REGULAR'");
         $irregular = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'IRREGULAR'");
         $shiftee = $conn->query("SELECT * FROM enroll2024 WHERE enroll_status = 'SHIFTEE'");
     ?>
-</script>
+
+    <?php 
+        $bsit_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BSIT' ");
+        $bsit_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'female' AND course = 'BSIT' ");
+        $bsba_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BSBA' ");
+        $bsba_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female' AND course = 'BSBA' ");
+        $bshm_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BSHM' ");
+        $bshm_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female' AND course = 'BSHM' ");
+        $bsed_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BSED' ");
+        $bsed_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female' AND course = 'BSED' ");
+        $beed_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BEED' ");
+        $beed_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female' AND course = 'BEED' ");
+    ?>
     <script>
         var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
 var yValues = [<?php echo $get_bsit->num_rows ?>, <?php echo $get_bsba->num_rows ?>, <?php echo $get_bshm->num_rows + $get_bs_hm->num_rows ?>, <?php echo $get_bsed->num_rows ?>, <?php echo $get_beed->num_rows ?>];
@@ -245,15 +257,20 @@ new Chart("myChart", {
   }
 });
 
+var genderValues = [
+    [<?= $bsit_male->num_rows ?>, <?= $bsit_female->num_rows ?>]
+];
+var genderColors = ['#dc3545', '#007bff'];
+
 new Chart("genderchart", {
     type: "bar",
     data: {
         labels: xValues,
         datasets: [{
-            backgroundColor: barColors,
-            borderColor: barColors, // Added to show the line color
+            backgroundColor: genderColors,
+            borderColor: genderColors, // Added to show the line color
             fill: false, // Change to true if you want the area under the line to be filled
-            data: yValues
+            data: genderValues
         }]
     },
     options: {
@@ -261,7 +278,7 @@ new Chart("genderchart", {
         legend: { display: false },
         title: {
             display: true,
-            text: "Academic School Year  <?= $res_academic['year'] ?>  |  <?= $res_academic['semester'] ?> Semester"
+            text: "Male and Female Students By Department"
         },
         scales: {
         yAxes: [{
