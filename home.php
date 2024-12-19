@@ -294,11 +294,7 @@ new Chart("genderchart", {
             display: true,
             text: "Male and Female Students By Department"
         },
-        scales: {
-            x: {
-                beginAtZero: true, // Ensure the bars start from 0
-            }
-        }
+       
     }
 });
 
