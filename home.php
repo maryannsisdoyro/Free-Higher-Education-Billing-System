@@ -275,7 +275,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             dataLabels: {
                 enabled: true, // Enable data labels
                 style: {
-                    colors: ['#fff'], // Text color for data labels
+                    colors: ['#000'], // Text color for data labels
                     fontSize: '12px', // Font size
                     fontWeight: 'bold' // Font weight
                 },
