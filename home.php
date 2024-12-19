@@ -264,7 +264,7 @@ var genderValues = [
     [12, 25], // Fourth department: [male, female]
     [30, 15]  // Fifth department: [male, female]
 ];
-var genderColors = ['#dc3545', '#007bff']; // Colors for male and female
+var genderColors = ['#dc3545', '#007bff', '#dc3545', '#007bff', '#dc3545', '#007bff', '#dc3545', '#007bff', '#dc3545', '#007bff']; // Colors for male and female
 
 new Chart("genderchart", {
     type: "bar",
@@ -294,7 +294,17 @@ new Chart("genderchart", {
             display: true,
             text: "Male and Female Students By Department"
         },
-       
+        scales: {
+            x: {
+                beginAtZero: true, // Ensure the bars start from 0
+            },
+            y: {
+                beginAtZero: true, // Ensure the bars start from 0
+                ticks: {
+                    stepSize: 2, // Optional: step size for the Y axis ticks
+                }
+            }
+        }
     }
 });
 
