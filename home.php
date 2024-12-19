@@ -211,7 +211,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
-                        <canvas id="myChart">
+                        <canvas id="genderTotal">
 
                         </canvas>
                     </div>
@@ -271,6 +271,17 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
         // Chart colors
         var genderColors = ['#dc3545', '#007bff']; // Male and Female colors
 
+       // Calculate the total number of males and females
+        var totalMale = genderValues.reduce(function(sum, val) {
+            return sum + val[0]; // Add the male count from each department
+        }, 0);
+
+        var totalFemale = genderValues.reduce(function(sum, val) {
+            return sum + val[1]; // Add the female count from each department
+        }, 0);
+
+        var total = [ totalMale, totalFemale ];
+
         // ApexChart options
         var options = {
             chart: {
@@ -324,6 +335,18 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
         // Render the chart
         var chart = new ApexCharts(document.querySelector("#genderchart"), options);
         chart.render();
+
+
+        new Chart("myChart", {
+            type: "pie",
+            data: {
+                labels: val1,
+                datasets: [{
+                backgroundColor: genderColors,
+                data: total
+                }]
+            }
+        });
     </script>
 
     <script>
@@ -345,74 +368,6 @@ new Chart("myChart", {
     }]
   }
 });
-
-// var genderValues = [
-//     [<?= $bsit_male->num_rows ?>, <?= $bsit_female->num_rows ?>], 
-//     [<?= $bsba_male->num_rows ?>, <?= $bsba_female->num_rows ?>], 
-//     [<?= $bshm_male->num_rows ?>, <?= $bshm_female->num_rows ?>], 
-//     [<?= $bsed_male->num_rows ?>, <?= $bsed_female->num_rows ?>], 
-//     [<?= $beed_male->num_rows ?>, <?= $beed_female->num_rows ?>], 
-// ];
-// var genderColors = ['#dc3545', '#007bff']; // Colors for male and female
-
-// new Chart("genderchart", {
-//     type: "bar",
-//     data: {
-//         labels: xValues, // Departments on the X axis
-//         datasets: [
-//             {
-//                 label: 'Male', // Dataset for males
-//                 backgroundColor: genderColors[0], // Male color
-//                 data: genderValues.map(val => val[0]), // Extract male data
-//                 borderColor: genderColors[0],
-//                 borderWidth: 1
-//             },
-//             {
-//                 label: 'Female', // Dataset for females
-//                 backgroundColor: genderColors[1], // Female color
-//                 data: genderValues.map(val => val[1]), // Extract female data
-//                 borderColor: genderColors[1],
-//                 borderWidth: 1
-//             }
-//         ]
-//     },
-//     options: {
-//         responsive: true, // Make the chart responsive
-//         legend: { display: true }, // Display legend for male and female
-//         title: {
-//             display: true,
-//             text: "Male and Female Students By Department"
-//         },
-//         scales: {
-//             x: {
-//                 beginAtZero: true, // Ensure the bars start from 0
-//             },
-//             y: {
-//                 beginAtZero: true, // Ensure the bars start from 0
-//                 ticks: {
-//                     stepSize: 1, // Optional: step size for the Y axis ticks
-//                 }
-//             }
-//         },
-//         plugins: {
-//             datalabels: {
-//                 display: true, // Display data labels (Always visible)
-//                 color: 'black', // Color of the text
-//                 font: {
-//                     weight: 'bold',
-//                     size: 12
-//                 },
-//                 anchor: 'end', // Anchor position for labels
-//                 align: 'top', // Position the labels above the bars
-//                 offset: 10, // Add some space above the bars
-//                 formatter: function(value) {
-//                     return value; // Format the value, here it shows as is
-//                 }
-//             }
-//         }
-//     }
-// });
-
 
 new Chart("chart", {
     type: "line",
