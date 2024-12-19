@@ -44,30 +44,38 @@
 							</thead>
 							<tbody>
                             <?php
-                                $folderPath = 'backup';
-                                $i = 1;
-                                if (is_dir($folderPath)) {
-                                    if ($handle = opendir($folderPath)) {
-                                        while (false !== ($file = readdir($handle))) {
-                                            if ($file !== "." && $file !== "..") {
-                                                $modificationTime = date("F d Y H:i:s", filemtime($file));
-                                           
-                                ?>
-								<tr>
-									<td class="text-center"><?php echo $i++ ?></td>
-									<td><?= $modificationTime ?></td>
-									<td class="text-center">
-										
-										<a href="<?= $file ?>" class="btn btn-sm btn-outline-danger delete_course" download><i class="fa fa-download"></i> Download</a>
-									</td>
-								</tr>
-								<?php 
-								 }
-                                }
-                                closedir($handle);
-                            }
-                        }
-                                ?>
+$folderPath = 'backup';
+$i = 1;
+if (is_dir($folderPath)) {
+    if ($handle = opendir($folderPath)) {
+        while (false !== ($file = readdir($handle))) {
+            if ($file !== "." && $file !== "..") {
+                // Get the full path of the file
+                $filePath = $folderPath . DIRECTORY_SEPARATOR . $file;
+
+                // Check if it's a file (not a directory)
+                if (is_file($filePath)) {
+                    $modificationTime = date("F d Y H:i:s", filemtime($filePath)); // Get file modification time
+                ?>
+                    <tr>
+                        <td class="text-center"><?php echo $i++ ?></td>
+                        <td><?= $modificationTime ?></td>
+                        <td class="text-center">
+                            <!-- Correct the link for downloading -->
+                            <a href="<?= $filePath ?>" class="btn btn-sm btn-outline-danger delete_course" download>
+                                <i class="fa fa-download"></i> Download
+                            </a>
+                        </td>
+                    </tr>
+                <?php 
+                }
+            }
+        }
+        closedir($handle);
+    }
+}
+?>
+
 							</tbody>
 						</table>
 					</div>
