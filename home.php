@@ -245,8 +245,8 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     ?>
 
 
-<script>
-    // Department names
+    <script>
+        // Department names
     var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
 
     // Male and Female data (PHP values embedded in JS)
@@ -275,18 +275,13 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
         dataLabels: {
             enabled: true, // Enable data labels
             style: {
-                colors: ['#000'], // Text color for data labels (change to black or any color you want)
+                colors: ['#fff'], // Text color for data labels
                 fontSize: '12px', // Font size
                 fontWeight: 'bold' // Font weight
             },
             offsetY: -10, // Position the data labels above the columns
             background: {
                 enabled: false, // Don't show background for labels
-            },
-            // Adjust vertical alignment to be above the bars
-            verticalAlign: 'bottom', // Align the label at the bottom of the label's position
-            formatter: function(val) {
-                return val.toFixed(0); // Format data labels as integers
             }
         },
         series: [{
@@ -317,8 +312,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     // Render the chart
     var chart = new ApexCharts(document.querySelector("#genderchart"), options);
     chart.render();
-</script>
-
+    </script>
 
     <script>
         var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
