@@ -158,36 +158,6 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 </div>
             </div>
 
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <h1 class="border-bottom pb-3"> 
-                        <?php 
-                           echo $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female'")->num_rows;
-                        ?>
-                    </h1>
-                        <div style="text-align: center;">
-                        <h5 class="mb-0">Female Students</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <h1 class="border-bottom pb-3">
-                        <?php 
-                           echo $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male'")->num_rows;
-                        ?>
-                    </h1>
-                        <div style="text-align: center;">
-                        <h5 class="mb-0">Male Students</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
