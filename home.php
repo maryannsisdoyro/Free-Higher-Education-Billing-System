@@ -296,18 +296,20 @@ new Chart("genderchart", {
         },
         scales: {
             x: {
-                beginAtZero: true, // Ensure the bars start from 0
+                beginAtZero: true, // Ensure the bars start from 0 (or you can remove this if not needed)
             },
             y: {
-                beginAtZero: true, // Ensure the bars start from 0
+                // Set custom minimum value and optional max value
+                min: 5, // Set the minimum value for the Y-axis
+                max: 40, // Optional: Set the maximum value for the Y-axis
                 ticks: {
                     stepSize: 5, // Optional: step size for the Y axis ticks
-                },
-                min: 5
+                }
             }
         }
     }
 });
+
 
 
 new Chart("chart", {
