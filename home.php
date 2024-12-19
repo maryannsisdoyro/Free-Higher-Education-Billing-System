@@ -258,7 +258,7 @@ new Chart("myChart", {
 });
 
 var genderValues = [
-    [10, 20], // First department: [male, female]
+    [20, 20], // First department: [male, female]
     [20, 10], // Second department: [male, female]
     [15, 18], // Third department: [male, female]
     [12, 25], // Fourth department: [male, female]
@@ -301,7 +301,7 @@ new Chart("genderchart", {
             y: {
                 beginAtZero: true, // Ensure the bars start from 0
                 ticks: {
-                    stepSize: 2, // Optional: step size for the Y axis ticks
+                    stepSize: 5, // Optional: step size for the Y axis ticks
                 }
             }
         }
