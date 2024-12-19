@@ -45,6 +45,7 @@
 <script
 src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 </script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
     <div class="container-fluid py-3">
         <div class="row" style="gap: 20px 0;">

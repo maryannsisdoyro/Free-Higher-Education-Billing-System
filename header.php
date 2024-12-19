@@ -41,5 +41,5 @@
     <script type="text/javascript" src="<?= htmlspecialchars('assets/font-awesome/js/all.min.js') ?>"></script>
   <script type="text/javascript" src="<?= htmlspecialchars('assets/js/jquery-te-1.4.0.min.js') ?>" charset="utf-8"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
 
