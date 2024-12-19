@@ -112,6 +112,6 @@ function backup_tables($host, $user, $pass, $dbname, $tables = '*') {
     showConfirmButton: false,
     timer: 2000
     }).then(() => {
-        window.location.href = "?page=home"
+        window.location.href = "?page=system-backup"
     });
 </script>
