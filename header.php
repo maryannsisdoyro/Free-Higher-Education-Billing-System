@@ -25,7 +25,7 @@
   <!-- Template Main CSS File -->
   <link href="<?= htmlspecialchars('assets/css/style.css') ?>" rel="stylesheet">
   <link type="text/css" rel="stylesheet" href="<?= htmlspecialchars('assets/css/jquery-te-1.4.0.css') ?>">
-  
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
   <script src="<?= htmlspecialchars('assets/vendor/jquery/jquery.min.js') ?>"></script>
   <script src="<?= htmlspecialchars('assets/DataTables/datatables.min.js') ?>"></script>
   <script src="<?= htmlspecialchars('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
@@ -41,5 +41,5 @@
     <script type="text/javascript" src="<?= htmlspecialchars('assets/font-awesome/js/all.min.js') ?>"></script>
   <script type="text/javascript" src="<?= htmlspecialchars('assets/js/jquery-te-1.4.0.min.js') ?>" charset="utf-8"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
 
