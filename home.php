@@ -273,14 +273,14 @@ new Chart("genderchart", {
         datasets: [
             {
                 label: 'Male', // Dataset for males
-                backgroundColor: genderValues.map(val => genderColors[0]), // Male color
+                backgroundColor: genderColors[0], // Male color
                 data: genderValues.map(val => val[0]), // Extract male data
                 borderColor: genderColors[0],
                 borderWidth: 1
             },
             {
                 label: 'Female', // Dataset for females
-                backgroundColor: genderValues.map(val => genderColors[1]), // Female color
+                backgroundColor: genderColors[1], // Female color
                 data: genderValues.map(val => val[1]), // Extract female data
                 borderColor: genderColors[1],
                 borderWidth: 1
