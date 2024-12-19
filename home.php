@@ -257,7 +257,7 @@ new Chart("myChart", {
   }
 });
 
-
+var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
 var genderValues = [
     [10, 20], // First department: [male, female]
     [20, 10], // Second department: [male, female]
