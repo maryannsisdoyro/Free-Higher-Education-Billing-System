@@ -213,7 +213,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 
     <?php 
         $bsit_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BSIT' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
-        $bsit_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'female' AND course = 'BSIT' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
+        $bsit_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female' AND course = 'BSIT' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
         $bsba_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BSBA' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
         $bsba_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female' AND course = 'BSBA' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
         $bshm_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BSHM' AND curr = '$academic_year' AND semester = '$semester_academic' AND delete_status = 1");
