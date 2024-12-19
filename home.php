@@ -201,7 +201,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <canvas id="genderchart">
+                        <div id="genderchart">
 
                         </canvas>
                     </div>
