@@ -257,6 +257,7 @@ new Chart("myChart", {
   }
 });
 
+
 var genderValues = [
     [10, 20], // First department: [male, female]
     [20, 10], // Second department: [male, female]
@@ -307,6 +308,7 @@ new Chart("genderchart", {
         }
     }
 });
+
 
 
 new Chart("chart", {
