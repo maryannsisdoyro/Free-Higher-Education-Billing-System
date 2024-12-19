@@ -41,13 +41,10 @@
 		max-width: calc(100%)!important;
 	}
 </style>
-<script async src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
 <script
 src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 </script>
-
-
 
     <div class="container-fluid py-3">
         <div class="row" style="gap: 20px 0;">
@@ -243,77 +240,6 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
         $beed_male = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Male' AND course = 'BEED' ");
         $beed_female = $conn->query("SELECT * FROM enroll2024 WHERE gender = 'Female' AND course = 'BEED' ");
     ?>
-
-
-    <script>
-        // Department names
-    var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
-
-// Male and Female data (PHP values embedded in JS)
-var genderValues = [
-    [<?= $bsit_male->num_rows ?>, <?= $bsit_female->num_rows ?>], 
-    [<?= $bsba_male->num_rows ?>, <?= $bsba_female->num_rows ?>], 
-    [<?= $bshm_male->num_rows ?>, <?= $bshm_female->num_rows ?>], 
-    [<?= $bsed_male->num_rows ?>, <?= $bsed_female->num_rows ?>], 
-    [<?= $beed_male->num_rows ?>, <?= $beed_female->num_rows ?>]
-];
-
-// Chart colors
-var genderColors = ['#dc3545', '#007bff']; // Male and Female colors
-
-// ApexChart options
-var options = {
-    chart: {
-        type: 'bar',
-        height: 350
-    },
-    plotOptions: {
-        bar: {
-            columnWidth: '50%' // Adjust column width
-        }
-    },
-    dataLabels: {
-        enabled: true, // Enable data labels
-        style: {
-            colors: ['#fff'], // Text color for data labels
-            fontSize: '12px', // Font size
-            fontWeight: 'bold' // Font weight
-        },
-        offsetY: -10, // Position the data labels above the columns
-        background: {
-            enabled: false, // Don't show background for labels
-        }
-    },
-    series: [{
-        name: 'Male',
-        data: genderValues.map(function(val) { return val[0]; }) // Male data for each department
-    },
-    {
-        name: 'Female',
-        data: genderValues.map(function(val) { return val[1]; }) // Female data for each department
-    }],
-    xaxis: {
-        categories: xValues, // X-axis labels (departments)
-    },
-    yaxis: {
-        min: 0, // Set minimum value of Y-axis to 0
-        labels: {
-            formatter: function(val) {
-                return val.toFixed(0); // Format Y-axis labels as integers
-            }
-        }
-    },
-    title: {
-        text: 'Male and Female Students by Department',
-        align: 'center'
-    }
-};
-
-// Render the chart
-var chart = new ApexCharts(document.querySelector("#genderchart"), options);
-chart.render();
-    </script>
-
     <script>
         var xValues = ["BSIT", "BSBA", "BSHM", "BSED", "BEED"];
 var yValues = [<?php echo $get_bsit->num_rows ?>, <?php echo $get_bsba->num_rows ?>, <?php echo $get_bshm->num_rows + $get_bs_hm->num_rows ?>, <?php echo $get_bsed->num_rows ?>, <?php echo $get_beed->num_rows ?>];
@@ -334,72 +260,69 @@ new Chart("myChart", {
   }
 });
 
-// var genderValues = [
-//     [<?= $bsit_male->num_rows ?>, <?= $bsit_female->num_rows ?>], 
-//     [<?= $bsba_male->num_rows ?>, <?= $bsba_female->num_rows ?>], 
-//     [<?= $bshm_male->num_rows ?>, <?= $bshm_female->num_rows ?>], 
-//     [<?= $bsed_male->num_rows ?>, <?= $bsed_female->num_rows ?>], 
-//     [<?= $beed_male->num_rows ?>, <?= $beed_female->num_rows ?>], 
-// ];
-// var genderColors = ['#dc3545', '#007bff']; // Colors for male and female
+var genderValues = [
+    [<?= $bsit_male->num_rows ?>, <?= $bsit_female->num_rows ?>], 
+    [<?= $bsba_male->num_rows ?>, <?= $bsba_female->num_rows ?>], 
+    [<?= $bshm_male->num_rows ?>, <?= $bshm_female->num_rows ?>], 
+    [<?= $bsed_male->num_rows ?>, <?= $bsed_female->num_rows ?>], 
+    [<?= $beed_male->num_rows ?>, <?= $beed_female->num_rows ?>], 
+];
+var genderColors = ['#dc3545', '#007bff']; // Colors for male and female
 
-// new Chart("genderchart", {
-//     type: "bar",
-//     data: {
-//         labels: xValues, // Departments on the X axis
-//         datasets: [
-//             {
-//                 label: 'Male', // Dataset for males
-//                 backgroundColor: genderColors[0], // Male color
-//                 data: genderValues.map(val => val[0]), // Extract male data
-//                 borderColor: genderColors[0],
-//                 borderWidth: 1
-//             },
-//             {
-//                 label: 'Female', // Dataset for females
-//                 backgroundColor: genderColors[1], // Female color
-//                 data: genderValues.map(val => val[1]), // Extract female data
-//                 borderColor: genderColors[1],
-//                 borderWidth: 1
-//             }
-//         ]
-//     },
-//     options: {
-//         responsive: true, // Make the chart responsive
-//         legend: { display: true }, // Display legend for male and female
-//         title: {
-//             display: true,
-//             text: "Male and Female Students By Department"
-//         },
-//         scales: {
-//             x: {
-//                 beginAtZero: true, // Ensure the bars start from 0
-//             },
-//             y: {
-//                 beginAtZero: true, // Ensure the bars start from 0
-//                 ticks: {
-//                     stepSize: 1, // Optional: step size for the Y axis ticks
-//                 }
-//             }
-//         },
-//         plugins: {
-//             datalabels: {
-//                 display: true, // Display data labels (Always visible)
-//                 color: 'black', // Color of the text
-//                 font: {
-//                     weight: 'bold',
-//                     size: 12
-//                 },
-//                 anchor: 'end', // Anchor position for labels
-//                 align: 'top', // Position the labels above the bars
-//                 offset: 10, // Add some space above the bars
-//                 formatter: function(value) {
-//                     return value; // Format the value, here it shows as is
-//                 }
-//             }
-//         }
-//     }
-// });
+new Chart("genderchart", {
+    type: "bar",
+    data: {
+        labels: xValues, // Departments on the X axis
+        datasets: [
+            {
+                label: 'Male', // Dataset for males
+                backgroundColor: genderColors[0], // Male color
+                data: genderValues.map(val => val[0]), // Extract male data
+                borderColor: genderColors[0],
+                borderWidth: 1
+            },
+            {
+                label: 'Female', // Dataset for females
+                backgroundColor: genderColors[1], // Female color
+                data: genderValues.map(val => val[1]), // Extract female data
+                borderColor: genderColors[1],
+                borderWidth: 1
+            }
+        ]
+    },
+    options: {
+        responsive: true, // Make the chart responsive
+        legend: { display: true }, // Display legend for male and female
+        title: {
+            display: true,
+            text: "Male and Female Students By Department"
+        },
+        scales: {
+            x: {
+                beginAtZero: true, // Ensure the bars start from 0
+            },
+            y: {
+                beginAtZero: true, // Ensure the bars start from 0
+                ticks: {
+                    stepSize: 1, // Optional: step size for the Y axis ticks
+                }
+            }
+        },
+        plugins: {
+            datalabels: {
+                display: true, // Display data labels
+                color: 'black', // Color of the text
+                font: {
+                    weight: 'bold',
+                    size: 12
+                },
+                anchor: 'end', // Anchor position for labels
+                align: 'top', // Position the labels above the bars
+                formatter: (value) => value // Display the value as is
+            }
+        }
+    }
+});
 
 
 new Chart("chart", {
