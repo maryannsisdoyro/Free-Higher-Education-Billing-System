@@ -208,7 +208,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 </div>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-6 h-100">
                 <div class="card">
                     <div class="card-body">
                         <canvas id="genderTotal">
@@ -338,28 +338,28 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 
 
         // Pie chart for total male and female
-new Chart("genderTotal", {
-    type: "pie",
-    data: {
-        labels: ['Male', 'Female'], // Corrected labels for pie chart
-        datasets: [{
-            backgroundColor: genderColors,
-            data: total // Total male and female counts
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top'
+        new Chart("genderTotal", {
+            type: "pie",
+            data: {
+                labels: ['Male', 'Female'], // Corrected labels for pie chart
+                datasets: [{
+                    backgroundColor: genderColors,
+                    data: total // Total male and female counts
+                }]
             },
-            title: {
-                display: true,
-                text: 'Total Male and Female Students'
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Total Male and Female Students'
+                    }
+                }
             }
-        }
-    }
-});
+        });
     </script>
 
     <script>
