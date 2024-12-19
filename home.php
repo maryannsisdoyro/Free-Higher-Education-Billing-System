@@ -47,6 +47,7 @@
 src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <div class="container-fluid py-3">
         <div class="row" style="gap: 20px 0;">
@@ -221,7 +222,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     </div>
 
   
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 
     <?php 
     // TOTAL GENDER
@@ -301,7 +302,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             }
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        var chart = new ApexCharts(document.querySelector("#genderchart"), options);
         chart.render();
     </script>
 
