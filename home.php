@@ -318,7 +318,7 @@ new Chart("genderchart", {
                 },
                 anchor: 'end', // Anchor position for labels
                 align: 'top', // Position the labels above the bars
-                formatter: (value) => value // You can use this to format the labels, if needed
+                formatter: (value) => value // Display the value as is
             }
         }
     }
