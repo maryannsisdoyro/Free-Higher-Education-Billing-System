@@ -15,6 +15,8 @@
     <option value="A">A</option>
     <option value="B">B</option>
     <option value="C">C</option>
+    <option value="D">D</option>
+    <option value="E">E</option>
 </select>
 
 <select name="section" class="form-control BSED <?= $course != 'BSED' ? 'd-none' : '' ?>" required>
@@ -22,6 +24,8 @@
     <option value="A">A</option>
     <option value="B">B</option>
     <option value="C">C</option>
+    <option value="D">D</option>
+    <option value="E">E</option>
 </select>
 
 <select name="section" class="form-control BSBA <?= $course != 'BSBA' ? 'd-none' : '' ?>" required>
@@ -30,6 +34,7 @@
     <option value="B">B</option>
     <option value="C">C</option>
     <option value="D">D</option>
+    <option value="E">E</option>
 </select>
 
 <select name="section" class="form-control BSHM <?= $course != 'BSHM' ? 'd-none' : '' ?>" required>
@@ -38,5 +43,6 @@
     <option value="B">B</option>
     <option value="C">C</option>
     <option value="D">D</option>
+    <option value="E">E</option>
 </select>
 
