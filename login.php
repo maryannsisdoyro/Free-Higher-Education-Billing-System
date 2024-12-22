@@ -350,13 +350,85 @@ window._conf = function($msg='',$func='',$params = []){
                 //showConfirmButton: false,
                 timer: 1500
               });
-              $('#login-form button[type="button"]').removeAttr('disabled').html('Login');
+              const maxAttempts = 3;
+let attempts = maxAttempts;
+let lockDuration = 180; // Lock duration in seconds
+let isLocked = false;
+
+const $loginForm = $('#login-form');
+const $errorMessage = $('#error-message');
+const $loginButton = $('#login-button');
+const $termsCheckbox = $('#terms-checkbox');
+
+// Enable login button only when terms are checked
+$termsCheckbox.on('change', function () {
+  $loginButton.prop('disabled', !$termsCheckbox.is(':checked'));
+});
+
+$loginForm.on('submit', function (event) {
+  event.preventDefault(); // Prevent form submission
+
+  if (isLocked) return;
+
+  // Simulate login validation (replace with actual validation logic)
+  const username = $('#username').val();
+  const password = $('#password').val();
+
+  if (username === 'correctEmail@example.com' && password === 'correctPassword') {
+    // Correct credentials
+    alert('Login successful!');
+    $errorMessage.hide(); // Hide error message
+    resetAttempts(); // Reset attempts on successful login
+    $loginForm[0].submit(); // Submit the form
+  } else {
+    // Incorrect credentials
+    handleIncorrectLogin();
+  }
+});
             }
           }
         });
       });
     });
 	})
+
+
+  function handleIncorrectLogin() {
+  attempts--;
+  if (attempts > 0) {
+    $errorMessage.show().text(`Invalid credentials. Attempts left: ${attempts}`);
+  } else {
+    lockForm();
+  }
+}
+
+function lockForm() {
+  isLocked = true;
+  $errorMessage.text(`Too many invalid attempts. Please try again in ${lockDuration} seconds.`).show();
+  $loginButton.prop('disabled', true);
+
+  const timer = setInterval(() => {
+    lockDuration--;
+    if (lockDuration > 0) {
+      $errorMessage.text(`Too many invalid attempts. Please try again in ${lockDuration} seconds.`);
+    } else {
+      clearInterval(timer);
+      resetForm();
+    }
+  }, 1000);
+}
+
+function resetForm() {
+  isLocked = false;
+  resetAttempts(); // Reset attempts on form reset
+  $errorMessage.hide();
+  $loginButton.prop('disabled', !$termsCheckbox.is(':checked'));
+}
+
+function resetAttempts() {
+  attempts = maxAttempts;
+  lockDuration = 180;
+}
 </script>	
 
 <script>
@@ -373,80 +445,7 @@ window._conf = function($msg='',$func='',$params = []){
     }
 </script>
 <script>
-  const maxAttempts = 3;
-  let attempts = maxAttempts;
-  let lockDuration = 180; // Lock duration in seconds
-  let isLocked = false;
-
-  const loginForm = document.getElementById('login-form');
-  const errorMessage = document.getElementById('error-message');
-  const loginButton = document.getElementById('login-button');
-  const termsCheckbox = document.getElementById('terms-checkbox');
-
-  // Enable login button only when terms are checked
-  termsCheckbox.addEventListener('change', function () {
-    loginButton.disabled = !termsCheckbox.checked;
-  });
-
-  loginForm.addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent form submission
-
-    if (isLocked) return;
-
-    // Simulate login validation (replace with actual validation logic)
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-
-    if (username === 'correctEmail@example.com' && password === 'correctPassword') {
-      // Correct credentials
-      alert('Login successful!');
-      errorMessage.style.display = 'none'; // Hide error message
-      resetAttempts(); // Reset attempts on successful login
-      loginForm.submit(); // Submit the form
-    } else {
-      // Incorrect credentials
-      handleIncorrectLogin();
-    }
-  });
-
-  function handleIncorrectLogin() {
-    attempts--;
-    if (attempts > 0) {
-      errorMessage.style.display = 'block';
-      errorMessage.textContent = `Invalid credentials. Attempts left: ${attempts}`;
-    } else {
-      lockForm();
-    }
-  }
-
-  function lockForm() {
-    isLocked = true;
-    errorMessage.textContent = `Too many invalid attempts. Please try again in ${lockDuration} seconds.`;
-    errorMessage.style.display = 'block';
-    loginButton.disabled = true;
-
-    const timer = setInterval(() => {
-      lockDuration--;
-      if (lockDuration > 0) {
-        errorMessage.textContent = `Too many invalid attempts. Please try again in ${lockDuration} seconds.`;
-      } else {
-        clearInterval(timer);
-        resetForm();
-      }
-    }, 1000);
-  }
-
-  function resetForm() {
-    isLocked = false;
-    resetAttempts(); // Reset attempts on form reset
-    errorMessage.style.display = 'none';
-    loginButton.disabled = !termsCheckbox.checked;
-  }
-
-  function resetAttempts() {
-    attempts = maxAttempts;
-    lockDuration = 180;
-  }
+ 
 </script>
 
 
