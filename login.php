@@ -360,27 +360,26 @@ window._conf = function($msg='',$func='',$params = []){
                 timer: 1500
               });
 
+              // Enable login button only when terms are checked
+              $termsCheckbox.on('change', function () {
+                $loginButton.prop('disabled', !$termsCheckbox.is(':checked'));
+              });
+              if (isLocked) return;
 
-// Enable login button only when terms are checked
-$termsCheckbox.on('change', function () {
-  $loginButton.prop('disabled', !$termsCheckbox.is(':checked'));
-});
-if (isLocked) return;
+              // Simulate login validation (replace with actual validation logic)
+              const username = $('#username').val();
+              const password = $('#password').val();
 
-// Simulate login validation (replace with actual validation logic)
-const username = $('#username').val();
-const password = $('#password').val();
-
-if (username === 'correctEmail@example.com' && password === 'correctPassword') {
-  // Correct credentials
-  alert('Login successful!');
-  $errorMessage.hide(); // Hide error message
-  resetAttempts(); // Reset attempts on successful login
-  $loginForm[0].submit(); // Submit the form
-} else {
-  // Incorrect credentials
-  handleIncorrectLogin();
-}
+              if (username === 'correctEmail@example.com' && password === 'correctPassword') {
+                // Correct credentials
+                alert('Login successful!');
+                $errorMessage.hide(); // Hide error message
+                resetAttempts(); // Reset attempts on successful login
+                $loginForm[0].submit(); // Submit the form
+              } else {
+                // Incorrect credentials
+                handleIncorrectLogin();
+              }
             }
           }
         });
