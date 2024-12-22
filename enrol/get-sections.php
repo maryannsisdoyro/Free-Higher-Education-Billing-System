@@ -1,6 +1,6 @@
 <?php $course = $row['course'] ?>
-
-<select name="section" class="form-control BSIT <?= $course != 'BSIT' ? 'd-none' : '' ?>" required>
+<?php if($course == 'BSIT'): ?>
+<select name="section" class="form-control BSIT" required>
     <!-- <option value="" selected disabled>Select Section</option> -->
     <option value="North">North</option>
     <option value="North East">North East</option>
@@ -9,8 +9,8 @@
     <option value="South">South</option>
     <option value="South East">South East</option>
 </select>
-
-<select name="section" class="form-control BEED <?= $course != 'BEED' ? 'd-none' : '' ?>" required>
+<?php elseif($course == 'BEED') ?>
+<select name="section" class="form-control BEED" required>
     <!-- <option value="" selected disabled>Select Section</option> -->
     <option value="A">A</option>
     <option value="B">B</option>
@@ -18,8 +18,8 @@
     <option value="D">D</option>
     <option value="E">E</option>
 </select>
-
-<select name="section" class="form-control BSED <?= $course != 'BSED' ? 'd-none' : '' ?>" required>
+<?php elseif($course == 'BSED') ?>
+<select name="section" class="form-control BSED" required>
     <!-- <option value="" selected disabled>Select Section</option> -->
     <option value="A">A</option>
     <option value="B">B</option>
@@ -27,8 +27,8 @@
     <option value="D">D</option>
     <option value="E">E</option>
 </select>
-
-<select name="section" class="form-control BSBA <?= $course != 'BSBA' ? 'd-none' : '' ?>" required>
+<?php elseif($course == 'BSBA') ?>
+<select name="section" class="form-control BSBA" required>
     <!-- <option value="" selected disabled>Select Section</option> -->
     <option value="A">A</option>
     <option value="B">B</option>
@@ -36,8 +36,8 @@
     <option value="D">D</option>
     <option value="E">E</option>
 </select>
-
-<select name="section" class="form-control BSHM <?= $course != 'BSHM' || $course != 'BS-HM' ? 'd-none' : '' ?>" required>
+<?php elseif($course == 'BSHM') ?>
+<select name="section" class="form-control BSHM" required>
     <!-- <option value="" selected disabled>Select Section</option> -->
     <option value="A">A</option>
     <option value="B">B</option>
@@ -45,4 +45,4 @@
     <option value="D">D</option>
     <option value="E">E</option>
 </select>
-
+<?php endif; ?>
