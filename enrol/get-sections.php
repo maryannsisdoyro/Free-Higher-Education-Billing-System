@@ -37,7 +37,7 @@
     <option value="E">E</option>
 </select>
 
-<select name="section" class="form-control BSHM <?= $course != 'BSHM' ? 'd-none' : '' ?>" required>
+<select name="section" class="form-control BSHM <?= $course != 'BSHM' || $course != 'BS-HM' ? 'd-none' : '' ?>" required>
     <!-- <option value="" selected disabled>Select Section</option> -->
     <option value="A">A</option>
     <option value="B">B</option>
