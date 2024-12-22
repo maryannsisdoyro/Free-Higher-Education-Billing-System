@@ -1,5 +1,5 @@
 <?php $course = $row['course'] ?>
-<?php if($course == 'BSIT'): ?>
+<?php if($course == 'BSIT'){ ?>
 <select name="section" class="form-control BSIT" required>
     <!-- <option value="" selected disabled>Select Section</option> -->
     <option value="North">North</option>
@@ -9,7 +9,7 @@
     <option value="South">South</option>
     <option value="South East">South East</option>
 </select>
-<?php else if($course == 'BEED'): ?>
+<?php }else if($course == 'BEED'){ ?>
 <select name="section" class="form-control BEED" required>
     <!-- <option value="" selected disabled>Select Section</option> -->
     <option value="A">A</option>
@@ -18,7 +18,7 @@
     <option value="D">D</option>
     <option value="E">E</option>
 </select>
-<?php else if($course == 'BSED'): ?>
+<?php }else if($course == 'BSED'){ ?>
 <select name="section" class="form-control BSED" required>
     <!-- <option value="" selected disabled>Select Section</option> -->
     <option value="A">A</option>
@@ -27,7 +27,7 @@
     <option value="D">D</option>
     <option value="E">E</option>
 </select>
-<?php else if($course == 'BSBA'): ?>
+<?php }else if($course == 'BSBA'){ ?>
 <select name="section" class="form-control BSBA" required>
     <!-- <option value="" selected disabled>Select Section</option> -->
     <option value="A">A</option>
@@ -36,7 +36,7 @@
     <option value="D">D</option>
     <option value="E">E</option>
 </select>
-<?php else if($course == 'BSHM'): ?>
+<?php }else if($course == 'BSHM'){ ?>
 <select name="section" class="form-control BSHM" required>
     <!-- <option value="" selected disabled>Select Section</option> -->
     <option value="A">A</option>
@@ -45,4 +45,4 @@
     <option value="D">D</option>
     <option value="E">E</option>
 </select>
-<?php endif; ?>
+<?php } ?>
