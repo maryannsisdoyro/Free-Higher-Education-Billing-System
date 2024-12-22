@@ -39,3 +39,4 @@
 </select>
 
 
+<?php echo $row['course'] ?>
