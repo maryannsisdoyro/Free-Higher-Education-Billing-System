@@ -85,9 +85,32 @@
                                                     <?php 
                                                         if($row['curr'] != NULL){
                                                         if ($row['curr'] == $academic['year'] && $row['semester'] == $academic['semester']) {
-                                                            ?>
+                                                            
+
+                                                            if ($row['enroll_status'] == NULL) {
+                                                                ?>
+                                                            
+                                                            <a href="#" data-toggle="dropdown" class="btn btn-danger dropdown-toggle">Select Enrollment</a>
+                                      
+                                      <ul class="dropdown-menu">
+                                          <li class="dropdown-item">
+                                              <a href="#" type="button" class="d-flex align-items-center gap-1 text-dark" data-toggle="modal" data-target="#regular" style="z-index: 100 !important; position: relative;">Enroll Regular</a>
+                                              
+                                          </li>
+                                          <li class="dropdown-item">
+                                              <a type="button" class="d-flex align-items-center gap-1" data-toggle="modal" data-target="#irregular" style="z-index: 100 !important; position: relative;">Enroll Irregular</a>
+                                          </li>
+                                          <li class="dropdown-item">
+                                              <a href="#" type="button" class="d-flex align-items-center gap-1 text-dark" data-toggle="modal" data-target="#shiftee" style="z-index: 100 !important; position: relative;">Enroll Shiftee</a>
+                                          </li>
+                                      </ul>
+                                                            <?php 
+                                                            }else{
+                                                                ?>
                                                             <button type="button" class="btn btn-secondary disabled px-5" disabled>Enrolled</button>
                                                             <?php 
+                                                            }
+
                                                         }else{
                                                         ?>
                                                             
