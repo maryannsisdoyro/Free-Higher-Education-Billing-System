@@ -516,7 +516,7 @@ if (isset($_GET['next'])) {
                 </style>
                 <div class="table-responsive table-responsive-data2" id="subjects_table">
                 <?php 
-                     if (strtoupper($row['enroll_status']) != 'REGULAR') {
+                     if (strtoupper($row['enroll_status']) != 'REGULAR' && $row['enroll_status'] != NULL) {
                         ?>
                 <form method="POST" class="d-flex gap-2 g-2 mb-3" style="gap: 10px; flex-wrap: wrap;">
                     <input type="text" name="time" class="form-control" style="width: 49%;" placeholder="Time">
@@ -536,7 +536,7 @@ if (isset($_GET['next'])) {
         <thead>
             <tr>
                 <?php 
-                     if (strtoupper($row['enroll_status']) != 'REGULAR') {
+                     if (strtoupper($row['enroll_status']) != 'REGULAR' && $row['enroll_status'] != NULL) {
                         ?>
                      <th></th>
                         <?php 
@@ -616,7 +616,7 @@ if (isset($_GET['next'])) {
             ?>
                 <tr>
                     <?php 
-                        if (strtoupper($row['enroll_status']) != 'REGULAR') {
+                        if (strtoupper($row['enroll_status']) != 'REGULAR' && $row['enroll_status'] != NULL) {
                             ?>
                               <td class="text-center"><a class="text-danger mx-1 py-0 my-auto btn btn-outline-danger" href="?application_no=<?= $_GET['application_no'] ?>&remove=<?= htmlentities($stud_sub['id']) ?>">x</td>
                             <?php 
