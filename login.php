@@ -218,6 +218,15 @@ ob_end_flush();
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
   <script>
+    const maxAttempts = 3;
+    let attempts = maxAttempts;
+    let lockDuration = 180; // Lock duration in seconds
+    let isLocked = false;
+
+    const $loginForm = $('#login-form');
+    const $errorMessage = $('#error-message');
+    const $loginButton = $('#login-button');
+    const $termsCheckbox = $('#terms-checkbox');
     $("#showTerms").click(function() {
         $("#termsModal").modal('show');
     });
@@ -350,15 +359,7 @@ window._conf = function($msg='',$func='',$params = []){
                 //showConfirmButton: false,
                 timer: 1500
               });
-              const maxAttempts = 3;
-let attempts = maxAttempts;
-let lockDuration = 180; // Lock duration in seconds
-let isLocked = false;
 
-const $loginForm = $('#login-form');
-const $errorMessage = $('#error-message');
-const $loginButton = $('#login-button');
-const $termsCheckbox = $('#terms-checkbox');
 
 // Enable login button only when terms are checked
 $termsCheckbox.on('change', function () {
