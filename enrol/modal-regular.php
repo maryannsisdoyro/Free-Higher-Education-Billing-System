@@ -214,6 +214,11 @@
     }
     $('#regular_form').submit(function(e){
         e.preventDefault()
+
+        setTimeout(3000, function(){
+                    location.href = "student-cor.php?application_no=<?= $row['id'] ?>"
+                })
+
         start_load()
         $('#msg').html('')
         if($('#fee-list-regular tbody').find('[name="fid_regular[]"]').length <= 0){
@@ -222,9 +227,7 @@
             return false;
         }
 
-        setTimeout(3000, function(){
-                    location.href = "student-cor.php?application_no=<?= $row['id'] ?>"
-                })
+      
 
         $.ajax({
             url:'../ajax.php?action=save_regular',
@@ -239,7 +242,7 @@
 
                 if(result.status==1){
                    
-                           
+                    location.href = "student-cor.php?application_no=" + result.enroll_id
                        
                 }else if(resp == 2){
                 $('#msg').html('<div class="alert alert-danger mx-2">Course Name & Level already exist.</div>')
