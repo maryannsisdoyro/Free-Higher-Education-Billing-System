@@ -11,6 +11,7 @@
         'BSED' => 'Bachelor of Secondary Education',
         'BSIT' => 'Bachelor of Science in Information Technology',
         'BSHM' => 'Bachelor of Science in Hotel Management',
+        'BS-HM' => 'Bachelor of Science in Hotel Management',
         'BSBA' => 'Bachelor of Science in Business Administration',
     ];
 ?>
