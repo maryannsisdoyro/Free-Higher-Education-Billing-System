@@ -245,6 +245,10 @@
             type: 'POST',
             success:function(resp){
                 console.log(resp);
+
+                setTimeout(3000, function(){
+                    location.href = "student-cor.php?application_no=" + result.enroll_id
+                })
                 
                 const result = JSON.parse(resp)
                 if(result.status==1){

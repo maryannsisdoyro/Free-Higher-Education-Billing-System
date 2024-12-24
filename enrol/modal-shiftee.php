@@ -270,6 +270,7 @@ window.start_load = function(){
             end_load()
             return false;
         }
+        
         $.ajax({
             url:'../ajax.php?action=save_shiftee',
             data: new FormData($(this)[0]),
@@ -281,6 +282,11 @@ window.start_load = function(){
             success:function(resp){
                 console.log(resp);
                 const result = JSON.parse(resp)
+
+                setTimeout(3000, function(){
+                    location.href = "student-cor.php?application_no=" + result.enroll_id
+                })
+
                 if(result.status==1){
                    
                            location.href = "student-cor.php?application_no=" + result.enroll_id
