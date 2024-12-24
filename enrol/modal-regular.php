@@ -233,7 +233,7 @@
                 const result = JSON.parse(resp)
 
                 setTimeout(3000, function(){
-                    location.href = "student-cor.php?application_no=" + result.enroll_id
+                    location.href = "student-cor.php?application_no=<?= $row['id'] ?>"
                 })
 
 
