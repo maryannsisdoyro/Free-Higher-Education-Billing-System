@@ -1440,27 +1440,27 @@ class Action
         $filename = $this->clean($data['image']);
 		$enroll_status = "REGULAR";
 		
-		// $insert_query = "INSERT INTO enroll2024 (application_no,stu_id, stu_name, stu_sta, course, major, year_level, stud_status,curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot,image, email,fname,mname,lname,gender,semester,academic,enroll_status)
-		// VALUES ('$application_no','$stu_id', '$stu_name', '$enroll_status', '$course', '$majorOutput1', '$year_level', '$stud_status','$curr', '$religiousOutput1', '$con_no', '$home_ad', '$civil', '$d_birth', '$p_birth', '$ele', '$ele_year', '$high', '$high_year', '$last_sc', '$last_year', '$tot_units', '$un_enrol', '$rate_per', '$total', '$lib', '$com', '$lab1', '$lab2', '$lab3', '$sch_id', '$ath', '$adm', '$dev', '$guid', '$hand', '$entr', '$reg_fe', '$med_den', '$cul', '$t_misfe', '$g_tot', '$filename', '$email','$fname', '$mname', '$lname', '$gender', '$semester', '$academic', '$enroll_status')";
+		$insert_query = "INSERT INTO enroll2024 (application_no,stu_id, stu_name, stu_sta, course, major, year_level, stud_status,curr, reli, con_no, home_ad, civil, d_birth, p_birth, ele, ele_year, high, high_year, last_sc, last_year, tot_units, un_enrol, rate_per, total, lib, com, lab1, lab2, lab3, sch_id, ath, adm, dev, guid, hand, entr, reg_fe, med_den, cul, t_misfe, g_tot,image, email,fname,mname,lname,gender,semester,academic,enroll_status)
+		VALUES ('$application_no','$stu_id', '$stu_name', '$enroll_status', '$course', '$majorOutput1', '$year_level', '$stud_status','$curr', '$religiousOutput1', '$con_no', '$home_ad', '$civil', '$d_birth', '$p_birth', '$ele', '$ele_year', '$high', '$high_year', '$last_sc', '$last_year', '$tot_units', '$un_enrol', '$rate_per', '$total', '$lib', '$com', '$lab1', '$lab2', '$lab3', '$sch_id', '$ath', '$adm', '$dev', '$guid', '$hand', '$entr', '$reg_fe', '$med_den', '$cul', '$t_misfe', '$g_tot', '$filename', '$email','$fname', '$mname', '$lname', '$gender', '$semester', '$academic', '$enroll_status')";
 	
-		// 	$insert_result = mysqli_query($conn, $insert_query);
+			$insert_result = mysqli_query($conn, $insert_query);
 	
-		// if ($insert_result) {
+		if ($insert_result) {
 	
-		// 	$get_new_enroll = $conn->query("SELECT * FROM enroll2024 ORDER BY id DESC");
-		// 	$fetch_new_enroll = $get_new_enroll->fetch_assoc();
-		// 	$id = $fetch_new_enroll['id'];
+			$get_new_enroll = $conn->query("SELECT * FROM enroll2024 ORDER BY id DESC");
+			$fetch_new_enroll = $get_new_enroll->fetch_assoc();
+			$id = $fetch_new_enroll['id'];
 
-		// 	for($i = 0; $i < count($type_regular); $i++){
+			for($i = 0; $i < count($type_regular); $i++){
 	
-		// 		$insert_fees = $conn->query("INSERT INTO student_individual_fees(enroll_id, type, amount) VALUES($id, '".$_POST['type_regular'][$i]."', '".$_POST['amount_regular'][$i]."')");
+				$insert_fees = $conn->query("INSERT INTO student_individual_fees(enroll_id, type, amount) VALUES($id, '".$_POST['type_regular'][$i]."', '".$_POST['amount_regular'][$i]."')");
 	
-		// 	}
+			}
 
 			
-			return json_encode(['status' => 1, 'data' => $_POST]);
+			return json_encode(['status' => 1, 'enroll_id' => $id]);
 
-		// }
+		}
 	}
 
 	function update_section()
