@@ -11,7 +11,7 @@
         'BSED' => 'Bachelor of Secondary Education',
         'BSIT' => 'Bachelor of Science in Information Technology',
         'BSHM' => 'Bachelor of Science in Hotel Management',
-        'BS-HM' => 'Bachelor of Science in Hotel Management',
+        'BSHM' => 'Bachelor of Science in Hotel Management',
         'BSBA' => 'Bachelor of Science in Business Administration',
     ];
 ?>
@@ -22,11 +22,11 @@
                 <h5 class="text-light"><i class="fa fa-wrench"></i> Manage Enrollment</h5>
             </div>
             <div class="modal-body">
-            <input type="text" name="stu_id" value="<?= $row['stu_id'] ?>">
-            <input type="text" name="id" value="<?= $row['id'] ?>">
-            <input type="text" name="semester" value="<?= $academic['semester'] != NULL ? $academic['semester'] : ''  ?>">
-            <input type="text" name="academic" value="<?= $academic['id'] ?>">
-            <input type="text" name="submit" id="submit">
+            <input type="hidden" name="stu_id" value="<?= $row['stu_id'] ?>">
+            <input type="hidden" name="id" value="<?= $row['id'] ?>">
+            <input type="hidden" name="semester" value="<?= $academic['semester'] != NULL ? $academic['semester'] : ''  ?>">
+            <input type="hidden" name="academic" value="<?= $academic['id'] ?>">
+            <input type="hidden" name="submit" id="submit">
                 <div class="row">
 
                     <div class="col-lg-6">
@@ -111,12 +111,12 @@
                         <tr>
                             <td class="text-center"><button class="btn-sm btn-outline-danger" type="button" onclick="rem_list_regular($(this))" ><i class="fa fa-times"></i></button></td>
                             <td>
-                                <input type="text" name="fid_regular[]" value="<?php echo $row['id'] ?>">
-                                <input type="text" name="type_regular[]" value="<?php echo $row['description'] ?>">
+                                <input type="hidden" name="fid_regular[]" value="<?php echo $row['id'] ?>">
+                                <input type="hidden" name="type_regular[]" value="<?php echo $row['description'] ?>">
                                 <p><small><b class="ftype_regular"><?php echo $row['description'] ?></b></small></p>
                             </td>
                             <td>
-                                <input type="text" name="amount_regular[]" value="<?php echo $row['amount'] ?>">
+                                <input type="hidden" name="amount_regular[]" value="<?php echo $row['amount'] ?>">
                                 <p class="text-right"><small><b class="famount_regular"><?php echo number_format($row['amount']) ?></b></small></p>
                             </td>
                         </tr>
@@ -130,7 +130,7 @@
                     <tr>
                         <th colspan="1" class="text-center">Total</th>
                         <th class="text-right fees_list">
-                            <input type="text" name="total_amount_regular" value="<?php echo isset($total) ? $total : 0 ?>">
+                            <input type="hidden" name="total_amount_regular" value="<?php echo isset($total) ? $total : 0 ?>">
                             <span class="tamount_regular"><?php echo isset($total) ? number_format($total,2) : '0.00' ?></span>
                         </th>
                     </tr>
@@ -144,12 +144,12 @@
             <tr>
                 <!-- <td class="text-center"><button class="btn-sm btn-outline-danger" type="button" onclick="rem_list_regular($(this))" ><i class="fa fa-times"></i></button></td> -->
                 <td>
-                    <input type="text" name="fid_regular[]">
-                    <input type="text" name="type_regular[]">
+                    <input type="hidden" name="fid_regular[]">
+                    <input type="hidden" name="type_regular[]">
                     <p><small><b class="ftype_regular"></b></small></p>
                 </td>
                 <td>
-                    <input type="text" name="amount_regular[]">
+                    <input type="hidden" name="amount_regular[]">
                     <p class="text-right"><small><b class="famount_regular"></b></small></p>
                 </td>
             </tr>
@@ -180,7 +180,7 @@
  
     $('#manage-course-regular').on('reset',function(){
         $('#msg').html('')
-        $('input:text').val('')
+        $('input:hidden').val('')
     })
     $('#add_fee_regular').click(function(){
         var ft = $('#ft_regular').val()
