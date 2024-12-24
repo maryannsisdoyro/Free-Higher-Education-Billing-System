@@ -92,18 +92,18 @@
                                                             
                                                             <a href="#" data-toggle="dropdown" class="btn btn-danger dropdown-toggle">Select Enrollment</a>
                                       
-                                      <ul class="dropdown-menu">
-                                          <li class="dropdown-item">
-                                              <a href="#" type="button" class="d-flex align-items-center gap-1 text-dark" data-toggle="modal" data-target="#regular" style="z-index: 100 !important; position: relative;">Enroll Regular</a>
-                                              
-                                          </li>
-                                          <li class="dropdown-item">
-                                              <a type="button" class="d-flex align-items-center gap-1" data-toggle="modal" data-target="#irregular" style="z-index: 100 !important; position: relative;">Enroll Irregular</a>
-                                          </li>
-                                          <li class="dropdown-item">
-                                              <a href="#" type="button" class="d-flex align-items-center gap-1 text-dark" data-toggle="modal" data-target="#shiftee" style="z-index: 100 !important; position: relative;">Enroll Shiftee</a>
-                                          </li>
-                                      </ul>
+                                                            <ul class="dropdown-menu">
+                                                                <li class="dropdown-item">
+                                                                    <a href="#" type="button" class="d-flex align-items-center gap-1 text-dark" data-toggle="modal" data-target="#regular" style="z-index: 100 !important; position: relative;">Enroll Regular</a>
+                                                                    
+                                                                </li>
+                                                                <li class="dropdown-item">
+                                                                    <a type="button" class="d-flex align-items-center gap-1" data-toggle="modal" data-target="#irregular" style="z-index: 100 !important; position: relative;">Enroll Irregular</a>
+                                                                </li>
+                                                                <li class="dropdown-item">
+                                                                    <a href="#" type="button" class="d-flex align-items-center gap-1 text-dark" data-toggle="modal" data-target="#shiftee" style="z-index: 100 !important; position: relative;">Enroll Shiftee</a>
+                                                                </li>
+                                                            </ul>
                                                             <?php 
                                                             }else{
                                                                 ?>
