@@ -221,10 +221,6 @@
             end_load()
             return false;
         }
-
-
-        console.log(FormData($(this)[0]);
-        
         $.ajax({
             url:'../ajax.php?action=save_regular',
             data: new FormData($(this)[0]),
