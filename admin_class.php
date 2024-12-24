@@ -1458,7 +1458,7 @@ class Action
 		// 	}
 
 			
-			return json_encode(['status' => 1, 'enroll_id' => $id, 'data' => $_POST]);
+			return json_encode(['status' => 1, 'data' => $_POST]);
 
 		// }
 	}
