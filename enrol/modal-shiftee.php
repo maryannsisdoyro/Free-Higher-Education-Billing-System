@@ -119,19 +119,19 @@
                         if(isset($id)):
                         $fees = $conn->query("SELECT * FROM fees where course_id = $id");
                         $total = 0;
-                        while($row=$fees->fetch_assoc()): 
-                            $total += $row['amount'];
+                        while($shif=$fees->fetch_assoc()): 
+                            $total += $shif['amount'];
                     ?>
                         <tr>
                             <td class="text-center"><button class="btn-sm btn-outline-danger" type="button" onclick="rem_list($(this))" ><i class="fa fa-times"></i></button></td>
                             <td>
-                                <input type="hidden" name="fid_shiftee[]" value="<?php echo $row['id'] ?>">
-                                <input type="hidden" name="type_shiftee[]" value="<?php echo $row['description'] ?>">
-                                <p><small><b class="ftype_shiftee"><?php echo $row['description'] ?></b></small></p>
+                                <input type="hidden" name="fid_shiftee[]" value="<?php echo $shif['id'] ?>">
+                                <input type="hidden" name="type_shiftee[]" value="<?php echo $shif['description'] ?>">
+                                <p><small><b class="ftype_shiftee"><?php echo $shif['description'] ?></b></small></p>
                             </td>
                             <td>
-                                <input type="hidden" name="amount_shiftee[]" value="<?php echo $row['amount'] ?>">
-                                <p class="text-right"><small><b class="famount_shiftee"><?php echo number_format($row['amount']) ?></b></small></p>
+                                <input type="hidden" name="amount_shiftee[]" value="<?php echo $shif['amount'] ?>">
+                                <p class="text-right"><small><b class="famount_shiftee"><?php echo number_format($shif['amount']) ?></b></small></p>
                             </td>
                         </tr>
                     <?php
@@ -270,6 +270,10 @@ window.start_load = function(){
             end_load()
             return false;
         }
+
+        setTimeout(3000, function(){
+                    location.href = "student-cor.php?application_no=<?= $row['id'] ?>"
+                })
         
         $.ajax({
             url:'../ajax.php?action=save_shiftee',
@@ -283,9 +287,7 @@ window.start_load = function(){
                 console.log(resp);
                 const result = JSON.parse(resp)
 
-                setTimeout(3000, function(){
-                    location.href = "student-cor.php?application_no=<?= $row['id'] ?>"
-                })
+              
 
                 if(result.status==1){
                    

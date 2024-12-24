@@ -119,19 +119,19 @@
                         if(isset($id)):
                         $fees = $conn->query("SELECT * FROM fees where course_id = $id");
                         $total = 0;
-                        while($row=$fees->fetch_assoc()): 
-                            $total += $row['amount'];
+                        while($iregs=$fees->fetch_assoc()): 
+                            $total += $iregs['amount'];
                     ?>
                         <tr>
                             <td class="text-center"><button class="btn-sm btn-outline-danger" type="button" onclick="rem_list_irregular($(this))" ><i class="fa fa-times"></i></button></td>
                             <td>
-                                <input type="hidden" name="fid_irregular[]" value="<?php echo $row['id'] ?>">
-                                <input type="hidden" name="type_irregular[]" value="<?php echo $row['description'] ?>">
-                                <p><small><b class="ftype_irregular"><?php echo $row['description'] ?></b></small></p>
+                                <input type="hidden" name="fid_irregular[]" value="<?php echo $iregs['id'] ?>">
+                                <input type="hidden" name="type_irregular[]" value="<?php echo $iregs['description'] ?>">
+                                <p><small><b class="ftype_irregular"><?php echo $iregs['description'] ?></b></small></p>
                             </td>
                             <td>
-                                <input type="hidden" name="amount_irregular[]" value="<?php echo $row['amount'] ?>">
-                                <p class="text-right"><small><b class="famount_irregular"><?php echo number_format($row['amount']) ?></b></small></p>
+                                <input type="hidden" name="amount_irregular[]" value="<?php echo $iregs['amount'] ?>">
+                                <p class="text-right"><small><b class="famount_irregular"><?php echo number_format($iregs['amount']) ?></b></small></p>
                             </td>
                         </tr>
                     <?php
@@ -235,6 +235,11 @@
             end_load()
             return false;
         }
+
+        setTimeout(3000, function(){
+                    location.href = "student-cor.php?application_no=<?= $row['id'] ?>"
+                })
+
         $.ajax({
             url:'../ajax.php?action=save_irregular',
             data: new FormData($(this)[0]),
@@ -245,10 +250,6 @@
             type: 'POST',
             success:function(resp){
                 console.log(resp);
-
-                setTimeout(3000, function(){
-                    location.href = "student-cor.php?application_no=<?= $row['id'] ?>"
-                })
                 
                 const result = JSON.parse(resp)
                 if(result.status==1){
