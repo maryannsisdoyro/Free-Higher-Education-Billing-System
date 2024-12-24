@@ -22,7 +22,7 @@
                 <h5 class="text-light"><i class="fa fa-wrench"></i> Manage Enrollment</h5>
             </div>
             <div class="modal-body">
-            <input type="text" name="stu_id" value="<?= $row['stu_id'] ?>">
+            <input type="hidden" name="stu_id" value="<?= $row['stu_id'] ?>">
             <input type="hidden" name="id" value="<?= $row['id'] ?>">
             <input type="hidden" name="semester" value="<?= $academic['semester'] != NULL ? $academic['semester'] : ''  ?>">
             <input type="hidden" name="academic" value="<?= $academic['id'] ?>">
