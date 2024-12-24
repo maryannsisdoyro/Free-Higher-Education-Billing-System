@@ -616,7 +616,7 @@ if (isset($_GET['next'])) {
             ?>
                 <tr>
                     <?php 
-                        if (strtoupper($row['enroll_status']) != 'REGULAR' && $row['enroll_status'] != NULL) {
+                        if (strtoupper($row['enroll_status']) == 'IRREGULAR' || trtoupper($row['enroll_status']) == 'SHIFTEE') {
                             ?>
                               <td class="text-center"><a class="text-danger mx-1 py-0 my-auto btn btn-outline-danger" href="?application_no=<?= $_GET['application_no'] ?>&remove=<?= htmlentities($stud_sub['id']) ?>">x</td>
                             <?php 
